@@ -1,0 +1,63 @@
+import React from 'react';
+import { FlaskConical, FileCheck2, Sprout } from 'lucide-react';
+
+export const AssuranceStrip: React.FC = () => {
+  const features = [
+    {
+      icon: FlaskConical,
+      title: 'GC/MS VERIFIED',
+      description: 'Every batch tested for purity and active marker profile.'
+    },
+    {
+      icon: FileCheck2,
+      title: 'EXPORT DOCUMENTATION',
+      description: 'Complete export-ready paperwork and compliance support.'
+    },
+    {
+      icon: Sprout,
+      title: 'TRACEABLE LOTS',
+      description: 'From farm to final packing, every lot is fully traceable.'
+    }
+  ];
+
+  return (
+    <section className="w-full bg-[#f4efd3] text-[#17231e] py-3.5 md:py-4 border-b border-[#dfcfad] relative overflow-hidden shrink-0">
+      
+      {/* AI Generated Beige Sheet Background with Indian Heritage Palace Dome Illustration */}
+      <div
+        className="absolute inset-0 opacity-40 pointer-events-none bg-cover bg-right"
+        style={{
+          backgroundImage: `url('/assets/images/assurance-beige-sheet-bg.png')`,
+        }}
+      />
+
+      <div className="max-w-[1440px] mx-auto px-4 md:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-6 divide-y md:divide-y-0 md:divide-x divide-[#041e18]/15">
+          {features.map((item, index) => {
+            const IconComponent = item.icon;
+            return (
+              <div
+                key={index}
+                className={`flex items-center gap-3.5 ${
+                  index !== 0 ? 'pt-3 md:pt-0 md:pl-8' : ''
+                }`}
+              >
+                <div className="w-11 h-11 rounded-full bg-[#dfcfad]/80 border border-[#b88a2c]/60 flex items-center justify-center shrink-0 shadow-sm backdrop-blur-sm">
+                  <IconComponent className="w-5 h-5 text-[#041e18]" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-xs sm:text-sm font-bold tracking-[0.08em] text-[#041e18] uppercase">
+                    {item.title}
+                  </h3>
+                  <p className="text-[11px] sm:text-xs text-[#17231e]/90 font-light leading-snug mt-0.5 max-w-xs">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};

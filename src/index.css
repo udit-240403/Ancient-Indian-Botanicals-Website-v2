@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --forest-950: #062b23;
+    --forest-900: #083a30;
+    --forest-800: #125344;
+    --sage-500: #82966f;
+    --leaf-400: #a8c76b;
+    --ivory-50: #fbf7ed;
+    --ivory-100: #f2ead9;
+    --parchment-200: #dfcfad;
+    --brass-500: #b88a2c;
+    --brass-600: #967020;
+    --ink-900: #17231e;
+    --stone-500: #7f7b6f;
+    --error: #9f3d32;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    color: var(--ivory-50);
+    background-color: var(--forest-950);
+  }
+
+  body {
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Typography Hierarchy */
+  h1, h2, h3, h4, .font-serif-display {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+}
+
+/* Custom Utilities */
+.font-display {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-body {
+  font-family: 'Manrope', system-ui, sans-serif;
+}
+
+.tracking-eyebrow {
+  letter-spacing: 0.12em;
+}
+
+/* Brass fine rules */
+.border-brass-45 {
+  border-color: rgba(184, 138, 44, 0.45);
+}
+
+.bg-forest-950 { background-color: var(--forest-950); }
+.bg-forest-900 { background-color: var(--forest-900); }
+.bg-forest-800 { background-color: var(--forest-800); }
+.bg-ivory-50 { background-color: var(--ivory-50); }
+.bg-ivory-100 { background-color: var(--ivory-100); }
+.bg-parchment-200 { background-color: var(--parchment-200); }
+
+.text-ivory-50 { color: var(--ivory-50); }
+.text-ivory-100 { color: var(--ivory-100); }
+.text-forest-950 { color: var(--forest-950); }
+.text-forest-900 { color: var(--forest-900); }
+.text-brass-500 { color: var(--brass-500); }
+.text-sage-500 { color: var(--sage-500); }
+.text-leaf-400 { color: var(--leaf-400); }
+.text-stone-500 { color: var(--stone-500); }
+
+.border-brass-500 { border-color: var(--brass-500); }
+.border-forest-800 { border-color: var(--forest-800); }
+
+/* Assurance cards */
+.assurance-card {
+  background-color: var(--forest-900);
+  border: 1px solid rgba(184, 138, 44, 0.45);
+  border-radius: 18px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--forest-950);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--forest-800);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brass-500);
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--leaf-400);
+  outline-offset: 2px;
+}

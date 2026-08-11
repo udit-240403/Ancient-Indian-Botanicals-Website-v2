@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Outer Double Golden Rings -->
+  <circle cx="100" cy="100" r="95" stroke="#b88a2c" stroke-width="2"/>
+  <circle cx="100" cy="100" r="90" stroke="#b88a2c" stroke-width="1" stroke-dasharray="4 2"/>
+  <circle cx="100" cy="100" r="85" stroke="#b88a2c" stroke-width="1.5"/>
+
+  <!-- Lotus Base (Golden Lotus Petals) -->
+  <path d="M 60 135 C 70 145 85 150 100 150 C 115 150 130 145 140 135 C 130 140 115 142 100 142 C 85 142 70 140 60 135 Z" fill="#b88a2c" opacity="0.9"/>
+  <!-- Outer Lotus Petals -->
+  <path d="M 50 130 C 65 125 80 135 100 145 C 75 142 60 135 50 130 Z" fill="#b88a2c"/>
+  <path d="M 150 130 C 135 125 120 135 100 145 C 125 142 140 135 150 130 Z" fill="#b88a2c"/>
+  <!-- Central Lotus Petal -->
+  <path d="M 85 140 C 95 130 100 120 100 120 C 100 120 105 130 115 140 C 105 138 95 138 85 140 Z" fill="#d4af37"/>
+
+  <!-- Arch Frame around Stem -->
+  <path d="M 65 125 C 65 80 135 80 135 125" stroke="#b88a2c" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Main Botanical Plant Stem -->
+  <path d="M 100 135 L 100 45" stroke="#b88a2c" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Golden Buds at Top of Stem -->
+  <circle cx="100" cy="40" r="3" fill="#d4af37"/>
+  <circle cx="96" cy="44" r="2.5" fill="#b88a2c"/>
+  <circle cx="104" cy="44" r="2.5" fill="#b88a2c"/>
+  <circle cx="98" cy="49" r="2" fill="#d4af37"/>
+  <circle cx="102" cy="49" r="2" fill="#d4af37"/>
+
+  <!-- Pair 1 Leaves (Bottom) -->
+  <path d="M 100 115 C 80 110 70 95 72 90 C 85 92 95 102 100 115 Z" fill="#083a30" stroke="#b88a2c" stroke-width="1.5"/>
+  <path d="M 100 115 C 120 110 130 95 128 90 C 115 92 105 102 100 115 Z" fill="#083a30" stroke="#b88a2c" stroke-width="1.5"/>
+
+  <!-- Pair 2 Leaves (Middle) -->
+  <path d="M 100 95 C 82 88 74 76 77 70 C 88 73 96 82 100 95 Z" fill="#083a30" stroke="#b88a2c" stroke-width="1.5"/>
+  <path d="M 100 95 C 118 88 126 76 123 70 C 112 73 104 82 100 95 Z" fill="#083a30" stroke="#b88a2c" stroke-width="1.5"/>
+
+  <!-- Pair 3 Leaves (Top) -->
+  <path d="M 100 75 C 86 70 80 60 82 56 C 91 58 97 65 100 75 Z" fill="#083a30" stroke="#b88a2c" stroke-width="1.5"/>
+  <path d="M 100 75 C 114 70 120 60 118 56 C 109 58 103 65 100 75 Z" fill="#083a30" stroke="#b88a2c" stroke-width="1.5"/>
+
+  <!-- Pair 4 Small Leaves (Summit) -->
+  <path d="M 100 60 C 92 56 88 49 90 46 C 96 48 99 53 100 60 Z" fill="#82966f" stroke="#b88a2c" stroke-width="1"/>
+  <path d="M 100 60 C 108 56 112 49 110 46 C 104 48 101 53 100 60 Z" fill="#82966f" stroke="#b88a2c" stroke-width="1"/>
+</svg>

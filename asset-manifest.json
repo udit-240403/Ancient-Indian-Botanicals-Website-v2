@@ -1,0 +1,46 @@
+{
+  "brand": "Ancient Indian Botanicals",
+  "assets": [
+    {
+      "path": "assets/images/hero-botanical-still-life.png",
+      "role": "homepage hero photography",
+      "alt": "Amber botanical bottles with tulsi, mint, cardamom, ashwagandha roots and dried rose petals",
+      "focalPoint": "60% 50%",
+      "generated": true
+    },
+    {
+      "path": "assets/images/product-families-flatlay.png",
+      "role": "product family section banner",
+      "alt": "Essential oils, botanical powders, floral water and export packaging arranged on a sourcing table",
+      "focalPoint": "50% 50%",
+      "generated": true
+    },
+    {
+      "path": "assets/images/design-reference-homepage.png",
+      "role": "visual implementation reference only",
+      "alt": "Selected premium Ancient Indian Botanicals homepage concept",
+      "generated": false
+    },
+    {
+      "path": "assets/svg/brand-mark.svg",
+      "role": "editable primary emblem",
+      "alt": "Ancient Indian Botanicals sprouting plant emblem"
+    },
+    {
+      "path": "assets/svg/botanical-pattern.svg",
+      "role": "decorative repeating background",
+      "decorative": true
+    },
+    {
+      "path": "assets/svg/origin-map.svg",
+      "role": "stylized provenance graphic",
+      "alt": "Sourcing connections between Mandsaur, Alleppey and Mysore"
+    }
+  ],
+  "sourceAudit": {
+    "url": "https://botanica-global.vercel.app/#home",
+    "audited": "2026-08-11",
+    "note": "Content was rewritten for clarity and claim safety; the package does not redistribute the source site's photographic files."
+  }
+}
+

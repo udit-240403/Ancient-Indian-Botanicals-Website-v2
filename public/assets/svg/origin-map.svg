@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" fill="none">
+  <rect width="900" height="440" rx="24" fill="#083A30"/>
+  <path d="M337 43c48 13 89 38 114 78 27 43 30 92 60 131 20 26 54 44 47 83-8 46-64 72-110 61-47-11-69-59-97-95-33-42-82-75-86-132-4-51 21-106 72-126Z" stroke="#B88A2C" stroke-width="2" opacity=".35"/>
+  <path d="M392 151C352 230 353 284 387 352M392 151C446 231 468 283 479 340" stroke="#B88A2C" stroke-width="2" stroke-dasharray="7 8" opacity=".75"/>
+  <circle cx="392" cy="151" r="9" fill="#A8C76B"/><circle cx="387" cy="352" r="9" fill="#A8C76B"/><circle cx="479" cy="340" r="9" fill="#A8C76B"/>
+  <g fill="#FBF7ED" font-family="Manrope,Arial,sans-serif">
+    <text x="410" y="148" font-size="20" font-weight="600">Mandsaur</text>
+    <text x="276" y="384" font-size="20" font-weight="600">Alleppey</text>
+    <text x="496" y="370" font-size="20" font-weight="600">Mysore</text>
+  </g>
+  <g fill="#DFCFAD" font-family="Manrope,Arial,sans-serif" font-size="14">
+    <text x="410" y="171">Central India</text><text x="276" y="407">Kerala coast</text><text x="496" y="393">South India</text>
+  </g>
+</svg>
