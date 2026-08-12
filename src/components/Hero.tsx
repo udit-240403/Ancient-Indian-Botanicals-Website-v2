@@ -14,7 +14,7 @@ export const Hero: React.FC<HeroProps> = ({
   openCoaModal,
 }) => {
   return (
-    <section className="relative w-full bg-[#041e18] text-[#fbf7ed] overflow-hidden py-2 lg:py-3 border-b border-[#b88a2c]/30 flex-grow flex flex-col justify-center">
+    <section className="relative flex w-full flex-col justify-center overflow-hidden border-b border-[#b88a2c]/30 bg-[#041e18] py-8 text-[#fbf7ed] sm:py-10 lg:flex-grow lg:py-3">
       
       {/* Background Texture Positioned so Mandsaur sits in the middle of the empty space */}
       <div
@@ -28,8 +28,8 @@ export const Hero: React.FC<HeroProps> = ({
       {/* Dimmed Gradient Overlay for High Foreground Text Readability */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#041e18]/85 via-[#041e18]/30 to-transparent pointer-events-none" />
 
-      <div className="max-w-[1440px] mx-auto px-4 md:px-8 relative z-10 w-full my-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-4 md:px-8 lg:my-auto">
+        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-8">
           
           {/* Left Copy Panel (5 Columns) Vertically Centered */}
           <div className="lg:col-span-5 flex flex-col justify-center space-y-3 lg:space-y-3.5 lg:pr-2 relative z-20">
@@ -103,7 +103,7 @@ export const Hero: React.FC<HeroProps> = ({
               </div>
 
               {/* Floating Provenance Card on Bottom Right */}
-              <div className="absolute bottom-3 right-3 max-w-[270px] bg-[#041e18]/95 backdrop-blur-md border border-[#b88a2c]/80 p-3.5 rounded-[14px] shadow-2xl z-30 space-y-1">
+              <div className="absolute bottom-3 left-3 right-3 z-30 max-w-none space-y-1 rounded-[14px] border border-[#b88a2c]/80 bg-[#041e18]/95 p-3.5 shadow-2xl backdrop-blur-md sm:left-auto sm:max-w-[270px]">
                 <div className="flex items-center gap-2">
                   <div className="p-1 bg-[#062b23] border border-[#b88a2c]/50 rounded-full text-[#a8c76b]">
                     <ShieldCheck className="w-3.5 h-3.5 text-[#a8c76b]" />

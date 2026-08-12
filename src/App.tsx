@@ -84,9 +84,10 @@ export function App() {
       <main className="flex-grow">
         {activeTab === 'home' && (
           <>
-            {/* Landing Page Exact 100vh Fold Wrapper - Hero centered in middle, AssuranceStrip shifted up to anchor exact page fold ending */}
-            <div className="h-[calc(100vh-150px)] max-h-[calc(100vh-150px)] flex flex-col justify-between bg-[#041e18] overflow-hidden">
-              <div className="flex-grow flex flex-col justify-center overflow-hidden">
+            {/* Natural mobile flow prevents the hero card and assurance strip from colliding.
+                The compact one-screen composition is retained for desktop only. */}
+            <div className="flex flex-col bg-[#041e18] lg:h-[calc(100svh-150px)] lg:max-h-[calc(100svh-150px)] lg:justify-between lg:overflow-hidden">
+              <div className="flex flex-col justify-center lg:min-h-0 lg:flex-1 lg:overflow-hidden">
                 <Hero
                   onExploreOils={() => navigateToTab('essential-oils')}
                   onBrowseBotanicals={() => navigateToTab('botanicals')}
