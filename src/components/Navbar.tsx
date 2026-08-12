@@ -27,6 +27,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'home', label: 'HOME' },
     { id: 'essential-oils', label: 'ESSENTIAL OILS' },
     { id: 'botanicals', label: 'BOTANICALS' },
+    { id: 'catalogue', label: 'FULL CATALOGUE' },
     { id: 'packaging', label: 'PACKAGING' },
     { id: 'quality', label: 'QUALITY' },
     { id: 'about', label: 'ABOUT' },
@@ -127,7 +128,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           {/* Desktop Nav Links */}
-          <div className="hidden xl:flex items-center gap-6">
+          <div className="hidden xl:flex items-center gap-4">
             {navLinks.map((link) => (
               <button
                 key={link.id}

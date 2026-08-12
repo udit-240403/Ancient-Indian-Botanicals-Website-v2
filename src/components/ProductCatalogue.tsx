@@ -59,14 +59,14 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
         {/* Section Header */}
         <div className="max-w-4xl mb-12">
           <span className="text-[11px] uppercase tracking-eyebrow text-[#b88a2c] font-semibold block mb-2">
-            Structured B2B Inventory
+            Featured B2B Portfolio
           </span>
           <div className="section-rule mb-5" />
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-[#fbf7ed] mb-4">
-            Explore our botanical catalogue
+            Explore our featured portfolio
           </h2>
           <p className="text-sm text-[#f2ead9]/85 font-light leading-relaxed">
-            Search by common name, botanical name, ingredient family or available form. Specifications and lot availability are confirmed against each enquiry.
+            A selective view of priority sourcing routes. Use the complete catalogue for the broader range; specifications and lot availability are confirmed against each enquiry.
           </p>
 
           {/* Popular Searches */}

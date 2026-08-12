@@ -63,6 +63,11 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="space-y-2 text-xs uppercase tracking-eyebrow font-medium text-[#f2ead9]/80">
               <li>
+                <button onClick={() => handleNav('catalogue')} className="text-[#b88a2c] hover:text-[#fbf7ed] transition-colors">
+                  Complete Product Catalogue
+                </button>
+              </li>
+              <li>
                 <button onClick={() => handleNav('essential-oils')} className="hover:text-[#b88a2c] transition-colors">
                   Essential Oils & Accords
                 </button>

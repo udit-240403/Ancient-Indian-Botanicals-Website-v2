@@ -7,6 +7,7 @@ import { ProductFamilies } from './components/ProductFamilies';
 import { OriginsSection } from './components/OriginsSection';
 import { WorkflowSection } from './components/WorkflowSection';
 import { ProductCatalogue } from './components/ProductCatalogue';
+import { CompleteCatalogue } from './components/CompleteCatalogue';
 import { ProductDetailModal } from './components/ProductDetailModal';
 import { QuoteFormModal } from './components/QuoteFormModal';
 import { VerifyCoaModal } from './components/VerifyCoaModal';
@@ -111,6 +112,14 @@ export function App() {
           />
         )}
 
+        {activeTab === 'catalogue' && (
+          <CompleteCatalogue
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            openQuoteModal={handleOpenQuoteModal}
+          />
+        )}
+
         {activeTab === 'packaging' && (
           <PackagingPage openQuoteModal={() => handleOpenQuoteModal()} />
         )}
@@ -129,15 +138,11 @@ export function App() {
         {activeTab === 'payments' && <PaymentsPage />}
 
         {activeTab === 'search' && (
-          <div className="py-8">
-            <ProductCatalogue
-              initialCategory="all"
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              onSelectProduct={(product) => setSelectedProduct(product)}
-              openQuoteModal={handleOpenQuoteModal}
-            />
-          </div>
+          <CompleteCatalogue
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            openQuoteModal={handleOpenQuoteModal}
+          />
         )}
 
         {(activeTab === 'terms' || activeTab === 'shipping' || activeTab === 'privacy' || activeTab === 'refunds') && (
