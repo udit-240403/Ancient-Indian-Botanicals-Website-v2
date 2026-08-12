@@ -20,7 +20,7 @@ export const Footer: React.FC<FooterProps> = ({
   };
 
   return (
-    <footer className="w-full bg-[#062b23] text-[#fbf7ed] border-t border-[#b88a2c]/40 pt-16 pb-12">
+    <footer className="w-full bg-[#031a15] text-[#fbf7ed] border-t border-[#b88a2c]/25 pt-20 pb-10">
       <div className="max-w-[1440px] mx-auto px-4 md:px-8">
         
         {/* Main Footer Grid */}
@@ -134,11 +134,11 @@ export const Footer: React.FC<FooterProps> = ({
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#b88a2c] shrink-0" />
-                <span className="font-mono text-[11px]">trade@ancientindianbotanicals.com</span>
+                <a href="mailto:office@ancientindianbotanicals.com" className="font-mono text-[11px] hover:text-[#b88a2c] transition-colors">office@ancientindianbotanicals.com</a>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#b88a2c] shrink-0" />
-                <span className="font-mono text-[11px]">+91 (7422) 240-BOTANICA</span>
+                <span className="text-[11px] text-[#82966f]">Phone contact will be shared with confirmed trade enquiries.</span>
               </div>
             </div>
           </div>
@@ -146,8 +146,8 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Regulatory Disclaimer */}
-        <div className="p-4 bg-[#083a30] border border-[#b88a2c]/20 text-[11px] text-[#7f7b6f] font-light leading-relaxed mb-8">
-          <strong>Commercial Notice & Disclaimer:</strong> Product information is supplied for commercial evaluation and industrial specification purposes only and does not constitute therapeutic claims or medical advice. Specification parameters, harvest origin, and batch documentation (COA, GC/MS) are confirmed lot by lot upon written B2B inquiry.
+        <div className="p-5 bg-[#062b23] border border-[#b88a2c]/20 text-[11px] text-[#a9b2ac] font-light leading-relaxed mb-8">
+          <strong className="text-[#dfcfad]">Commercial notice:</strong> Ancient Indian Botanicals is currently undergoing incorporation. Product information is supplied for commercial evaluation and does not constitute therapeutic claims or medical advice. Specifications, origin, availability and supporting documents are confirmed in writing for each approved lot and enquiry.
         </div>
 
         {/* Bottom Bar */}

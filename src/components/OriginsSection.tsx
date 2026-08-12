@@ -13,7 +13,7 @@ export const OriginsSection: React.FC<OriginsSectionProps> = () => {
 
   return (
     <section
-      className="w-full bg-[#f4efd3] text-[#17231e] py-16 md:py-24 border-b border-[#b88a2c]/40 relative overflow-hidden bg-cover bg-center"
+      className="w-full bg-[#f4efd3] text-[#17231e] py-20 md:py-32 border-b border-[#b88a2c]/30 relative overflow-hidden bg-cover bg-center"
       style={{
         backgroundImage: `linear-gradient(to bottom, rgba(244, 239, 211, 0.93), rgba(244, 239, 211, 0.96)), url('/assets/images/assurance-beige-sheet-bg.png')`,
       }}
@@ -21,12 +21,13 @@ export const OriginsSection: React.FC<OriginsSectionProps> = () => {
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 relative z-10">
         
         {/* Header */}
-        <div className="max-w-3xl mb-12">
+        <div className="max-w-4xl mb-14 md:mb-16">
           <span className="text-[11px] uppercase tracking-eyebrow text-[#b88a2c] font-bold block mb-2">
             Provenance & Supply Corridors
           </span>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#041e18] mb-4">
-            Indian growing regions, connected to export routes
+          <div className="section-rule mb-5" />
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-[#041e18] mb-5 leading-[1.05]">
+            Rooted in India’s growing regions
           </h2>
           <p className="text-sm text-[#384941] font-normal leading-relaxed">
             Our sourcing network is organised around established agricultural and processing corridors. Origin availability depends on the botanical, harvest, grade and approved supplier lot.
@@ -34,20 +35,20 @@ export const OriginsSection: React.FC<OriginsSectionProps> = () => {
         </div>
 
         {/* Interactive Region Selector Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
           
           {/* Left Column: Region Navigation Tabs */}
-          <div className="lg:col-span-5 space-y-4">
+          <div className="lg:col-span-5 space-y-3">
             {PROVENANCE_REGIONS.map((region) => {
               const isActive = region.id === activeRegionId;
               return (
                 <div
                   key={region.id}
                   onClick={() => setActiveRegionId(region.id)}
-                  className={`p-6 border transition-all cursor-pointer ${
+                  className={`p-6 md:p-7 border transition-all cursor-pointer ${
                     isActive
-                      ? 'bg-[#041e18] border-[#b88a2c] text-[#fbf7ed] shadow-xl'
-                      : 'bg-[#fbf7ed]/80 border-[#b88a2c]/30 text-[#17231e] hover:border-[#b88a2c]'
+                      ? 'bg-[#041e18] border-[#b88a2c]/80 text-[#fbf7ed] shadow-xl translate-x-0 md:translate-x-2'
+                      : 'bg-[#fbf7ed]/70 border-[#b88a2c]/25 text-[#17231e] hover:border-[#b88a2c]/70'
                   }`}
                 >
                   <div className="flex items-start gap-4">
@@ -74,7 +75,7 @@ export const OriginsSection: React.FC<OriginsSectionProps> = () => {
           </div>
 
           {/* Right Column: Interactive Region Details & Origin Map */}
-          <div className="lg:col-span-7 bg-[#041e18] text-[#fbf7ed] border-2 border-[#b88a2c]/60 p-6 md:p-8 flex flex-col justify-between space-y-6 shadow-2xl">
+          <div className="lg:col-span-7 premium-panel text-[#fbf7ed] p-7 md:p-10 flex flex-col justify-between space-y-7">
             
             <div className="flex items-center justify-between border-b border-[#b88a2c]/30 pb-4">
               <div>
@@ -128,7 +129,7 @@ export const OriginsSection: React.FC<OriginsSectionProps> = () => {
               />
               <div className="absolute inset-0 flex items-center justify-center">
                 <span className="bg-[#041e18]/95 border border-[#b88a2c] text-[#b88a2c] text-xs uppercase tracking-eyebrow px-4 py-1.5 font-bold shadow-xl">
-                  Verified Sourcing Corridor: {selectedRegion.name}
+                  Sourcing corridor · {selectedRegion.name}
                 </span>
               </div>
             </div>

@@ -42,7 +42,7 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
   });
 
   return (
-    <section className="w-full bg-[#041e18] text-[#fbf7ed] py-16 md:py-24 border-b border-[#b88a2c]/30 relative overflow-hidden">
+    <section className="editorial-section w-full bg-[#041e18] text-[#fbf7ed] py-20 md:py-32 border-b border-[#b88a2c]/20 relative overflow-hidden">
       
       {/* Subtle Wood Texture Background Overlay */}
       <div
@@ -56,12 +56,13 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-10">
+        <div className="max-w-4xl mb-12">
           <span className="text-[11px] uppercase tracking-eyebrow text-[#b88a2c] font-semibold block mb-2">
             Structured B2B Inventory
           </span>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#fbf7ed] mb-3">
-            Explore the botanical catalogue
+          <div className="section-rule mb-5" />
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-[#fbf7ed] mb-4">
+            Explore our botanical catalogue
           </h2>
           <p className="text-sm text-[#f2ead9]/85 font-light leading-relaxed">
             Search by common name, botanical name, ingredient family or available form. Specifications and lot availability are confirmed against each enquiry.
@@ -126,11 +127,11 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
 
         {/* Product Cards Grid */}
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-7">
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
-                className="bg-[#062b23] border border-[#b88a2c]/40 hover:border-[#b88a2c] flex flex-col justify-between transition-all duration-300 group shadow-xl hover:-translate-y-1.5"
+                className="premium-card flex flex-col justify-between group overflow-hidden"
               >
                 <div>
                   {/* Card Image Header (4:3 aspect ratio) */}
@@ -138,7 +139,7 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover transform group-hover:scale-[1.04] transition-transform duration-700"
                     />
                     <div className="absolute top-3 left-3 bg-[#041e18]/95 border border-[#b88a2c]/60 text-[#b88a2c] text-[10px] uppercase tracking-eyebrow px-2.5 py-1 font-bold">
                       {product.badgeNumber}
@@ -149,12 +150,12 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
                   </div>
 
                   {/* Content Info */}
-                  <div className="p-5 space-y-3">
+                  <div className="p-6 space-y-3">
                     <div>
                       <span className="text-[10px] uppercase tracking-eyebrow text-[#b88a2c] block mb-1 font-semibold">
                         {product.harvestOrigin}
                       </span>
-                      <h3 className="font-serif text-xl font-bold text-[#fbf7ed] group-hover:text-[#b88a2c] transition-colors leading-snug">
+                      <h3 className="font-serif text-2xl font-semibold text-[#fbf7ed] group-hover:text-[#b88a2c] transition-colors leading-tight">
                         {product.name}
                       </h3>
                       <p className="font-serif italic text-sm text-[#b88a2c] font-light mt-0.5">

@@ -9,7 +9,7 @@ interface WorkflowSectionProps {
 export const WorkflowSection: React.FC<WorkflowSectionProps> = ({ onStartEnquiry }) => {
   return (
     <section
-      className="w-full bg-[#041e18] text-[#fbf7ed] py-16 md:py-24 border-b border-[#b88a2c]/40 relative overflow-hidden bg-cover bg-center"
+      className="editorial-section w-full bg-[#041e18] text-[#fbf7ed] py-20 md:py-32 border-b border-[#b88a2c]/20 relative overflow-hidden bg-cover bg-center"
       style={{
         backgroundImage: `linear-gradient(to bottom, rgba(4, 30, 24, 0.88), rgba(4, 30, 24, 0.94)), url('/assets/images/image.png')`,
       }}
@@ -17,17 +17,18 @@ export const WorkflowSection: React.FC<WorkflowSectionProps> = ({ onStartEnquiry
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 relative z-10">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div>
             <span className="text-[11px] uppercase tracking-eyebrow text-[#b88a2c] font-bold block mb-2">
               Quality & Fulfillment Journey
             </span>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#fbf7ed]">
-              From requirement to dispatch
+            <div className="section-rule mb-5" />
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-[#fbf7ed]">
+              From brief to shipment
             </h2>
           </div>
           <p className="text-sm text-[#f2ead9]/85 max-w-md font-light leading-relaxed">
-            Every B2B enquiry follows a structured 5-step quality verification cycle ensuring compliance with global import standards.
+            A clear commercial process—from understanding the requirement to confirming documentation, packing and dispatch.
           </p>
         </div>
 
@@ -36,7 +37,7 @@ export const WorkflowSection: React.FC<WorkflowSectionProps> = ({ onStartEnquiry
           {SPECIFICATION_WORKFLOW.map((item) => (
             <div
               key={item.id}
-              className="bg-[#062b23]/95 text-[#fbf7ed] border border-[#b88a2c]/40 hover:border-[#b88a2c] p-6 flex flex-col justify-between transition-all duration-300 relative group shadow-xl hover:-translate-y-1.5 backdrop-blur-sm"
+              className="premium-card text-[#fbf7ed] p-6 md:p-7 min-h-[330px] flex flex-col justify-between relative group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#b88a2c]/30">
@@ -52,8 +53,8 @@ export const WorkflowSection: React.FC<WorkflowSectionProps> = ({ onStartEnquiry
                   {item.title}
                 </h3>
 
-                <p className="text-xs text-[#f2ead9]/85 font-light leading-relaxed mb-4">
-                  {item.fullDesc}
+                <p className="text-xs text-[#f2ead9]/78 font-light leading-relaxed mb-4">
+                  {item.shortDesc}
                 </p>
               </div>
 
@@ -71,20 +72,20 @@ export const WorkflowSection: React.FC<WorkflowSectionProps> = ({ onStartEnquiry
         </div>
 
         {/* Bottom Callout */}
-        <div className="mt-12 p-8 bg-[#062b23] text-[#fbf7ed] border-2 border-[#b88a2c]/60 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="mt-12 p-8 md:p-10 premium-panel text-[#fbf7ed] flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="space-y-1 text-center md:text-left">
             <h4 className="font-serif text-2xl font-bold text-[#b88a2c]">
               Ready to specify your batch requirements?
             </h4>
             <p className="text-xs text-[#f2ead9]/85 font-light">
-              Submit your formulation specifications, required volume, and destination port for an immediate lot match.
+              Share the product, form, quantity and destination. We’ll review the requirement and respond with the next practical step.
             </p>
           </div>
           <button
             onClick={onStartEnquiry}
             className="bg-[#b88a2c] hover:bg-[#967020] text-[#041e18] font-bold text-xs uppercase tracking-eyebrow px-8 py-3.5 flex items-center gap-2 transition-all shadow-xl hover:-translate-y-0.5 shrink-0 cursor-pointer"
           >
-            <span>Initiate Specification Request</span>
+            <span>Start a B2B enquiry</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

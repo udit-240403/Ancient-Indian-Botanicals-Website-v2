@@ -43,7 +43,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
 
   return (
     <section
-      className="w-full bg-[#041e18] text-[#fbf7ed] py-16 md:py-24 border-b border-[#b88a2c]/40 relative overflow-hidden bg-cover bg-center"
+      className="editorial-section w-full bg-[#041e18] text-[#fbf7ed] py-20 md:py-32 border-b border-[#b88a2c]/20 relative overflow-hidden bg-cover bg-center"
       style={{
         backgroundImage: `linear-gradient(to bottom, rgba(4, 30, 24, 0.88), rgba(4, 30, 24, 0.94)), url('/assets/images/image.png')`,
       }}
@@ -51,22 +51,23 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-14">
           <div>
             <span className="text-[11px] uppercase tracking-eyebrow text-[#b88a2c] block mb-2 font-bold">
               Product Portfolio
             </span>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#fbf7ed]">
-              Botanical product families
+            <div className="section-rule mb-5" />
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-[#fbf7ed]">
+              A portfolio shaped by origin
             </h2>
           </div>
           <p className="text-sm text-[#f2ead9]/85 max-w-md font-light leading-relaxed">
-            Sourced directly from verified cultivation corridors, processed to exact physical and chemical parameters for international export.
+            Explore ingredients by application and form. Origin, specification, documentation and current availability are confirmed for each enquiry.
           </p>
         </div>
 
         {/* Product Families Banner Image & Grid Combo */}
-        <div className="mb-12 relative rounded-none overflow-hidden border-2 border-[#b88a2c]/60 shadow-2xl max-h-[360px]">
+        <div className="mb-10 relative overflow-hidden border border-[#b88a2c]/35 shadow-2xl h-[300px] md:h-[440px]">
           <img
             src="/assets/images/product-families-flatlay.png"
             alt="Ancient Indian Botanical Product Families Flatlay"
@@ -77,38 +78,38 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
               <span className="text-xs uppercase tracking-eyebrow text-[#b88a2c] font-semibold block mb-1">
                 Integrated Supply Chain
               </span>
-              <h3 className="font-serif text-2xl md:text-3xl text-[#fbf7ed] font-bold">
-                From Raw Forest & Harvest Belts to Standardized Industrial Export
+              <h3 className="font-serif text-3xl md:text-5xl text-[#fbf7ed] font-semibold max-w-3xl leading-[1.05]">
+                Indian botanicals, prepared around your specification
               </h3>
             </div>
           </div>
         </div>
 
         {/* 4 Cards Grid with Deep Dark Green Contrast */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#b88a2c]/25 border border-[#b88a2c]/25">
           {families.map((family) => {
             const IconComp = family.icon;
             return (
               <div
                 key={family.id}
                 onClick={() => onSelectCategory(family.id)}
-                className="bg-[#062b23]/95 text-[#fbf7ed] border border-[#b88a2c]/50 hover:border-[#b88a2c] p-6 flex flex-col justify-between transition-all duration-300 group cursor-pointer hover:-translate-y-1.5 shadow-xl backdrop-blur-sm"
+                className="bg-[#062b23] text-[#fbf7ed] p-7 md:p-8 min-h-[300px] flex flex-col justify-between transition-all duration-300 group cursor-pointer hover:bg-[#083a30]"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <div className="p-3 bg-[#041e18] border border-[#b88a2c]/40 rounded-full text-[#b88a2c] group-hover:bg-[#b88a2c] group-hover:text-[#062b23] transition-colors">
+                    <div className="p-3 bg-[#041e18] border border-[#b88a2c]/30 rounded-full text-[#b88a2c] group-hover:bg-[#b88a2c] group-hover:text-[#062b23] transition-colors">
                       <IconComp className="w-5 h-5" />
                     </div>
-                    <span className="text-[10px] uppercase tracking-eyebrow text-[#a8c76b] font-semibold bg-[#041e18] px-2.5 py-1 border border-[#b88a2c]/30">
+                    <span className="text-[9px] uppercase tracking-eyebrow text-[#a8c76b] font-semibold">
                       {family.tag}
                     </span>
                   </div>
 
-                  <h3 className="font-serif text-2xl font-bold text-[#fbf7ed] mb-2 group-hover:text-[#b88a2c] transition-colors">
+                  <h3 className="font-serif text-2xl md:text-3xl font-semibold text-[#fbf7ed] mb-3 group-hover:text-[#b88a2c] transition-colors leading-tight">
                     {family.title}
                   </h3>
 
-                  <p className="text-xs text-[#f2ead9]/80 leading-relaxed font-light mb-6">
+                  <p className="text-sm text-[#f2ead9]/72 leading-relaxed font-light mb-6">
                     {family.description}
                   </p>
                 </div>
