@@ -217,7 +217,7 @@ export const AboutPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuoteM
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle2 className="w-4 h-4 text-[#b88a2c] shrink-0 mt-0.5" />
-              <span><strong>Respectful supplier relationships:</strong> Long-term agricultural partnerships across Central and Southern Indian belts.</span>
+              <span><strong>Relationship-led sourcing:</strong> Supplier routes are evaluated against the buyer specification, available evidence and commercial readiness.</span>
             </li>
           </ul>
         </div>
@@ -225,7 +225,7 @@ export const AboutPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuoteM
         <div className="relative aspect-video border border-[#b88a2c]/40 overflow-hidden bg-[#083a30]">
           <img
             src="/assets/images/hero-botanical-still-life.webp"
-            alt="Ancient Indian Botanicals House"
+            alt="Amber botanical bottles with Indian herbs and roots"
             className="w-full h-full object-cover"
           />
         </div>
@@ -242,15 +242,15 @@ export const PaymentsPage: React.FC = () => (
         Commercial Payment & Accounts Guidelines
       </h1>
       <p className="text-xs text-[#f2ead9]/85 leading-relaxed font-light">
-        All financial settlement is conducted exclusively via verified corporate banking transfers following written invoice approval. We do not process online credit card transactions on the quotation desk.
+        Ancient Indian Botanicals is currently undergoing incorporation. Payment instructions will be issued only after written quotation, counterparty verification and confirmation of the applicable banking route. We do not collect card payments through this website.
       </p>
 
       <div className="space-y-4 bg-[#083a30] border border-[#b88a2c]/30 p-6 text-xs">
-        <h3 className="font-serif text-xl text-[#b88a2c]">Supported Payment Channels:</h3>
+        <h3 className="font-serif text-xl text-[#b88a2c]">Commercial routes considered case by case:</h3>
         <ul className="space-y-2 font-light">
-          <li>• SWIFT International Wire Transfer (USD / EUR / GBP / INR)</li>
-          <li>• Irrevocable Letter of Credit (L/C at Sight for container loads)</li>
-          <li>• Bank Telegraphic Transfer (T/T) per agreed Incoterms (FOB/CIF)</li>
+          <li>• Bank transfer against an approved quotation and invoice</li>
+          <li>• Letter of Credit for eligible larger orders, subject to written acceptance</li>
+          <li>• Currency, Incoterms and payment schedule confirmed in the final commercial offer</li>
         </ul>
       </div>
     </div>
@@ -266,10 +266,10 @@ export const LegalPage: React.FC<{ policyType: 'terms' | 'shipping' | 'privacy' 
       </h1>
       <div className="p-6 bg-[#083a30] border border-[#b88a2c]/30 text-xs text-[#f2ead9]/85 space-y-4 font-light leading-relaxed">
         <p>
-          Ancient Indian Botanicals operates under strict B2B commercial export standards. All orders are subject to written contract confirmation, quality sample retention, and phytosanitary compliance.
+          Ancient Indian Botanicals is currently undergoing incorporation. Website information is preliminary and intended for B2B commercial evaluation. Any order, specification, documentation obligation, shipping term, return term or payment condition becomes binding only through a written offer or contract issued after incorporation and counterparty review.
         </p>
         <p>
-          For specific inquiries regarding custom export terms, shipping documents, or batch return protocols, contact our legal desk at <span className="font-mono text-[#b88a2c]">legal@ancientindianbotanicals.com</span>.
+          For questions regarding trade terms, shipping documents, privacy or batch-return protocols, contact <a href="mailto:office@ancientindianbotanicals.com" className="font-mono text-[#b88a2c] hover:text-[#fbf7ed]">office@ancientindianbotanicals.com</a>.
         </p>
       </div>
     </div>

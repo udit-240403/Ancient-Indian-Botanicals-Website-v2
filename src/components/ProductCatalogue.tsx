@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BotanicalProduct, ProductCategory } from '../types';
 import { BOTANICAL_PRODUCTS } from '../data/products';
+import { getProductPresentation } from '../data/productPresentation';
 import { Search, ArrowRight, FileText } from 'lucide-react';
 
 interface ProductCatalogueProps {
@@ -128,7 +129,9 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
         {/* Product Cards Grid */}
         {filteredProducts.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-7">
-            {filteredProducts.map((product) => (
+            {filteredProducts.map((product) => {
+              const presentation = getProductPresentation(product);
+              return (
               <div
                 key={product.id}
                 className="premium-card flex flex-col justify-between group overflow-hidden"
@@ -137,7 +140,7 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
                   {/* Card Image Header (4:3 aspect ratio) */}
                   <div className="relative aspect-[4/3] overflow-hidden bg-[#041e18]">
                     <img
-                      src={product.image}
+                      src={presentation.image}
                       alt={product.name}
                       width="1200"
                       height="900"
@@ -168,7 +171,7 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
                     </div>
 
                     <p className="text-xs text-[#f2ead9]/80 line-clamp-2 font-light leading-relaxed">
-                      {product.description}
+                      {presentation.summary}
                     </p>
 
                     {/* Available Forms */}
@@ -212,12 +215,14 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
                     onClick={() => openQuoteModal(product.name)}
                     className="bg-[#b88a2c] hover:bg-[#967020] text-[#041e18] p-2 transition-colors cursor-pointer shadow-md"
                     title={`Request quote for ${product.name}`}
+                    aria-label={`Request quote for ${product.name}`}
                   >
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         ) : (
           <div className="text-center py-16 bg-[#062b23] border border-[#b88a2c]/40 p-8 space-y-4 shadow-2xl">

@@ -47,7 +47,7 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
 
             <p className="text-xs text-[#f2ead9]/80 font-light leading-relaxed max-w-sm">
-              Connecting buyer specifications with suitable Indian botanical and aromatic supply routes. Direct lot verification, transparent documentation, and export logistics.
+              Connecting buyer specifications with suitable Indian botanical and aromatic supply routes. Lot-level documentation coordination, transparent communication and export support.
             </p>
 
             <div className="flex items-center gap-2 text-xs text-[#b88a2c] font-serif pt-1">

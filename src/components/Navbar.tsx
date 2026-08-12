@@ -63,7 +63,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center gap-2 font-medium tracking-wide">
             <span className="text-[#b88a2c] font-bold">🌿</span>
             <span className="text-[#041e18] font-semibold">
-              Pure botanical sourcing from Central India (Mandsaur, Alleppey, Mysore)
+              Indian botanical sourcing corridors · Mandsaur · Alleppey · Mysore
             </span>
           </div>
 
@@ -157,13 +157,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="bg-[#062b23] border border-[#b88a2c]/40 text-[11px] text-[#fbf7ed] placeholder-[#82966f] pl-3 pr-8 py-1.5 w-44 xl:w-52 focus:outline-none focus:border-[#b88a2c] uppercase tracking-wider"
               />
-              <button type="submit" className="absolute right-2 text-[#b88a2c] hover:text-[#fbf7ed] cursor-pointer">
+              <button type="submit" aria-label="Search catalogue" className="absolute right-2 text-[#b88a2c] hover:text-[#fbf7ed] cursor-pointer">
                 <Search className="w-3.5 h-3.5" />
               </button>
             </form>
 
             <button
               onClick={() => setSearchOpen(!searchOpen)}
+              aria-label={searchOpen ? 'Close catalogue search' : 'Open catalogue search'}
               className="lg:hidden p-2 text-[#fbf7ed] hover:text-[#b88a2c] border border-[#b88a2c]/30 rounded-none cursor-pointer"
             >
               <Search className="w-4 h-4" />

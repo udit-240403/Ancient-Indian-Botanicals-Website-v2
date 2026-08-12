@@ -36,14 +36,14 @@ export const Hero: React.FC<HeroProps> = ({
             
             {/* Single Line Eyebrow Pill */}
             <div className="inline-flex items-center gap-2 border border-[#b88a2c]/60 px-3 py-1 rounded-none text-[10px] font-semibold uppercase tracking-[0.14em] text-[#b88a2c] w-fit max-w-full bg-[#041e18]/95 backdrop-blur-md shadow-xl whitespace-nowrap overflow-hidden text-ellipsis">
-              <span>PURE BOTANICAL SOURCING · EXPORT CERTIFIED LOT STANDARDS</span>
+              <span>INDIAN BOTANICAL SOURCING · SPECIFICATION-LED B2B SUPPLY</span>
             </div>
 
             {/* Headline matching reference image formatting */}
             <h1 className="font-serif text-3xl sm:text-4xl lg:text-[2.85rem] xl:text-[3.15rem] font-bold leading-[1.05] text-[#fbf7ed] tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-              BOOK YOURSELF<br />
-              THE <span className="text-[#b88a2c]">ULTIMATE</span><br />
-              BOTANICAL<br />
+              SOURCE FROM<br />
+              THE <span className="text-[#b88a2c]">HEART</span> OF<br />
+              INDIAN BOTANICAL<br />
               PROVENANCE.
             </h1>
 
@@ -55,7 +55,7 @@ export const Hero: React.FC<HeroProps> = ({
 
             {/* Bold Body paragraph as requested */}
             <p className="text-[#fbf7ed] text-xs sm:text-sm leading-relaxed font-semibold max-w-md drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-              We align <span className="font-bold text-[#fbf7ed]">botanical identity</span>, <span className="font-bold text-[#b88a2c]">active marker profiles (HPLC/GC-MS)</span>, <span className="font-bold text-[#fbf7ed]">application, volume, and destination</span> before matching suitable lots and packing routes.
+              We align <span className="font-bold text-[#fbf7ed]">botanical identity</span>, <span className="font-bold text-[#b88a2c]">required analytical profile</span>, <span className="font-bold text-[#fbf7ed]">application, volume and destination</span> before matching suitable lots and packing routes.
             </p>
 
             {/* CTAs matching design reference */}
@@ -114,14 +114,14 @@ export const Hero: React.FC<HeroProps> = ({
                 </div>
 
                 <p className="text-[10.5px] text-[#f2ead9]/85 leading-snug font-light">
-                  Export-grade sourcing with verified batch documentation and complete traceability.
+                  Buyer specifications matched with available lot documentation and transparent sourcing routes.
                 </p>
 
                 <button
                   onClick={openCoaModal}
                   className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-eyebrow text-[#b88a2c] hover:text-[#fbf7ed] pt-0.5 transition-colors cursor-pointer"
                 >
-                  <span>VERIFY BATCH COA</span>
+                  <span>REQUEST LOT DOCUMENTS</span>
                   <ArrowRight className="w-3 h-3" />
                 </button>
               </div>

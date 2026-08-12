@@ -127,6 +127,7 @@ export const AiSpecConsultantModal: React.FC<AiSpecConsultantModalProps> = ({
           </div>
           <button
             onClick={onClose}
+            aria-label="Close specification consultant"
             className="p-2 text-[#82966f] hover:text-[#fbf7ed] transition-colors cursor-pointer"
           >
             <X className="w-6 h-6" />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BotanicalProduct } from '../types';
 import { X, ShieldCheck, FileText, ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
+import { getProductPresentation } from '../data/productPresentation';
 
 interface ProductDetailModalProps {
   product: BotanicalProduct | null;
@@ -16,6 +17,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   onVerifyCoa
 }) => {
   if (!product) return null;
+  const presentation = getProductPresentation(product);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
@@ -38,6 +40,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           </div>
           <button
             onClick={onClose}
+            aria-label="Close product specifications"
             className="p-2 text-[#82966f] hover:text-[#fbf7ed] transition-colors cursor-pointer"
           >
             <X className="w-6 h-6" />
@@ -51,7 +54,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
             <div className="md:col-span-5 relative aspect-[4/3] border border-[#b88a2c]/30 overflow-hidden bg-[#083a30]">
               <img
-                src={product.image}
+                src={presentation.image}
                 alt={product.name}
                 loading="eager"
                 decoding="async"
@@ -70,7 +73,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               </div>
 
               <p className="text-xs text-[#f2ead9]/90 font-light leading-relaxed">
-                {product.description}
+                {presentation.summary}
               </p>
 
               {/* Notice */}
@@ -109,8 +112,11 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           {/* Technical Specifications Table */}
           <div className="space-y-3 pt-4 border-t border-[#b88a2c]/30">
             <h3 className="font-serif text-xl font-semibold text-[#fbf7ed]">
-              Technical Specifications & Physical Parameters
+              Indicative specification framework
             </h3>
+            <p className="text-xs text-[#f2ead9]/75 leading-relaxed">
+              Final values, tolerances, test methods and packaging are confirmed in writing for the approved supplier lot.
+            </p>
             
             <div className="border border-[#b88a2c]/30 divide-y divide-[#b88a2c]/20 text-xs bg-[#083a30]">
               <div className="p-3.5 flex flex-col sm:flex-row justify-between gap-2">
@@ -151,50 +157,27 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </div>
           </div>
 
-          {/* Sample Certificate of Analysis Preview */}
+          {/* Lot documentation request */}
           <div className="p-5 bg-[#083a30] border border-[#b88a2c]/40 space-y-3">
-            <div className="flex items-center justify-between border-b border-[#b88a2c]/30 pb-3">
-              <div className="flex items-center gap-2">
-                <FileText className="w-5 h-5 text-[#b88a2c]" />
-                <h4 className="font-serif text-lg font-semibold text-[#fbf7ed]">
-                  Sample Lot Certificate of Analysis ({product.coaDetails.batchNumber})
-                </h4>
-              </div>
-              <span className="text-[10px] uppercase tracking-eyebrow text-[#82966f]">
-                Tested: {product.coaDetails.testDate}
-              </span>
+            <div className="flex items-center gap-2 border-b border-[#b88a2c]/30 pb-3">
+              <FileText className="w-5 h-5 text-[#b88a2c]" />
+              <h4 className="font-serif text-lg font-semibold text-[#fbf7ed]">
+                Lot-specific documentation
+              </h4>
             </div>
-
-            <p className="text-xs text-[#f2ead9]/85 italic">
-              "{product.coaDetails.qualityDirectorNote}"
+            <p className="text-xs text-[#f2ead9]/85 leading-relaxed">
+              COA, botanical identity, marker or GC/MS data, contaminant testing, safety documents and origin records are supplied only where applicable and available for the specific offered lot. No sample record on this website represents a current commercial batch.
             </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-2">
-              <div className="p-2.5 bg-[#062b23] border border-[#b88a2c]/20">
-                <span className="text-[10px] text-[#82966f] block uppercase tracking-eyebrow">Heavy Metals Screening</span>
-                <span className="text-[#fbf7ed] font-medium">{product.coaDetails.heavyMetals}</span>
-              </div>
-              <div className="p-2.5 bg-[#062b23] border border-[#b88a2c]/20">
-                <span className="text-[10px] text-[#82966f] block uppercase tracking-eyebrow">Microbial Compliance</span>
-                <span className="text-[#fbf7ed] font-medium">{product.coaDetails.microbialLimit}</span>
-              </div>
-            </div>
-
-            {product.coaDetails.gcmsProfile && (
-              <div className="pt-2">
-                <span className="text-[10px] uppercase tracking-eyebrow text-[#82966f] font-semibold block mb-2">
-                  Key GC/MS Compounds & Markers:
-                </span>
-                <div className="grid grid-cols-3 gap-2 text-xs">
-                  {product.coaDetails.gcmsProfile.map((c, i) => (
-                    <div key={i} className="p-2 bg-[#062b23] border border-[#b88a2c]/20 text-center">
-                      <span className="block font-medium text-[#fbf7ed]">{c.compound}</span>
-                      <span className="block text-[#b88a2c] font-bold">{c.percentage}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+            <button
+              onClick={() => {
+                onClose();
+                onVerifyCoa();
+              }}
+              className="bg-[#062b23] hover:bg-[#125344] border border-[#b88a2c]/40 text-[#fbf7ed] font-medium text-xs uppercase tracking-eyebrow px-5 py-3 flex items-center gap-2 cursor-pointer"
+            >
+              <ShieldCheck className="w-4 h-4 text-[#b88a2c]" />
+              <span>Request document verification</span>
+            </button>
           </div>
 
         </div>

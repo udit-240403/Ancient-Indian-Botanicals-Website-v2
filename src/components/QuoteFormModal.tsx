@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, CheckCircle2, ShieldCheck, ArrowRight, HelpCircle } from 'lucide-react';
+import { X, CheckCircle2, ArrowRight } from 'lucide-react';
 import { B2BQuoteRequest } from '../types';
 
 interface QuoteFormModalProps {
@@ -28,8 +28,7 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
     consent: true
   });
 
-  const [submittedRef, setSubmittedRef] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [emailPrepared, setEmailPrepared] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,12 +37,27 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
       return;
     }
 
-    setIsSubmitting(true);
-    setTimeout(() => {
-      const refNumber = `AIB-REQ-${Math.floor(100000 + Math.random() * 900000)}`;
-      setSubmittedRef(refNumber);
-      setIsSubmitting(false);
-    }, 600);
+    const subject = `B2B botanical enquiry — ${formData.selectedProduct}`;
+    const body = [
+      'Hello Ancient Indian Botanicals,',
+      '',
+      'Please review the following commercial requirement:',
+      `Name: ${formData.fullName}`,
+      `Company: ${formData.companyName}`,
+      `Business email: ${formData.email}`,
+      `Country / phone: ${formData.phoneWhatsapp || 'Not provided'}`,
+      `Product: ${formData.selectedProduct}`,
+      `Preferred form: ${formData.preferredForm}`,
+      `Estimated quantity: ${formData.estimatedQuantity}`,
+      `Destination: ${formData.destinationPort || 'To be confirmed'}`,
+      `Requested documents: ${formData.documentationNeeds.join(', ') || 'To be confirmed'}`,
+      `Additional notes: ${formData.additionalNotes || 'None'}`,
+      '',
+      'I understand that availability, specification, documentation and pricing are confirmed in writing for each approved lot.',
+    ].join('\n');
+
+    setEmailPrepared(true);
+    window.location.href = `mailto:office@ancientindianbotanicals.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   const handleDocCheckbox = (doc: string) => {
@@ -74,6 +88,7 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
           </div>
           <button
             onClick={onClose}
+            aria-label="Close commercial enquiry form"
             className="p-2 text-[#82966f] hover:text-[#fbf7ed] transition-colors cursor-pointer"
           >
             <X className="w-6 h-6" />
@@ -83,27 +98,23 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
         {/* Modal Body */}
         <div className="p-6 md:p-8">
           
-          {submittedRef ? (
+          {emailPrepared ? (
             /* Confirmation State */
             <div className="text-center py-10 space-y-6">
               <div className="w-16 h-16 bg-[#083a30] border-2 border-[#b88a2c] rounded-full flex items-center justify-center mx-auto text-[#b88a2c]">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
               <div className="space-y-2">
-                <span className="text-xs uppercase tracking-eyebrow text-[#82966f]">Enquiry Submitted Successfully</span>
-                <h3 className="font-serif text-3xl text-[#fbf7ed]">Specification Enquiry Recorded</h3>
-                <div className="inline-block bg-[#083a30] border border-[#b88a2c]/50 px-6 py-3 my-2">
-                  <span className="text-xs text-[#82966f] uppercase tracking-eyebrow block">Enquiry Reference Number</span>
-                  <span className="font-mono text-xl font-bold text-[#b88a2c]">{submittedRef}</span>
-                </div>
+                <span className="text-xs uppercase tracking-eyebrow text-[#82966f]">Enquiry email prepared</span>
+                <h3 className="font-serif text-3xl text-[#fbf7ed]">Review and send from your email app</h3>
               </div>
               
               <p className="text-xs text-[#f2ead9]/85 max-w-md mx-auto leading-relaxed">
-                Thank you, <strong className="text-[#fbf7ed]">{formData.fullName}</strong>. Our trade desk will review your target specifications for <strong className="text-[#b88a2c]">{formData.selectedProduct}</strong> and issue a matching lot proposal to <strong className="text-[#fbf7ed]">{formData.email}</strong> within 1 business day.
+                Your email app should open with the requirement prefilled for <strong className="text-[#b88a2c]">{formData.selectedProduct}</strong>. Please review it and send it to <strong className="text-[#fbf7ed]">office@ancientindianbotanicals.com</strong>.
               </p>
 
               <div className="p-4 bg-[#083a30] border border-[#b88a2c]/30 text-xs text-[#82966f] max-w-md mx-auto">
-                No payment or financial transaction was initiated. Commercial pricing and lot availability are confirmed upon specification review.
+                Nothing has been submitted automatically. No payment or financial transaction was initiated. Pricing and lot availability are confirmed only after written review.
               </div>
 
               <button
@@ -306,22 +317,15 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
               {/* Submit button */}
               <div className="pt-4 border-t border-[#b88a2c]/30 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <span className="text-[10px] text-[#7f7b6f]">
-                  Commercial response sent via encrypted email within 24 hours.
+                  This prepares an email in your own email app; nothing is submitted until you send it.
                 </span>
 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
                   className="w-full sm:w-auto bg-[#b88a2c] hover:bg-[#967020] text-[#062b23] font-bold text-xs uppercase tracking-eyebrow px-8 py-3.5 flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md"
                 >
-                  {isSubmitting ? (
-                    <span>Generating Specification Match...</span>
-                  ) : (
-                    <>
-                      <span>Submit Commercial Enquiry</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </>
-                  )}
+                  <span>Prepare Enquiry Email</span>
+                  <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
 

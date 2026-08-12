@@ -5,18 +5,18 @@ export const AssuranceStrip: React.FC = () => {
   const features = [
     {
       icon: FlaskConical,
-      title: 'GC/MS VERIFIED',
-      description: 'Every batch tested for purity and active marker profile.'
+      title: 'LOT-SPECIFIC TESTING',
+      description: 'COA, markers or GC/MS reviewed where applicable.'
     },
     {
       icon: FileCheck2,
-      title: 'EXPORT DOCUMENTATION',
-      description: 'Complete export-ready paperwork and compliance support.'
+      title: 'DOCUMENT SUPPORT',
+      description: 'Product and destination documents confirmed per enquiry.'
     },
     {
       icon: Sprout,
-      title: 'TRACEABLE LOTS',
-      description: 'From farm to final packing, every lot is fully traceable.'
+      title: 'SOURCING TRANSPARENCY',
+      description: 'Origin and packing details confirmed for approved lots.'
     }
   ];
 

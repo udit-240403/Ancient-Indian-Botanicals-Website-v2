@@ -1,6 +1,43 @@
 import React from 'react';
-import { SPECIFICATION_WORKFLOW } from '../data/products';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
+
+const SPECIFICATION_WORKFLOW = [
+  {
+    id: 1,
+    step: '01',
+    title: 'Specify Requirement',
+    shortDesc: 'Share botanical identity, form, quantity, application and destination.',
+    deliverables: ['Requirement summary', 'Open questions checklist'],
+  },
+  {
+    id: 2,
+    step: '02',
+    title: 'Review Supply Routes',
+    shortDesc: 'We evaluate suitable sourcing routes and currently available supplier lots.',
+    deliverables: ['Candidate supply route', 'Availability review'],
+  },
+  {
+    id: 3,
+    step: '03',
+    title: 'Confirm Documents',
+    shortDesc: 'Available COA, identity, analytical and safety documents are checked where applicable.',
+    deliverables: ['Document availability list', 'Specification gaps'],
+  },
+  {
+    id: 4,
+    step: '04',
+    title: 'Agree Pack Format',
+    shortDesc: 'Sample, bulk and selected label formats are reviewed for product compatibility.',
+    deliverables: ['Proposed pack route', 'Label information list'],
+  },
+  {
+    id: 5,
+    step: '05',
+    title: 'Confirm Commercial Route',
+    shortDesc: 'Price, Incoterms, payment, documents and dispatch plan are confirmed in writing.',
+    deliverables: ['Written commercial offer', 'Dispatch document plan'],
+  },
+];
 
 interface WorkflowSectionProps {
   onStartEnquiry: () => void;
@@ -59,7 +96,7 @@ export const WorkflowSection: React.FC<WorkflowSectionProps> = ({ onStartEnquiry
               </div>
 
               <div className="pt-4 border-t border-[#b88a2c]/30 space-y-1.5">
-                <span className="text-[10px] uppercase tracking-eyebrow text-[#b88a2c] font-semibold block">Key Output:</span>
+                <span className="text-[10px] uppercase tracking-eyebrow text-[#b88a2c] font-semibold block">Typical review items:</span>
                 {item.deliverables.map((del, idx) => (
                   <div key={idx} className="flex items-center gap-1.5 text-[11px] text-[#fbf7ed]/90">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#b88a2c] shrink-0" />
