@@ -3,9 +3,10 @@ import { ArrowRight, Droplets, Leaf, Flower2, Package } from 'lucide-react';
 
 interface ProductFamiliesProps {
   onSelectCategory: (category: string) => void;
+  onViewAll: () => void;
 }
 
-export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCategory }) => {
+export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCategory, onViewAll }) => {
   const families = [
     {
       id: 'essential-oils',
@@ -61,9 +62,18 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
               A portfolio shaped by origin
             </h2>
           </div>
-          <p className="text-sm text-[#f2ead9]/85 max-w-md font-light leading-relaxed">
-            Explore ingredients by application and form. Origin, specification, documentation and current availability are confirmed for each enquiry.
-          </p>
+          <div className="max-w-md">
+            <p className="text-sm text-[#f2ead9]/85 font-light leading-relaxed">
+              Explore ingredients by application and form. Origin, specification, documentation and current availability are confirmed for each enquiry.
+            </p>
+            <button
+              onClick={onViewAll}
+              className="mt-5 inline-flex items-center gap-2 bg-[#b88a2c] px-6 py-3 text-xs font-bold uppercase tracking-eyebrow text-[#041e18] shadow-lg transition-colors hover:bg-[#d3a84f]"
+            >
+              <span>Explore all 92 products</span>
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
         </div>
 
         {/* Product Families Banner Image & Grid Combo */}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
@@ -24,7 +24,7 @@ import {
 import { BotanicalProduct } from './types';
 
 export function App() {
-  const [activeTab, setActiveTab] = useState<string>('home');
+  const [activeTab, setActiveTab] = useState<string>(() => window.location.hash.slice(1) || 'home');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedProduct, setSelectedProduct] = useState<BotanicalProduct | null>(null);
   
@@ -34,6 +34,23 @@ export function App() {
   const [coaModalOpen, setCoaModalOpen] = useState<boolean>(false);
   const [aiConsultantModalOpen, setAiConsultantModalOpen] = useState<boolean>(false);
 
+  useEffect(() => {
+    const syncTabFromUrl = () => {
+      setActiveTab(window.location.hash.slice(1) || 'home');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.addEventListener('popstate', syncTabFromUrl);
+    return () => window.removeEventListener('popstate', syncTabFromUrl);
+  }, []);
+
+  const navigateToTab = (tab: string) => {
+    setActiveTab(tab);
+    const nextUrl = tab === 'home' ? window.location.pathname : `#${tab}`;
+    window.history.pushState({}, '', nextUrl);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleOpenQuoteModal = (productName?: string) => {
     setQuoteProductName(productName || '');
     setQuoteModalOpen(true);
@@ -41,11 +58,12 @@ export function App() {
 
   const handleSelectCategory = (category: string) => {
     if (category === 'essential-oils' || category === 'botanicals' || category === 'packaging') {
-      setActiveTab(category);
+      navigateToTab(category);
+    } else if (category === 'catalogue') {
+      navigateToTab('catalogue');
     } else {
-      setActiveTab('home');
+      navigateToTab('home');
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -54,7 +72,7 @@ export function App() {
       {/* Shared Header Navigation */}
       <Navbar
         activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        setActiveTab={navigateToTab}
         openCoaModal={() => setCoaModalOpen(true)}
         openAiConsultantModal={() => setAiConsultantModalOpen(true)}
         openQuoteModal={handleOpenQuoteModal}
@@ -70,8 +88,8 @@ export function App() {
             <div className="h-[calc(100vh-150px)] max-h-[calc(100vh-150px)] flex flex-col justify-between bg-[#041e18] overflow-hidden">
               <div className="flex-grow flex flex-col justify-center overflow-hidden">
                 <Hero
-                  onExploreOils={() => setActiveTab('essential-oils')}
-                  onBrowseBotanicals={() => setActiveTab('botanicals')}
+                  onExploreOils={() => navigateToTab('essential-oils')}
+                  onBrowseBotanicals={() => navigateToTab('botanicals')}
                   openCoaModal={() => setCoaModalOpen(true)}
                   openAiConsultantModal={() => setAiConsultantModalOpen(true)}
                 />
@@ -79,7 +97,10 @@ export function App() {
               <AssuranceStrip />
             </div>
 
-            <ProductFamilies onSelectCategory={handleSelectCategory} />
+            <ProductFamilies
+              onSelectCategory={handleSelectCategory}
+              onViewAll={() => navigateToTab('catalogue')}
+            />
             <OriginsSection />
             <WorkflowSection onStartEnquiry={() => handleOpenQuoteModal()} />
             <ProductCatalogue
@@ -152,7 +173,7 @@ export function App() {
 
       {/* Shared Footer */}
       <Footer
-        setActiveTab={setActiveTab}
+        setActiveTab={navigateToTab}
         openQuoteModal={handleOpenQuoteModal}
         openCoaModal={() => setCoaModalOpen(true)}
         openAiConsultantModal={() => setAiConsultantModalOpen(true)}
