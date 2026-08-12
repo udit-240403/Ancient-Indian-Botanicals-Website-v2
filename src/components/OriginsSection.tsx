@@ -15,7 +15,7 @@ export const OriginsSection: React.FC<OriginsSectionProps> = () => {
     <section
       className="w-full bg-[#f4efd3] text-[#17231e] py-20 md:py-32 border-b border-[#b88a2c]/30 relative overflow-hidden bg-cover bg-center"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(244, 239, 211, 0.93), rgba(244, 239, 211, 0.96)), url('/assets/images/assurance-beige-sheet-bg.png')`,
+        backgroundImage: `linear-gradient(to bottom, rgba(244, 239, 211, 0.93), rgba(244, 239, 211, 0.96)), url('/assets/images/assurance-beige-sheet-bg.webp')`,
       }}
     >
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 relative z-10">

@@ -224,7 +224,7 @@ export const AboutPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuoteM
 
         <div className="relative aspect-video border border-[#b88a2c]/40 overflow-hidden bg-[#083a30]">
           <img
-            src="/assets/images/hero-botanical-still-life.png"
+            src="/assets/images/hero-botanical-still-life.webp"
             alt="Ancient Indian Botanicals House"
             className="w-full h-full object-cover"
           />

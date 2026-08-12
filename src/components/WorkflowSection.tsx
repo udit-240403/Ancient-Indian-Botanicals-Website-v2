@@ -11,7 +11,7 @@ export const WorkflowSection: React.FC<WorkflowSectionProps> = ({ onStartEnquiry
     <section
       className="editorial-section w-full bg-[#041e18] text-[#fbf7ed] py-20 md:py-32 border-b border-[#b88a2c]/20 relative overflow-hidden bg-cover bg-center"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(4, 30, 24, 0.88), rgba(4, 30, 24, 0.94)), url('/assets/images/image.png')`,
+        backgroundImage: `linear-gradient(to bottom, rgba(4, 30, 24, 0.88), rgba(4, 30, 24, 0.94)), url('/assets/images/section-botanical-texture.webp')`,
       }}
     >
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 relative z-10">

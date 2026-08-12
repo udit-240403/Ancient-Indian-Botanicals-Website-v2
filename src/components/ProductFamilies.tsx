@@ -45,7 +45,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
     <section
       className="editorial-section w-full bg-[#041e18] text-[#fbf7ed] py-20 md:py-32 border-b border-[#b88a2c]/20 relative overflow-hidden bg-cover bg-center"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(4, 30, 24, 0.88), rgba(4, 30, 24, 0.94)), url('/assets/images/image.png')`,
+        backgroundImage: `linear-gradient(to bottom, rgba(4, 30, 24, 0.88), rgba(4, 30, 24, 0.94)), url('/assets/images/section-botanical-texture.webp')`,
       }}
     >
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 relative z-10">
@@ -69,8 +69,12 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
         {/* Product Families Banner Image & Grid Combo */}
         <div className="mb-10 relative overflow-hidden border border-[#b88a2c]/35 shadow-2xl h-[300px] md:h-[440px]">
           <img
-            src="/assets/images/product-families-flatlay.png"
-            alt="Ancient Indian Botanical Product Families Flatlay"
+            src="/assets/images/product-families-flatlay.webp"
+            alt="Essential oils, botanical powders and export packaging arranged on a sourcing table"
+            width="1659"
+            height="948"
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#041e18] via-[#041e18]/50 to-transparent flex items-end p-6 md:p-10">

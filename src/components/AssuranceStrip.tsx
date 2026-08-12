@@ -27,7 +27,7 @@ export const AssuranceStrip: React.FC = () => {
       <div
         className="absolute inset-0 opacity-40 pointer-events-none bg-cover bg-right"
         style={{
-          backgroundImage: `url('/assets/images/assurance-beige-sheet-bg.png')`,
+          backgroundImage: `url('/assets/images/assurance-beige-sheet-bg.webp')`,
         }}
       />
 

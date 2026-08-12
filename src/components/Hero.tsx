@@ -20,7 +20,7 @@ export const Hero: React.FC<HeroProps> = ({
       <div
         className="absolute inset-0 opacity-65 pointer-events-none bg-cover scale-115 transition-all duration-700 filter brightness-[0.9] contrast-[1.08]"
         style={{
-          backgroundImage: `url('/assets/images/hero-dark-green-bg.png')`,
+          backgroundImage: `url('/assets/images/hero-dark-green-bg.webp')`,
           backgroundPosition: 'calc(30% + 70px) center',
         }}
       />
@@ -88,9 +88,14 @@ export const Hero: React.FC<HeroProps> = ({
               {/* Main Photo Asset */}
               <div className="relative w-full h-[300px] sm:h-[330px] lg:h-[355px] overflow-hidden rounded-none border-2 border-[#b88a2c]/70 shadow-2xl bg-[#041e18]">
                 <img
-                  src="/assets/images/hero-botanical-still-life.png"
-                  alt="Ancient Indian Botanicals Cover"
-                  className="w-full h-full object-cover object-center transform transition-transform duration-700 hover:scale-[1.02]"
+                  src="/assets/images/hero-botanical-still-life.webp"
+                  alt="Amber botanical bottles surrounded by Indian herbs, roots and flowers"
+                  width="1448"
+                  height="1086"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="w-full h-full object-cover object-[56%_50%] transform transition-transform duration-700 hover:scale-[1.02]"
                 />
                 
                 {/* Subtle Lighting Gradient Overlay */}

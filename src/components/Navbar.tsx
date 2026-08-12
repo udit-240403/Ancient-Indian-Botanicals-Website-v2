@@ -102,6 +102,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               <img
                 src="/assets/images/ancient_indian_botanicals_gold_logo.png"
                 alt="Ancient Indian Botanicals Metallic Gold Logo"
+                width="1024"
+                height="1024"
+                loading="eager"
+                decoding="async"
                 className="w-full h-full object-cover rounded-full transform group-hover:scale-105 transition-transform"
               />
             </div>
