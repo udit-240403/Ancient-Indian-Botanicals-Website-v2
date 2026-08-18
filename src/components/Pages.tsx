@@ -1,7 +1,7 @@
 import React from 'react';
 import { CompleteCatalogue } from './CompleteCatalogue';
 import { BotanicalProduct } from '../types';
-import { Package, CheckCircle2, ArrowRight, FileText, Lock, FlaskConical, Droplets, Layers3, Tags } from 'lucide-react';
+import { Package, CheckCircle2, ArrowRight, FlaskConical, Droplets, Layers3, Tags, Mail, MapPin, Building2, Landmark, FileCheck2, ShieldAlert, Globe2, BarChart3 } from 'lucide-react';
 
 interface SharedPageProps {
   searchQuery: string;
@@ -39,13 +39,14 @@ export const BotanicalsPage: React.FC<SharedPageProps> = (props) => (
 
 export const PackagingPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuoteModal }) => (
   <div className="w-full bg-[#f3eddf] text-[#062b23]">
-    <section className="relative min-h-[570px] overflow-hidden border-b border-[#b88a2c]/40">
+    <section className="image-shell relative min-h-[570px] overflow-hidden border-b border-[#b88a2c]/40">
       <img
         src="/assets/images/packaging-export-system.webp"
         alt="Botanical export packaging formats including sample bottles, pouches, drums and an IBC"
         width="1536"
         height="1024"
         loading="eager"
+        onError={(event) => { event.currentTarget.hidden = true; }}
         className="absolute inset-0 h-full w-full object-cover object-[65%_50%]"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-[#041e18] via-[#041e18]/88 to-[#041e18]/15" />
@@ -68,6 +69,33 @@ export const PackagingPage: React.FC<{ openQuoteModal: () => void }> = ({ openQu
       style={{ backgroundImage: "linear-gradient(rgba(243,237,223,.94),rgba(243,237,223,.94)), url('/assets/svg/botanical-pattern.svg')" }}
     >
       <div className="mx-auto max-w-[1440px] space-y-10">
+        <div className="grid gap-6 lg:grid-cols-[.78fr_1.22fr] lg:items-end">
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b711e]">Packaging formats in view</span>
+            <h2 className="mt-2 font-serif text-3xl font-semibold leading-tight sm:text-4xl">The pack is part of the product specification.</h2>
+          </div>
+          <p className="text-sm leading-relaxed text-[#315148]">Pictures help buyers understand the available route, while the final container is confirmed only after product compatibility, fill quantity, destination, closure and transport review.</p>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-3">
+          {[
+            { title: 'Evaluation & oil formats', subtitle: 'Amber samples · aluminium containers', position: '20% 58%' },
+            { title: 'Dry botanical formats', subtitle: 'Pouches · lined fibre drums', position: '51% 55%' },
+            { title: 'Commercial bulk route', subtitle: 'HDPE drums · IBC consideration', position: '88% 52%' },
+          ].map((format) => (
+            <article key={format.title} className="group overflow-hidden border border-[#a97825]/35 bg-[#fbf7ed]">
+              <div className="image-shell relative h-56 overflow-hidden sm:h-64">
+                <img src="/assets/images/packaging-export-system.webp" alt={format.title} width="1672" height="941" loading="lazy" onError={(event) => { event.currentTarget.hidden = true; }} className="h-full w-full scale-[1.35] object-cover transition-transform duration-700 group-hover:scale-[1.42]" style={{ objectPosition: format.position }} />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#041e18]/86 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-5 text-[#fbf7ed]">
+                  <h3 className="font-serif text-2xl font-semibold">{format.title}</h3>
+                  <p className="mt-1 text-[10px] font-semibold uppercase tracking-eyebrow text-[#e1bd67]">{format.subtitle}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
           {[
             { icon: FlaskConical, badge: 'Evaluation', title: 'Samples', desc: 'Small compatible packs for laboratory and formulation review, with fill size confirmed per material.' },
@@ -193,11 +221,12 @@ export const AboutPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuoteM
           </ul>
         </div>
 
-        <div className="relative aspect-video border border-[#b88a2c]/40 overflow-hidden bg-[#083a30]">
+        <div className="image-shell relative aspect-video border border-[#b88a2c]/40 overflow-hidden bg-[#083a30]">
           <img
             src="/assets/images/hero-botanical-still-life.webp"
             alt="Amber botanical bottles with Indian herbs and roots"
-            className="w-full h-full object-cover"
+            onError={(event) => { event.currentTarget.hidden = true; }}
+            className="relative z-[1] w-full h-full object-cover"
           />
         </div>
       </div>
@@ -206,25 +235,90 @@ export const AboutPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuoteM
 );
 
 export const PaymentsPage: React.FC = () => (
-  <div className="w-full bg-[#062b23] text-[#fbf7ed] py-16 px-4 md:px-8">
-    <div className="max-w-[1440px] mx-auto space-y-8 max-w-3xl">
-      <span className="text-[11px] uppercase tracking-eyebrow text-[#b88a2c] font-semibold">Approved B2B Commercial Payment Terms</span>
-      <h1 className="font-serif text-3xl md:text-4xl font-semibold text-[#fbf7ed]">
-        Commercial Payment & Accounts Guidelines
-      </h1>
-      <p className="text-xs text-[#f2ead9]/85 leading-relaxed font-light">
-        Ancient Indian Botanicals is currently undergoing incorporation. Payment instructions will be issued only after written quotation, counterparty verification and confirmation of the applicable banking route. We do not collect card payments through this website.
-      </p>
-
-      <div className="space-y-4 bg-[#083a30] border border-[#b88a2c]/30 p-6 text-xs">
-        <h3 className="font-serif text-xl text-[#b88a2c]">Commercial routes considered case by case:</h3>
-        <ul className="space-y-2 font-light">
-          <li>• Bank transfer against an approved quotation and invoice</li>
-          <li>• Letter of Credit for eligible larger orders, subject to written acceptance</li>
-          <li>• Currency, Incoterms and payment schedule confirmed in the final commercial offer</li>
-        </ul>
+  <div className="w-full bg-[#f3eddf] text-[#062b23]">
+    <section className="border-b border-[#b88a2c]/35 bg-[#062b23] px-4 py-16 text-[#fbf7ed] md:px-8 lg:py-20">
+      <div className="mx-auto grid max-w-[1440px] gap-8 lg:grid-cols-[1.1fr_.9fr] lg:items-end">
+        <div>
+          <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Secure B2B commercial process</span>
+          <h1 className="mt-3 max-w-4xl font-serif text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-6xl">Payment follows specification, verification and written approval.</h1>
+        </div>
+        <p className="text-sm leading-relaxed text-[#f2ead9]/78">We do not collect card payments or publish bank details on this website. Commercial instructions are issued only against an approved quotation and verified counterparty route.</p>
       </div>
-    </div>
+    </section>
+
+    <section className="px-4 py-16 md:px-8 lg:py-20">
+      <div className="mx-auto max-w-[1440px] space-y-12">
+        <div className="grid gap-px overflow-hidden border border-[#b88a2c]/30 bg-[#b88a2c]/30 md:grid-cols-2 lg:grid-cols-4">
+          {[
+            { icon: FileCheck2, step: '01', title: 'Requirement agreed', copy: 'Product, grade, quantity, documentation, packaging and destination are placed in one commercial brief.' },
+            { icon: Building2, step: '02', title: 'Counterparty checked', copy: 'Buyer and supply route details are reviewed before any payment instruction is issued.' },
+            { icon: Landmark, step: '03', title: 'Banking route confirmed', copy: 'Currency, account route, schedule and applicable trade terms are confirmed in writing.' },
+            { icon: CheckCircle2, step: '04', title: 'Payment matched', copy: 'Funds are matched only to the approved quotation, invoice or accepted commercial document.' },
+          ].map(({ icon: Icon, step, title, copy }) => (
+            <article key={title} className="bg-[#fbf7ed] p-6 sm:p-8">
+              <div className="flex items-center justify-between"><Icon className="h-6 w-6 text-[#765411]" /><span className="font-serif text-xl text-[#b88a2c]">{step}</span></div>
+              <h2 className="mt-7 font-serif text-2xl font-semibold">{title}</h2>
+              <p className="mt-3 text-xs leading-relaxed text-[#315148]">{copy}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-[1fr_.85fr]">
+          <div className="border border-[#b88a2c]/35 bg-[#fbf7ed] p-7 sm:p-9">
+            <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b711e]">Routes considered case by case</span>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {['Bank transfer against approved quotation and invoice', 'Letter of Credit for eligible larger orders', 'Currency and Incoterms confirmed in the final offer', 'Payment schedule linked to the accepted commercial route'].map((item) => <div key={item} className="flex gap-3 border-t border-[#b88a2c]/25 pt-4 text-sm leading-relaxed"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#9b711e]" /><span>{item}</span></div>)}
+            </div>
+          </div>
+          <div className="border border-[#b88a2c]/45 bg-[#062b23] p-7 text-[#fbf7ed] sm:p-9">
+            <div className="flex items-center gap-3 text-[#d4a43d]"><ShieldAlert className="h-6 w-6" /><span className="text-[10px] font-bold uppercase tracking-eyebrow">Payment safety notice</span></div>
+            <h2 className="mt-5 font-serif text-2xl font-semibold">Verify any instruction before remitting funds.</h2>
+            <p className="mt-3 text-sm leading-relaxed text-[#f2ead9]/75">Do not act on changed bank details, personal-account requests, cryptocurrency requests or payment links claiming to represent us. Reconfirm through an official <strong className="text-[#fbf7ed]">@ancientindianbotanicals.com</strong> email address.</p>
+          </div>
+        </div>
+
+        <p className="text-center text-[11px] text-[#526d64]">Ancient Indian Botanicals is currently undergoing incorporation. Final payment terms become binding only through an accepted written commercial document.</p>
+      </div>
+    </section>
+  </div>
+);
+
+export const ContactPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuoteModal }) => (
+  <div className="w-full bg-[#f3eddf] text-[#062b23]">
+    <section className="relative overflow-hidden border-b border-[#b88a2c]/35 bg-[#062b23] px-4 py-16 text-[#fbf7ed] md:px-8 lg:py-20">
+      <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "url('/assets/svg/botanical-pattern.svg')" }} />
+      <div className="relative mx-auto grid max-w-[1440px] gap-8 lg:grid-cols-[1.1fr_.9fr] lg:items-end">
+        <div><span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Ancient Indian Botanicals trade desk</span><h1 className="mt-3 font-serif text-4xl font-semibold leading-[1.04] sm:text-5xl lg:text-6xl">Reach the right desk with a complete brief.</h1></div>
+        <div><p className="text-sm leading-relaxed text-[#f2ead9]/80">For a faster commercial review, include the product, required form or grade, quantity, application, destination and documentation needs.</p><button onClick={openQuoteModal} className="mt-5 inline-flex items-center gap-2 bg-[#b88a2c] px-6 py-3.5 text-xs font-bold uppercase tracking-eyebrow text-[#041e18] hover:bg-[#d4a43d]">Open structured enquiry <ArrowRight className="h-4 w-4" /></button></div>
+      </div>
+    </section>
+
+    <section className="px-4 py-16 md:px-8 lg:py-20">
+      <div className="mx-auto max-w-[1440px]">
+        <div className="grid gap-5 lg:grid-cols-3">
+          {[
+            { icon: Globe2, label: 'Buyer & product enquiries', email: 'sales@ancientindianbotanicals.com', copy: 'Product availability, grades, samples, quotation briefs and destination requirements.' },
+            { icon: Building2, label: 'Sourcing & supply routes', email: 'sourcing@ancientindianbotanicals.com', copy: 'Indian cultivation, processing, packaging and specification-led supplier introductions.' },
+            { icon: Mail, label: 'General, documents & legal', email: 'office@ancientindianbotanicals.com', copy: 'General correspondence, document coordination, privacy and commercial administration.' },
+          ].map(({ icon: Icon, label, email, copy }) => (
+            <a key={email} href={`mailto:${email}`} className="group border border-[#b88a2c]/35 bg-[#fbf7ed] p-7 transition-all hover:-translate-y-1 hover:border-[#b88a2c] hover:shadow-[0_22px_55px_-38px_rgba(4,30,24,.8)] sm:p-8">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#062b23] text-[#d4a43d]"><Icon className="h-5 w-5" /></span>
+              <span className="mt-7 block text-[9px] font-bold uppercase tracking-eyebrow text-[#9b711e]">{label}</span>
+              <h2 className="mt-2 break-all font-serif text-2xl font-semibold">{email}</h2>
+              <p className="mt-3 text-xs leading-relaxed text-[#315148]">{copy}</p>
+              <span className="mt-6 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-eyebrow text-[#765411]">Prepare email <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" /></span>
+            </a>
+          ))}
+        </div>
+
+        <div className="mt-8 grid border border-[#b88a2c]/35 bg-[#062b23] text-[#fbf7ed] lg:grid-cols-[.78fr_1.22fr]">
+          <div className="border-b border-[#b88a2c]/25 p-7 lg:border-b-0 lg:border-r sm:p-9"><MapPin className="h-6 w-6 text-[#d4a43d]" /><span className="mt-6 block text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Trade location</span><h2 className="mt-2 font-serif text-3xl font-semibold">Mandsaur, Madhya Pradesh</h2><p className="mt-3 text-xs leading-relaxed text-[#f2ead9]/70">Positioned within a central Indian agricultural and botanical trading corridor. Full registered particulars will be updated following incorporation.</p></div>
+          <div className="p-7 sm:p-9"><span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">What to include</span><div className="mt-5 grid gap-3 sm:grid-cols-2">{['Botanical or ingredient name', 'Required physical form or grade', 'Trial and commercial quantity', 'Application and destination', 'Packaging preference', 'Analytical or document requirements'].map((item) => <div key={item} className="flex items-start gap-2 border-t border-[#b88a2c]/20 pt-3 text-xs text-[#f2ead9]/80"><CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#d4a43d]" />{item}</div>)}</div></div>
+        </div>
+
+        <div className="mt-8 flex items-start gap-3 border border-[#b88a2c]/30 bg-[#efe3c8]/70 p-5 text-xs leading-relaxed text-[#315148]"><BarChart3 className="mt-0.5 h-4 w-4 shrink-0 text-[#765411]" /><p>The website enquiry form submits only after you press its final button. If direct submission is temporarily unavailable, it provides a clearly labelled email fallback rather than claiming that your enquiry was received.</p></div>
+      </div>
+    </section>
   </div>
 );
 
@@ -239,6 +333,11 @@ export const LegalPage: React.FC<{ policyType: 'terms' | 'shipping' | 'privacy' 
         <p>
           Ancient Indian Botanicals is currently undergoing incorporation. Website information is preliminary and intended for B2B commercial evaluation. Any order, specification, documentation obligation, shipping term, return term or payment condition becomes binding only through a written offer or contract issued after incorporation and counterparty review.
         </p>
+        {policyType === 'privacy' && (
+          <p>
+            The site uses privacy-conscious, cookieless Vercel Web Analytics and performance telemetry to understand aggregate page visits, device type, broad country-level origin and site performance. It does not intentionally publish visitor-level analytics. Information entered in an enquiry form is used only to review and respond to that commercial request and is not sold.
+          </p>
+        )}
         <p>
           For questions regarding trade terms, shipping documents, privacy or batch-return protocols, contact <a href="mailto:office@ancientindianbotanicals.com" className="font-mono text-[#b88a2c] hover:text-[#fbf7ed]">office@ancientindianbotanicals.com</a>.
         </p>

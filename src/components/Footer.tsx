@@ -26,12 +26,13 @@ export const Footer: React.FC<FooterProps> = ({
           
           {/* Col 1: Brand & Provenance Statement (2 Cols wide on LG) */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-[#083a30] border border-[#b88a2c]/50 flex items-center justify-center p-1.5">
+            <div className="flex items-center gap-4">
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[#d4a43d] bg-[#f4efd3] p-1.5 shadow-[0_8px_28px_rgba(0,0,0,.28)]">
                 <img
-                  src="/assets/svg/brand-mark.svg"
-                  alt="Ancient Indian Botanicals"
-                  className="w-full h-full object-contain"
+                  src="/assets/images/ancient_indian_botanicals_gold_logo.png"
+                  alt="Ancient Indian Botanicals circular lotus emblem"
+                  onError={(event) => { event.currentTarget.src = '/assets/svg/brand-mark.svg'; }}
+                  className="h-full w-full rounded-full object-cover"
                 />
               </div>
               <div>
@@ -90,6 +91,11 @@ export const Footer: React.FC<FooterProps> = ({
                   About Our Sourcing House
                 </button>
               </li>
+              <li>
+                <button onClick={() => handleNav('contact')} className="hover:text-[#b88a2c] transition-colors">
+                  Contact the Trade Desk
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -131,7 +137,7 @@ export const Footer: React.FC<FooterProps> = ({
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#b88a2c] shrink-0" />
-                <a href="mailto:office@ancientindianbotanicals.com" className="font-mono text-[11px] hover:text-[#b88a2c] transition-colors">office@ancientindianbotanicals.com</a>
+                <div className="space-y-1 font-mono text-[10px]"><a href="mailto:sales@ancientindianbotanicals.com" className="block hover:text-[#b88a2c]">sales@ancientindianbotanicals.com</a><a href="mailto:office@ancientindianbotanicals.com" className="block hover:text-[#b88a2c]">office@ancientindianbotanicals.com</a></div>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#b88a2c] shrink-0" />

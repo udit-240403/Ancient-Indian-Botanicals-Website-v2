@@ -98,7 +98,7 @@ export const Hero: React.FC<HeroProps> = ({
             <div className="relative w-full rounded-none overflow-visible shadow-[0_25px_60px_-10px_rgba(0,0,0,0.9)] group transition-transform duration-500 hover:-translate-x-1">
               
               {/* Main Photo Asset */}
-              <div className="relative w-full h-[300px] sm:h-[330px] lg:h-[355px] overflow-hidden rounded-none border-2 border-[#b88a2c]/70 shadow-2xl bg-[#041e18]">
+              <div className="image-shell relative w-full h-[300px] sm:h-[330px] lg:h-[390px] overflow-hidden rounded-none border-2 border-[#b88a2c]/70 shadow-2xl bg-[#041e18]">
                 <img
                   src="/assets/images/hero-botanical-still-life.webp"
                   alt="Amber botanical bottles surrounded by Indian herbs, roots and flowers"
@@ -107,7 +107,8 @@ export const Hero: React.FC<HeroProps> = ({
                   loading="eager"
                   fetchPriority="high"
                   decoding="async"
-                  className="w-full h-full object-cover object-[56%_50%] transform transition-transform duration-700 hover:scale-[1.02]"
+                  onError={(event) => { event.currentTarget.hidden = true; }}
+                  className="relative z-[1] w-full h-full object-cover object-[56%_50%] transform transition-transform duration-700 hover:scale-[1.02]"
                 />
                 
                 {/* Subtle Lighting Gradient Overlay */}
