@@ -5,14 +5,12 @@ interface FooterProps {
   setActiveTab: (tab: string) => void;
   openQuoteModal: (productName?: string) => void;
   openCoaModal: () => void;
-  openAiConsultantModal: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   setActiveTab,
   openQuoteModal,
-  openCoaModal,
-  openAiConsultantModal
+  openCoaModal
 }) => {
   const handleNav = (tab: string) => {
     setActiveTab(tab);
@@ -104,13 +102,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <button onClick={openCoaModal} className="hover:text-[#b88a2c] transition-colors flex items-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#b88a2c]" />
-                  <span>Verify Batch COA</span>
-                </button>
-              </li>
-              <li>
-                <button onClick={openAiConsultantModal} className="hover:text-[#b88a2c] transition-colors flex items-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#b88a2c]" />
-                  <span>AI Spec Consultant</span>
+                  <span>Request Lot Documents</span>
                 </button>
               </li>
               <li>
@@ -121,7 +113,7 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button onClick={() => handleNav('payments')} className="hover:text-[#b88a2c] transition-colors">
-                  Approved Payment Methods
+                  Commercial Terms
                 </button>
               </li>
             </ul>
@@ -162,7 +154,7 @@ export const Footer: React.FC<FooterProps> = ({
             <button onClick={() => handleNav('terms')} className="hover:text-[#fbf7ed]">Terms of Trade</button>
             <button onClick={() => handleNav('shipping')} className="hover:text-[#fbf7ed]">Export Shipping Policy</button>
             <button onClick={() => handleNav('privacy')} className="hover:text-[#fbf7ed]">Privacy Policy</button>
-            <button onClick={() => handleNav('refunds')} className="hover:text-[#fbf7ed]">Quality Guarantee & Refunds</button>
+            <button onClick={() => handleNav('refunds')} className="hover:text-[#fbf7ed]">Claims & Quality Resolution</button>
           </div>
         </div>
 

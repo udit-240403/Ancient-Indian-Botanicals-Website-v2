@@ -5,7 +5,6 @@ interface HeroProps {
   onExploreOils: () => void;
   onBrowseBotanicals: () => void;
   openCoaModal: () => void;
-  openAiConsultantModal: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({

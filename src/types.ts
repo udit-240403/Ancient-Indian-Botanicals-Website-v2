@@ -34,7 +34,7 @@ export interface BotanicalProduct {
   extractionMethod?: string;
   harvestOrigin: string;
   image: string;
-  coaDetails: CoaDetails;
+  coaDetails?: CoaDetails;
   specifications: {
     appearance: string;
     aromaProfile?: string;

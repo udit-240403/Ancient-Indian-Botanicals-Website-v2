@@ -11,7 +11,6 @@ import { CompleteCatalogue } from './components/CompleteCatalogue';
 import { ProductDetailModal } from './components/ProductDetailModal';
 import { QuoteFormModal } from './components/QuoteFormModal';
 import { VerifyCoaModal } from './components/VerifyCoaModal';
-import { AiSpecConsultantModal } from './components/AiSpecConsultantModal';
 import {
   EssentialOilsPage,
   BotanicalsPage,
@@ -32,7 +31,6 @@ export function App() {
   const [quoteModalOpen, setQuoteModalOpen] = useState<boolean>(false);
   const [quoteProductName, setQuoteProductName] = useState<string>('');
   const [coaModalOpen, setCoaModalOpen] = useState<boolean>(false);
-  const [aiConsultantModalOpen, setAiConsultantModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const syncTabFromUrl = () => {
@@ -43,6 +41,26 @@ export function App() {
     window.addEventListener('popstate', syncTabFromUrl);
     return () => window.removeEventListener('popstate', syncTabFromUrl);
   }, []);
+
+  useEffect(() => {
+    const titles: Record<string, string> = {
+      home: 'Indian Botanical Ingredients & Essential Oils | Ancient Indian Botanicals',
+      'essential-oils': 'Essential & Aroma Oils | Ancient Indian Botanicals',
+      botanicals: 'Botanical Ingredients | Ancient Indian Botanicals',
+      catalogue: 'Complete Product Catalogue | Ancient Indian Botanicals',
+      packaging: 'Bulk & Private-Label Packaging | Ancient Indian Botanicals',
+      quality: 'Lot Documentation & Quality Process | Ancient Indian Botanicals',
+      about: 'About Ancient Indian Botanicals',
+      payments: 'Commercial Terms | Ancient Indian Botanicals',
+      search: 'Search Product Catalogue | Ancient Indian Botanicals',
+      terms: 'Terms of Trade | Ancient Indian Botanicals',
+      shipping: 'Shipping Information | Ancient Indian Botanicals',
+      privacy: 'Privacy Policy | Ancient Indian Botanicals',
+      refunds: 'Claims & Quality Resolution | Ancient Indian Botanicals',
+    };
+
+    document.title = titles[activeTab] || titles.home;
+  }, [activeTab]);
 
   const navigateToTab = (tab: string) => {
     setActiveTab(tab);
@@ -74,7 +92,6 @@ export function App() {
         activeTab={activeTab}
         setActiveTab={navigateToTab}
         openCoaModal={() => setCoaModalOpen(true)}
-        openAiConsultantModal={() => setAiConsultantModalOpen(true)}
         openQuoteModal={handleOpenQuoteModal}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
@@ -92,7 +109,6 @@ export function App() {
                   onExploreOils={() => navigateToTab('essential-oils')}
                   onBrowseBotanicals={() => navigateToTab('botanicals')}
                   openCoaModal={() => setCoaModalOpen(true)}
-                  openAiConsultantModal={() => setAiConsultantModalOpen(true)}
                 />
               </div>
               <AssuranceStrip />
@@ -177,7 +193,6 @@ export function App() {
         setActiveTab={navigateToTab}
         openQuoteModal={handleOpenQuoteModal}
         openCoaModal={() => setCoaModalOpen(true)}
-        openAiConsultantModal={() => setAiConsultantModalOpen(true)}
       />
 
       {/* Modals */}
@@ -200,13 +215,6 @@ export function App() {
       {coaModalOpen && (
         <VerifyCoaModal
           onClose={() => setCoaModalOpen(false)}
-          onOpenQuote={(prodName) => handleOpenQuoteModal(prodName)}
-        />
-      )}
-
-      {aiConsultantModalOpen && (
-        <AiSpecConsultantModal
-          onClose={() => setAiConsultantModalOpen(false)}
           onOpenQuote={(prodName) => handleOpenQuoteModal(prodName)}
         />
       )}

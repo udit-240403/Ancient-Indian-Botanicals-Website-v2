@@ -13,14 +13,6 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     availableForms: ['Whole Dried Root', 'Micronized Powder (80 mesh)', 'Standardized Extract (2.5% - 5% Withanolides)', 'Coarse Cut (2-5mm)'],
     harvestOrigin: 'Mandsaur & Neemuch, Central India',
     image: '/assets/images/hero-botanical-still-life.png',
-    coaDetails: {
-      batchNumber: 'LOT-ASH-2026-0412',
-      testDate: '2026-03-15',
-      harvestRegion: 'Mandsaur Corridor, MP',
-      heavyMetals: 'Compliant with USP <2232> limits',
-      microbialLimit: 'Compliant with EP 5.1.8 Category B',
-      qualityDirectorNote: 'High root density lot with verified HPLC withanolide peak profile. Documentation available upon request.'
-    },
     specifications: {
       appearance: 'Light tan to brownish fine powder or characteristic fibrous root',
       activeMarkers: '2.5% to 5.0% Withanolides by HPLC',
@@ -40,14 +32,6 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     availableForms: ['Raw Tear Resin (Selected Grade A)', 'Powdered Resin', 'Boswellic Acid Extract (65% Titration)'],
     harvestOrigin: 'Central Indian Deciduous Forest Belt',
     image: '/assets/images/product-families-flatlay.png',
-    coaDetails: {
-      batchNumber: 'LOT-BOS-2026-0299',
-      testDate: '2026-02-28',
-      harvestRegion: 'Central India Forest Zone',
-      heavyMetals: 'Lead < 2 ppm, Arsenic < 1 ppm, Cadmium < 0.5 ppm',
-      microbialLimit: 'Total Plate Count < 10,000 CFU/g',
-      qualityDirectorNote: 'High boswellic acid content. Excellent solubility in ethanol systems.'
-    },
     specifications: {
       appearance: 'Golden yellow to pale amber tears or light cream powder',
       aromaProfile: 'Balsamic, warm, pine-woody with citrus top note',
@@ -69,20 +53,6 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     availableForms: ['Pure Essential Oil (Grade A Export)', 'Dilution Accords for Perfumery'],
     harvestOrigin: 'Karnataka & Tamil Nadu, South India',
     image: '/assets/images/hero-botanical-still-life.png',
-    coaDetails: {
-      batchNumber: 'LOT-SND-2026-0105',
-      testDate: '2026-04-02',
-      harvestRegion: 'Mysore Region, South India',
-      purityPercentage: '100% Pure & Natural',
-      gcmsProfile: [
-        { compound: 'Alpha-Santalol', percentage: '48.5%', status: 'Optimal' },
-        { compound: 'Beta-Santalol', percentage: '21.2%', status: 'Optimal' },
-        { compound: 'Nuciferol', percentage: '3.4%', status: 'Passed' }
-      ],
-      heavyMetals: 'Undetectable',
-      microbialLimit: 'N/A (Essential Oil)',
-      qualityDirectorNote: 'Verified GC/MS fingerprint showing combined santalols exceeding 69%. Full export documentation ready.'
-    },
     specifications: {
       appearance: 'Pale yellow to clear viscous liquid',
       aromaProfile: 'Deep, creamy, sweet woody balsamic with extraordinary tenacity',
@@ -104,20 +74,6 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     availableForms: ['Pure Essential Oil', 'Fractionated Profile'],
     harvestOrigin: 'Plains of North & Central India',
     image: '/assets/images/product-families-flatlay.png',
-    coaDetails: {
-      batchNumber: 'LOT-BSL-2026-0388',
-      testDate: '2026-03-20',
-      harvestRegion: 'Central India Sourcing Belt',
-      purityPercentage: '100% Pure Steam Distilled',
-      gcmsProfile: [
-        { compound: 'Eugenol', percentage: '42.1%', status: 'Optimal' },
-        { compound: 'Methyl Chavicol', percentage: '24.8%', status: 'Passed' },
-        { compound: 'Caryophyllene', percentage: '7.6%', status: 'Optimal' }
-      ],
-      heavyMetals: 'Compliant with Heavy Metals limits',
-      microbialLimit: 'N/A',
-      qualityDirectorNote: 'Characteristic crisp eugenol profile suitable for aromatherapeutic and fine fragrance applications.'
-    },
     specifications: {
       appearance: 'Pale yellow to golden clear liquid',
       aromaProfile: 'Fresh, warm, spicy-herbaceous with sweet clove-like under-notes',
@@ -138,14 +94,6 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     availableForms: ['Pure Floral Water (100% Single Distillate)', 'Concentrated Hydrosol Base'],
     harvestOrigin: 'Kannauj Aromatic Belt, Uttar Pradesh',
     image: '/assets/images/hero-botanical-still-life.png',
-    coaDetails: {
-      batchNumber: 'LOT-ROS-2026-0501',
-      testDate: '2026-04-10',
-      harvestRegion: 'Kannauj Floral Region',
-      heavyMetals: 'Non-detectable',
-      microbialLimit: 'Microbiologically tested; < 10 CFU/ml',
-      qualityDirectorNote: 'Pure steam distillate with authentic floral organoleptics. Free from added solubilizers or synthetic phenoxyethanol.'
-    },
     specifications: {
       appearance: 'Clear, colorless liquid with natural micro-droplet suspension',
       aromaProfile: 'Rich, authentic, fresh blooming rose bouquet',
@@ -165,14 +113,6 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     availableForms: ['Deseeded Dried Fruit Flakes', 'Fine Powder (100 mesh)', 'Standardized Tannin Extract (30% - 40%)'],
     harvestOrigin: 'Pratapgarh & Central India',
     image: '/assets/images/product-families-flatlay.png',
-    coaDetails: {
-      batchNumber: 'LOT-AML-2026-0180',
-      testDate: '2026-02-14',
-      harvestRegion: 'Central India Fruit Belt',
-      heavyMetals: 'Compliant with EP/USP international limits',
-      microbialLimit: 'TPC < 5,000 CFU/g, Salmonella absent',
-      qualityDirectorNote: 'Sieve pass rate 99.5% through 100 mesh. High natural antioxidant capacity.'
-    },
     specifications: {
       appearance: 'Greenish-brown to tan fine powder',
       activeMarkers: 'Total Tannins >= 30% by Titration / Ascorbic Acid profile',
@@ -192,14 +132,6 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     availableForms: ['Whole Cut Dried Herb', 'Fine Powder (80 mesh)', 'Bacoside Extract 20% - 50%'],
     harvestOrigin: 'Wetland agricultural corridors of South & East India',
     image: '/assets/images/hero-botanical-still-life.png',
-    coaDetails: {
-      batchNumber: 'LOT-BAC-2026-0312',
-      testDate: '2026-03-05',
-      harvestRegion: 'Coastal Southern Wetlands',
-      heavyMetals: 'Lead < 1.5 ppm, Heavy Metals compliant',
-      microbialLimit: 'Compliant with dietary supplement monographs',
-      qualityDirectorNote: 'Total Bacosides by HPLC verified at 21.4%. Solvents cleared according to USP <467>.'
-    },
     specifications: {
       appearance: 'Dull green to brownish fine powder or cut herb',
       activeMarkers: 'Bacosides A & B >= 20% by HPLC',
@@ -219,14 +151,6 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     availableForms: ['Coarse Cut Bark (1-2 cm)', 'Powdered Bark (80-100 mesh)', 'Standardized Extract'],
     harvestOrigin: 'Riverine forest corridors of Central India',
     image: '/assets/images/product-families-flatlay.png',
-    coaDetails: {
-      batchNumber: 'LOT-ARJ-2026-0118',
-      testDate: '2026-01-22',
-      harvestRegion: 'Central India River Belts',
-      heavyMetals: 'Compliant',
-      microbialLimit: 'Compliant with EP standard limits',
-      qualityDirectorNote: 'Uniform mesh size, low moisture content (< 8.5%).'
-    },
     specifications: {
       appearance: 'Reddish-brown powder or thick curved bark pieces',
       activeMarkers: 'Total Tannins > 15%, Arjunolic acid presence confirmed',
@@ -247,20 +171,6 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     availableForms: ['Pure Export Grade Oil', 'High-Citral Rectified Fraction'],
     harvestOrigin: 'Alleppey & Malabar Coast, Kerala',
     image: '/assets/images/hero-botanical-still-life.png',
-    coaDetails: {
-      batchNumber: 'LOT-LMG-2026-0440',
-      testDate: '2026-04-05',
-      harvestRegion: 'Alleppey Sourcing Corridor',
-      purityPercentage: '100% Pure Essential Oil',
-      gcmsProfile: [
-        { compound: 'Geranial (Citral A)', percentage: '44.8%', status: 'Optimal' },
-        { compound: 'Neral (Citral B)', percentage: '33.2%', status: 'Optimal' },
-        { compound: 'Myrcene', percentage: '4.1%', status: 'Passed' }
-      ],
-      heavyMetals: 'Undetectable',
-      microbialLimit: 'N/A',
-      qualityDirectorNote: 'Total Citral content > 78%. Clear yellow fluid with vibrant uplifting top note.'
-    },
     specifications: {
       appearance: 'Yellow to reddish-brown liquid',
       aromaProfile: 'Fresh, pungent, sharp lemon-like herbaceous scent',
@@ -282,14 +192,6 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     availableForms: ['Concentrated Perfumery Accord', 'Base Dilution'],
     harvestOrigin: 'Assam & North-Eastern Botanical Belt',
     image: '/assets/images/product-families-flatlay.png',
-    coaDetails: {
-      batchNumber: 'LOT-OUD-2026-0091',
-      testDate: '2026-01-30',
-      harvestRegion: 'Assam / North East Corridor',
-      heavyMetals: 'Compliant',
-      microbialLimit: 'N/A',
-      qualityDirectorNote: 'Rich balsamic-woody tenor with high fixation capacity.'
-    },
     specifications: {
       appearance: 'Dark amber to deep reddish-brown viscous liquid',
       aromaProfile: 'Complex, smoky, deep woody, resinous animalic tenor',
@@ -309,14 +211,6 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     availableForms: ['Botanical Accord (100% Concentrate)', 'Oil Soluble Base'],
     harvestOrigin: 'Southern & Central Indian Floral Lakes',
     image: '/assets/images/hero-botanical-still-life.png',
-    coaDetails: {
-      batchNumber: 'LOT-KML-2026-0210',
-      testDate: '2026-02-18',
-      harvestRegion: 'South India Floral Corridor',
-      heavyMetals: 'Undetectable',
-      microbialLimit: 'N/A',
-      qualityDirectorNote: 'Ethereal floral floral top-notes verified by organoleptic evaluation.'
-    },
     specifications: {
       appearance: 'Clear dark greenish-amber liquid',
       aromaProfile: 'Ethereal, aquatic, sweet floral with soft anise undertones',
@@ -336,14 +230,6 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     availableForms: ['Dried Slices / Flakes', 'Powder (80 mesh)', 'Water Extract'],
     harvestOrigin: 'Central & Western Agricultural Belts',
     image: '/assets/images/product-families-flatlay.png',
-    coaDetails: {
-      batchNumber: 'LOT-KRL-2026-0155',
-      testDate: '2026-02-05',
-      harvestRegion: 'Central India Sourcing Belt',
-      heavyMetals: 'Compliant with EP/USP limits',
-      microbialLimit: 'TPC < 10,000 CFU/g',
-      qualityDirectorNote: 'Moisture content < 7.0%. Clean organoleptic profile.'
-    },
     specifications: {
       appearance: 'Dull green to light yellow-green powder or dried slices',
       activeMarkers: 'Charantin presence confirmed',
