@@ -1,8 +1,7 @@
 import React from 'react';
-import { BOTANICAL_PRODUCTS } from '../data/products';
-import { ProductCatalogue } from './ProductCatalogue';
+import { CompleteCatalogue } from './CompleteCatalogue';
 import { BotanicalProduct } from '../types';
-import { ShieldCheck, Package, MapPin, Award, CheckCircle2, ArrowRight, FileText, Lock } from 'lucide-react';
+import { Package, CheckCircle2, ArrowRight, FileText, Lock, FlaskConical, Droplets, Layers3, Tags } from 'lucide-react';
 
 interface SharedPageProps {
   searchQuery: string;
@@ -13,122 +12,94 @@ interface SharedPageProps {
 }
 
 export const EssentialOilsPage: React.FC<SharedPageProps> = (props) => (
-  <div className="w-full bg-[#062b23] text-[#fbf7ed]">
-    {/* Page Header */}
-    <div className="bg-[#083a30] py-14 px-4 md:px-8 border-b border-[#b88a2c]/30">
-      <div className="max-w-[1440px] mx-auto space-y-4">
-        <span className="text-[11px] uppercase tracking-eyebrow text-[#b88a2c] font-semibold">
-          Steam Distillates & Aroma Accords
-        </span>
-        <h1 className="font-serif text-3xl md:text-5xl font-semibold text-[#fbf7ed]">
-          Essential oils selected by origin, profile and application.
-        </h1>
-        <p className="text-sm md:text-base text-[#f2ead9]/85 max-w-3xl font-light leading-relaxed">
-          Source natural essential oils and selected aroma grades with specification-led support. Tell us the target botanical, aroma profile, marker or analytical requirement, application and volume.
-        </p>
-      </div>
-    </div>
-
-    <ProductCatalogue
-      initialCategory="essential-oils"
-      searchQuery={props.searchQuery}
-      setSearchQuery={props.setSearchQuery}
-      onSelectProduct={props.onSelectProduct}
-      openQuoteModal={props.openQuoteModal}
-    />
-  </div>
+  <CompleteCatalogue
+    allowedGroups={['essential-oils', 'aroma-oils', 'carrier-oils']}
+    initialVisibleCount={100}
+    eyebrow="Complete Oils Portfolio"
+    title="Natural oils and aroma grades, clearly separated and fully visible."
+    description="Browse all natural essential oils, carrier oils and clearly identified aroma or diffuser grades in one complete collection. Each card shows commercial forms, industry uses and buyer relevance; composition and analytical requirements remain lot-specific."
+    searchQuery={props.searchQuery}
+    setSearchQuery={props.setSearchQuery}
+    openQuoteModal={props.openQuoteModal}
+  />
 );
 
 export const BotanicalsPage: React.FC<SharedPageProps> = (props) => (
-  <div className="w-full bg-[#062b23] text-[#fbf7ed]">
-    <div className="bg-[#083a30] py-14 px-4 md:px-8 border-b border-[#b88a2c]/30">
-      <div className="max-w-[1440px] mx-auto space-y-4">
-        <span className="text-[11px] uppercase tracking-eyebrow text-[#b88a2c] font-semibold">
-          Herbs, Roots & Standardized Extracts
-        </span>
-        <h1 className="font-serif text-3xl md:text-5xl font-semibold text-[#fbf7ed]">
-          Botanical ingredients in the form your process requires.
-        </h1>
-        <p className="text-sm md:text-base text-[#f2ead9]/85 max-w-3xl font-light leading-relaxed">
-          Explore whole, cut, powdered and extracted botanicals. Availability, origin, mesh size, marker range, solvent system and documentation depend on the approved product and lot.
-        </p>
-      </div>
-    </div>
-
-    <ProductCatalogue
-      initialCategory="botanicals"
-      searchQuery={props.searchQuery}
-      setSearchQuery={props.setSearchQuery}
-      onSelectProduct={props.onSelectProduct}
-      openQuoteModal={props.openQuoteModal}
-    />
-  </div>
+  <CompleteCatalogue
+    allowedGroups={['botanicals', 'waters-clays']}
+    initialVisibleCount={100}
+    eyebrow="Complete Botanical Portfolio"
+    title="Herbs, roots, seeds, extracts, powders, waters and clays."
+    description="Explore the complete botanical collection rather than a short featured selection. Product cards identify typical industry applications, commercial forms and review points; exact origin, grade, marker range and documentation are confirmed against the offered lot."
+    searchQuery={props.searchQuery}
+    setSearchQuery={props.setSearchQuery}
+    openQuoteModal={props.openQuoteModal}
+  />
 );
 
 export const PackagingPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuoteModal }) => (
-  <div className="w-full bg-[#062b23] text-[#fbf7ed] py-16 px-4 md:px-8">
-    <div className="max-w-[1440px] mx-auto space-y-12">
-      <div className="max-w-3xl space-y-4">
-        <span className="text-[11px] uppercase tracking-eyebrow text-[#b88a2c] font-semibold">
-          Export Containers & White Label
-        </span>
-        <h1 className="font-serif text-3xl md:text-5xl font-semibold text-[#fbf7ed]">
-          Packaging routes for samples, bulk supply and selected finished formats.
-        </h1>
-        <p className="text-sm text-[#f2ead9]/85 font-light leading-relaxed">
-          Final pack type and fill quantity are confirmed only after compatibility, regulatory and transport review.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {[
-          {
-            title: 'Evaluation Samples',
-            desc: 'Suitable small-format containers (100g - 1kg) subject to material compatibility and safety sealing for trial lab testing.',
-            badge: 'Sample Route'
-          },
-          {
-            title: 'Essential Oils Packaging',
-            desc: 'Aluminium bottles (1kg, 5kg) or approved fluorinated lined containers in relevant sizes with UN export certification.',
-            badge: 'Oils & Accords'
-          },
-          {
-            title: 'Bulk Liquids Shipping',
-            desc: 'HDPE drums (25kg - 200kg) or compatible ISO export containers based on chemical composition and shipping mode.',
-            badge: 'Bulk Liquids'
-          },
-          {
-            title: 'Dry Botanicals & Powders',
-            desc: 'Multi-wall kraft paper bags, double-lined polyethylene fiber drums (25kg) or woven sacks based on grade and destination.',
-            badge: 'Powders & Cut'
-          },
-          {
-            title: 'Private-Label Formats',
-            desc: 'Selected finished white-label programmes subject to MOQ, packaging feasibility, regulatory label compliance and written sign-off.',
-            badge: 'Contract Packing'
-          }
-        ].map((item, idx) => (
-          <div key={idx} className="bg-[#083a30] border border-[#b88a2c]/30 p-6 space-y-3">
-            <span className="text-[10px] uppercase tracking-eyebrow text-[#b88a2c] font-bold block">{item.badge}</span>
-            <h3 className="font-serif text-2xl font-semibold text-[#fbf7ed]">{item.title}</h3>
-            <p className="text-xs text-[#f2ead9]/80 font-light leading-relaxed">{item.desc}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="p-8 bg-[#083a30] border border-[#b88a2c]/40 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div>
-          <h3 className="font-serif text-2xl font-semibold text-[#fbf7ed]">Discuss Packaging Requirements</h3>
-          <p className="text-xs text-[#f2ead9]/80">Confirm custom drum specifications or sample pouch dispatch with our export desk.</p>
+  <div className="w-full bg-[#f3eddf] text-[#062b23]">
+    <section className="relative min-h-[570px] overflow-hidden border-b border-[#b88a2c]/40">
+      <img
+        src="/assets/images/packaging-export-system.webp"
+        alt="Botanical export packaging formats including sample bottles, pouches, drums and an IBC"
+        width="1536"
+        height="1024"
+        loading="eager"
+        className="absolute inset-0 h-full w-full object-cover object-[65%_50%]"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#041e18] via-[#041e18]/88 to-[#041e18]/15" />
+      <div className="relative z-10 mx-auto flex min-h-[570px] max-w-[1440px] items-center px-4 py-16 md:px-8">
+        <div className="max-w-2xl space-y-5 text-[#fbf7ed]">
+          <span className="text-[11px] font-semibold uppercase tracking-eyebrow text-[#d4a43d]">Packaging architecture · sample to bulk</span>
+          <h1 className="font-serif text-4xl font-semibold leading-[1.04] sm:text-5xl lg:text-6xl">From evaluation sample to commercial bulk.</h1>
+          <p className="max-w-xl text-sm leading-relaxed text-[#f2ead9]/88 sm:text-base">
+            A clear packaging route helps protect material integrity and prevents surprises at dispatch. We align the pack format with product compatibility, fill quantity, destination and shipping mode before confirmation.
+          </p>
+          <button onClick={openQuoteModal} className="inline-flex items-center gap-2 bg-[#b88a2c] px-6 py-3.5 text-xs font-bold uppercase tracking-eyebrow text-[#041e18] transition-colors hover:bg-[#d4a43d]">
+            Build a packaging brief <ArrowRight className="h-4 w-4" />
+          </button>
         </div>
-        <button
-          onClick={openQuoteModal}
-          className="bg-[#b88a2c] hover:bg-[#967020] text-[#062b23] font-bold text-xs uppercase tracking-eyebrow px-8 py-3.5 cursor-pointer shrink-0"
-        >
-          Discuss Packaging Route
-        </button>
       </div>
-    </div>
+    </section>
+
+    <section
+      className="px-4 py-16 md:px-8 lg:py-20"
+      style={{ backgroundImage: "linear-gradient(rgba(243,237,223,.94),rgba(243,237,223,.94)), url('/assets/svg/botanical-pattern.svg')" }}
+    >
+      <div className="mx-auto max-w-[1440px] space-y-10">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+          {[
+            { icon: FlaskConical, badge: 'Evaluation', title: 'Samples', desc: 'Small compatible packs for laboratory and formulation review, with fill size confirmed per material.' },
+            { icon: Droplets, badge: 'Natural & aroma oils', title: 'Oil packs', desc: 'Amber glass, aluminium or compatible lined containers selected around composition and quantity.' },
+            { icon: Package, badge: 'Commercial lots', title: 'Bulk liquids', desc: 'HDPE drums, metal drums or IBC routes considered against the product and transport requirement.' },
+            { icon: Layers3, badge: 'Dry ingredients', title: 'Herbs & powders', desc: 'Lined kraft bags, fibre drums or woven sacks configured for physical form and destination.' },
+            { icon: Tags, badge: 'Selected projects', title: 'Private label', desc: 'Bottle, closure and label routes reviewed against MOQ, artwork, compliance and feasibility.' },
+          ].map(({ icon: Icon, badge, title, desc }) => (
+            <article key={title} className="group border border-[#a97825]/35 bg-[#fbf7ed]/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#a97825] hover:shadow-[0_18px_45px_-28px_rgba(4,30,24,.7)]">
+              <div className="mb-7 flex h-11 w-11 items-center justify-center rounded-full border border-[#b88a2c]/45 bg-[#efe3c8] text-[#062b23]">
+                <Icon className="h-5 w-5" />
+              </div>
+              <span className="text-[9px] font-bold uppercase tracking-eyebrow text-[#9b711e]">{badge}</span>
+              <h2 className="mt-2 font-serif text-2xl font-semibold">{title}</h2>
+              <p className="mt-3 text-xs leading-relaxed text-[#27463c]">{desc}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="grid overflow-hidden border border-[#b88a2c]/40 bg-[#062b23] text-[#fbf7ed] lg:grid-cols-[1fr_auto]">
+          <div className="p-7 sm:p-9">
+            <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Compatibility before commitment</span>
+            <h2 className="mt-2 font-serif text-2xl font-semibold sm:text-3xl">One brief connects product, pack and destination.</h2>
+            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[#f2ead9]/78">Share the product, grade, trial or commercial quantity, destination and preferred format. Availability and any transport- or market-specific requirements are confirmed in writing before supply.</p>
+          </div>
+          <div className="flex items-center border-t border-[#b88a2c]/30 p-7 lg:border-l lg:border-t-0">
+            <button onClick={openQuoteModal} className="w-full border border-[#d4a43d] px-7 py-3.5 text-xs font-bold uppercase tracking-eyebrow text-[#fbf7ed] transition-colors hover:bg-[#d4a43d] hover:text-[#041e18]">Discuss your format</button>
+          </div>
+        </div>
+        <p className="text-center text-[11px] text-[#47685d]">Packaging image is an illustrative format guide. Final material, closure, fill and markings are product- and shipment-specific.</p>
+      </div>
+    </section>
   </div>
 );
 

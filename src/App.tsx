@@ -4,6 +4,7 @@ import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
 import { AssuranceStrip } from './components/AssuranceStrip';
 import { ProductFamilies } from './components/ProductFamilies';
+import { CultivationStories } from './components/CultivationStories';
 import { OriginsSection } from './components/OriginsSection';
 import { WorkflowSection } from './components/WorkflowSection';
 import { ProductCatalogue } from './components/ProductCatalogue';
@@ -118,6 +119,7 @@ export function App() {
               onSelectCategory={handleSelectCategory}
               onViewAll={() => navigateToTab('catalogue')}
             />
+            <CultivationStories onBrowseBotanicals={() => navigateToTab('botanicals')} />
             <OriginsSection />
             <WorkflowSection onStartEnquiry={() => handleOpenQuoteModal()} />
             <ProductCatalogue

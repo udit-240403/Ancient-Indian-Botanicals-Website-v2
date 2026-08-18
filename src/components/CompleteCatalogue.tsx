@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { ArrowRight, CheckCircle2, Search, SlidersHorizontal, X } from 'lucide-react';
 import rawCatalogue from '../data/scraped_products.json';
 
-type CatalogueGroup =
+export type CatalogueGroup =
   | 'essential-oils'
   | 'aroma-oils'
   | 'botanicals'
@@ -98,30 +98,50 @@ interface CompleteCatalogueProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
   openQuoteModal: (productName?: string) => void;
+  allowedGroups?: CatalogueGroup[];
+  initialVisibleCount?: number;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
 }
 
 export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
   searchQuery,
   setSearchQuery,
   openQuoteModal,
+  allowedGroups,
+  initialVisibleCount = 24,
+  eyebrow = 'Complete Current Catalogue',
+  title = 'A broader Indian botanical portfolio, organised for serious buyers.',
+  description = 'Explore natural essential oils, clearly identified aroma grades, botanical ingredients, carrier oils, floral waters and clays. Availability, composition, specification and documents are confirmed in writing for every enquiry.',
 }) => {
   const [selectedGroup, setSelectedGroup] = useState<'all' | CatalogueGroup>('all');
-  const [visibleCount, setVisibleCount] = useState(24);
+  const [visibleCount, setVisibleCount] = useState(initialVisibleCount);
   const [selectedProduct, setSelectedProduct] = useState<CatalogueProduct | null>(null);
+
+  const scopedProducts = useMemo(
+    () => (allowedGroups?.length ? PRODUCTS.filter((product) => allowedGroups.includes(getGroup(product))) : PRODUCTS),
+    [allowedGroups],
+  );
+
+  const availableFilters = useMemo(
+    () => FILTERS.filter((filter) => filter.id === 'all' || !allowedGroups?.length || allowedGroups.includes(filter.id)),
+    [allowedGroups],
+  );
 
   const groupCounts = useMemo(
     () =>
-      PRODUCTS.reduce<Record<string, number>>((counts, product) => {
+      scopedProducts.reduce<Record<string, number>>((counts, product) => {
         const group = getGroup(product);
         counts[group] = (counts[group] ?? 0) + 1;
         return counts;
       }, {}),
-    [],
+    [scopedProducts],
   );
 
   const filteredProducts = useMemo(() => {
     const term = searchQuery.trim().toLowerCase();
-    return PRODUCTS.filter((product) => {
+    return scopedProducts.filter((product) => {
       const group = getGroup(product);
       const matchesGroup = selectedGroup === 'all' || group === selectedGroup;
       const searchableText = [
@@ -135,11 +155,11 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
         .toLowerCase();
       return matchesGroup && (!term || searchableText.includes(term));
     }).sort((a, b) => a.name.localeCompare(b.name));
-  }, [searchQuery, selectedGroup]);
+  }, [scopedProducts, searchQuery, selectedGroup]);
 
   const chooseGroup = (group: 'all' | CatalogueGroup) => {
     setSelectedGroup(group);
-    setVisibleCount(24);
+    setVisibleCount(initialVisibleCount);
   };
 
   return (
@@ -148,15 +168,13 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
         <div className="absolute inset-0 opacity-10 bg-[url('/images/dark_wood_bg.png')] bg-cover bg-center" />
         <div className="relative mx-auto max-w-[1440px]">
           <span className="mb-3 block text-[11px] font-semibold uppercase tracking-eyebrow text-[#b88a2c]">
-            Complete Current Catalogue · {PRODUCTS.length} Product Routes
+            {eyebrow} · {scopedProducts.length} Product Routes
           </span>
           <h1 className="max-w-5xl font-serif text-4xl font-semibold leading-tight text-[#fbf7ed] md:text-6xl">
-            A broader Indian botanical portfolio, organised for serious buyers.
+            {title}
           </h1>
           <p className="mt-5 max-w-3xl text-sm font-light leading-relaxed text-[#f2ead9]/85 md:text-base">
-            Explore natural essential oils, clearly identified aroma grades, botanical ingredients,
-            carrier oils, floral waters and clays. Availability, composition, specification and
-            documents are confirmed in writing for every enquiry.
+            {description}
           </p>
         </div>
       </section>
@@ -165,8 +183,8 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
         <div className="mb-8 border border-[#b88a2c]/35 bg-[#062b23] p-4 md:p-6">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex flex-wrap gap-2">
-              {FILTERS.map((filter) => {
-                const count = filter.id === 'all' ? PRODUCTS.length : groupCounts[filter.id] ?? 0;
+              {availableFilters.map((filter) => {
+                const count = filter.id === 'all' ? scopedProducts.length : groupCounts[filter.id] ?? 0;
                 return (
                   <button
                     key={filter.id}
@@ -189,7 +207,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
                 value={searchQuery}
                 onChange={(event) => {
                   setSearchQuery(event.target.value);
-                  setVisibleCount(24);
+                  setVisibleCount(initialVisibleCount);
                 }}
                 placeholder="Search product, botanical name, form or use..."
                 aria-label="Search complete product catalogue"
@@ -251,6 +269,22 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
                       <p className="mt-3 line-clamp-3 text-xs font-light leading-relaxed text-[#f2ead9]/75">
                         {product.whyBuyersKnowIt || product.fieldDescription}
                       </p>
+
+                      <div className="mt-4">
+                        <span className="mb-2 block text-[9px] font-semibold uppercase tracking-eyebrow text-[#a8c76b]">
+                          Used across
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {product.typicalApplications.slice(0, 3).map((application) => (
+                            <span
+                              key={application}
+                              className="rounded-full border border-[#82966f]/35 bg-[#083a30] px-2.5 py-1 text-[9px] text-[#f2ead9]/85"
+                            >
+                              {application}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
 
                       <div className="mt-4 flex flex-wrap gap-1.5">
                         {product.commercialForms.slice(0, 2).map((form) => (
@@ -344,6 +378,29 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
                 <p className="text-sm font-light leading-relaxed text-[#f2ead9]/85">
                   {selectedProduct.fieldDescription}
                 </p>
+
+                <div>
+                  <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-eyebrow text-[#a8c76b]">
+                    Industry applications
+                  </h3>
+                  <div className="grid gap-2 sm:grid-cols-2">
+                    {selectedProduct.realWorldApps.map((application) => (
+                      <div key={application.title} className="border border-[#b88a2c]/25 bg-[#041e18] p-3">
+                        <strong className="block text-xs text-[#fbf7ed]">{application.title}</strong>
+                        <span className="mt-1 block text-[11px] leading-relaxed text-[#f2ead9]/70">{application.description}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-eyebrow text-[#a8c76b]">
+                    Commercial value
+                  </h3>
+                  <p className="border-l-2 border-[#b88a2c] pl-4 text-sm font-light leading-relaxed text-[#f2ead9]/85">
+                    {selectedProduct.whyBuyersKnowIt}
+                  </p>
+                </div>
 
                 <div>
                   <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-eyebrow text-[#a8c76b]">
