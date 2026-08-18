@@ -76,6 +76,19 @@ export const Hero: React.FC<HeroProps> = ({
               </button>
             </div>
 
+            <div className="grid max-w-lg grid-cols-3 border-y border-[#b88a2c]/30 bg-[#041e18]/55 backdrop-blur-sm">
+              {[
+                ['92', 'Product routes'],
+                ['5', 'Ingredient families'],
+                ['Lot', 'Specific review'],
+              ].map(([value, label]) => (
+                <div key={label} className="border-r border-[#b88a2c]/25 px-2 py-2.5 last:border-r-0 sm:px-3">
+                  <span className="block font-serif text-lg font-semibold leading-none text-[#d4a43d]">{value}</span>
+                  <span className="mt-1 block text-[8px] font-semibold uppercase tracking-[0.12em] text-[#f2ead9]/70 sm:text-[9px]">{label}</span>
+                </div>
+              ))}
+            </div>
+
           </div>
 
           {/* Center-Right Column: Photo Cover Frame */}

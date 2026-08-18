@@ -59,10 +59,11 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="max-w-[1440px] mx-auto px-4 md:px-8 flex items-center justify-between">
           
           {/* Sanskrit motto / Sourcing provenance indicator */}
-          <div className="flex items-center gap-2 font-medium tracking-wide">
+          <div className="flex min-w-0 items-center gap-2 font-medium tracking-wide">
             <span className="text-[#b88a2c] font-bold">🌿</span>
-            <span className="text-[#041e18] font-semibold">
-              Indian botanical sourcing corridors · Mandsaur · Alleppey · Mysore
+            <span className="truncate text-[#041e18] font-semibold">
+              <span className="sm:hidden">Indian botanical sourcing · Mandsaur</span>
+              <span className="hidden sm:inline">Indian botanical sourcing corridors · Mandsaur · Alleppey · Mysore</span>
             </span>
           </div>
 
@@ -82,34 +83,34 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Main Dark Green Navigation Bar */}
       <nav className="w-full bg-[#041e18] text-[#fbf7ed] border-b border-[#b88a2c]/30 shadow-lg">
-        <div className="max-w-[1440px] mx-auto px-4 md:px-8 flex items-center justify-between py-3 md:py-3.5">
+        <div className="max-w-[1440px] mx-auto px-4 md:px-8 flex items-center justify-between py-3.5 md:py-4">
           
           {/* Logo Mark & Text using Custom AI Metallic Gold Logo Emblem */}
           <button
             onClick={() => handleNavClick('home')}
-            className="flex items-center gap-3.5 text-left cursor-pointer group"
+            className="flex min-w-0 items-center gap-3 text-left cursor-pointer group sm:gap-4"
           >
-            <div className="w-13 h-13 flex items-center justify-center shrink-0 p-0.5 rounded-full border-2 border-[#b88a2c] bg-[#041e18] group-hover:border-[#fbf7ed] transition-colors shadow-lg overflow-hidden">
+            <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#d4a43d]/80 bg-[#082c24] p-1 shadow-[0_0_0_3px_rgba(184,138,44,.12),0_10px_30px_rgba(0,0,0,.35)] transition-all group-hover:border-[#fbf7ed] sm:h-[4.75rem] sm:w-[4.75rem]">
               <img
                 src="/assets/images/ancient_indian_botanicals_gold_logo.png"
-                alt="Ancient Indian Botanicals Metallic Gold Logo"
+                alt="Ancient Indian Botanicals circular botanical emblem"
                 width="1024"
                 height="1024"
                 loading="eager"
                 decoding="async"
-                className="w-full h-full object-cover rounded-full transform group-hover:scale-105 transition-transform"
+                className="h-full w-full rounded-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
               />
             </div>
-            <div>
-              <span className="block font-serif text-lg sm:text-xl font-bold tracking-[0.14em] text-[#fbf7ed] group-hover:text-[#b88a2c] transition-colors leading-none uppercase">
+            <div className="min-w-0">
+              <span className="block whitespace-nowrap font-serif text-[0.93rem] font-bold tracking-[0.08em] text-[#fbf7ed] transition-colors group-hover:text-[#d4a43d] sm:text-[1.42rem] sm:tracking-[0.14em] leading-none uppercase">
                 ANCIENT INDIAN
               </span>
-              <span className="block font-serif text-lg sm:text-xl font-bold tracking-[0.18em] text-[#fbf7ed] group-hover:text-[#b88a2c] transition-colors leading-tight uppercase">
+              <span className="block whitespace-nowrap font-serif text-[0.93rem] font-bold tracking-[0.12em] text-[#fbf7ed] transition-colors group-hover:text-[#d4a43d] sm:text-[1.42rem] sm:tracking-[0.18em] leading-tight uppercase">
                 BOTANICALS
               </span>
-              <div className="flex items-center gap-1.5 mt-0.5">
+              <div className="mt-1 hidden items-center gap-1.5 min-[380px]:flex">
                 <span className="h-[1px] w-2.5 bg-[#b88a2c]/60" />
-                <span className="text-[8.5px] tracking-[0.16em] uppercase text-[#b88a2c] font-light">
+                <span className="whitespace-nowrap text-[7.5px] tracking-[0.12em] uppercase text-[#d4a43d] font-medium sm:text-[8.5px] sm:tracking-[0.16em]">
                   PURE BY NATURE. TRUSTED BY TIME.
                 </span>
                 <span className="h-[1px] w-2.5 bg-[#b88a2c]/60" />
@@ -138,7 +139,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Quick Search Toggle / Desktop Search Box */}
-          <div className="flex items-center gap-3">
+          <div className="ml-2 flex shrink-0 items-center gap-2 sm:gap-3">
             
             <form onSubmit={handleSearchSubmit} className="hidden lg:flex items-center relative">
               <input
@@ -156,7 +157,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={() => setSearchOpen(!searchOpen)}
               aria-label={searchOpen ? 'Close catalogue search' : 'Open catalogue search'}
-              className="lg:hidden p-2 text-[#fbf7ed] hover:text-[#b88a2c] border border-[#b88a2c]/30 rounded-none cursor-pointer"
+              className="hidden min-[400px]:block lg:hidden p-2 text-[#fbf7ed] hover:text-[#b88a2c] border border-[#b88a2c]/30 rounded-none cursor-pointer"
             >
               <Search className="w-4 h-4" />
             </button>

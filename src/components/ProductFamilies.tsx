@@ -10,11 +10,11 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
   const families = [
     {
       id: 'essential-oils',
-      title: 'Essential & aroma oils',
-      description: 'Natural essential oils, selected aroma accords and application-led grades.',
+      title: 'Natural, aroma & carrier oils',
+      description: 'Natural essential oils, carrier oils and clearly separated aroma or diffuser grades.',
       cta: 'Explore oils',
       icon: Droplets,
-      tag: 'Steam Distilled & Accords'
+      tag: '59 product routes'
     },
     {
       id: 'botanicals',
@@ -22,15 +22,15 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
       description: 'Whole, cut and powdered herbs, roots, barks, seeds, resins and standardized extracts.',
       cta: 'Browse botanicals',
       icon: Leaf,
-      tag: 'Raw & Standardized'
+      tag: '30 product routes'
     },
     {
-      id: 'hydrosols-clays',
-      title: 'Hydrosols, carrier oils & clays',
-      description: 'Functional ingredients for personal care, fragrance, wellness and formulation use.',
+      id: 'catalogue',
+      title: 'Floral waters & clays',
+      description: 'Distinct hydrosol, floral-water and natural-clay routes for formulation and personal care.',
       cta: 'View ingredients',
       icon: Flower2,
-      tag: 'Personal Care & Formulation'
+      tag: '3 product routes'
     },
     {
       id: 'packaging',
@@ -38,7 +38,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
       description: 'Samples, aluminium bottles, export drums and selected white-label formats.',
       cta: 'See packaging routes',
       icon: Package,
-      tag: 'Sample & Bulk Export'
+      tag: '5 format routes'
     }
   ];
 
