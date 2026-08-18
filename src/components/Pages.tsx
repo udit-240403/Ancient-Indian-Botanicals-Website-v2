@@ -175,7 +175,7 @@ export const QualityPage: React.FC<{ openCoaModal: () => void; openQuoteModal: (
           onClick={openCoaModal}
           className="bg-[#b88a2c] text-[#062b23] font-bold text-xs uppercase tracking-eyebrow px-8 py-3.5 cursor-pointer"
         >
-          Verify Batch COA Online
+          Request Lot Documents
         </button>
         <button
           onClick={openQuoteModal}

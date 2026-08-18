@@ -1,4 +1,6 @@
-# Ancient Indian Botanicals — website design handoff
+# Ancient Indian Botanicals — website source
+
+This repository is the editable source of the Ancient Indian Botanicals website. It is a portable React/Vite project: the repository owner can download it, edit it locally or in GitHub, and deploy it to Vercel or another compatible static host without depending on a proprietary website builder.
 
 This package converts the content audited from `https://botanica-global.vercel.app/#home` into the premium heritage-botanical direction shown in `assets/images/design-reference-homepage.png`.
 
@@ -30,3 +32,13 @@ This package converts the content audited from `https://botanica-global.vercel.a
 - Contact details and legal policies are placeholders that must be confirmed before launch.
 - The site should not embed important copy inside images. All visible text should be HTML.
 
+## Ownership and third-party components
+
+Project-specific source, copy and design work are covered by the repository's proprietary `LICENSE`. Open-source packages and fonts retain their own licences; see `THIRD_PARTY_NOTICES.md`. Public repository visibility does not make the project open source, although a public repository can still be viewed and forked through GitHub.
+
+## Production checklist
+
+- Connect `ancientindianbotanicals.com` to the production deployment without removing Google Workspace MX/TXT records.
+- Replace the temporary `.vercel.app` canonical, Open Graph URLs, sitemap URL and `llms.txt` website URL with the custom domain after DNS is live.
+- Verify the domain in Google Search Console and submit `/sitemap.xml`.
+- Confirm incorporation, GST, IEC, banking and product-specific documentation before removing incorporation-stage notices.

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Search, ShieldCheck, Sparkles, Menu, X, ChevronRight } from 'lucide-react';
+import { Search, ShieldCheck, Menu, X, ChevronRight } from 'lucide-react';
 
 interface NavbarProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   openCoaModal: () => void;
-  openAiConsultantModal: () => void;
   openQuoteModal: (productName?: string) => void;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
@@ -15,7 +14,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   activeTab,
   setActiveTab,
   openCoaModal,
-  openAiConsultantModal,
   openQuoteModal,
   searchQuery,
   setSearchQuery
@@ -68,22 +66,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             </span>
           </div>
 
-          {/* Quick Utility Action Pills */}
-          <div className="hidden sm:flex items-center gap-3">
-            <button
-              onClick={openAiConsultantModal}
-              className="bg-[#041e18] hover:bg-[#083a30] text-[#fbf7ed] border border-[#b88a2c]/60 px-3 py-1 font-semibold text-[10.5px] uppercase tracking-eyebrow flex items-center gap-1.5 transition-all shadow-sm cursor-pointer"
-            >
-              <Sparkles className="w-3 h-3 text-[#b88a2c]" />
-              <span>AI SPEC CONSULTANT</span>
-            </button>
-
+          {/* Lot-document action remains deliberately evidence-led. */}
+          <div className="hidden sm:flex items-center">
             <button
               onClick={openCoaModal}
               className="bg-[#f4efd3] hover:bg-[#eae3c2] text-[#041e18] border border-[#041e18]/30 px-3 py-1 font-semibold text-[10.5px] uppercase tracking-eyebrow flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               <ShieldCheck className="w-3.5 h-3.5 text-[#b88a2c]" />
-              <span>VERIFY BATCH COA</span>
+              <span>REQUEST LOT DOCUMENTS</span>
             </button>
           </div>
 
@@ -219,17 +209,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               ))}
             </div>
 
-            <div className="pt-4 space-y-2 border-t border-[#b88a2c]/30">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  openAiConsultantModal();
-                }}
-                className="w-full bg-[#062b23] text-[#b88a2c] border border-[#b88a2c] py-2.5 text-xs font-semibold uppercase tracking-eyebrow flex items-center justify-center gap-2"
-              >
-                <Sparkles className="w-4 h-4" />
-                <span>AI Spec Consultant</span>
-              </button>
+            <div className="pt-4 border-t border-[#b88a2c]/30">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
@@ -238,7 +218,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 className="w-full bg-[#b88a2c] text-[#041e18] py-2.5 text-xs font-bold uppercase tracking-eyebrow flex items-center justify-center gap-2"
               >
                 <ShieldCheck className="w-4 h-4" />
-                <span>Verify Batch COA</span>
+                <span>Request Lot Documents</span>
               </button>
             </div>
           </div>

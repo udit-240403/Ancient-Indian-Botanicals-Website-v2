@@ -1,0 +1,16 @@
+{
+  "name": "Ancient Indian Botanicals",
+  "short_name": "AIB",
+  "description": "Specification-led B2B sourcing of Indian botanical and aromatic ingredients.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#041e18",
+  "theme_color": "#041e18",
+  "icons": [
+    {
+      "src": "/assets/svg/brand-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -103,7 +103,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   className="bg-[#083a30] hover:bg-[#125344] border border-[#b88a2c]/40 text-[#fbf7ed] font-medium text-xs uppercase tracking-eyebrow px-5 py-3 flex items-center gap-2 cursor-pointer"
                 >
                   <ShieldCheck className="w-4 h-4 text-[#b88a2c]" />
-                  <span>Verify Batch COA</span>
+                  <span>Request Lot Documents</span>
                 </button>
               </div>
             </div>
