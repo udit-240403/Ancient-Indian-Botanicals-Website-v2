@@ -146,7 +146,11 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
                       height="900"
                       loading={index < 4 ? 'eager' : 'lazy'}
                       decoding="async"
-                      onError={(event) => { event.currentTarget.hidden = true; }}
+                      onError={(event) => {
+                        if (event.currentTarget.dataset.fallback === 'true') return;
+                        event.currentTarget.dataset.fallback = 'true';
+                        event.currentTarget.src = '/assets/images/product-families-flatlay.webp';
+                      }}
                       className="relative z-[1] w-full h-full object-cover transform group-hover:scale-[1.04] transition-transform duration-700"
                     />
                     <div className="absolute top-3 left-3 bg-[#041e18]/95 border border-[#b88a2c]/60 text-[#b88a2c] text-[10px] uppercase tracking-eyebrow px-2.5 py-1 font-bold">

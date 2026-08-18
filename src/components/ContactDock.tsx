@@ -37,6 +37,14 @@ export const ContactDock: React.FC<ContactDockProps> = ({ openQuoteModal, openCo
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#b88a2c]/40 text-[#765411]"><Mail className="h-4.5 w-4.5" /></span>
               <span><strong className="block text-sm">Email the right desk</strong><small className="mt-0.5 block text-[10px] text-[#47685d]">Sales, sourcing and general contact</small></span>
             </button>
+            <a
+              href="mailto:sales@ancientindianbotanicals.com?subject=Botanical%20product%20enquiry"
+              onClick={() => setOpen(false)}
+              className="flex w-full items-center gap-3 border border-[#b88a2c]/30 bg-[#062b23] p-3.5 text-left text-[#fbf7ed] transition-colors hover:bg-[#083a30]"
+            >
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#d4a43d]/45 text-[#d4a43d]"><Mail className="h-4.5 w-4.5" /></span>
+              <span><strong className="block text-sm">Send email now</strong><small className="mt-0.5 block text-[10px] text-[#f2ead9]/65">sales@ancientindianbotanicals.com</small></span>
+            </a>
           </div>
         </div>
       )}
@@ -48,7 +56,7 @@ export const ContactDock: React.FC<ContactDockProps> = ({ openQuoteModal, openCo
         className="contact-dock-trigger flex h-14 items-center justify-center gap-2 rounded-full border border-[#e3bd67]/70 bg-[#b88a2c] px-4 text-[#041e18] shadow-[0_14px_38px_rgba(0,0,0,.38)] transition-all hover:-translate-y-1 hover:bg-[#d4a43d] sm:h-15 sm:px-5"
       >
         {open ? <X className="h-5 w-5" /> : <Mail className="h-5 w-5" />}
-        <span className="hidden text-[10px] font-extrabold uppercase tracking-[0.16em] sm:inline">Email / Enquire</span>
+        <span className="text-[9px] font-extrabold uppercase tracking-[0.13em] sm:text-[10px] sm:tracking-[0.16em]">Email / Enquire</span>
       </button>
     </div>
   );

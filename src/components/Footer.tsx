@@ -29,10 +29,10 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="flex items-center gap-4">
               <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[#d4a43d] bg-[#f4efd3] p-1.5 shadow-[0_8px_28px_rgba(0,0,0,.28)]">
                 <img
-                  src="/assets/images/ancient_indian_botanicals_gold_logo.png"
-                  alt="Ancient Indian Botanicals circular lotus emblem"
-                  onError={(event) => { event.currentTarget.src = '/assets/svg/brand-mark.svg'; }}
-                  className="h-full w-full rounded-full object-cover"
+                  src="/assets/svg/brand-mark.svg"
+                  alt="Ancient Indian Botanicals botanical seal"
+                  onError={(event) => { event.currentTarget.src = '/assets/images/ancient_indian_botanicals_gold_logo.png'; }}
+                  className="h-full w-full rounded-full object-contain"
                 />
               </div>
               <div>

@@ -70,21 +70,21 @@ export const Navbar: React.FC<NavbarProps> = ({
       <nav className="w-full border-b border-[#b88a2c]/35 bg-[#041e18] text-[#fbf7ed] shadow-[0_16px_42px_rgba(0,0,0,.22)]">
         <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-4 py-3 md:px-8 md:py-4">
           <button onClick={() => handleNavClick('home')} className="group flex min-w-0 items-center gap-2.5 text-left sm:gap-4">
-            <div className="relative flex h-[4.25rem] w-[4.25rem] shrink-0 items-center justify-center rounded-full border border-[#d4a43d] bg-[#f4efd3] p-1.5 shadow-[0_0_0_4px_rgba(212,164,61,.12),0_12px_34px_rgba(0,0,0,.38)] sm:h-[5.5rem] sm:w-[5.5rem]">
+            <div className="relative flex h-[4.5rem] w-[4.5rem] shrink-0 items-center justify-center rounded-full border border-[#d4a43d] bg-[#f4efd3] p-1 shadow-[0_0_0_4px_rgba(212,164,61,.14),0_12px_34px_rgba(0,0,0,.38)] sm:h-24 sm:w-24">
               <img
-                src="/assets/images/ancient_indian_botanicals_gold_logo.png"
-                alt="Ancient Indian Botanicals circular lotus emblem"
-                width="1024"
-                height="1024"
+                src="/assets/svg/brand-mark.svg"
+                alt="Ancient Indian Botanicals botanical seal"
+                width="200"
+                height="200"
                 loading="eager"
                 decoding="async"
-                onError={(event) => { event.currentTarget.src = '/assets/svg/brand-mark.svg'; }}
-                className="h-full w-full rounded-full object-cover transition-transform duration-500 group-hover:scale-[1.025]"
+                onError={(event) => { event.currentTarget.src = '/assets/images/ancient_indian_botanicals_gold_logo.png'; }}
+                className="h-full w-full rounded-full object-contain transition-transform duration-500 group-hover:scale-[1.025]"
               />
             </div>
             <div className="min-w-0">
-              <span className="block whitespace-nowrap font-serif text-[1rem] font-bold uppercase leading-[.95] tracking-[0.075em] text-[#fbf7ed] transition-colors group-hover:text-[#d4a43d] min-[390px]:text-[1.12rem] sm:text-[1.72rem] sm:tracking-[0.13em]">Ancient Indian</span>
-              <span className="block whitespace-nowrap font-serif text-[1rem] font-bold uppercase leading-tight tracking-[0.12em] text-[#fbf7ed] transition-colors group-hover:text-[#d4a43d] min-[390px]:text-[1.12rem] sm:text-[1.72rem] sm:tracking-[0.18em]">Botanicals</span>
+              <span className="block whitespace-nowrap font-serif text-[1rem] font-bold uppercase leading-[.95] tracking-[0.075em] text-[#fbf7ed] transition-colors group-hover:text-[#d4a43d] min-[390px]:text-[1.12rem] sm:text-[1.8rem] sm:tracking-[0.13em]">Ancient Indian</span>
+              <span className="block whitespace-nowrap font-serif text-[1rem] font-bold uppercase leading-tight tracking-[0.12em] text-[#fbf7ed] transition-colors group-hover:text-[#d4a43d] min-[390px]:text-[1.12rem] sm:text-[1.8rem] sm:tracking-[0.18em]">Botanicals</span>
               <div className="mt-1.5 hidden items-center gap-2 min-[430px]:flex">
                 <span className="h-px w-3 bg-[#b88a2c]/60" />
                 <span className="whitespace-nowrap text-[7.5px] font-semibold uppercase tracking-[0.15em] text-[#d4a43d] sm:text-[9px]">Pure by nature · trusted by time</span>

@@ -13,6 +13,7 @@ import { ProductDetailModal } from './components/ProductDetailModal';
 import { QuoteFormModal } from './components/QuoteFormModal';
 import { VerifyCoaModal } from './components/VerifyCoaModal';
 import { ContactDock } from './components/ContactDock';
+import { HomePackagingShowcase } from './components/HomePackagingShowcase';
 import {
   EssentialOilsPage,
   BotanicalsPage,
@@ -121,6 +122,10 @@ export function App() {
               onViewAll={() => navigateToTab('catalogue')}
             />
             <CultivationStories onBrowseBotanicals={() => navigateToTab('botanicals')} />
+            <HomePackagingShowcase
+              openPackagingPage={() => navigateToTab('packaging')}
+              openQuoteModal={() => handleOpenQuoteModal()}
+            />
             <OriginsSection />
             <WorkflowSection onStartEnquiry={() => handleOpenQuoteModal()} />
             <ProductCatalogue

@@ -63,7 +63,7 @@ export const CultivationStories: React.FC<CultivationStoriesProps> = ({ onBrowse
         {stories.map((story, index) => (
           <article key={story.name} className="group overflow-hidden border border-[#a97825]/35 bg-[#fbf7ed] shadow-[0_18px_55px_-42px_rgba(4,30,24,.8)]">
             <div className="image-shell relative h-64 overflow-hidden sm:h-72">
-              <img src={story.image} alt={`${story.name} cultivation and harvest in ${story.region}`} width="1536" height="1024" loading="lazy" onError={(event) => { event.currentTarget.hidden = true; }} className="relative z-[1] h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]" />
+              <img src={story.image} alt={`${story.name} cultivation and harvest in ${story.region}`} width="1536" height="1024" loading="lazy" onError={(event) => { if (event.currentTarget.dataset.fallback === 'true') return; event.currentTarget.dataset.fallback = 'true'; event.currentTarget.src = '/assets/images/product-families-flatlay.webp'; }} className="relative z-[1] h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#041e18]/78 via-transparent to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-5 text-[#fbf7ed] sm:p-6">
                 <div className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-eyebrow text-[#e1bd67]"><MapPin className="h-3.5 w-3.5" />{story.region}</div>

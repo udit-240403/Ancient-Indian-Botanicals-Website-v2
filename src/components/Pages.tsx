@@ -46,7 +46,7 @@ export const PackagingPage: React.FC<{ openQuoteModal: () => void }> = ({ openQu
         width="1536"
         height="1024"
         loading="eager"
-        onError={(event) => { event.currentTarget.hidden = true; }}
+        onError={(event) => { if (event.currentTarget.dataset.fallback === 'true') return; event.currentTarget.dataset.fallback = 'true'; event.currentTarget.src = '/assets/images/product-families-flatlay.webp'; }}
         className="absolute inset-0 h-full w-full object-cover object-[65%_50%]"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-[#041e18] via-[#041e18]/88 to-[#041e18]/15" />
@@ -85,7 +85,7 @@ export const PackagingPage: React.FC<{ openQuoteModal: () => void }> = ({ openQu
           ].map((format) => (
             <article key={format.title} className="group overflow-hidden border border-[#a97825]/35 bg-[#fbf7ed]">
               <div className="image-shell relative h-56 overflow-hidden sm:h-64">
-                <img src="/assets/images/packaging-export-system.webp" alt={format.title} width="1672" height="941" loading="lazy" onError={(event) => { event.currentTarget.hidden = true; }} className="h-full w-full scale-[1.35] object-cover transition-transform duration-700 group-hover:scale-[1.42]" style={{ objectPosition: format.position }} />
+                <img src="/assets/images/packaging-export-system.webp" alt={format.title} width="1672" height="941" loading="lazy" onError={(event) => { if (event.currentTarget.dataset.fallback === 'true') return; event.currentTarget.dataset.fallback = 'true'; event.currentTarget.src = '/assets/images/product-families-flatlay.webp'; }} className="h-full w-full scale-[1.35] object-cover transition-transform duration-700 group-hover:scale-[1.42]" style={{ objectPosition: format.position }} />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#041e18]/86 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-5 text-[#fbf7ed]">
                   <h3 className="font-serif text-2xl font-semibold">{format.title}</h3>
@@ -190,16 +190,22 @@ export const QualityPage: React.FC<{ openCoaModal: () => void; openQuoteModal: (
 export const AboutPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuoteModal }) => (
   <div className="w-full bg-[#062b23] text-[#fbf7ed] py-16 px-4 md:px-8">
     <div className="max-w-[1440px] mx-auto space-y-12">
-      <div className="max-w-3xl space-y-4">
-        <span className="text-[11px] uppercase tracking-eyebrow text-[#b88a2c] font-semibold">
-          Sourcing House Provenance
-        </span>
-        <h1 className="font-serif text-3xl md:text-5xl font-semibold text-[#fbf7ed]">
-          A modern botanical sourcing house with an Indian origin advantage.
-        </h1>
-        <p className="text-sm md:text-base text-[#f2ead9]/85 font-light leading-relaxed">
-          Ancient Indian Botanicals connects buyer specifications with suitable Indian botanical and aromatic supply routes. Our role is to make sourcing clearer: identify the requirement, match the material, coordinate available documentation, confirm packaging and support export execution.
-        </p>
+      <div className="grid items-center gap-8 lg:grid-cols-[1fr_19rem]">
+        <div className="max-w-3xl space-y-4">
+          <span className="text-[11px] uppercase tracking-eyebrow text-[#b88a2c] font-semibold">
+            Sourcing House Provenance
+          </span>
+          <h1 className="font-serif text-3xl md:text-5xl font-semibold text-[#fbf7ed]">
+            A modern botanical sourcing house with an Indian origin advantage.
+          </h1>
+          <p className="text-sm md:text-base text-[#f2ead9]/85 font-light leading-relaxed">
+            Ancient Indian Botanicals connects buyer specifications with suitable Indian botanical and aromatic supply routes. Our role is to make sourcing clearer: identify the requirement, match the material, coordinate available documentation, confirm packaging and support export execution.
+          </p>
+        </div>
+        <div className="mx-auto w-full max-w-[19rem] border border-[#b88a2c]/45 bg-[#f4efd3] p-5 shadow-[0_24px_70px_rgba(0,0,0,.3)]">
+          <img src="/assets/images/ancient_indian_botanicals_gold_logo.png" alt="Ancient Indian Botanicals official circular lotus seal" width="1024" height="1024" loading="eager" onError={(event) => { event.currentTarget.src = '/assets/svg/brand-mark.svg'; }} className="aspect-square w-full object-cover" />
+          <p className="mt-4 text-center text-[9px] font-bold uppercase tracking-[0.18em] text-[#765411]">Official botanical seal</p>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -225,7 +231,7 @@ export const AboutPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuoteM
           <img
             src="/assets/images/hero-botanical-still-life.webp"
             alt="Amber botanical bottles with Indian herbs and roots"
-            onError={(event) => { event.currentTarget.hidden = true; }}
+            onError={(event) => { if (event.currentTarget.dataset.fallback === 'true') return; event.currentTarget.dataset.fallback = 'true'; event.currentTarget.src = '/assets/images/product-families-flatlay.webp'; }}
             className="relative z-[1] w-full h-full object-cover"
           />
         </div>
