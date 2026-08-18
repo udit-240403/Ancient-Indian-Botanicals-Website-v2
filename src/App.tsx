@@ -12,6 +12,7 @@ import { CompleteCatalogue } from './components/CompleteCatalogue';
 import { ProductDetailModal } from './components/ProductDetailModal';
 import { QuoteFormModal } from './components/QuoteFormModal';
 import { VerifyCoaModal } from './components/VerifyCoaModal';
+import { ContactDock } from './components/ContactDock';
 import {
   EssentialOilsPage,
   BotanicalsPage,
@@ -19,6 +20,7 @@ import {
   QualityPage,
   AboutPage,
   PaymentsPage,
+  ContactPage,
   LegalPage
 } from './components/Pages';
 import { BotanicalProduct } from './types';
@@ -53,6 +55,7 @@ export function App() {
       quality: 'Lot Documentation & Quality Process | Ancient Indian Botanicals',
       about: 'About Ancient Indian Botanicals',
       payments: 'Commercial Terms | Ancient Indian Botanicals',
+      contact: 'Contact the Trade Desk | Ancient Indian Botanicals',
       search: 'Search Product Catalogue | Ancient Indian Botanicals',
       terms: 'Terms of Trade | Ancient Indian Botanicals',
       shipping: 'Shipping Information | Ancient Indian Botanicals',
@@ -102,10 +105,8 @@ export function App() {
       <main className="flex-grow">
         {activeTab === 'home' && (
           <>
-            {/* Natural mobile flow prevents the hero card and assurance strip from colliding.
-                The compact one-screen composition is retained for desktop only. */}
-            <div className="flex flex-col bg-[#041e18] lg:h-[calc(100svh-150px)] lg:max-h-[calc(100svh-150px)] lg:justify-between lg:overflow-hidden">
-              <div className="flex flex-col justify-center lg:min-h-0 lg:flex-1 lg:overflow-hidden">
+            <div className="flex flex-col bg-[#041e18]">
+              <div className="flex flex-col justify-center">
                 <Hero
                   onExploreOils={() => navigateToTab('essential-oils')}
                   onBrowseBotanicals={() => navigateToTab('botanicals')}
@@ -177,6 +178,10 @@ export function App() {
 
         {activeTab === 'payments' && <PaymentsPage />}
 
+        {activeTab === 'contact' && (
+          <ContactPage openQuoteModal={() => handleOpenQuoteModal()} />
+        )}
+
         {activeTab === 'search' && (
           <CompleteCatalogue
             searchQuery={searchQuery}
@@ -195,6 +200,11 @@ export function App() {
         setActiveTab={navigateToTab}
         openQuoteModal={handleOpenQuoteModal}
         openCoaModal={() => setCoaModalOpen(true)}
+      />
+
+      <ContactDock
+        openQuoteModal={() => handleOpenQuoteModal()}
+        openContactPage={() => navigateToTab('contact')}
       />
 
       {/* Modals */}

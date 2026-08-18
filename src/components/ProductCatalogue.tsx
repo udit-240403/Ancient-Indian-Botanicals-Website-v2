@@ -129,7 +129,7 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
         {/* Product Cards Grid */}
         {filteredProducts.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-7">
-            {filteredProducts.map((product) => {
+            {filteredProducts.map((product, index) => {
               const presentation = getProductPresentation(product);
               return (
               <div
@@ -138,15 +138,16 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
               >
                 <div>
                   {/* Card Image Header (4:3 aspect ratio) */}
-                  <div className="relative aspect-[4/3] overflow-hidden bg-[#041e18]">
+                  <div className="image-shell relative aspect-[4/3] overflow-hidden bg-[#041e18]">
                     <img
                       src={presentation.image}
                       alt={product.name}
                       width="1200"
                       height="900"
-                      loading="lazy"
+                      loading={index < 4 ? 'eager' : 'lazy'}
                       decoding="async"
-                      className="w-full h-full object-cover transform group-hover:scale-[1.04] transition-transform duration-700"
+                      onError={(event) => { event.currentTarget.hidden = true; }}
+                      className="relative z-[1] w-full h-full object-cover transform group-hover:scale-[1.04] transition-transform duration-700"
                     />
                     <div className="absolute top-3 left-3 bg-[#041e18]/95 border border-[#b88a2c]/60 text-[#b88a2c] text-[10px] uppercase tracking-eyebrow px-2.5 py-1 font-bold">
                       {product.badgeNumber}

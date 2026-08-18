@@ -77,7 +77,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
         </div>
 
         {/* Product Families Banner Image & Grid Combo */}
-        <div className="mb-10 relative overflow-hidden border border-[#b88a2c]/35 shadow-2xl h-[300px] md:h-[440px]">
+        <div className="image-shell mb-10 relative overflow-hidden border border-[#b88a2c]/35 shadow-2xl h-[300px] md:h-[440px]">
           <img
             src="/assets/images/product-families-flatlay.webp"
             alt="Essential oils, botanical powders and export packaging arranged on a sourcing table"
@@ -85,7 +85,8 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
             height="948"
             loading="lazy"
             decoding="async"
-            className="w-full h-full object-cover object-center"
+            onError={(event) => { event.currentTarget.hidden = true; }}
+            className="relative z-[1] w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#041e18] via-[#041e18]/50 to-transparent flex items-end p-6 md:p-10">
             <div>

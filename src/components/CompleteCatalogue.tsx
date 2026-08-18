@@ -237,7 +237,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
         {filteredProducts.length ? (
           <>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {filteredProducts.slice(0, visibleCount).map((product) => {
+              {filteredProducts.slice(0, visibleCount).map((product, index) => {
                 const group = getGroup(product);
                 return (
                   <article
@@ -246,15 +246,16 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
                   >
                     <button
                       onClick={() => setSelectedProduct(product)}
-                      className="relative block aspect-[4/3] w-full overflow-hidden bg-[#083a30] text-left"
+                      className="image-shell relative block aspect-[4/3] w-full overflow-hidden bg-[#083a30] text-left"
                       aria-label={`View details for ${product.name}`}
                     >
                       <img
                         src={product.image}
                         alt={product.name}
-                        loading="lazy"
+                        loading={index < 8 ? 'eager' : 'lazy'}
                         decoding="async"
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                        onError={(event) => { event.currentTarget.hidden = true; }}
+                        className="relative z-[1] h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                       />
                       <span className="absolute left-3 top-3 border border-[#b88a2c]/50 bg-[#041e18]/95 px-2.5 py-1 text-[9px] font-bold uppercase tracking-eyebrow text-[#b88a2c]">
                         {GROUP_LABELS[group]}
@@ -368,8 +369,8 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
 
             <div className="grid gap-7 p-5 md:grid-cols-12 md:p-8">
               <div className="md:col-span-5">
-                <div className="aspect-[4/3] overflow-hidden border border-[#b88a2c]/30 bg-[#083a30]">
-                  <img src={selectedProduct.image} alt={selectedProduct.name} className="h-full w-full object-cover" />
+                <div className="image-shell aspect-[4/3] overflow-hidden border border-[#b88a2c]/30 bg-[#083a30]">
+                  <img src={selectedProduct.image} alt={selectedProduct.name} onError={(event) => { event.currentTarget.hidden = true; }} className="relative z-[1] h-full w-full object-cover" />
                 </div>
                 <p className="mt-4 font-serif text-lg italic text-[#b88a2c]">{selectedProduct.botanicalName}</p>
               </div>

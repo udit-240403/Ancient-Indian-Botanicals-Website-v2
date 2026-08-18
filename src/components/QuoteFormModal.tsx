@@ -18,25 +18,19 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
     email: '',
     phoneWhatsapp: '',
     selectedProduct: initialProductName || 'Ashwagandha Root & Standardized Extract',
-    preferredForm: 'Standardized Extract Powder',
-    estimatedQuantity: '100 kg - 500 kg',
-    applicationUse: 'Nutraceutical / Dietary Supplement',
-    destinationPort: 'Hamburg, Germany',
-    packagingPreference: '25kg HDPE Export Drum',
+    preferredForm: 'Custom Specification Match',
+    estimatedQuantity: 'Sample Order (100g - 1kg)',
+    applicationUse: '',
+    destinationPort: '',
+    packagingPreference: '',
     documentationNeeds: ['Certificate of Analysis (COA)', 'MSDS / Safety Data Sheet', 'Batch Traceability Record'],
     additionalNotes: '',
-    consent: true
+    consent: false
   });
 
-  const [emailPrepared, setEmailPrepared] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'sending' | 'sent' | 'fallback'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.fullName || !formData.companyName || !formData.email) {
-      alert('Please fill in your name, company, and email address.');
-      return;
-    }
-
+  const buildMailtoUrl = () => {
     const subject = `B2B botanical enquiry — ${formData.selectedProduct}`;
     const body = [
       'Hello Ancient Indian Botanicals,',
@@ -49,15 +43,40 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
       `Product: ${formData.selectedProduct}`,
       `Preferred form: ${formData.preferredForm}`,
       `Estimated quantity: ${formData.estimatedQuantity}`,
+      `Application / industry: ${formData.applicationUse || 'To be confirmed'}`,
       `Destination: ${formData.destinationPort || 'To be confirmed'}`,
+      `Packaging preference: ${formData.packagingPreference || 'To be confirmed'}`,
       `Requested documents: ${formData.documentationNeeds.join(', ') || 'To be confirmed'}`,
       `Additional notes: ${formData.additionalNotes || 'None'}`,
       '',
       'I understand that availability, specification, documentation and pricing are confirmed in writing for each approved lot.',
     ].join('\n');
+    return `mailto:sales@ancientindianbotanicals.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
 
-    setEmailPrepared(true);
-    window.location.href = `mailto:office@ancientindianbotanicals.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.fullName || !formData.companyName || !formData.email) {
+      alert('Please fill in your name, company, and email address.');
+      return;
+    }
+    if (!formData.consent) {
+      alert('Please confirm that we may use these details to respond to your enquiry.');
+      return;
+    }
+
+    setSubmissionStatus('sending');
+    try {
+      const response = await fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) throw new Error('Enquiry service unavailable');
+      setSubmissionStatus('sent');
+    } catch {
+      setSubmissionStatus('fallback');
+    }
   };
 
   const handleDocCheckbox = (doc: string) => {
@@ -98,31 +117,28 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
         {/* Modal Body */}
         <div className="p-6 md:p-8">
           
-          {emailPrepared ? (
-            /* Confirmation State */
+          {submissionStatus === 'sent' || submissionStatus === 'fallback' ? (
             <div className="text-center py-10 space-y-6">
               <div className="w-16 h-16 bg-[#083a30] border-2 border-[#b88a2c] rounded-full flex items-center justify-center mx-auto text-[#b88a2c]">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
               <div className="space-y-2">
-                <span className="text-xs uppercase tracking-eyebrow text-[#82966f]">Enquiry email prepared</span>
-                <h3 className="font-serif text-3xl text-[#fbf7ed]">Review and send from your email app</h3>
+                <span className="text-xs uppercase tracking-eyebrow text-[#82966f]">{submissionStatus === 'sent' ? 'Enquiry received' : 'Email fallback ready'}</span>
+                <h3 className="font-serif text-3xl text-[#fbf7ed]">{submissionStatus === 'sent' ? 'Your commercial brief has reached our desk.' : 'Please send the prepared email.'}</h3>
               </div>
               
               <p className="text-xs text-[#f2ead9]/85 max-w-md mx-auto leading-relaxed">
-                Your email app should open with the requirement prefilled for <strong className="text-[#b88a2c]">{formData.selectedProduct}</strong>. Please review it and send it to <strong className="text-[#fbf7ed]">office@ancientindianbotanicals.com</strong>.
+                {submissionStatus === 'sent' ? <>We recorded the requirement for <strong className="text-[#b88a2c]">{formData.selectedProduct}</strong>. A response will be sent to <strong className="text-[#fbf7ed]">{formData.email}</strong> after commercial review.</> : <>Direct website submission is temporarily unavailable. Open the prepared message and send it to <strong className="text-[#fbf7ed]">sales@ancientindianbotanicals.com</strong>; the website will not claim receipt until the message is sent.</>}
               </p>
 
               <div className="p-4 bg-[#083a30] border border-[#b88a2c]/30 text-xs text-[#82966f] max-w-md mx-auto">
-                Nothing has been submitted automatically. No payment or financial transaction was initiated. Pricing and lot availability are confirmed only after written review.
+                No payment or financial transaction was initiated. Pricing, specification and lot availability are confirmed only after written review.
               </div>
 
-              <button
-                onClick={onClose}
-                className="bg-[#b88a2c] hover:bg-[#967020] text-[#062b23] font-bold text-xs uppercase tracking-eyebrow px-8 py-3.5 cursor-pointer"
-              >
-                Close & Return to Catalogue
-              </button>
+              <div className="flex flex-col justify-center gap-3 sm:flex-row">
+                {submissionStatus === 'fallback' && <a href={buildMailtoUrl()} className="bg-[#b88a2c] px-8 py-3.5 text-xs font-bold uppercase tracking-eyebrow text-[#062b23] hover:bg-[#d4a43d]">Open prepared email</a>}
+                <button onClick={onClose} className="border border-[#b88a2c]/55 px-8 py-3.5 text-xs font-bold uppercase tracking-eyebrow text-[#fbf7ed] hover:bg-[#083a30]">Close & return</button>
+              </div>
             </div>
           ) : (
             /* Form View */
@@ -196,6 +212,7 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
                       className="w-full bg-[#083a30] border border-[#b88a2c]/40 text-xs text-[#fbf7ed] p-3 focus:outline-none focus:border-[#b88a2c]"
                     />
                   </div>
+
                 </div>
               </div>
 
@@ -267,6 +284,32 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
                       className="w-full bg-[#083a30] border border-[#b88a2c]/40 text-xs text-[#fbf7ed] p-3 focus:outline-none focus:border-[#b88a2c]"
                     />
                   </div>
+
+                  <div>
+                    <label className="block text-[11px] uppercase tracking-eyebrow text-[#82966f] mb-1">
+                      Intended Application / Industry
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.applicationUse}
+                      onChange={(e) => setFormData({ ...formData, applicationUse: e.target.value })}
+                      placeholder="e.g. Cosmetics, fragrance, food, nutraceutical"
+                      className="w-full bg-[#083a30] border border-[#b88a2c]/40 text-xs text-[#fbf7ed] p-3 focus:outline-none focus:border-[#b88a2c]"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] uppercase tracking-eyebrow text-[#82966f] mb-1">
+                      Preferred Packaging
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.packagingPreference}
+                      onChange={(e) => setFormData({ ...formData, packagingPreference: e.target.value })}
+                      placeholder="e.g. Amber bottle, aluminium can, export drum"
+                      className="w-full bg-[#083a30] border border-[#b88a2c]/40 text-xs text-[#fbf7ed] p-3 focus:outline-none focus:border-[#b88a2c]"
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -314,17 +357,23 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
                 />
               </div>
 
+              <label className="flex cursor-pointer items-start gap-3 border border-[#b88a2c]/30 bg-[#041e18] p-4 text-[11px] leading-relaxed text-[#f2ead9]/75">
+                <input type="checkbox" required checked={formData.consent} onChange={(event) => setFormData({ ...formData, consent: event.target.checked })} className="mt-0.5 accent-[#b88a2c]" />
+                <span>I agree that Ancient Indian Botanicals may use the information above to review and respond to this B2B enquiry. The details will not be treated as an order or payment instruction.</span>
+              </label>
+
               {/* Submit button */}
               <div className="pt-4 border-t border-[#b88a2c]/30 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <span className="text-[10px] text-[#7f7b6f]">
-                  This prepares an email in your own email app; nothing is submitted until you send it.
+                  We submit to the trade desk first and show an email fallback only if the service is unavailable.
                 </span>
 
                 <button
                   type="submit"
-                  className="w-full sm:w-auto bg-[#b88a2c] hover:bg-[#967020] text-[#062b23] font-bold text-xs uppercase tracking-eyebrow px-8 py-3.5 flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md"
+                  disabled={submissionStatus === 'sending'}
+                  className="w-full sm:w-auto bg-[#b88a2c] hover:bg-[#967020] disabled:cursor-wait disabled:opacity-60 text-[#062b23] font-bold text-xs uppercase tracking-eyebrow px-8 py-3.5 flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md"
                 >
-                  <span>Prepare Enquiry Email</span>
+                  <span>{submissionStatus === 'sending' ? 'Submitting enquiry…' : 'Submit B2B enquiry'}</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>

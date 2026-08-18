@@ -40,6 +40,44 @@ button, a, input {
   -webkit-tap-highlight-color: transparent;
 }
 
+.image-shell {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(212, 164, 61, 0.14), transparent 34%),
+    linear-gradient(145deg, #083a30, #041e18);
+}
+
+.image-shell::before {
+  content: '';
+  position: absolute;
+  inset: 20%;
+  z-index: 0;
+  background: url('/assets/svg/brand-mark.svg') center / contain no-repeat;
+  opacity: 0.16;
+}
+
+.contact-dock-trigger {
+  position: relative;
+  isolation: isolate;
+}
+
+.contact-dock-trigger::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  z-index: -1;
+  border: 1px solid rgba(212, 164, 61, 0.38);
+  border-radius: 999px;
+  animation: contact-pulse 2.8s ease-out infinite;
+}
+
+@keyframes contact-pulse {
+  0%, 35% { opacity: 0; transform: scale(0.92); }
+  55% { opacity: 0.72; }
+  100% { opacity: 0; transform: scale(1.18); }
+}
+
 /* Custom Utilities */
 .font-display {
   font-family: 'Cormorant Garamond', Georgia, serif;
@@ -100,6 +138,7 @@ button, a, input {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }
+  .contact-dock-trigger::after { animation: none !important; }
 }
 
 /* Brass fine rules */

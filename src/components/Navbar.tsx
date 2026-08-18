@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, ShieldCheck, Menu, X, ChevronRight } from 'lucide-react';
+import { Search, ShieldCheck, Menu, X, ChevronRight, Mail, ArrowRight } from 'lucide-react';
 
 interface NavbarProps {
   activeTab: string;
@@ -16,211 +16,126 @@ export const Navbar: React.FC<NavbarProps> = ({
   openCoaModal,
   openQuoteModal,
   searchQuery,
-  setSearchQuery
+  setSearchQuery,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
   const navLinks = [
     { id: 'home', label: 'HOME' },
-    { id: 'essential-oils', label: 'ESSENTIAL OILS' },
+    { id: 'essential-oils', label: 'OILS' },
     { id: 'botanicals', label: 'BOTANICALS' },
     { id: 'catalogue', label: 'FULL CATALOGUE' },
     { id: 'packaging', label: 'PACKAGING' },
     { id: 'quality', label: 'QUALITY' },
     { id: 'about', label: 'ABOUT' },
-    { id: 'buy-quote', label: 'BUY / QUOTE' },
     { id: 'payments', label: 'PAYMENTS' },
     { id: 'contact', label: 'CONTACT' },
   ];
 
   const handleNavClick = (id: string) => {
-    if (id === 'buy-quote' || id === 'contact') {
-      openQuoteModal();
-    } else {
-      setActiveTab(id);
-    }
+    setActiveTab(id);
     setMobileMenuOpen(false);
+    setSearchOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSearchSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
     if (searchQuery.trim()) {
       setActiveTab('search');
       setSearchOpen(false);
+      setMobileMenuOpen(false);
     }
   };
 
   return (
-    <header className="w-full relative z-40">
-      {/* Top Banner Row */}
-      <div className="w-full bg-[#f4efd3] text-[#17231e] text-[11px] py-1.5 font-sans border-b border-[#dfcfad]">
-        <div className="max-w-[1440px] mx-auto px-4 md:px-8 flex items-center justify-between">
-          
-          {/* Sanskrit motto / Sourcing provenance indicator */}
-          <div className="flex min-w-0 items-center gap-2 font-medium tracking-wide">
-            <span className="text-[#b88a2c] font-bold">🌿</span>
-            <span className="truncate text-[#041e18] font-semibold">
+    <header className="relative z-40 w-full">
+      <div className="w-full border-b border-[#dfcfad] bg-[#f4efd3] py-1.5 font-sans text-[10px] text-[#17231e] sm:text-[11px]">
+        <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-4 md:px-8">
+          <div className="flex min-w-0 items-center gap-2 font-semibold tracking-wide">
+            <span aria-hidden="true" className="text-[#8aa34d]">◆</span>
+            <span className="truncate">
               <span className="sm:hidden">Indian botanical sourcing · Mandsaur</span>
               <span className="hidden sm:inline">Indian botanical sourcing corridors · Mandsaur · Alleppey · Mysore</span>
             </span>
           </div>
-
-          {/* Lot-document action remains deliberately evidence-led. */}
-          <div className="hidden sm:flex items-center">
-            <button
-              onClick={openCoaModal}
-              className="bg-[#f4efd3] hover:bg-[#eae3c2] text-[#041e18] border border-[#041e18]/30 px-3 py-1 font-semibold text-[10.5px] uppercase tracking-eyebrow flex items-center gap-1.5 transition-colors cursor-pointer"
-            >
-              <ShieldCheck className="w-3.5 h-3.5 text-[#b88a2c]" />
-              <span>REQUEST LOT DOCUMENTS</span>
-            </button>
+          <div className="hidden items-center gap-5 md:flex">
+            <a href="mailto:office@ancientindianbotanicals.com" className="flex items-center gap-1.5 font-semibold transition-colors hover:text-[#967020]"><Mail className="h-3.5 w-3.5" />office@ancientindianbotanicals.com</a>
+            <button onClick={openCoaModal} className="flex items-center gap-1.5 border border-[#041e18]/25 px-3 py-1 font-bold uppercase tracking-eyebrow transition-colors hover:bg-[#eae3c2]"><ShieldCheck className="h-3.5 w-3.5 text-[#967020]" />Request lot documents</button>
           </div>
-
         </div>
       </div>
 
-      {/* Main Dark Green Navigation Bar */}
-      <nav className="w-full bg-[#041e18] text-[#fbf7ed] border-b border-[#b88a2c]/30 shadow-lg">
-        <div className="max-w-[1440px] mx-auto px-4 md:px-8 flex items-center justify-between py-3.5 md:py-4">
-          
-          {/* Logo Mark & Text using Custom AI Metallic Gold Logo Emblem */}
-          <button
-            onClick={() => handleNavClick('home')}
-            className="flex min-w-0 items-center gap-3 text-left cursor-pointer group sm:gap-4"
-          >
-            <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#d4a43d]/80 bg-[#082c24] p-1 shadow-[0_0_0_3px_rgba(184,138,44,.12),0_10px_30px_rgba(0,0,0,.35)] transition-all group-hover:border-[#fbf7ed] sm:h-[4.75rem] sm:w-[4.75rem]">
+      <nav className="w-full border-b border-[#b88a2c]/35 bg-[#041e18] text-[#fbf7ed] shadow-[0_16px_42px_rgba(0,0,0,.22)]">
+        <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-4 py-3 md:px-8 md:py-4">
+          <button onClick={() => handleNavClick('home')} className="group flex min-w-0 items-center gap-2.5 text-left sm:gap-4">
+            <div className="relative flex h-[4.25rem] w-[4.25rem] shrink-0 items-center justify-center rounded-full border border-[#d4a43d] bg-[#f4efd3] p-1.5 shadow-[0_0_0_4px_rgba(212,164,61,.12),0_12px_34px_rgba(0,0,0,.38)] sm:h-[5.5rem] sm:w-[5.5rem]">
               <img
                 src="/assets/images/ancient_indian_botanicals_gold_logo.png"
-                alt="Ancient Indian Botanicals circular botanical emblem"
+                alt="Ancient Indian Botanicals circular lotus emblem"
                 width="1024"
                 height="1024"
                 loading="eager"
                 decoding="async"
-                className="h-full w-full rounded-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                onError={(event) => { event.currentTarget.src = '/assets/svg/brand-mark.svg'; }}
+                className="h-full w-full rounded-full object-cover transition-transform duration-500 group-hover:scale-[1.025]"
               />
             </div>
             <div className="min-w-0">
-              <span className="block whitespace-nowrap font-serif text-[0.93rem] font-bold tracking-[0.08em] text-[#fbf7ed] transition-colors group-hover:text-[#d4a43d] sm:text-[1.42rem] sm:tracking-[0.14em] leading-none uppercase">
-                ANCIENT INDIAN
-              </span>
-              <span className="block whitespace-nowrap font-serif text-[0.93rem] font-bold tracking-[0.12em] text-[#fbf7ed] transition-colors group-hover:text-[#d4a43d] sm:text-[1.42rem] sm:tracking-[0.18em] leading-tight uppercase">
-                BOTANICALS
-              </span>
-              <div className="mt-1 hidden items-center gap-1.5 min-[380px]:flex">
-                <span className="h-[1px] w-2.5 bg-[#b88a2c]/60" />
-                <span className="whitespace-nowrap text-[7.5px] tracking-[0.12em] uppercase text-[#d4a43d] font-medium sm:text-[8.5px] sm:tracking-[0.16em]">
-                  PURE BY NATURE. TRUSTED BY TIME.
-                </span>
-                <span className="h-[1px] w-2.5 bg-[#b88a2c]/60" />
+              <span className="block whitespace-nowrap font-serif text-[1rem] font-bold uppercase leading-[.95] tracking-[0.075em] text-[#fbf7ed] transition-colors group-hover:text-[#d4a43d] min-[390px]:text-[1.12rem] sm:text-[1.72rem] sm:tracking-[0.13em]">Ancient Indian</span>
+              <span className="block whitespace-nowrap font-serif text-[1rem] font-bold uppercase leading-tight tracking-[0.12em] text-[#fbf7ed] transition-colors group-hover:text-[#d4a43d] min-[390px]:text-[1.12rem] sm:text-[1.72rem] sm:tracking-[0.18em]">Botanicals</span>
+              <div className="mt-1.5 hidden items-center gap-2 min-[430px]:flex">
+                <span className="h-px w-3 bg-[#b88a2c]/60" />
+                <span className="whitespace-nowrap text-[7.5px] font-semibold uppercase tracking-[0.15em] text-[#d4a43d] sm:text-[9px]">Pure by nature · trusted by time</span>
               </div>
             </div>
           </button>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden xl:flex items-center gap-4">
+          <div className="hidden items-center gap-3 lg:flex">
+            <form onSubmit={handleSearchSubmit} className="relative hidden xl:block">
+              <input type="text" placeholder="SEARCH THE 92-PRODUCT CATALOGUE" value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} className="w-64 border border-[#b88a2c]/35 bg-[#062b23] py-2.5 pl-3 pr-9 text-[10px] uppercase tracking-wider text-[#fbf7ed] placeholder:text-[#82966f] focus:border-[#b88a2c] focus:outline-none" />
+              <button type="submit" aria-label="Search catalogue" className="absolute right-3 top-1/2 -translate-y-1/2 text-[#d4a43d]"><Search className="h-4 w-4" /></button>
+            </form>
+            <button onClick={() => openQuoteModal()} className="flex items-center gap-2 bg-[#b88a2c] px-5 py-3 text-[10px] font-extrabold uppercase tracking-eyebrow text-[#041e18] transition-colors hover:bg-[#d4a43d]">Start an enquiry <ArrowRight className="h-4 w-4" /></button>
+          </div>
+
+          <div className="flex shrink-0 items-center gap-2 lg:hidden">
+            <button onClick={() => setSearchOpen((value) => !value)} aria-label={searchOpen ? 'Close catalogue search' : 'Open catalogue search'} className="hidden border border-[#b88a2c]/35 p-2.5 text-[#fbf7ed] min-[410px]:block"><Search className="h-4 w-4" /></button>
+            <button onClick={() => setMobileMenuOpen((value) => !value)} aria-label="Toggle navigation menu" className="border border-[#b88a2c]/45 p-2.5 text-[#fbf7ed]">{mobileMenuOpen ? <X className="h-6 w-6 text-[#d4a43d]" /> : <Menu className="h-6 w-6" />}</button>
+          </div>
+        </div>
+
+        <div className="hidden border-t border-[#b88a2c]/20 bg-[#062b23] lg:block">
+          <div className="mx-auto flex max-w-[1440px] items-center justify-center gap-7 px-8 py-3">
             {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => handleNavClick(link.id)}
-                className={`text-[11px] uppercase tracking-[0.12em] font-semibold transition-colors cursor-pointer relative py-1.5 ${
-                  activeTab === link.id
-                    ? 'text-[#b88a2c]'
-                    : 'text-[#fbf7ed]/90 hover:text-[#b88a2c]'
-                }`}
-              >
+              <button key={link.id} onClick={() => handleNavClick(link.id)} className={`relative py-1 text-[10px] font-bold uppercase tracking-[0.15em] transition-colors ${activeTab === link.id ? 'text-[#d4a43d]' : 'text-[#fbf7ed]/82 hover:text-[#d4a43d]'}`}>
                 {link.label}
-                {activeTab === link.id && (
-                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#b88a2c]" />
-                )}
+                {activeTab === link.id && <span className="absolute -bottom-3 left-0 h-[2px] w-full bg-[#d4a43d]" />}
               </button>
             ))}
           </div>
-
-          {/* Quick Search Toggle / Desktop Search Box */}
-          <div className="ml-2 flex shrink-0 items-center gap-2 sm:gap-3">
-            
-            <form onSubmit={handleSearchSubmit} className="hidden lg:flex items-center relative">
-              <input
-                type="text"
-                placeholder="SEARCH CATALOGUE..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-[#062b23] border border-[#b88a2c]/40 text-[11px] text-[#fbf7ed] placeholder-[#82966f] pl-3 pr-8 py-1.5 w-44 xl:w-52 focus:outline-none focus:border-[#b88a2c] uppercase tracking-wider"
-              />
-              <button type="submit" aria-label="Search catalogue" className="absolute right-2 text-[#b88a2c] hover:text-[#fbf7ed] cursor-pointer">
-                <Search className="w-3.5 h-3.5" />
-              </button>
-            </form>
-
-            <button
-              onClick={() => setSearchOpen(!searchOpen)}
-              aria-label={searchOpen ? 'Close catalogue search' : 'Open catalogue search'}
-              className="hidden min-[400px]:block lg:hidden p-2 text-[#fbf7ed] hover:text-[#b88a2c] border border-[#b88a2c]/30 rounded-none cursor-pointer"
-            >
-              <Search className="w-4 h-4" />
-            </button>
-
-            {/* Mobile Hamburger Toggle Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 text-[#fbf7ed] hover:text-[#b88a2c] border border-[#b88a2c]/40 cursor-pointer"
-              aria-label="Toggle navigation menu"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6 text-[#b88a2c]" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-
         </div>
 
-        {/* Mobile Search Bar Dropdown */}
         {searchOpen && (
-          <div className="lg:hidden p-4 bg-[#062b23] border-t border-[#b88a2c]/30">
+          <div className="border-t border-[#b88a2c]/25 bg-[#062b23] p-4 lg:hidden">
             <form onSubmit={handleSearchSubmit} className="flex items-center gap-2">
-              <input
-                type="text"
-                placeholder="SEARCH INGREDIENTS, BOTANICALS, OILS..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="flex-grow bg-[#041e18] border border-[#b88a2c] text-xs text-[#fbf7ed] p-2 focus:outline-none"
-              />
-              <button type="submit" className="bg-[#b88a2c] text-[#041e18] px-4 py-2 text-xs font-bold uppercase">
-                Search
-              </button>
+              <input type="text" placeholder="Search products, forms or industries..." value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} className="min-w-0 flex-1 border border-[#b88a2c]/50 bg-[#041e18] p-3 text-xs text-[#fbf7ed] focus:border-[#b88a2c] focus:outline-none" />
+              <button type="submit" className="bg-[#b88a2c] px-4 py-3 text-[10px] font-bold uppercase text-[#041e18]">Search</button>
             </form>
           </div>
         )}
 
-        {/* Mobile Flyout Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="xl:hidden bg-[#041e18] border-t border-[#b88a2c]/40 px-6 py-6 space-y-4 shadow-2xl animate-fadeIn">
-            <div className="flex flex-col space-y-3">
+          <div className="border-t border-[#b88a2c]/30 bg-[#041e18] px-5 py-5 shadow-2xl lg:hidden">
+            <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 sm:gap-x-6">
               {navLinks.map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => handleNavClick(link.id)}
-                  className={`text-left text-xs uppercase tracking-eyebrow font-semibold py-2 border-b border-[#b88a2c]/20 flex items-center justify-between ${
-                    activeTab === link.id ? 'text-[#b88a2c] font-bold' : 'text-[#fbf7ed]/90'
-                  }`}
-                >
-                  <span>{link.label}</span>
-                  <ChevronRight className="w-4 h-4 text-[#b88a2c]" />
-                </button>
+                <button key={link.id} onClick={() => handleNavClick(link.id)} className={`flex items-center justify-between border-b border-[#b88a2c]/18 py-3 text-left text-[11px] font-bold uppercase tracking-eyebrow ${activeTab === link.id ? 'text-[#d4a43d]' : 'text-[#fbf7ed]/88'}`}><span>{link.label}</span><ChevronRight className="h-4 w-4 text-[#b88a2c]" /></button>
               ))}
             </div>
-
-            <div className="pt-4 border-t border-[#b88a2c]/30">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  openCoaModal();
-                }}
-                className="w-full bg-[#b88a2c] text-[#041e18] py-2.5 text-xs font-bold uppercase tracking-eyebrow flex items-center justify-center gap-2"
-              >
-                <ShieldCheck className="w-4 h-4" />
-                <span>Request Lot Documents</span>
-              </button>
+            <div className="mt-5 grid gap-2 border-t border-[#b88a2c]/25 pt-4 sm:grid-cols-2">
+              <button onClick={() => { setMobileMenuOpen(false); openQuoteModal(); }} className="flex items-center justify-center gap-2 bg-[#b88a2c] py-3 text-[10px] font-bold uppercase tracking-eyebrow text-[#041e18]"><Mail className="h-4 w-4" />Start enquiry</button>
+              <button onClick={() => { setMobileMenuOpen(false); openCoaModal(); }} className="flex items-center justify-center gap-2 border border-[#b88a2c]/45 py-3 text-[10px] font-bold uppercase tracking-eyebrow text-[#fbf7ed]"><ShieldCheck className="h-4 w-4 text-[#d4a43d]" />Lot documents</button>
             </div>
           </div>
         )}
