@@ -85,7 +85,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
             height="948"
             loading="lazy"
             decoding="async"
-            onError={(event) => { event.currentTarget.hidden = true; }}
+            onError={(event) => { if (event.currentTarget.dataset.fallback === 'true') return; event.currentTarget.dataset.fallback = 'true'; event.currentTarget.src = '/assets/images/hero-botanical-still-life.webp'; }}
             className="relative z-[1] w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#041e18] via-[#041e18]/50 to-transparent flex items-end p-6 md:p-10">

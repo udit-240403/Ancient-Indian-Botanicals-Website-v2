@@ -107,7 +107,7 @@ export const Hero: React.FC<HeroProps> = ({
                   loading="eager"
                   fetchPriority="high"
                   decoding="async"
-                  onError={(event) => { event.currentTarget.hidden = true; }}
+                  onError={(event) => { if (event.currentTarget.dataset.fallback === 'true') return; event.currentTarget.dataset.fallback = 'true'; event.currentTarget.src = '/assets/images/product-families-flatlay.webp'; }}
                   className="relative z-[1] w-full h-full object-cover object-[56%_50%] transform transition-transform duration-700 hover:scale-[1.02]"
                 />
                 
