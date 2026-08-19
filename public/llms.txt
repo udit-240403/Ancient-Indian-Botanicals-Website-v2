@@ -1,6 +1,6 @@
 # Ancient Indian Botanicals
 
-Ancient Indian Botanicals is an incorporation-stage Indian B2B botanical sourcing venture based in Mandsaur, Madhya Pradesh.
+Ancient Indian Botanicals is an incorporated Indian B2B botanical sourcing company based in Mandsaur, Madhya Pradesh.
 
 ## Product scope
 
@@ -19,7 +19,7 @@ Buyer requirement review, suitable supply-route identification, lot-document rev
 
 ## Important notices
 
-Ancient Indian Botanicals is currently undergoing incorporation. Website content is for B2B commercial evaluation and is not medical advice. The website does not claim universal organic certification, regulatory approval, laboratory testing or fixed dispatch timelines.
+Ancient Indian Botanicals is incorporated in India. Website content is for B2B commercial evaluation and is not medical advice. The website does not claim universal organic certification, regulatory approval, laboratory testing or fixed dispatch timelines.
 
 ## Contact
 

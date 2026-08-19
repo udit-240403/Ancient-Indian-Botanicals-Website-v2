@@ -8,9 +8,9 @@
   "theme_color": "#041e18",
   "icons": [
     {
-      "src": "/assets/svg/brand-mark.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
+      "src": "/assets/images/aib-official-symbol.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
     }
   ]
 }
