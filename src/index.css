@@ -53,8 +53,8 @@ button, a, input {
   position: absolute;
   inset: 20%;
   z-index: 0;
-  background: url('/assets/svg/brand-mark.svg') center / contain no-repeat;
-  opacity: 0.16;
+  background: url('/assets/images/aib-official-symbol.webp') center / contain no-repeat;
+  opacity: 0.1;
 }
 
 .contact-dock-trigger {

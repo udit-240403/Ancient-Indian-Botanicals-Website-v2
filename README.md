@@ -16,7 +16,8 @@ This package converts the content audited from `https://botanica-global.vercel.a
 - `assets/images/hero-botanical-still-life.png` — text-free hero photograph.
 - `assets/images/product-families-flatlay.png` — text-free product-family banner.
 - `assets/images/design-reference-homepage.png` — selected visual reference.
-- `assets/svg/brand-mark.svg` — editable brand emblem.
+- `assets/images/aib-official-logo.webp` — optimized official circular company logo.
+- `assets/images/aib-official-symbol.webp` — optimized official symbol for compact placements and the favicon.
 - `assets/svg/botanical-pattern.svg` — repeatable line-art background.
 - `assets/svg/origin-map.svg` — stylized sourcing-region graphic.
 - `docs/content.md` — rewritten site-wide content and product data.
@@ -41,4 +42,4 @@ Project-specific source, copy and design work are covered by the repository's pr
 - Connect `ancientindianbotanicals.com` to the production deployment without removing Google Workspace MX/TXT records.
 - Replace the temporary `.vercel.app` canonical, Open Graph URLs, sitemap URL and `llms.txt` website URL with the custom domain after DNS is live.
 - Verify the domain in Google Search Console and submit `/sitemap.xml`.
-- Confirm incorporation, GST, IEC, banking and product-specific documentation before removing incorporation-stage notices.
+- Confirm GST, IEC, banking and product-specific documentation before publishing any related claims or registration numbers.

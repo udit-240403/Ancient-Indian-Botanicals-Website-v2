@@ -72,14 +72,15 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button onClick={() => handleNavClick('home')} className="group flex min-w-0 items-center gap-2.5 text-left sm:gap-4">
             <div className="relative flex h-[4.5rem] w-[4.5rem] shrink-0 items-center justify-center rounded-full border border-[#d4a43d] bg-[#f4efd3] p-1 shadow-[0_0_0_4px_rgba(212,164,61,.14),0_12px_34px_rgba(0,0,0,.38)] sm:h-24 sm:w-24">
               <img
-                src="/assets/svg/brand-mark.svg"
-                alt="Ancient Indian Botanicals botanical seal"
-                width="200"
-                height="200"
+                src="/assets/images/aib-official-symbol.webp"
+                alt="Ancient Indian Botanicals official flowering botanical and lotus symbol"
+                width="512"
+                height="512"
                 loading="eager"
+                fetchPriority="high"
                 decoding="async"
-                onError={(event) => { event.currentTarget.src = '/assets/images/ancient_indian_botanicals_gold_logo.png'; }}
-                className="h-full w-full rounded-full object-contain transition-transform duration-500 group-hover:scale-[1.025]"
+                onError={(event) => { event.currentTarget.src = '/assets/images/aib-official-logo.webp'; }}
+                className="h-full w-full rounded-full object-cover transition-transform duration-500 group-hover:scale-[1.025]"
               />
             </div>
             <div className="min-w-0">

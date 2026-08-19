@@ -203,7 +203,7 @@ export const AboutPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuoteM
           </p>
         </div>
         <div className="mx-auto w-full max-w-[19rem] border border-[#b88a2c]/45 bg-[#f4efd3] p-5 shadow-[0_24px_70px_rgba(0,0,0,.3)]">
-          <img src="/assets/images/ancient_indian_botanicals_gold_logo.png" alt="Ancient Indian Botanicals official circular lotus seal" width="1024" height="1024" loading="eager" onError={(event) => { event.currentTarget.src = '/assets/svg/brand-mark.svg'; }} className="aspect-square w-full object-cover" />
+          <img src="/assets/images/aib-official-logo.webp" alt="Ancient Indian Botanicals official circular botanical logo" width="1024" height="1024" loading="eager" onError={(event) => { event.currentTarget.src = '/assets/images/aib-official-symbol.webp'; }} className="aspect-square w-full object-cover" />
           <p className="mt-4 text-center text-[9px] font-bold uppercase tracking-[0.18em] text-[#765411]">Official botanical seal</p>
         </div>
       </div>
@@ -283,7 +283,7 @@ export const PaymentsPage: React.FC = () => (
           </div>
         </div>
 
-        <p className="text-center text-[11px] text-[#526d64]">Ancient Indian Botanicals is currently undergoing incorporation. Final payment terms become binding only through an accepted written commercial document.</p>
+        <p className="text-center text-[11px] text-[#526d64]">Ancient Indian Botanicals is incorporated in India. Final payment terms become binding only through an accepted written commercial document.</p>
       </div>
     </section>
   </div>
@@ -318,7 +318,7 @@ export const ContactPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuot
         </div>
 
         <div className="mt-8 grid border border-[#b88a2c]/35 bg-[#062b23] text-[#fbf7ed] lg:grid-cols-[.78fr_1.22fr]">
-          <div className="border-b border-[#b88a2c]/25 p-7 lg:border-b-0 lg:border-r sm:p-9"><MapPin className="h-6 w-6 text-[#d4a43d]" /><span className="mt-6 block text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Trade location</span><h2 className="mt-2 font-serif text-3xl font-semibold">Mandsaur, Madhya Pradesh</h2><p className="mt-3 text-xs leading-relaxed text-[#f2ead9]/70">Positioned within a central Indian agricultural and botanical trading corridor. Full registered particulars will be updated following incorporation.</p></div>
+          <div className="border-b border-[#b88a2c]/25 p-7 lg:border-b-0 lg:border-r sm:p-9"><MapPin className="h-6 w-6 text-[#d4a43d]" /><span className="mt-6 block text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Trade location</span><h2 className="mt-2 font-serif text-3xl font-semibold">Mandsaur, Madhya Pradesh</h2><p className="mt-3 text-xs leading-relaxed text-[#f2ead9]/70">Positioned within a central Indian agricultural and botanical trading corridor. Registered particulars are shared through official commercial documents.</p></div>
           <div className="p-7 sm:p-9"><span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">What to include</span><div className="mt-5 grid gap-3 sm:grid-cols-2">{['Botanical or ingredient name', 'Required physical form or grade', 'Trial and commercial quantity', 'Application and destination', 'Packaging preference', 'Analytical or document requirements'].map((item) => <div key={item} className="flex items-start gap-2 border-t border-[#b88a2c]/20 pt-3 text-xs text-[#f2ead9]/80"><CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#d4a43d]" />{item}</div>)}</div></div>
         </div>
 
@@ -337,7 +337,7 @@ export const LegalPage: React.FC<{ policyType: 'terms' | 'shipping' | 'privacy' 
       </h1>
       <div className="p-6 bg-[#083a30] border border-[#b88a2c]/30 text-xs text-[#f2ead9]/85 space-y-4 font-light leading-relaxed">
         <p>
-          Ancient Indian Botanicals is currently undergoing incorporation. Website information is preliminary and intended for B2B commercial evaluation. Any order, specification, documentation obligation, shipping term, return term or payment condition becomes binding only through a written offer or contract issued after incorporation and counterparty review.
+          Ancient Indian Botanicals is incorporated in India. Website information is intended for B2B commercial evaluation. Any order, specification, documentation obligation, shipping term, return term or payment condition becomes binding only through a written offer or contract and counterparty review.
         </p>
         {policyType === 'privacy' && (
           <p>

@@ -29,10 +29,12 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="flex items-center gap-4">
               <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[#d4a43d] bg-[#f4efd3] p-1.5 shadow-[0_8px_28px_rgba(0,0,0,.28)]">
                 <img
-                  src="/assets/svg/brand-mark.svg"
-                  alt="Ancient Indian Botanicals botanical seal"
-                  onError={(event) => { event.currentTarget.src = '/assets/images/ancient_indian_botanicals_gold_logo.png'; }}
-                  className="h-full w-full rounded-full object-contain"
+                  src="/assets/images/aib-official-symbol.webp"
+                  alt="Ancient Indian Botanicals official flowering botanical and lotus symbol"
+                  width="512"
+                  height="512"
+                  onError={(event) => { event.currentTarget.src = '/assets/images/aib-official-logo.webp'; }}
+                  className="h-full w-full rounded-full object-cover"
                 />
               </div>
               <div>
@@ -150,7 +152,7 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Regulatory Disclaimer */}
         <div className="p-5 bg-[#062b23] border border-[#b88a2c]/20 text-[11px] text-[#a9b2ac] font-light leading-relaxed mb-8">
-          <strong className="text-[#dfcfad]">Commercial notice:</strong> Ancient Indian Botanicals is currently undergoing incorporation. Product information is supplied for commercial evaluation and does not constitute therapeutic claims or medical advice. Specifications, origin, availability and supporting documents are confirmed in writing for each approved lot and enquiry.
+          <strong className="text-[#dfcfad]">Commercial notice:</strong> Ancient Indian Botanicals is incorporated in India. Product information is supplied for commercial evaluation and does not constitute therapeutic claims or medical advice. Specifications, origin, availability and supporting documents are confirmed in writing for each approved lot and enquiry.
         </div>
 
         {/* Bottom Bar */}
