@@ -159,56 +159,97 @@ export const QualityPage: React.FC<{ openCoaModal: () => void; openQuoteModal: (
   </div>
 );
 
-export const AboutPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuoteModal }) => (
-  <div className="w-full bg-[#eee8dd] px-4 py-16 text-[#1f2925] md:px-8 lg:py-20">
-    <div className="max-w-[1440px] mx-auto space-y-12">
-      <div className="grid items-center gap-8 lg:grid-cols-[1fr_19rem]">
-        <div className="max-w-3xl space-y-4">
-          <span className="text-[11px] uppercase tracking-eyebrow text-[#9b6334] font-semibold">
-            Sourcing House Provenance
-          </span>
-          <h1 className="font-serif text-4xl font-semibold leading-[1.05] text-[#1f2925] md:text-6xl">
-            A modern botanical sourcing house with an Indian origin advantage.
-          </h1>
-          <p className="text-sm md:text-base text-[#52635d] font-light leading-relaxed">
-            Ancient Indian Botanicals connects buyer specifications with suitable Indian botanical and aromatic supply routes. Our role is to make sourcing clearer: identify the requirement, match the material, coordinate available documentation, confirm packaging and support export execution.
-          </p>
+export const AboutPage: React.FC<{ openQuoteModal: (productName?: string) => void }> = ({ openQuoteModal }) => (
+  <div className="w-full bg-[#eee8dd] text-[#1f2925]">
+    <section className="border-b border-[#b56e3a]/25 px-4 py-16 md:px-8 lg:py-20">
+      <div className="mx-auto grid max-w-[1440px] items-center gap-10 lg:grid-cols-[1fr_21rem]">
+        <div className="max-w-4xl space-y-5">
+          <span className="text-[11px] font-semibold uppercase tracking-eyebrow text-[#9b6334]">About Ancient Indian Botanicals</span>
+          <h1 className="font-serif text-4xl font-semibold leading-[1.03] text-[#1f2925] md:text-6xl lg:text-7xl">You build the brand. We organise the work behind it.</h1>
+          <p className="max-w-3xl text-sm font-light leading-relaxed text-[#52635d] md:text-base">Ancient Indian Botanicals is an Indian B2B sourcing and coordination house for botanical and aromatic ingredients. We translate the buyer brief into an organised India-side route—material matching, samples, available lot documents, packaging coordination and export preparation—so your team can stay focused on market, product and brand.</p>
+          <div className="flex flex-wrap gap-2 pt-2 text-[9px] font-bold uppercase tracking-eyebrow text-[#765411]">
+            {['Incorporated in India', 'Specification-led', 'Buyer-brand focused'].map((item) => <span key={item} className="border border-[#b88a2c]/40 bg-[#fbf8f1] px-3 py-2">{item}</span>)}
+          </div>
         </div>
-        <div className="mx-auto w-full max-w-[19rem] border border-[#b56e3a]/35 bg-[#fbf8f1] p-5 shadow-[0_24px_70px_rgba(16,42,35,.13)]">
+        <div className="mx-auto w-full max-w-[21rem] border border-[#b56e3a]/35 bg-[#fbf8f1] p-5 shadow-[0_24px_70px_rgba(16,42,35,.13)]">
           <img src="/assets/images/aib-official-logo.webp" alt="Ancient Indian Botanicals official circular botanical logo" width="1024" height="1024" loading="eager" onError={(event) => { event.currentTarget.src = '/assets/images/aib-official-symbol.webp'; }} className="aspect-square w-full object-cover" />
           <p className="mt-4 text-center text-[9px] font-bold uppercase tracking-[0.18em] text-[#765411]">Official botanical seal</p>
         </div>
       </div>
+    </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="space-y-4 border border-[#b56e3a]/25 bg-[#fbf8f1] p-8 shadow-[0_18px_45px_-34px_rgba(16,42,35,.6)]">
-          <h3 className="font-serif text-2xl font-semibold text-[#173f34]">Our Core Trade Values</h3>
-          <ul className="space-y-3 text-xs text-[#52635d] font-light">
-            <li className="flex items-start gap-2">
-              <CheckCircle2 className="w-4 h-4 text-[#b88a2c] shrink-0 mt-0.5" />
-              <span><strong>Specification before quotation:</strong> We never issue generic pricing without confirming physical form and destination standards.</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle2 className="w-4 h-4 text-[#b88a2c] shrink-0 mt-0.5" />
-              <span><strong>Transparent lot communication:</strong> Direct details on harvest origin and available analytical reports.</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle2 className="w-4 h-4 text-[#b88a2c] shrink-0 mt-0.5" />
-              <span><strong>Relationship-led sourcing:</strong> Supplier routes are evaluated against the buyer specification, available evidence and commercial readiness.</span>
-            </li>
-          </ul>
+    <section className="border-b border-[#b88a2c]/30 bg-[#062b23] px-4 py-14 text-[#fbf7ed] md:px-8 lg:py-16">
+      <div className="mx-auto grid max-w-[1440px] gap-8 lg:grid-cols-[.82fr_1.18fr] lg:items-center">
+        <div>
+          <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Our guiding thought</span>
+          <p className="mt-5 font-serif text-4xl leading-none text-[#e1bd67] sm:text-5xl">वसुधैव कुटुम्बकम्</p>
+          <p className="mt-3 text-[10px] font-bold uppercase tracking-[.2em] text-[#f2ead9]/65">Vasudhaiva Kutumbakam · The world is one family</p>
         </div>
-
-        <div className="image-shell relative aspect-video border border-[#b88a2c]/40 overflow-hidden bg-[#083a30]">
-          <img
-            src="/assets/images/hero-botanical-still-life.webp"
-            alt="Amber botanical bottles with Indian herbs and roots"
-            onError={(event) => { if (event.currentTarget.dataset.fallback === 'true') return; event.currentTarget.dataset.fallback = 'true'; event.currentTarget.src = '/assets/images/product-families-flatlay.webp'; }}
-            className="relative z-[1] w-full h-full object-cover"
-          />
+        <div className="border-l-2 border-[#b88a2c] pl-6 sm:pl-8">
+          <h2 className="font-serif text-3xl font-semibold leading-tight sm:text-4xl">Business travels farther when relationships come first.</h2>
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-[#f2ead9]/72">We see the international buyer, Indian cultivation and processing partners, packaging teams and logistics specialists as one connected commercial family. That means clearer expectations, respect for every participant and long-term value instead of a one-transaction mindset.</p>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section className="px-4 py-16 md:px-8 lg:py-20">
+      <div className="mx-auto max-w-[1440px] space-y-10">
+        <div className="grid gap-8 lg:grid-cols-[1.08fr_.92fr] lg:items-center">
+          <figure className="overflow-hidden border border-[#b56e3a]/30 bg-[#fbf8f1] shadow-[0_24px_70px_-48px_rgba(16,42,35,.8)]">
+            <div className="image-shell aspect-[16/10] overflow-hidden">
+              <img src="/assets/images/about-sourcing-operations-v2.webp" alt="Editorial representation of an Indian sourcing team reviewing botanical samples, packaging and quality documents" width="1440" height="900" loading="eager" decoding="async" onError={(event) => { if (event.currentTarget.dataset.fallback === 'true') return; event.currentTarget.dataset.fallback = 'true'; event.currentTarget.src = '/assets/images/product-families-flatlay.webp'; }} className="h-full w-full object-cover" />
+            </div>
+            <figcaption className="border-t border-[#b56e3a]/20 px-4 py-3 text-[9px] leading-relaxed text-[#7a837f]">Editorial representation of sourcing coordination—not a photograph of a company-owned office or facility.</figcaption>
+          </figure>
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b6334]">Ease of doing business</span>
+            <h2 className="mt-3 font-serif text-4xl font-semibold leading-tight sm:text-5xl">One brief. One coordinated India-side route.</h2>
+            <p className="mt-5 text-sm leading-relaxed text-[#52635d]">Working across suppliers, samples, packaging vendors and documents can consume a buyer’s time. Our role is to reduce that friction: place the requirement in one commercial brief, coordinate suitable routes and bring the relevant decisions back to you in a form your team can review.</p>
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              {[
+                { icon: FileCheck2, title: 'Translate the brief', copy: 'Product, grade, application, volume, destination and evidence requirements.' },
+                { icon: Globe2, title: 'Build the route', copy: 'Suitable Indian material and supplier routes reviewed for commercial readiness.' },
+                { icon: Building2, title: 'Coordinate execution', copy: 'Samples, pack formats, closures, artwork and hand-finishing where feasible.' },
+                { icon: CheckCircle2, title: 'Prepare the review', copy: 'Available lot documents, pack checks and dispatch requirements brought together.' },
+              ].map(({ icon: Icon, title, copy }) => <article key={title} className="border-t border-[#b56e3a]/30 pt-4"><Icon className="h-5 w-5 text-[#9b6334]" /><h3 className="mt-3 font-serif text-xl font-semibold text-[#173f34]">{title}</h3><p className="mt-2 text-[11px] leading-relaxed text-[#66706b]">{copy}</p></article>)}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section className="border-y border-[#b56e3a]/25 bg-[#f5f0e6] px-4 py-16 md:px-8 lg:py-20">
+      <div className="mx-auto grid max-w-[1440px] gap-8 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
+        <div className="order-2 lg:order-1">
+          <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b6334]">Brand-ready coordination</span>
+          <h2 className="mt-3 font-serif text-4xl font-semibold leading-tight sm:text-5xl">Skilled execution where it creates real value.</h2>
+          <p className="mt-5 text-sm leading-relaxed text-[#52635d]">India’s broad botanical, packaging and skilled-service ecosystem can support commercially efficient programmes—from evaluation kits to buyer-specific labels, cartons and secondary presentation. We coordinate these possibilities around your approved brand brief rather than forcing your team to manage every India-side task separately.</p>
+          <ul className="mt-7 space-y-3 text-xs leading-relaxed text-[#425b52]">
+            {['Evaluation samples and organised buyer review kits', 'Bottle, closure, label and carton coordination', 'Careful hand-finishing and packing support where suitable', 'Consolidated quality, packaging and destination requirements'].map((item) => <li key={item} className="flex items-start gap-3"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#9b6334]" /><span>{item}</span></li>)}
+          </ul>
+          <div className="mt-7 border-l-2 border-[#b88a2c] bg-[#fbf8f1] p-4 text-[11px] leading-relaxed text-[#52635d]"><strong className="text-[#173f34]">Cost-efficient does not mean compromise.</strong> Final supplier capability, MOQ, pack material, artwork, quality evidence, destination compliance and transport suitability are confirmed for each approved project.</div>
+        </div>
+        <figure className="order-1 overflow-hidden border border-[#b56e3a]/30 bg-[#fbf8f1] shadow-[0_24px_70px_-48px_rgba(16,42,35,.8)] lg:order-2">
+          <div className="image-shell aspect-[16/10] overflow-hidden">
+            <img src="/assets/images/about-private-label-coordination-v2.webp" alt="Editorial representation of skilled Indian packaging staff applying labels, checking closures and assembling cartons" width="1440" height="900" loading="lazy" decoding="async" onError={(event) => { if (event.currentTarget.dataset.fallback === 'true') return; event.currentTarget.dataset.fallback = 'true'; event.currentTarget.src = '/assets/images/packaging-heritage-modern-system.webp'; }} className="h-full w-full object-cover" />
+          </div>
+          <figcaption className="border-t border-[#b56e3a]/20 px-4 py-3 text-[9px] leading-relaxed text-[#7a837f]">Editorial representation of private-label coordination—not a photograph of a company-owned packaging unit. Capability is project-specific.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section className="px-4 py-16 md:px-8 lg:py-20">
+      <div className="mx-auto grid max-w-[1440px] overflow-hidden border border-[#b88a2c]/40 bg-[#062b23] text-[#fbf7ed] lg:grid-cols-[1fr_auto]">
+        <div className="p-8 sm:p-10 lg:p-12">
+          <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">The measure that matters</span>
+          <h2 className="mt-3 font-serif text-4xl font-semibold leading-tight sm:text-5xl">Your trust is our greatest profit.</h2>
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-[#f2ead9]/72">We measure success through clear communication, honest limitations, dependable coordination and relationships that become stronger with every approved lot—not through promises the evidence cannot support.</p>
+        </div>
+        <div className="flex items-center border-t border-[#b88a2c]/25 p-8 lg:border-l lg:border-t-0">
+          <button type="button" onClick={() => openQuoteModal('Brand and private-label programme')} className="inline-flex w-full items-center justify-center gap-2 bg-[#b88a2c] px-7 py-4 text-[10px] font-bold uppercase tracking-eyebrow text-[#041e18] hover:bg-[#d4a43d]">Share your brand brief <ArrowRight className="h-4 w-4" /></button>
+        </div>
+      </div>
+    </section>
   </div>
 );
 

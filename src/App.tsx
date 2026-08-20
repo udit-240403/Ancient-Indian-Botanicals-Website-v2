@@ -235,7 +235,7 @@ export function App() {
         )}
 
         {activeTab === 'about' && (
-          <AboutPage openQuoteModal={() => handleOpenQuoteModal()} />
+          <AboutPage openQuoteModal={handleOpenQuoteModal} />
         )}
 
         {activeTab === 'payments' && <PaymentsPage />}
