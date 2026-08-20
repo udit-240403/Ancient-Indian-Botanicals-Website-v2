@@ -8,6 +8,7 @@ import {
   getCatalogueGroup,
   getProductPath,
 } from '../data/catalogue';
+import { ProductVisual } from './ProductVisual';
 
 const FILTERS: Array<{ id: 'all' | CatalogueGroup; label: string }> = [
   { id: 'all', label: 'All Products' },
@@ -171,24 +172,20 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
                   >
                     <button
                       onClick={() => setSelectedProduct(product)}
-                      className="image-shell relative block aspect-[4/3] w-full overflow-hidden bg-[#083a30] text-left"
+                      className="relative block w-full text-left"
                       aria-label={`View details for ${product.name}`}
                     >
-                      <img
+                      <ProductVisual
                         src={product.image}
                         alt={product.name}
                         loading={index < 8 ? 'eager' : 'lazy'}
-                        decoding="async"
-                        onError={(event) => {
-                          if (event.currentTarget.dataset.fallback === 'true') return;
-                          event.currentTarget.dataset.fallback = 'true';
-                          event.currentTarget.src = '/assets/images/product-families-flatlay.webp';
-                        }}
-                        className="relative z-[1] h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                      />
-                      <span className="absolute left-3 top-3 border border-[#b88a2c]/50 bg-[#041e18]/95 px-2.5 py-1 text-[9px] font-bold uppercase tracking-eyebrow text-[#b88a2c]">
-                        {CATALOGUE_GROUP_LABELS[group]}
-                      </span>
+                        fetchPriority={index < 4 ? 'high' : 'auto'}
+                        className="aspect-[4/3] w-full"
+                      >
+                        <span className="absolute left-3 top-3 z-[4] border border-[#d4a43d]/55 bg-[#041e18]/94 px-2.5 py-1 text-[9px] font-bold uppercase tracking-eyebrow text-[#e1bd67] backdrop-blur-sm">
+                          {CATALOGUE_GROUP_LABELS[group]}
+                        </span>
+                      </ProductVisual>
                     </button>
 
                     <div className="flex flex-1 flex-col p-5">
@@ -298,9 +295,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
 
             <div className="grid gap-7 p-5 md:grid-cols-12 md:p-8">
               <div className="md:col-span-5">
-                <div className="image-shell aspect-[4/3] overflow-hidden border border-[#b88a2c]/30 bg-[#083a30]">
-                  <img src={selectedProduct.image} alt={selectedProduct.name} onError={(event) => { if (event.currentTarget.dataset.fallback === 'true') return; event.currentTarget.dataset.fallback = 'true'; event.currentTarget.src = '/assets/images/product-families-flatlay.webp'; }} className="relative z-[1] h-full w-full object-cover" />
-                </div>
+                <ProductVisual src={selectedProduct.image} alt={selectedProduct.name} loading="eager" className="aspect-[4/3] border border-[#b88a2c]/30" />
                 <p className="mt-4 font-serif text-lg italic text-[#b88a2c]">{selectedProduct.botanicalName}</p>
               </div>
 

@@ -1,11 +1,19 @@
 import React from 'react';
-import { ArrowLeft, ArrowRight, CheckCircle2, FileText, PackageCheck } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, FileCheck2, FileText, Fingerprint, Microscope, PackageCheck, PackageSearch } from 'lucide-react';
 import {
   CATALOGUE_GROUP_LABELS,
   CatalogueProduct,
   getCatalogueGroup,
   getProductPath,
 } from '../data/catalogue';
+import { ProductVisual } from './ProductVisual';
+
+const BUYER_REVIEW_STEPS = [
+  { icon: Fingerprint, number: '01', title: 'Identity', copy: 'Botanical name, part, physical form and required grade.' },
+  { icon: Microscope, number: '02', title: 'Analytical brief', copy: 'Relevant markers, composition and testing expectations.' },
+  { icon: PackageSearch, number: '03', title: 'Pack route', copy: 'Quantity, compatibility, closure and destination needs.' },
+  { icon: FileCheck2, number: '04', title: 'Lot file', copy: 'Available product, safety, origin and dispatch documents.' },
+];
 
 interface CatalogueProductPageProps {
   product: CatalogueProduct;
@@ -35,25 +43,19 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
 
       <section className="px-4 py-12 md:px-8 md:py-16 lg:py-20">
         <div className="mx-auto grid max-w-[1440px] gap-9 lg:grid-cols-[minmax(0,.92fr)_minmax(0,1.08fr)] lg:items-start">
-          <div className="image-shell relative aspect-[4/3] overflow-hidden border border-[#b56e3a]/35 bg-[#173f34] shadow-[0_28px_70px_-40px_rgba(16,42,35,.8)] lg:sticky lg:top-8">
-            <img
+          <ProductVisual
               src={product.image}
               alt={`${product.name} botanical ingredient presentation`}
-              width="1200"
-              height="900"
+              width={1200}
+              height={900}
               loading="eager"
               fetchPriority="high"
-              onError={(event) => {
-                if (event.currentTarget.dataset.fallback === 'true') return;
-                event.currentTarget.dataset.fallback = 'true';
-                event.currentTarget.src = '/assets/images/product-families-flatlay.webp';
-              }}
-              className="relative z-[1] h-full w-full object-cover"
-            />
-            <span className="absolute left-4 top-4 z-[2] border border-[#d4a43d]/55 bg-[#102a23]/95 px-3 py-1.5 text-[9px] font-bold uppercase tracking-eyebrow text-[#e1bd67]">
+              className="aspect-[4/3] border border-[#b56e3a]/35 shadow-[0_28px_70px_-40px_rgba(16,42,35,.8)] lg:sticky lg:top-8"
+            >
+            <span className="absolute left-4 top-4 z-[4] border border-[#d4a43d]/55 bg-[#102a23]/94 px-3 py-1.5 text-[9px] font-bold uppercase tracking-eyebrow text-[#e1bd67] backdrop-blur-sm">
               {CATALOGUE_GROUP_LABELS[group]}
             </span>
-          </div>
+          </ProductVisual>
 
           <div>
             <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b6334]">Specification-led product route</span>
@@ -76,6 +78,19 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
 
             <p className="mt-4 text-[11px] leading-relaxed text-[#66706b]">Availability, origin, composition, grade, MOQ, documentation and packaging are confirmed only against the approved enquiry and offered lot.</p>
           </div>
+        </div>
+      </section>
+
+      <section className="border-y border-[#b88a2c]/30 bg-[#062b23] px-4 text-[#fbf7ed] md:px-8">
+        <div className="mx-auto grid max-w-[1440px] sm:grid-cols-2 lg:grid-cols-4">
+          {BUYER_REVIEW_STEPS.map(({ icon: Icon, number, title, copy }, index) => (
+            <article key={title} className={`relative px-1 py-7 sm:px-6 lg:py-8 ${index > 0 ? 'border-t border-[#b88a2c]/20 sm:border-t-0 sm:border-l' : ''} ${index === 2 ? 'sm:border-l-0 lg:border-l' : ''}`}>
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#b88a2c]/45 bg-[#041e18] text-[#d4a43d]"><Icon className="h-[18px] w-[18px]" /></div>
+                <div><span className="text-[9px] font-bold uppercase tracking-eyebrow text-[#b88a2c]">Buyer review {number}</span><h2 className="mt-1 font-serif text-xl font-semibold">{title}</h2><p className="mt-1.5 text-[11px] leading-relaxed text-[#f2ead9]/68">{copy}</p></div>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -120,6 +135,22 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
         </div>
       </section>
 
+      <section className="border-t border-[#b56e3a]/20 bg-[#fbf8f1] px-4 py-14 md:px-8 lg:py-18">
+        <div className="mx-auto grid max-w-[1440px] overflow-hidden border border-[#b56e3a]/30 bg-[#f4efe5] lg:grid-cols-[1.08fr_.92fr] lg:items-stretch">
+          <div className="image-shell relative min-h-[320px] overflow-hidden lg:min-h-[410px]">
+            <img src="/assets/images/packaging-export-system.webp" alt="Illustrative export packaging route from samples to bulk containers" width="1672" height="941" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-[62%_50%]" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#041e18]/18" />
+          </div>
+          <div className="flex flex-col justify-center bg-[#062b23] p-7 text-[#fbf7ed] sm:p-10 lg:p-12">
+            <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Packaging is part of the specification</span>
+            <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight sm:text-4xl">A route from evaluation sample to commercial supply.</h2>
+            <p className="mt-4 text-sm leading-relaxed text-[#f2ead9]/75">For {product.name}, the final container, lining, closure, fill quantity and markings are reviewed against product compatibility, destination and shipment mode before confirmation.</p>
+            <a href="/packaging" className="mt-7 inline-flex w-fit items-center gap-2 border border-[#d4a43d] px-6 py-3 text-[10px] font-bold uppercase tracking-eyebrow text-[#fbf7ed] transition-colors hover:bg-[#d4a43d] hover:text-[#041e18]">Review packaging routes <ArrowRight className="h-4 w-4" /></a>
+            <p className="mt-5 text-[10px] leading-relaxed text-[#f2ead9]/48">Illustrative packaging presentation; the approved pack remains product- and order-specific.</p>
+          </div>
+        </div>
+      </section>
+
       {relatedProducts.length > 0 && (
         <section className="border-t border-[#b56e3a]/20 bg-[#eee8dd] px-4 py-14 md:px-8 lg:py-18">
           <div className="mx-auto max-w-[1440px]">
@@ -127,7 +158,7 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
             <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {relatedProducts.map((related) => (
                 <a key={related.id} href={getProductPath(related.id)} className="group overflow-hidden border border-[#b56e3a]/25 bg-[#fbf8f1] transition-all hover:-translate-y-1 hover:border-[#b56e3a]/60">
-                  <div className="image-shell aspect-[16/9] overflow-hidden"><img src={related.image} alt={related.name} loading="lazy" className="relative z-[1] h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" /></div>
+                  <ProductVisual src={related.image} alt={related.name} loading="lazy" className="aspect-[16/9]" />
                   <div className="p-5"><p className="font-serif text-sm italic text-[#9b6334]">{related.botanicalName}</p><h3 className="mt-1 font-serif text-2xl font-semibold text-[#1f2925] group-hover:text-[#9b6334]">{related.name}</h3></div>
                 </a>
               ))}

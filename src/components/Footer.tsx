@@ -32,11 +32,11 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="flex items-center gap-4">
               <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[#d4a43d] bg-[#f4efd3] p-1.5 shadow-[0_8px_28px_rgba(0,0,0,.28)]">
                 <img
-                  src="/assets/images/aib-official-symbol.webp"
-                  alt="Ancient Indian Botanicals official flowering botanical and lotus symbol"
+                  src="/assets/images/aib-official-logo.webp"
+                  alt="Ancient Indian Botanicals official circular botanical emblem"
                   width="512"
                   height="512"
-                  onError={(event) => { event.currentTarget.src = '/assets/images/aib-official-logo.webp'; }}
+                  onError={(event) => { event.currentTarget.src = '/assets/images/aib-official-symbol.webp'; }}
                   className="h-full w-full rounded-full object-cover"
                 />
               </div>
