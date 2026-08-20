@@ -24,7 +24,7 @@ const packagingFormats = [
     bestFor: 'Laboratory evaluation, fragrance trials and retained samples.',
     benefits: ['Low-volume buyer assessment', 'Amber options help limit light exposure', 'Tamper-evident closure options'],
     review: 'Fill size, closure compatibility and courier restrictions.',
-    position: '7% 64%',
+    image: '/assets/images/packaging-sample-vials-v2.webp',
   },
   {
     icon: Droplets,
@@ -33,7 +33,7 @@ const packagingFormats = [
     bestFor: 'Essential oils, absolutes and smaller commercial quantities.',
     benefits: ['Strong light barrier', 'Suitable for many oil profiles after review', 'Easy visual inspection and sampling'],
     review: 'Breakage risk, cushioning, cap liner and seal integrity.',
-    position: '17% 68%',
+    image: '/assets/images/packaging-amber-glass-v2.webp',
   },
   {
     icon: ShieldCheck,
@@ -42,7 +42,7 @@ const packagingFormats = [
     bestFor: 'Natural oils and aroma grades requiring an opaque, lightweight pack.',
     benefits: ['Complete light barrier', 'Lower weight than glass', 'Reclosable formats for routine handling'],
     review: 'Internal lining, gasket and product compatibility.',
-    position: '34% 52%',
+    image: '/assets/images/packaging-aluminium-v2.webp',
   },
   {
     icon: Package,
@@ -51,7 +51,7 @@ const packagingFormats = [
     bestFor: 'Selected liquid ingredients and practical production handling.',
     benefits: ['Lower handling weight', 'Stackable commercial formats', 'Convenient controlled dispensing'],
     review: 'Permeation, interaction, closure and transport classification.',
-    position: '76% 46%',
+    image: '/assets/images/packaging-hdpe-jerrycans-v2.webp',
   },
   {
     icon: Truck,
@@ -60,7 +60,7 @@ const packagingFormats = [
     bestFor: 'Commercial oil and liquid-extract lots suited to drum supply.',
     benefits: ['Durable bulk protection', 'Efficient palletisation', 'Tamper-evident sealing options'],
     review: 'Lining, headspace, closure, net fill and UN rating where applicable.',
-    position: '86% 39%',
+    image: '/assets/images/packaging-bulk-drums-v2.webp',
   },
   {
     icon: Layers3,
@@ -69,7 +69,7 @@ const packagingFormats = [
     bestFor: 'Powders, extracts, trial lots and moisture-sensitive dry materials.',
     benefits: ['Moisture, oxygen and light barrier options', 'Lower shipment weight', 'Resealable formats where suitable'],
     review: 'Food-contact layer, seal strength, fill weight and labelling.',
-    position: '55% 70%',
+    image: '/assets/images/packaging-barrier-pouches-v2.webp',
   },
   {
     icon: Package,
@@ -78,7 +78,7 @@ const packagingFormats = [
     bestFor: 'Whole, cut and powdered botanicals requiring protected bulk handling.',
     benefits: ['Inner liners support moisture control', 'Fibre drums add rigid protection', 'Practical storage and pallet handling'],
     review: 'Particle form, liner gauge, odour transfer and pallet plan.',
-    position: '64% 36%',
+    image: '/assets/images/packaging-lined-bags-fibre-drums-v2.webp',
   },
   {
     icon: Tags,
@@ -87,7 +87,7 @@ const packagingFormats = [
     bestFor: 'Approved launches, buyer sample programmes and premium secondary presentation.',
     benefits: ['Coordinated bottle, closure, label and carton', 'Indian pattern or embossing can add distinction', 'Reusable document/sample cases can improve review'],
     review: 'MOQ, artwork approval, claims, destination rules and production feasibility.',
-    position: '94% 68%',
+    image: '/assets/images/packaging-private-label-kit-v2.webp',
   },
 ];
 
@@ -112,19 +112,18 @@ export const PackagingFormatGuide: React.FC<PackagingFormatGuideProps> = ({ open
     </div>
 
     <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-      {packagingFormats.map(({ icon: Icon, category, title, bestFor, benefits, review, position }) => (
+      {packagingFormats.map(({ icon: Icon, category, title, bestFor, benefits, review, image }) => (
         <article key={title} className="group flex h-full flex-col overflow-hidden border border-[#a97825]/35 bg-[#fbf7ed] shadow-[0_18px_48px_-38px_rgba(4,30,24,.75)] transition-all duration-300 hover:-translate-y-1 hover:border-[#a97825]">
-          <div className="image-shell relative h-44 overflow-hidden bg-[#e8dfcc]">
+          <div className="image-shell relative aspect-[4/3] overflow-hidden bg-[#e8dfcc]">
             <img
-              src="/assets/images/packaging-heritage-modern-system.webp"
-              alt={`${title} shown within an editorial export-packaging system`}
-              width="1672"
-              height="941"
+              src={image}
+              alt={`Editorial product photograph showing ${title.toLowerCase()} for botanical export supply`}
+              width="1200"
+              height="900"
               loading="lazy"
               decoding="async"
               onError={handleImageError}
-              className="h-full w-full scale-[1.42] object-cover transition-transform duration-700 group-hover:scale-[1.49]"
-              style={{ objectPosition: position }}
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#041e18]/70 via-transparent to-transparent" />
             <div className="absolute bottom-3 left-3 flex items-center gap-2 border border-[#d4a43d]/45 bg-[#041e18]/88 px-3 py-1.5 text-[#f7edda] backdrop-blur-sm">
