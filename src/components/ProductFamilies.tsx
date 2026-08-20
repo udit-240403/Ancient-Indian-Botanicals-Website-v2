@@ -44,9 +44,9 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
 
   return (
     <section
-      className="editorial-section w-full bg-[#041e18] text-[#fbf7ed] py-20 md:py-32 border-b border-[#b88a2c]/20 relative overflow-hidden bg-cover bg-center"
+      className="editorial-section relative w-full overflow-hidden border-b border-[#b56e3a]/20 bg-[#f4efe5] py-20 text-[#1f2925] md:py-28"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(4, 30, 24, 0.88), rgba(4, 30, 24, 0.94)), url('/assets/images/section-botanical-texture.webp')`,
+        backgroundImage: `linear-gradient(to bottom, rgba(244, 239, 229, 0.93), rgba(244, 239, 229, 0.97)), url('/assets/images/section-botanical-texture.webp')`,
       }}
     >
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 relative z-10">
@@ -54,21 +54,21 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-14">
           <div>
-            <span className="text-[11px] uppercase tracking-eyebrow text-[#b88a2c] block mb-2 font-bold">
+            <span className="text-[11px] uppercase tracking-eyebrow text-[#9b6334] block mb-2 font-bold">
               Product Portfolio
             </span>
             <div className="section-rule mb-5" />
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-[#fbf7ed]">
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-[#1f2925]">
               A portfolio shaped by origin
             </h2>
           </div>
           <div className="max-w-md">
-            <p className="text-sm text-[#f2ead9]/85 font-light leading-relaxed">
+            <p className="text-sm text-[#52635d] font-light leading-relaxed">
               Explore ingredients by application and form. Origin, specification, documentation and current availability are confirmed for each enquiry.
             </p>
             <button
               onClick={onViewAll}
-              className="mt-5 inline-flex items-center gap-2 bg-[#b88a2c] px-6 py-3 text-xs font-bold uppercase tracking-eyebrow text-[#041e18] shadow-lg transition-colors hover:bg-[#d3a84f]"
+              className="mt-5 inline-flex items-center gap-2 bg-[#173f34] px-6 py-3 text-xs font-bold uppercase tracking-eyebrow text-[#fbf8f1] shadow-lg transition-colors hover:bg-[#102a23]"
             >
               <span>Explore all 92 products</span>
               <ArrowRight className="h-4 w-4" />
@@ -101,35 +101,35 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
         </div>
 
         {/* 4 Cards Grid with Deep Dark Green Contrast */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#b88a2c]/25 border border-[#b88a2c]/25">
+        <div className="grid grid-cols-1 gap-px border border-[#b56e3a]/25 bg-[#b56e3a]/25 sm:grid-cols-2 lg:grid-cols-4">
           {families.map((family) => {
             const IconComp = family.icon;
             return (
               <div
                 key={family.id}
                 onClick={() => onSelectCategory(family.id)}
-                className="bg-[#062b23] text-[#fbf7ed] p-7 md:p-8 min-h-[300px] flex flex-col justify-between transition-all duration-300 group cursor-pointer hover:bg-[#083a30]"
+                className="group flex min-h-[300px] cursor-pointer flex-col justify-between bg-[#fbf8f1] p-7 text-[#1f2925] transition-all duration-300 hover:bg-white md:p-8"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <div className="p-3 bg-[#041e18] border border-[#b88a2c]/30 rounded-full text-[#b88a2c] group-hover:bg-[#b88a2c] group-hover:text-[#062b23] transition-colors">
+                    <div className="rounded-full border border-[#b56e3a]/35 bg-[#e8e7dc] p-3 text-[#173f34] transition-colors group-hover:bg-[#173f34] group-hover:text-[#fbf8f1]">
                       <IconComp className="w-5 h-5" />
                     </div>
-                    <span className="text-[9px] uppercase tracking-eyebrow text-[#a8c76b] font-semibold">
+                    <span className="text-[9px] uppercase tracking-eyebrow text-[#6d7f73] font-semibold">
                       {family.tag}
                     </span>
                   </div>
 
-                  <h3 className="font-serif text-2xl md:text-3xl font-semibold text-[#fbf7ed] mb-3 group-hover:text-[#b88a2c] transition-colors leading-tight">
+                  <h3 className="font-serif text-2xl md:text-3xl font-semibold text-[#1f2925] mb-3 group-hover:text-[#9b6334] transition-colors leading-tight">
                     {family.title}
                   </h3>
 
-                  <p className="text-sm text-[#f2ead9]/72 leading-relaxed font-light mb-6">
+                  <p className="text-sm text-[#5f6964] leading-relaxed font-light mb-6">
                     {family.description}
                   </p>
                 </div>
 
-                <div className="flex items-center gap-2 text-xs font-semibold text-[#b88a2c] group-hover:text-[#fbf7ed] uppercase tracking-eyebrow pt-4 border-t border-[#b88a2c]/30">
+                <div className="flex items-center gap-2 border-t border-[#b56e3a]/25 pt-4 text-xs font-semibold uppercase tracking-eyebrow text-[#173f34] transition-colors group-hover:text-[#9b6334]">
                   <span>{family.cta}</span>
                   <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                 </div>

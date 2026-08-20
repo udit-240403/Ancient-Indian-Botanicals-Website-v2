@@ -43,16 +43,16 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
   });
 
   return (
-    <section className="editorial-section w-full bg-[#041e18] text-[#fbf7ed] py-20 md:py-32 border-b border-[#b88a2c]/20 relative overflow-hidden">
+    <section className="editorial-section relative w-full overflow-hidden border-b border-[#b56e3a]/20 bg-[#eee8dd] py-20 text-[#1f2925] md:py-28">
       
       {/* Subtle Wood Texture Background Overlay */}
       <div
-        className="absolute inset-0 opacity-15 pointer-events-none bg-cover bg-center filter brightness-[0.7] contrast-[1.2]"
+        className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-[0.055] grayscale"
         style={{
           backgroundImage: `url('/images/dark_wood_bg.png')`,
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#041e18] via-transparent to-[#041e18] pointer-events-none" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#eee8dd]/50 via-[#f8f4ec]/80 to-[#eee8dd]" />
 
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 relative z-10">
         
@@ -62,21 +62,21 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
             Featured B2B Portfolio
           </span>
           <div className="section-rule mb-5" />
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-[#fbf7ed] mb-4">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-[#1f2925] mb-4">
             Explore our featured portfolio
           </h2>
-          <p className="text-sm text-[#f2ead9]/85 font-light leading-relaxed">
+          <p className="text-sm text-[#52635d] font-light leading-relaxed">
             A selective view of priority sourcing routes. Use the complete catalogue for the broader range; specifications and lot availability are confirmed against each enquiry.
           </p>
 
           {/* Popular Searches */}
           <div className="flex flex-wrap items-center gap-2 pt-4">
-            <span className="text-xs text-[#a8c76b] font-semibold mr-1">Popular searches:</span>
+            <span className="mr-1 text-xs font-semibold text-[#52635d]">Popular searches:</span>
             {popularSearches.map((term, idx) => (
               <button
                 key={idx}
                 onClick={() => setSearchQuery(term)}
-                className="text-xs bg-[#062b23] hover:bg-[#b88a2c] hover:text-[#041e18] text-[#f2ead9] border border-[#b88a2c]/40 px-2.5 py-1 transition-colors cursor-pointer"
+                className="cursor-pointer border border-[#b56e3a]/35 bg-[#fbf8f1] px-2.5 py-1 text-xs text-[#344740] transition-colors hover:border-[#173f34] hover:bg-[#173f34] hover:text-[#fbf8f1]"
               >
                 {term}
               </button>
@@ -103,8 +103,8 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`text-xs uppercase tracking-eyebrow font-semibold px-4 py-2.5 border transition-all cursor-pointer ${
                   selectedCategory === cat.id
-                    ? 'bg-[#b88a2c] text-[#041e18] border-[#b88a2c] shadow-lg'
-                    : 'bg-[#062b23] text-[#fbf7ed]/90 border-[#b88a2c]/40 hover:border-[#b88a2c]'
+                    ? 'border-[#173f34] bg-[#173f34] text-[#fbf8f1] shadow-lg'
+                    : 'border-[#b56e3a]/35 bg-[#fbf8f1] text-[#344740] hover:border-[#173f34]'
                 }`}
               >
                 {cat.label}
@@ -120,7 +120,7 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
               placeholder="Search botanical, form, or marker..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#062b23] border border-[#b88a2c]/50 text-xs text-[#fbf7ed] placeholder-[#82966f] pl-10 pr-4 py-2.5 focus:outline-none focus:border-[#b88a2c]"
+              className="w-full border border-[#b56e3a]/40 bg-[#fbf8f1] py-2.5 pl-10 pr-4 text-xs text-[#1f2925] placeholder-[#7a837f] focus:border-[#173f34] focus:outline-none"
             />
           </div>
 
@@ -167,7 +167,7 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
                       <span className="text-[10px] uppercase tracking-eyebrow text-[#b88a2c] block mb-1 font-semibold">
                         {product.harvestOrigin}
                       </span>
-                      <h3 className="font-serif text-2xl font-semibold text-[#fbf7ed] group-hover:text-[#b88a2c] transition-colors leading-tight">
+                      <h3 className="font-serif text-2xl font-semibold text-[#1f2925] group-hover:text-[#9b6334] transition-colors leading-tight">
                         {product.name}
                       </h3>
                       <p className="font-serif italic text-sm text-[#b88a2c] font-light mt-0.5">
@@ -175,20 +175,20 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
                       </p>
                     </div>
 
-                    <p className="text-xs text-[#f2ead9]/80 line-clamp-2 font-light leading-relaxed">
+                    <p className="line-clamp-2 text-xs font-light leading-relaxed text-[#5f6964]">
                       {presentation.summary}
                     </p>
 
                     {/* Available Forms */}
                     <div className="pt-2">
-                      <span className="text-[10px] uppercase tracking-eyebrow text-[#a8c76b] font-semibold block mb-1.5">
+                      <span className="text-[10px] uppercase tracking-eyebrow text-[#60746a] font-semibold block mb-1.5">
                         Available Export Forms:
                       </span>
                       <div className="flex flex-wrap gap-1.5">
                         {product.availableForms.slice(0, 2).map((form, idx) => (
                           <span
                             key={idx}
-                            className="text-[10px] bg-[#041e18] border border-[#b88a2c]/30 text-[#fbf7ed] px-2 py-0.5"
+                            className="border border-[#b56e3a]/25 bg-[#e8e7dc] px-2 py-0.5 text-[10px] text-[#344740]"
                           >
                             {form}
                           </span>
@@ -207,10 +207,10 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
                 </div>
 
                 {/* Card Action Footer */}
-                <div className="p-4 bg-[#041e18] border-t border-[#b88a2c]/30 flex items-center justify-between gap-2">
+                <div className="flex items-center justify-between gap-2 border-t border-[#b56e3a]/25 bg-[#f4efe5] p-4">
                   <button
                     onClick={() => onSelectProduct(product)}
-                    className="text-xs font-semibold text-[#fbf7ed] hover:text-[#b88a2c] flex items-center gap-1 transition-colors cursor-pointer"
+                    className="flex cursor-pointer items-center gap-1 text-xs font-semibold text-[#173f34] transition-colors hover:text-[#9b6334]"
                   >
                     <FileText className="w-3.5 h-3.5 text-[#b88a2c]" />
                     <span>View Specifications</span>
@@ -230,9 +230,9 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
             })}
           </div>
         ) : (
-          <div className="text-center py-16 bg-[#062b23] border border-[#b88a2c]/40 p-8 space-y-4 shadow-2xl">
-            <h3 className="font-serif text-2xl text-[#fbf7ed] font-bold">No matching botanicals found</h3>
-            <p className="text-xs text-[#f2ead9]/80 max-w-md mx-auto">
+          <div className="space-y-4 border border-[#b56e3a]/35 bg-[#fbf8f1] p-8 py-16 text-center shadow-xl">
+            <h3 className="font-serif text-2xl font-bold text-[#1f2925]">No matching botanicals found</h3>
+            <p className="mx-auto max-w-md text-xs text-[#5f6964]">
               We couldn't find any items matching "{searchQuery}". Tell our trade desk what your formulation requires and we will match suitable raw lots.
             </p>
             <button
