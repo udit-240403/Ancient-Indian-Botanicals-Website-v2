@@ -1,89 +1,13 @@
 import React, { useMemo, useState } from 'react';
 import { ArrowRight, CheckCircle2, Search, SlidersHorizontal, X } from 'lucide-react';
-import rawCatalogue from '../data/scraped_products.json';
-
-export type CatalogueGroup =
-  | 'essential-oils'
-  | 'aroma-oils'
-  | 'botanicals'
-  | 'carrier-oils'
-  | 'waters-clays';
-
-type CatalogueProduct = {
-  id: string;
-  name: string;
-  botanicalName: string;
-  category: string;
-  tagline: string;
-  specifications: string[];
-  commercialForms: string[];
-  typicalApplications: string[];
-  whyBuyersKnowIt: string;
-  fieldDescription: string;
-  realWorldApps: Array<{ title: string; description: string }>;
-  image: string;
-};
-
-const ROSE_ABSOLUTE: CatalogueProduct = {
-  id: 'rose-absolute',
-  name: 'Rose Absolute',
-  botanicalName: 'Rosa damascena / Rosa centifolia',
-  category: 'essential-oils',
-  tagline: 'Natural floral extract · grade confirmed per enquiry',
-  specifications: [
-    'Botanical species and extraction route confirmed for the offered grade',
-    'Lot-specific sensory profile and analytical documents where applicable',
-    'Residual-solvent and allergen information reviewed against buyer requirements',
-  ],
-  commercialForms: ['Natural rose absolute', 'Evaluation and commercial bulk formats'],
-  typicalApplications: ['Fine fragrance', 'Luxury personal care', 'Natural-aromatic compositions'],
-  whyBuyersKnowIt: 'A concentrated natural rose material valued for depth, warmth and floral tenacity.',
-  fieldDescription:
-    'Rose absolute is presented separately from rose water and rose aroma oil. Species, extraction route, composition, documentation and availability are confirmed for the specific offered lot.',
-  realWorldApps: [
-    { title: 'Fine fragrance', description: 'Natural-floral compositions developed to an approved fragrance brief.' },
-    { title: 'Personal care', description: 'Premium cosmetic and aromatic formulations subject to grade review.' },
-  ],
-  image: '/images/scraped/products_floral-oils.webp',
-};
-
-const PRODUCTS = [...(rawCatalogue as CatalogueProduct[]), ROSE_ABSOLUTE];
-
-const CARRIER_OILS = new Set([
-  'castor-oil',
-  'kalonji-oil',
-  'neem-oil',
-  'olive-oil',
-]);
-
-const WATER_AND_CLAY_PRODUCTS = new Set(['rose-water', 'kewra-water', 'multani-mitti']);
-
-const getGroup = (product: CatalogueProduct): CatalogueGroup => {
-  if (WATER_AND_CLAY_PRODUCTS.has(product.id)) return 'waters-clays';
-  if (CARRIER_OILS.has(product.id)) return 'carrier-oils';
-
-  const isAromaGrade =
-    product.botanicalName.toLowerCase().startsWith('aroma profile') ||
-    product.commercialForms.some((form) => form.toLowerCase().includes('aroma and diffuser'));
-
-  if (isAromaGrade) return 'aroma-oils';
-  if (
-    product.id === 'rose-absolute' ||
-    product.commercialForms.some((form) => form.toLowerCase().includes('natural essential oil'))
-  ) {
-    return 'essential-oils';
-  }
-
-  return 'botanicals';
-};
-
-const GROUP_LABELS: Record<CatalogueGroup, string> = {
-  'essential-oils': 'Natural Essential Oils',
-  'aroma-oils': 'Aroma & Diffuser Oils',
-  botanicals: 'Botanical Ingredients',
-  'carrier-oils': 'Carrier & Herbal Oils',
-  'waters-clays': 'Floral Waters & Clays',
-};
+import {
+  CATALOGUE_GROUP_LABELS,
+  CATALOGUE_PRODUCTS,
+  CatalogueGroup,
+  CatalogueProduct,
+  getCatalogueGroup,
+  getProductPath,
+} from '../data/catalogue';
 
 const FILTERS: Array<{ id: 'all' | CatalogueGroup; label: string }> = [
   { id: 'all', label: 'All Products' },
@@ -120,7 +44,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
   const [selectedProduct, setSelectedProduct] = useState<CatalogueProduct | null>(null);
 
   const scopedProducts = useMemo(
-    () => (allowedGroups?.length ? PRODUCTS.filter((product) => allowedGroups.includes(getGroup(product))) : PRODUCTS),
+    () => (allowedGroups?.length ? CATALOGUE_PRODUCTS.filter((product) => allowedGroups.includes(getCatalogueGroup(product))) : CATALOGUE_PRODUCTS),
     [allowedGroups],
   );
 
@@ -132,7 +56,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
   const groupCounts = useMemo(
     () =>
       scopedProducts.reduce<Record<string, number>>((counts, product) => {
-        const group = getGroup(product);
+        const group = getCatalogueGroup(product);
         counts[group] = (counts[group] ?? 0) + 1;
         return counts;
       }, {}),
@@ -142,7 +66,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
   const filteredProducts = useMemo(() => {
     const term = searchQuery.trim().toLowerCase();
     return scopedProducts.filter((product) => {
-      const group = getGroup(product);
+      const group = getCatalogueGroup(product);
       const matchesGroup = selectedGroup === 'all' || group === selectedGroup;
       const searchableText = [
         product.name,
@@ -239,7 +163,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
           <>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {filteredProducts.slice(0, visibleCount).map((product, index) => {
-                const group = getGroup(product);
+                const group = getCatalogueGroup(product);
                 return (
                   <article
                     key={product.id}
@@ -263,14 +187,14 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
                         className="relative z-[1] h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                       />
                       <span className="absolute left-3 top-3 border border-[#b88a2c]/50 bg-[#041e18]/95 px-2.5 py-1 text-[9px] font-bold uppercase tracking-eyebrow text-[#b88a2c]">
-                        {GROUP_LABELS[group]}
+                        {CATALOGUE_GROUP_LABELS[group]}
                       </span>
                     </button>
 
                     <div className="flex flex-1 flex-col p-5">
                       <p className="mb-1 font-serif text-sm italic text-[#b88a2c]">{product.botanicalName}</p>
                       <h2 className="font-serif text-2xl font-semibold leading-tight text-[#1f2925]">
-                        {product.name}
+                        <a href={getProductPath(product.id)} className="transition-colors hover:text-[#9b6334]">{product.name}</a>
                       </h2>
                       <p className="mt-3 line-clamp-3 text-xs font-light leading-relaxed text-[#5f6964]">
                         {product.whyBuyersKnowIt || product.fieldDescription}
@@ -304,12 +228,12 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
                       </div>
 
                       <div className="mt-auto flex items-center justify-between gap-3 border-t border-[#b88a2c]/20 pt-5">
-                        <button
-                          onClick={() => setSelectedProduct(product)}
+                        <a
+                          href={getProductPath(product.id)}
                           className="text-[11px] font-semibold uppercase tracking-eyebrow text-[#173f34] hover:text-[#9b6334]"
                         >
-                          View details
-                        </button>
+                          Full product page
+                        </a>
                         <button
                           onClick={() => openQuoteModal(product.name)}
                           aria-label={`Request ${product.name}`}
@@ -357,7 +281,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
             <div className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-[#b88a2c]/35 bg-[#083a30] px-5 py-4 md:px-7">
               <div>
                 <span className="text-[10px] font-semibold uppercase tracking-eyebrow text-[#b88a2c]">
-                  {GROUP_LABELS[getGroup(selectedProduct)]}
+                  {CATALOGUE_GROUP_LABELS[getCatalogueGroup(selectedProduct)]}
                 </span>
                 <h2 className="font-serif text-2xl font-semibold text-[#fbf7ed] md:text-3xl">
                   {selectedProduct.name}

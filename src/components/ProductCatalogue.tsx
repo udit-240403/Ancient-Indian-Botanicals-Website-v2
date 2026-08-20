@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { BotanicalProduct, ProductCategory } from '../types';
+import { ProductCategory } from '../types';
 import { BOTANICAL_PRODUCTS } from '../data/products';
 import { getProductPresentation } from '../data/productPresentation';
 import { Search, ArrowRight, FileText } from 'lucide-react';
+import { FEATURED_TO_CATALOGUE_ID, getProductPath } from '../data/catalogue';
 
 interface ProductCatalogueProps {
   initialCategory?: ProductCategory | 'all';
   searchQuery: string;
   setSearchQuery: (query: string) => void;
-  onSelectProduct: (product: BotanicalProduct) => void;
   openQuoteModal: (productName?: string) => void;
 }
 
@@ -16,7 +16,6 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
   initialCategory = 'all',
   searchQuery,
   setSearchQuery,
-  onSelectProduct,
   openQuoteModal
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
@@ -208,13 +207,13 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
 
                 {/* Card Action Footer */}
                 <div className="flex items-center justify-between gap-2 border-t border-[#b56e3a]/25 bg-[#f4efe5] p-4">
-                  <button
-                    onClick={() => onSelectProduct(product)}
+                  <a
+                    href={getProductPath(FEATURED_TO_CATALOGUE_ID[product.slug] ?? product.slug)}
                     className="flex cursor-pointer items-center gap-1 text-xs font-semibold text-[#173f34] transition-colors hover:text-[#9b6334]"
                   >
                     <FileText className="w-3.5 h-3.5 text-[#b88a2c]" />
                     <span>View Specifications</span>
-                  </button>
+                  </a>
 
                   <button
                     onClick={() => openQuoteModal(product.name)}

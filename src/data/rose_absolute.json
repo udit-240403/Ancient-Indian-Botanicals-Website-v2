@@ -1,0 +1,34 @@
+{
+  "id": "rose-absolute",
+  "name": "Rose Absolute",
+  "botanicalName": "Rosa damascena / Rosa centifolia",
+  "category": "essential-oils",
+  "tagline": "Natural floral extract · grade confirmed per enquiry",
+  "specifications": [
+    "Botanical species and extraction route confirmed for the offered grade",
+    "Lot-specific sensory profile and analytical documents where applicable",
+    "Residual-solvent and allergen information reviewed against buyer requirements"
+  ],
+  "commercialForms": [
+    "Natural rose absolute",
+    "Evaluation and commercial bulk formats"
+  ],
+  "typicalApplications": [
+    "Fine fragrance",
+    "Luxury personal care",
+    "Natural-aromatic compositions"
+  ],
+  "whyBuyersKnowIt": "A concentrated natural rose material valued for depth, warmth and floral tenacity.",
+  "fieldDescription": "Rose absolute is presented separately from rose water and rose aroma oil. Species, extraction route, composition, documentation and availability are confirmed for the specific offered lot.",
+  "realWorldApps": [
+    {
+      "title": "Fine fragrance",
+      "description": "Natural-floral compositions developed to an approved fragrance brief."
+    },
+    {
+      "title": "Personal care",
+      "description": "Premium cosmetic and aromatic formulations subject to grade review."
+    }
+  ],
+  "image": "/images/scraped/products_floral-oils.webp"
+}

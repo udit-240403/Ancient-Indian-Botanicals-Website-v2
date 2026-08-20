@@ -1,12 +1,10 @@
 import React from 'react';
 import { CompleteCatalogue } from './CompleteCatalogue';
-import { BotanicalProduct } from '../types';
 import { Package, CheckCircle2, ArrowRight, FlaskConical, Droplets, Layers3, Tags, Mail, MapPin, Building2, Landmark, FileCheck2, ShieldAlert, Globe2, BarChart3 } from 'lucide-react';
 
 interface SharedPageProps {
   searchQuery: string;
   setSearchQuery: (q: string) => void;
-  onSelectProduct: (product: BotanicalProduct) => void;
   openQuoteModal: (productName?: string) => void;
   openCoaModal: () => void;
 }

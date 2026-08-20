@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Search, ShieldCheck, Menu, X, ChevronRight, Mail, ArrowRight } from 'lucide-react';
+import { PAGE_ROUTES } from '../siteRoutes';
 
 interface NavbarProps {
   activeTab: string;
@@ -33,7 +34,9 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'contact', label: 'CONTACT' },
   ];
 
-  const handleNavClick = (id: string) => {
+  const handleNavClick = (event: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
     setActiveTab(id);
     setMobileMenuOpen(false);
     setSearchOpen(false);
@@ -69,7 +72,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       <nav className="w-full border-b border-[#b88a2c]/35 bg-[#041e18] text-[#fbf7ed] shadow-[0_16px_42px_rgba(0,0,0,.22)]">
         <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-4 py-3 md:px-8 md:py-4">
-          <button onClick={() => handleNavClick('home')} className="group flex min-w-0 items-center gap-2.5 text-left sm:gap-4">
+          <a href={PAGE_ROUTES.home} onClick={(event) => handleNavClick(event, 'home')} className="group flex min-w-0 items-center gap-2.5 text-left sm:gap-4">
             <div className="relative flex h-[4.5rem] w-[4.5rem] shrink-0 items-center justify-center rounded-full border border-[#d4a43d] bg-[#f4efd3] p-1 shadow-[0_0_0_4px_rgba(212,164,61,.14),0_12px_34px_rgba(0,0,0,.38)] sm:h-24 sm:w-24">
               <img
                 src="/assets/images/aib-official-symbol.webp"
@@ -91,7 +94,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <span className="whitespace-nowrap text-[7.5px] font-semibold uppercase tracking-[0.15em] text-[#d4a43d] sm:text-[9px]">Pure by nature · trusted by time</span>
               </div>
             </div>
-          </button>
+          </a>
 
           <div className="hidden items-center gap-3 lg:flex">
             <form onSubmit={handleSearchSubmit} className="relative hidden xl:block">
@@ -110,10 +113,10 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="hidden border-t border-[#b88a2c]/20 bg-[#062b23] lg:block">
           <div className="mx-auto flex max-w-[1440px] items-center justify-center gap-7 px-8 py-3">
             {navLinks.map((link) => (
-              <button key={link.id} onClick={() => handleNavClick(link.id)} className={`relative py-1 text-[10px] font-bold uppercase tracking-[0.15em] transition-colors ${activeTab === link.id ? 'text-[#d4a43d]' : 'text-[#fbf7ed]/82 hover:text-[#d4a43d]'}`}>
+              <a key={link.id} href={PAGE_ROUTES[link.id]} onClick={(event) => handleNavClick(event, link.id)} className={`relative py-1 text-[10px] font-bold uppercase tracking-[0.15em] transition-colors ${activeTab === link.id ? 'text-[#d4a43d]' : 'text-[#fbf7ed]/82 hover:text-[#d4a43d]'}`}>
                 {link.label}
                 {activeTab === link.id && <span className="absolute -bottom-3 left-0 h-[2px] w-full bg-[#d4a43d]" />}
-              </button>
+              </a>
             ))}
           </div>
         </div>
@@ -131,7 +134,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="border-t border-[#b88a2c]/30 bg-[#041e18] px-5 py-5 shadow-2xl lg:hidden">
             <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 sm:gap-x-6">
               {navLinks.map((link) => (
-                <button key={link.id} onClick={() => handleNavClick(link.id)} className={`flex items-center justify-between border-b border-[#b88a2c]/18 py-3 text-left text-[11px] font-bold uppercase tracking-eyebrow ${activeTab === link.id ? 'text-[#d4a43d]' : 'text-[#fbf7ed]/88'}`}><span>{link.label}</span><ChevronRight className="h-4 w-4 text-[#b88a2c]" /></button>
+                <a key={link.id} href={PAGE_ROUTES[link.id]} onClick={(event) => handleNavClick(event, link.id)} className={`flex items-center justify-between border-b border-[#b88a2c]/18 py-3 text-left text-[11px] font-bold uppercase tracking-eyebrow ${activeTab === link.id ? 'text-[#d4a43d]' : 'text-[#fbf7ed]/88'}`}><span>{link.label}</span><ChevronRight className="h-4 w-4 text-[#b88a2c]" /></a>
               ))}
             </div>
             <div className="mt-5 grid gap-2 border-t border-[#b88a2c]/25 pt-4 sm:grid-cols-2">
