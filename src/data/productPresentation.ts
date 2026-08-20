@@ -19,8 +19,8 @@ const PRODUCT_PRESENTATION: Record<string, ProductPresentation> = {
     summary: 'Sandalwood oil and aroma-grade routes for fragrance and formulation applications. Botanical identity, composition and legal sourcing documents are confirmed per offered lot.',
   },
   'basil-oil': {
-    image: '/images/scraped/products_tulsi.webp',
-    summary: 'Tulsi essential-oil routes selected around species, aroma profile, application and analytical requirement. Composition is confirmed through the applicable lot documentation.',
+    image: '/images/scraped/products_commodity_basil-oil.webp',
+    summary: 'Basil essential-oil routes selected around species, chemotype, aroma profile, application and analytical requirement. Tulsi grades are identified separately in the complete catalogue.',
   },
   'rose-water-hydrosol': {
     image: '/images/scraped/products_commodity_rose-water.webp',

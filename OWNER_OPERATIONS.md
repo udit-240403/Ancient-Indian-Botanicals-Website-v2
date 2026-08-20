@@ -2,29 +2,27 @@
 
 This repository contains the complete website source. All design, catalogue, search metadata, enquiry code and analytics integration remain editable in your GitHub account. No secret keys are committed to the repository.
 
-## 1. Put the custom domain on the production website
+## 1. Production domain and ownership
 
-The public domain `ancientindianbotanicals.com` currently resolves to a Hostinger parking page. Google should not be asked to index that parked page.
+The production website uses `https://ancientindianbotanicals.com/`. GitHub is the editable source of truth and Vercel deploys the production build from the repository.
 
-1. Open the Ancient Indian Botanicals project in Vercel.
-2. Go to **Settings → Domains** and add both `ancientindianbotanicals.com` and `www.ancientindianbotanicals.com`.
-3. Vercel will display the exact DNS records it requires.
-4. In Hostinger DNS, replace only the existing parked-web records with the records supplied by Vercel.
-5. Preserve all email records: MX, SPF, DKIM and DMARC TXT records must not be deleted.
-6. Set one domain as primary and redirect the other to it.
-7. Confirm the site opens over HTTPS on the custom domain before proceeding to Google Search Console.
-
-After the custom domain is live, update the canonical URL, Open Graph URL, structured-data URL, `robots.txt` and `sitemap.xml` from the temporary Vercel address to the custom domain in one release.
+- Keep the apex domain as the canonical website address.
+- Redirect `www.ancientindianbotanicals.com` to the apex domain if both remain connected.
+- Preserve all Google Workspace email records in Hostinger: MX, SPF, DKIM and DMARC must not be removed when website DNS records change.
+- After every GitHub merge, confirm that the Vercel production deployment succeeds.
+- Do not publish temporary Vercel deployment addresses as canonical URLs.
 
 ## 2. Submit the website to Google
 
 1. Open Google Search Console and add a **Domain property** for `ancientindianbotanicals.com`.
 2. Copy the Google verification TXT record into Hostinger DNS. Keep that record after verification.
-3. Submit `https://ancientindianbotanicals.com/sitemap.xml` in **Sitemaps**.
+3. Submit `https://ancientindianbotanicals.com/sitemap.xml` in **Sitemaps**. The production build generates 105 real URLs: 13 main pages and 92 product pages.
 4. Use **URL Inspection** for the home page and select **Request indexing**.
-5. Repeat URL Inspection for important catalogue, packaging and contact pages after the custom-domain release is live.
+5. Repeat URL Inspection for `/catalogue`, `/essential-oils`, `/botanicals`, `/packaging`, `/quality`, `/about`, `/contact` and priority product URLs such as `/products/ashwagandha`.
 
 Indexing and ranking are controlled by Google and are not immediate or guaranteed. Search Console will show whether Google can crawl the site and whether any page has an indexing problem.
+
+The old hash addresses are retained only as backward-compatible redirects. New links and Search Console submissions must use real paths such as `/contact`, never `/#contact`.
 
 ## 3. Activate the private traffic dashboard
 

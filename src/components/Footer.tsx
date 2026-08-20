@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapPin, Mail, Phone, ShieldCheck, ArrowRight } from 'lucide-react';
+import { PAGE_ROUTES } from '../siteRoutes';
 
 interface FooterProps {
   setActiveTab: (tab: string) => void;
@@ -12,7 +13,9 @@ export const Footer: React.FC<FooterProps> = ({
   openQuoteModal,
   openCoaModal
 }) => {
-  const handleNav = (tab: string) => {
+  const handleNav = (event: React.MouseEvent<HTMLAnchorElement>, tab: string) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
     setActiveTab(tab);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -64,39 +67,39 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="space-y-2 text-xs uppercase tracking-eyebrow font-medium text-[#f2ead9]/80">
               <li>
-                <button onClick={() => handleNav('catalogue')} className="text-[#b88a2c] hover:text-[#fbf7ed] transition-colors">
+                <a href={PAGE_ROUTES.catalogue} onClick={(event) => handleNav(event, 'catalogue')} className="text-[#b88a2c] hover:text-[#fbf7ed] transition-colors">
                   Complete Product Catalogue
-                </button>
+                </a>
               </li>
               <li>
-                <button onClick={() => handleNav('essential-oils')} className="hover:text-[#b88a2c] transition-colors">
+                <a href={PAGE_ROUTES['essential-oils']} onClick={(event) => handleNav(event, 'essential-oils')} className="hover:text-[#b88a2c] transition-colors">
                   Essential Oils & Accords
-                </button>
+                </a>
               </li>
               <li>
-                <button onClick={() => handleNav('botanicals')} className="hover:text-[#b88a2c] transition-colors">
+                <a href={PAGE_ROUTES.botanicals} onClick={(event) => handleNav(event, 'botanicals')} className="hover:text-[#b88a2c] transition-colors">
                   Botanical Ingredients & Roots
-                </button>
+                </a>
               </li>
               <li>
-                <button onClick={() => handleNav('packaging')} className="hover:text-[#b88a2c] transition-colors">
+                <a href={PAGE_ROUTES.packaging} onClick={(event) => handleNav(event, 'packaging')} className="hover:text-[#b88a2c] transition-colors">
                   Export Packaging Options
-                </button>
+                </a>
               </li>
               <li>
-                <button onClick={() => handleNav('quality')} className="hover:text-[#b88a2c] transition-colors">
+                <a href={PAGE_ROUTES.quality} onClick={(event) => handleNav(event, 'quality')} className="hover:text-[#b88a2c] transition-colors">
                   Quality Assurance & Testing
-                </button>
+                </a>
               </li>
               <li>
-                <button onClick={() => handleNav('about')} className="hover:text-[#b88a2c] transition-colors">
+                <a href={PAGE_ROUTES.about} onClick={(event) => handleNav(event, 'about')} className="hover:text-[#b88a2c] transition-colors">
                   About Our Sourcing House
-                </button>
+                </a>
               </li>
               <li>
-                <button onClick={() => handleNav('contact')} className="hover:text-[#b88a2c] transition-colors">
+                <a href={PAGE_ROUTES.contact} onClick={(event) => handleNav(event, 'contact')} className="hover:text-[#b88a2c] transition-colors">
                   Contact the Trade Desk
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -120,9 +123,9 @@ export const Footer: React.FC<FooterProps> = ({
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNav('payments')} className="hover:text-[#b88a2c] transition-colors">
+                <a href={PAGE_ROUTES.payments} onClick={(event) => handleNav(event, 'payments')} className="hover:text-[#b88a2c] transition-colors">
                   Commercial Terms
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -159,10 +162,10 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-[#b88a2c]/30 text-xs text-[#82966f]">
           <p>© {new Date().getFullYear()} Ancient Indian Botanicals. All rights reserved.</p>
           <div className="flex flex-wrap gap-4 text-[11px]">
-            <button onClick={() => handleNav('terms')} className="hover:text-[#fbf7ed]">Terms of Trade</button>
-            <button onClick={() => handleNav('shipping')} className="hover:text-[#fbf7ed]">Export Shipping Policy</button>
-            <button onClick={() => handleNav('privacy')} className="hover:text-[#fbf7ed]">Privacy Policy</button>
-            <button onClick={() => handleNav('refunds')} className="hover:text-[#fbf7ed]">Claims & Quality Resolution</button>
+            <a href={PAGE_ROUTES.terms} onClick={(event) => handleNav(event, 'terms')} className="hover:text-[#fbf7ed]">Terms of Trade</a>
+            <a href={PAGE_ROUTES.shipping} onClick={(event) => handleNav(event, 'shipping')} className="hover:text-[#fbf7ed]">Export Shipping Policy</a>
+            <a href={PAGE_ROUTES.privacy} onClick={(event) => handleNav(event, 'privacy')} className="hover:text-[#fbf7ed]">Privacy Policy</a>
+            <a href={PAGE_ROUTES.refunds} onClick={(event) => handleNav(event, 'refunds')} className="hover:text-[#fbf7ed]">Claims & Quality Resolution</a>
           </div>
         </div>
 

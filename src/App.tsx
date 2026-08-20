@@ -9,11 +9,21 @@ import { OriginsSection } from './components/OriginsSection';
 import { WorkflowSection } from './components/WorkflowSection';
 import { ProductCatalogue } from './components/ProductCatalogue';
 import { CompleteCatalogue } from './components/CompleteCatalogue';
-import { ProductDetailModal } from './components/ProductDetailModal';
 import { QuoteFormModal } from './components/QuoteFormModal';
 import { VerifyCoaModal } from './components/VerifyCoaModal';
 import { ContactDock } from './components/ContactDock';
 import { HomePackagingShowcase } from './components/HomePackagingShowcase';
+import { CatalogueProductPage } from './components/CatalogueProductPage';
+import { CATALOGUE_PRODUCTS, getCatalogueGroup } from './data/catalogue';
+import {
+  PAGE_META,
+  PAGE_ROUTES,
+  SITE_URL,
+  getPageIdFromPath,
+  getPathForPage,
+  getProductIdFromPath,
+  normalizePath,
+} from './siteRoutes';
 import {
   EssentialOilsPage,
   BotanicalsPage,
@@ -24,12 +34,18 @@ import {
   ContactPage,
   LegalPage
 } from './components/Pages';
-import { BotanicalProduct } from './types';
+
+const updateMetaTag = (selector: string, attribute: string, value: string) => {
+  const element = document.querySelector(selector);
+  if (element) element.setAttribute(attribute, value);
+};
 
 export function App() {
-  const [activeTab, setActiveTab] = useState<string>(() => window.location.hash.slice(1) || 'home');
+  const [currentPath, setCurrentPath] = useState(() => normalizePath(window.location.pathname));
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [selectedProduct, setSelectedProduct] = useState<BotanicalProduct | null>(null);
+  const activeTab = getPageIdFromPath(currentPath);
+  const productId = getProductIdFromPath(currentPath);
+  const routeProduct = productId ? CATALOGUE_PRODUCTS.find((product) => product.id === productId) ?? null : null;
   
   // Modals
   const [quoteModalOpen, setQuoteModalOpen] = useState<boolean>(false);
@@ -37,40 +53,84 @@ export function App() {
   const [coaModalOpen, setCoaModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    const syncTabFromUrl = () => {
-      setActiveTab(window.location.hash.slice(1) || 'home');
+    const legacyPage = window.location.hash.slice(1);
+    if (legacyPage && PAGE_ROUTES[legacyPage]) {
+      const replacement = PAGE_ROUTES[legacyPage];
+      window.history.replaceState({}, '', replacement);
+      setCurrentPath(replacement);
+    }
+
+    const syncPathFromUrl = () => {
+      setCurrentPath(normalizePath(window.location.pathname));
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    window.addEventListener('popstate', syncTabFromUrl);
-    return () => window.removeEventListener('popstate', syncTabFromUrl);
+    window.addEventListener('popstate', syncPathFromUrl);
+    return () => window.removeEventListener('popstate', syncPathFromUrl);
   }, []);
 
   useEffect(() => {
-    const titles: Record<string, string> = {
-      home: 'Indian Botanical Ingredients & Essential Oils | Ancient Indian Botanicals',
-      'essential-oils': 'Essential & Aroma Oils | Ancient Indian Botanicals',
-      botanicals: 'Botanical Ingredients | Ancient Indian Botanicals',
-      catalogue: 'Complete Product Catalogue | Ancient Indian Botanicals',
-      packaging: 'Bulk & Private-Label Packaging | Ancient Indian Botanicals',
-      quality: 'Lot Documentation & Quality Process | Ancient Indian Botanicals',
-      about: 'About Ancient Indian Botanicals',
-      payments: 'Commercial Terms | Ancient Indian Botanicals',
-      contact: 'Contact the Trade Desk | Ancient Indian Botanicals',
-      search: 'Search Product Catalogue | Ancient Indian Botanicals',
-      terms: 'Terms of Trade | Ancient Indian Botanicals',
-      shipping: 'Shipping Information | Ancient Indian Botanicals',
-      privacy: 'Privacy Policy | Ancient Indian Botanicals',
-      refunds: 'Claims & Quality Resolution | Ancient Indian Botanicals',
-    };
+    const pageMeta = routeProduct
+      ? {
+          title: `${routeProduct.name} | B2B Indian Botanical Supply`,
+          description: `${routeProduct.whyBuyersKnowIt} Forms, applications, documentation and current availability are confirmed per enquiry.`,
+          image: routeProduct.image,
+          type: 'product',
+        }
+      : {
+          ...(PAGE_META[activeTab] ?? PAGE_META.home),
+          image: '/assets/images/hero-botanical-still-life.webp',
+          type: 'website',
+        };
+    const canonical = `${SITE_URL}${currentPath === '/' ? '/' : currentPath}`;
+    const image = pageMeta.image.startsWith('http') ? pageMeta.image : `${SITE_URL}${pageMeta.image}`;
 
-    document.title = titles[activeTab] || titles.home;
-  }, [activeTab]);
+    document.title = pageMeta.title;
+    updateMetaTag('meta[name="description"]', 'content', pageMeta.description);
+    updateMetaTag('link[rel="canonical"]', 'href', canonical);
+    updateMetaTag('meta[property="og:type"]', 'content', pageMeta.type);
+    updateMetaTag('meta[property="og:title"]', 'content', pageMeta.title);
+    updateMetaTag('meta[property="og:description"]', 'content', pageMeta.description);
+    updateMetaTag('meta[property="og:url"]', 'content', canonical);
+    updateMetaTag('meta[property="og:image"]', 'content', image);
+    updateMetaTag('meta[name="twitter:title"]', 'content', pageMeta.title);
+    updateMetaTag('meta[name="twitter:description"]', 'content', pageMeta.description);
+    updateMetaTag('meta[name="twitter:image"]', 'content', image);
+
+    const schema = routeProduct
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: routeProduct.name,
+          alternateName: routeProduct.botanicalName,
+          url: canonical,
+          image,
+          description: routeProduct.fieldDescription,
+          category: getCatalogueGroup(routeProduct),
+          brand: { '@type': 'Organization', name: 'Ancient Indian Botanicals', url: `${SITE_URL}/` },
+        }
+      : {
+          '@context': 'https://schema.org',
+          '@type': activeTab === 'home' ? 'WebSite' : 'WebPage',
+          name: pageMeta.title,
+          description: pageMeta.description,
+          url: canonical,
+          publisher: { '@type': 'Organization', name: 'Ancient Indian Botanicals', url: `${SITE_URL}/` },
+        };
+    let schemaElement = document.getElementById('route-structured-data');
+    if (!schemaElement) {
+      schemaElement = document.createElement('script');
+      schemaElement.id = 'route-structured-data';
+      schemaElement.setAttribute('type', 'application/ld+json');
+      document.head.appendChild(schemaElement);
+    }
+    schemaElement.textContent = JSON.stringify(schema);
+  }, [activeTab, currentPath, routeProduct]);
 
   const navigateToTab = (tab: string) => {
-    setActiveTab(tab);
-    const nextUrl = tab === 'home' ? window.location.pathname : `#${tab}`;
-    window.history.pushState({}, '', nextUrl);
+    const nextPath = getPathForPage(tab);
+    if (normalizePath(window.location.pathname) !== nextPath) window.history.pushState({}, '', nextPath);
+    setCurrentPath(nextPath);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -132,7 +192,6 @@ export function App() {
               initialCategory="all"
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}
-              onSelectProduct={(product) => setSelectedProduct(product)}
               openQuoteModal={handleOpenQuoteModal}
             />
           </>
@@ -142,7 +201,6 @@ export function App() {
           <EssentialOilsPage
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
-            onSelectProduct={(product) => setSelectedProduct(product)}
             openQuoteModal={handleOpenQuoteModal}
             openCoaModal={() => setCoaModalOpen(true)}
           />
@@ -152,7 +210,6 @@ export function App() {
           <BotanicalsPage
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
-            onSelectProduct={(product) => setSelectedProduct(product)}
             openQuoteModal={handleOpenQuoteModal}
             openCoaModal={() => setCoaModalOpen(true)}
           />
@@ -195,6 +252,23 @@ export function App() {
           />
         )}
 
+        {activeTab === 'product' && routeProduct && (
+          <CatalogueProductPage
+            product={routeProduct}
+            relatedProducts={CATALOGUE_PRODUCTS.filter((product) => product.id !== routeProduct.id && getCatalogueGroup(product) === getCatalogueGroup(routeProduct)).slice(0, 3)}
+            openQuoteModal={handleOpenQuoteModal}
+          />
+        )}
+
+        {(activeTab === 'not-found' || (activeTab === 'product' && !routeProduct)) && (
+          <section className="bg-[#f4efe5] px-4 py-24 text-center text-[#1f2925] md:px-8">
+            <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b6334]">Page not found</span>
+            <h1 className="mt-3 font-serif text-4xl font-semibold md:text-5xl">This sourcing route is not available.</h1>
+            <p className="mx-auto mt-4 max-w-xl text-sm text-[#66706b]">Return to the complete catalogue or contact our trade desk with the product you require.</p>
+            <a href="/catalogue" className="mt-7 inline-flex bg-[#173f34] px-7 py-3 text-xs font-bold uppercase tracking-eyebrow text-[#fbf8f1]">Browse the catalogue</a>
+          </section>
+        )}
+
         {(activeTab === 'terms' || activeTab === 'shipping' || activeTab === 'privacy' || activeTab === 'refunds') && (
           <LegalPage policyType={activeTab as any} />
         )}
@@ -213,15 +287,6 @@ export function App() {
       />
 
       {/* Modals */}
-      {selectedProduct && (
-        <ProductDetailModal
-          product={selectedProduct}
-          onClose={() => setSelectedProduct(null)}
-          onOpenQuote={(prodName) => handleOpenQuoteModal(prodName)}
-          onVerifyCoa={() => setCoaModalOpen(true)}
-        />
-      )}
-
       {quoteModalOpen && (
         <QuoteFormModal
           initialProductName={quoteProductName}
