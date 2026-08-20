@@ -55,7 +55,7 @@ const organization = {
   '@id': `${SITE_URL}/#organization`,
   name: 'Ancient Indian Botanicals',
   url: `${SITE_URL}/`,
-  logo: `${SITE_URL}/assets/images/aib-official-logo.webp`,
+  logo: `${SITE_URL}/icon-512.png`,
   email: 'office@ancientindianbotanicals.com',
 };
 
