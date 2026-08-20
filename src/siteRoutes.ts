@@ -36,7 +36,7 @@ export const PAGE_META: Record<string, { title: string; description: string }> =
   },
   packaging: {
     title: 'Botanical Export Packaging Options | Ancient Indian Botanicals',
-    description: 'Review sample, oil, dry botanical, bulk-liquid and selected private-label packaging routes for botanical exports.',
+    description: 'Compare sample vials, amber glass, aluminium, HDPE, drums, high-barrier pouches, lined bags and private-label packaging for botanical exports.',
   },
   quality: {
     title: 'Lot Documentation & Quality Process | Ancient Indian Botanicals',

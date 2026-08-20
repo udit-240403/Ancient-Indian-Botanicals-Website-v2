@@ -107,7 +107,11 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
           loading="eager"
           fetchPriority="high"
           decoding="async"
-          onError={(event) => { event.currentTarget.style.display = 'none'; }}
+              onError={(event) => {
+                if (event.currentTarget.dataset.fallback === 'true') return;
+                event.currentTarget.dataset.fallback = 'true';
+                event.currentTarget.src = '/assets/images/product-families-flatlay.webp';
+              }}
           className="absolute inset-0 h-full w-full object-cover"
           style={{ objectPosition: heroImagePosition }}
         />

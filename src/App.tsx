@@ -224,7 +224,7 @@ export function App() {
         )}
 
         {activeTab === 'packaging' && (
-          <PackagingPage openQuoteModal={() => handleOpenQuoteModal()} />
+          <PackagingPage openQuoteModal={handleOpenQuoteModal} />
         )}
 
         {activeTab === 'quality' && (

@@ -10,10 +10,18 @@ interface StoryCardProps {
   imagePosition?: string;
 }
 
+const EDITORIAL_IMAGE_FALLBACK = '/assets/images/product-families-flatlay.webp';
+
+const handleEditorialImageError: React.ReactEventHandler<HTMLImageElement> = (event) => {
+  if (event.currentTarget.dataset.fallback === 'true') return;
+  event.currentTarget.dataset.fallback = 'true';
+  event.currentTarget.src = EDITORIAL_IMAGE_FALLBACK;
+};
+
 const StoryCard: React.FC<StoryCardProps> = ({ image, alt, eyebrow, title, description, imagePosition = 'center' }) => (
   <article className="group overflow-hidden border border-[#b56e3a]/30 bg-[#fbf8f1] shadow-[0_24px_60px_-44px_rgba(16,42,35,.7)]">
     <div className="image-shell relative aspect-[16/10] overflow-hidden">
-      <img src={image} alt={alt} width={1774} height={1024} loading="lazy" decoding="async" className="relative z-[1] h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]" style={{ objectPosition: imagePosition }} />
+      <img src={image} alt={alt} width={1774} height={1024} loading="lazy" decoding="async" onError={handleEditorialImageError} className="relative z-[1] h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]" style={{ objectPosition: imagePosition }} />
       <div className="absolute inset-0 z-[2] bg-gradient-to-t from-[#041e18]/72 via-transparent to-transparent" />
       <span className="absolute bottom-4 left-4 z-[3] border border-[#d4a43d]/55 bg-[#041e18]/88 px-3 py-1.5 text-[9px] font-bold uppercase tracking-eyebrow text-[#e1bd67] backdrop-blur-sm">{eyebrow}</span>
     </div>
@@ -59,7 +67,7 @@ export const BotanicalProcessingStory: React.FC = () => (
 export const QualityVisualStory: React.FC = () => (
   <section className="overflow-hidden border border-[#b56e3a]/30 bg-[#fbf8f1] shadow-[0_24px_70px_-48px_rgba(16,42,35,.8)] lg:grid lg:grid-cols-[1.08fr_.92fr]">
     <div className="image-shell relative min-h-[340px] overflow-hidden lg:min-h-[470px]">
-      <img src="/assets/images/quality-analytical-laboratory.webp" alt="Editorial representation of an analytical chemist reviewing botanical samples and chromatographic data" width={1745} height={901} loading="eager" decoding="async" className="absolute inset-0 h-full w-full object-cover object-center" />
+      <img src="/assets/images/quality-analytical-laboratory.webp" alt="Editorial representation of an analytical chemist reviewing botanical samples and chromatographic data" width={1745} height={901} loading="eager" decoding="async" onError={handleEditorialImageError} className="absolute inset-0 h-full w-full object-cover object-center" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#041e18]/58 via-transparent to-transparent" />
       <span className="absolute bottom-4 left-4 border border-[#d4a43d]/55 bg-[#041e18]/88 px-3 py-1.5 text-[9px] font-bold uppercase tracking-eyebrow text-[#e1bd67] backdrop-blur-sm">Editorial laboratory reference</span>
     </div>
@@ -79,7 +87,7 @@ export const QualityVisualStory: React.FC = () => (
 export const PackagingInnovationStory: React.FC = () => (
   <section className="overflow-hidden border border-[#b88a2c]/35 bg-[#062b23] text-[#fbf7ed] shadow-[0_28px_80px_-48px_rgba(4,30,24,.95)]">
     <div className="image-shell relative aspect-[16/8] min-h-[300px] overflow-hidden sm:min-h-[420px]">
-      <img src="/assets/images/packaging-heritage-modern-system.webp" alt="Editorial packaging system with sample vials, aluminium containers, pouches, fibre and bulk drums, and heritage-inspired secondary cartons" width={1672} height={941} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover object-center" />
+      <img src="/assets/images/packaging-heritage-modern-system.webp" alt="Editorial packaging system with sample vials, aluminium containers, pouches, fibre and bulk drums, and heritage-inspired secondary cartons" width={1672} height={941} loading="lazy" decoding="async" onError={handleEditorialImageError} className="absolute inset-0 h-full w-full object-cover object-center" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#041e18]/82 via-transparent to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-9"><span className="text-[9px] font-bold uppercase tracking-eyebrow text-[#e1bd67]">Editorial packaging concept</span><h2 className="mt-2 max-w-3xl font-serif text-3xl font-semibold leading-tight sm:text-4xl">Heritage outside. Product compatibility inside.</h2></div>
     </div>
