@@ -1,6 +1,7 @@
 import React from 'react';
 import { CompleteCatalogue } from './CompleteCatalogue';
 import { Package, CheckCircle2, ArrowRight, FlaskConical, Droplets, Layers3, Tags, Mail, MapPin, Building2, Landmark, FileCheck2, ShieldAlert, Globe2, BarChart3 } from 'lucide-react';
+import { BotanicalProcessingStory, OilExtractionStory, PackagingInnovationStory, QualityVisualStory } from './TraditionTechnologySections';
 
 interface SharedPageProps {
   searchQuery: string;
@@ -19,6 +20,7 @@ export const EssentialOilsPage: React.FC<SharedPageProps> = (props) => (
     heroImage="/assets/images/category-oils-distillation-v2.webp"
     heroImagePosition="center"
     heroMediaLabel="Editorial steam-distillation imagery"
+    contextualIntro={<OilExtractionStory />}
     searchQuery={props.searchQuery}
     setSearchQuery={props.setSearchQuery}
     openQuoteModal={props.openQuoteModal}
@@ -35,6 +37,7 @@ export const BotanicalsPage: React.FC<SharedPageProps> = (props) => (
     heroImage="/assets/images/cultivation-ashwagandha.webp"
     heroImagePosition="center 58%"
     heroMediaLabel="Editorial cultivation imagery"
+    contextualIntro={<BotanicalProcessingStory />}
     searchQuery={props.searchQuery}
     setSearchQuery={props.setSearchQuery}
     openQuoteModal={props.openQuoteModal}
@@ -80,6 +83,8 @@ export const PackagingPage: React.FC<{ openQuoteModal: () => void }> = ({ openQu
           </div>
           <p className="text-sm leading-relaxed text-[#315148]">Pictures help buyers understand the available route, while the final container is confirmed only after product compatibility, fill quantity, destination, closure and transport review.</p>
         </div>
+
+        <PackagingInnovationStory />
 
         <div className="grid gap-4 md:grid-cols-3">
           {[
@@ -146,6 +151,8 @@ export const QualityPage: React.FC<{ openCoaModal: () => void; openQuoteModal: (
         <p className="text-sm font-light leading-relaxed text-[#52635d]">Quality requirements are agreed before supply. Depending on the botanical and grade, documentation may include a certificate of analysis, botanical identity, organoleptic profile, relevant chromatography or marker testing, microbiological or contaminant testing, safety documentation and packing records.</p>
       </div>
 
+      <QualityVisualStory />
+
       <div className="max-w-4xl space-y-3 border border-[#b56e3a]/35 bg-[#173f34] p-6 text-[#fbf8f1] shadow-[0_20px_55px_-35px_rgba(16,42,35,.8)]">
         <span className="text-xs uppercase tracking-eyebrow text-[#b88a2c] font-bold block">Integrity Commitment</span>
         <p className="text-xs text-[#f2ead9]/90 leading-relaxed font-light">
@@ -155,12 +162,12 @@ export const QualityPage: React.FC<{ openCoaModal: () => void; openQuoteModal: (
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {[
-          'Certificate of Analysis (COA) per Lot',
-          'GC/MS Fingerprint (Selected Essential Oils)',
-          'Active Marker Assay (HPLC / Titration)',
-          'Microbiological & Heavy Metal Limits',
-          'Safety Data Sheet (MSDS) & Handling',
-          'Traceable Batch Packing Records'
+          'Lot-linked COA or Specification Review',
+          'GC/MS Profile for Selected Essential Oils',
+          'Marker Assay Where Applicable',
+          'Required Microbiology or Contaminant Review',
+          'Safety & Handling Documents Where Applicable',
+          'Available Batch and Packing Records'
         ].map((doc, idx) => (
           <div key={idx} className="flex items-center gap-3 border border-[#b56e3a]/25 bg-[#fbf8f1] p-5 shadow-[0_14px_36px_-30px_rgba(16,42,35,.6)]">
             <CheckCircle2 className="w-5 h-5 text-[#9b6334] shrink-0" />

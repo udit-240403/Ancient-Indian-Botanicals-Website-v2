@@ -31,6 +31,7 @@ interface CompleteCatalogueProps {
   heroImage?: string;
   heroImagePosition?: string;
   heroMediaLabel?: string;
+  contextualIntro?: React.ReactNode;
 }
 
 export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
@@ -45,6 +46,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
   heroImage = '/assets/images/product-families-flatlay.webp',
   heroImagePosition = 'center',
   heroMediaLabel = 'Editorial portfolio imagery',
+  contextualIntro,
 }) => {
   const [selectedGroup, setSelectedGroup] = useState<'all' | CatalogueGroup>('all');
   const [visibleCount, setVisibleCount] = useState(initialVisibleCount);
@@ -127,6 +129,8 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
         </div>
         <span className="absolute bottom-4 right-5 hidden border border-[#173f34]/18 bg-[#fbf8f1]/78 px-3 py-1.5 text-[8px] font-bold uppercase tracking-eyebrow text-[#344740]/72 backdrop-blur-sm md:block">{heroMediaLabel}</span>
       </section>
+
+      {contextualIntro}
 
       <section className="mx-auto max-w-[1440px] px-4 py-12 md:px-8 md:py-16">
         <div className="mb-8 border border-[#b56e3a]/30 bg-[#fbf8f1] p-4 shadow-[0_18px_45px_-34px_rgba(16,42,35,.55)] md:p-6">
