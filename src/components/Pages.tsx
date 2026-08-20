@@ -16,6 +16,9 @@ export const EssentialOilsPage: React.FC<SharedPageProps> = (props) => (
     eyebrow="Complete Oils Portfolio"
     title="Natural oils and aroma grades, clearly separated and fully visible."
     description="Browse all natural essential oils, carrier oils and clearly identified aroma or diffuser grades in one complete collection. Each card shows commercial forms, industry uses and buyer relevance; composition and analytical requirements remain lot-specific."
+    heroImage="/assets/images/category-oils-distillation-v2.webp"
+    heroImagePosition="center"
+    heroMediaLabel="Editorial steam-distillation imagery"
     searchQuery={props.searchQuery}
     setSearchQuery={props.setSearchQuery}
     openQuoteModal={props.openQuoteModal}
@@ -29,6 +32,9 @@ export const BotanicalsPage: React.FC<SharedPageProps> = (props) => (
     eyebrow="Complete Botanical Portfolio"
     title="Herbs, roots, seeds, extracts, powders, waters and clays."
     description="Explore the complete botanical collection rather than a short featured selection. Product cards identify typical industry applications, commercial forms and review points; exact origin, grade, marker range and documentation are confirmed against the offered lot."
+    heroImage="/assets/images/cultivation-ashwagandha.webp"
+    heroImagePosition="center 58%"
+    heroMediaLabel="Editorial cultivation imagery"
     searchQuery={props.searchQuery}
     setSearchQuery={props.setSearchQuery}
     openQuoteModal={props.openQuoteModal}

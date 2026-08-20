@@ -28,6 +28,9 @@ interface CompleteCatalogueProps {
   eyebrow?: string;
   title?: string;
   description?: string;
+  heroImage?: string;
+  heroImagePosition?: string;
+  heroMediaLabel?: string;
 }
 
 export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
@@ -39,6 +42,9 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
   eyebrow = 'Complete Current Catalogue',
   title = 'A broader Indian botanical portfolio, organised for serious buyers.',
   description = 'Explore natural essential oils, clearly identified aroma grades, botanical ingredients, carrier oils, floral waters and clays. Availability, composition, specification and documents are confirmed in writing for every enquiry.',
+  heroImage = '/assets/images/product-families-flatlay.webp',
+  heroImagePosition = 'center',
+  heroMediaLabel = 'Editorial portfolio imagery',
 }) => {
   const [selectedGroup, setSelectedGroup] = useState<'all' | CatalogueGroup>('all');
   const [visibleCount, setVisibleCount] = useState(initialVisibleCount);
@@ -89,20 +95,37 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
 
   return (
     <div className="w-full bg-[#f4efe5] text-[#1f2925]">
-      <section className="relative overflow-hidden border-b border-[#b56e3a]/30 bg-[#eee8dd] px-4 py-16 md:px-8 md:py-20">
-        <div className="absolute inset-0 bg-[url('/assets/images/section-botanical-texture.webp')] bg-cover bg-center opacity-[0.08] grayscale" />
+      <section className="relative flex min-h-[430px] items-center overflow-hidden border-b border-[#b56e3a]/30 bg-[#eee8dd] px-4 py-16 md:min-h-[500px] md:px-8 md:py-20">
+        <img
+          src={heroImage}
+          alt=""
+          aria-hidden="true"
+          width={1774}
+          height={887}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          onError={(event) => { event.currentTarget.style.display = 'none'; }}
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ objectPosition: heroImagePosition }}
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(244,239,229,.99)_0%,rgba(244,239,229,.96)_40%,rgba(244,239,229,.76)_61%,rgba(244,239,229,.24)_100%)] max-md:bg-[linear-gradient(90deg,rgba(244,239,229,.96),rgba(244,239,229,.82))]" />
+        <div className="absolute inset-0 bg-[url('/assets/images/section-botanical-texture.webp')] bg-cover bg-center opacity-[0.035] grayscale" />
         <div className="absolute inset-y-0 left-0 w-1.5 bg-[#173f34] md:w-2" />
-        <div className="relative mx-auto max-w-[1440px]">
+        <div className="relative mx-auto w-full max-w-[1440px]">
+          <div className="max-w-4xl lg:max-w-[64%]">
           <span className="mb-3 block text-[11px] font-semibold uppercase tracking-eyebrow text-[#9b6334]">
             {eyebrow} · {scopedProducts.length} Product Routes
           </span>
-          <h1 className="max-w-5xl font-serif text-4xl font-semibold leading-tight text-[#1f2925] md:text-6xl">
+          <h1 className="font-serif text-4xl font-semibold leading-[1.05] text-[#1f2925] md:text-6xl">
             {title}
           </h1>
           <p className="mt-5 max-w-3xl text-sm font-light leading-relaxed text-[#52635d] md:text-base">
             {description}
           </p>
+          </div>
         </div>
+        <span className="absolute bottom-4 right-5 hidden border border-[#173f34]/18 bg-[#fbf8f1]/78 px-3 py-1.5 text-[8px] font-bold uppercase tracking-eyebrow text-[#344740]/72 backdrop-blur-sm md:block">{heroMediaLabel}</span>
       </section>
 
       <section className="mx-auto max-w-[1440px] px-4 py-12 md:px-8 md:py-16">
