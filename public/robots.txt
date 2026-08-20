@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ancient-indian-botanicals-website-v.vercel.app/sitemap.xml
+Sitemap: https://www.ancientindianbotanicals.com/sitemap.xml
