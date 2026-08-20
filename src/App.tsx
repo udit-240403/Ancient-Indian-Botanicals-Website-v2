@@ -107,7 +107,7 @@ export function App() {
           image,
           description: routeProduct.fieldDescription,
           category: getCatalogueGroup(routeProduct),
-          brand: { '@type': 'Organization', name: 'Ancient Indian Botanicals', url: `${SITE_URL}/` },
+          brand: { '@type': 'Organization', name: 'Ancient Indian Botanicals', url: `${SITE_URL}/`, logo: `${SITE_URL}/icon-512.png` },
         }
       : {
           '@context': 'https://schema.org',
@@ -115,7 +115,7 @@ export function App() {
           name: pageMeta.title,
           description: pageMeta.description,
           url: canonical,
-          publisher: { '@type': 'Organization', name: 'Ancient Indian Botanicals', url: `${SITE_URL}/` },
+          publisher: { '@type': 'Organization', name: 'Ancient Indian Botanicals', url: `${SITE_URL}/`, logo: `${SITE_URL}/icon-512.png` },
         };
     let schemaElement = document.getElementById('route-structured-data');
     if (!schemaElement) {

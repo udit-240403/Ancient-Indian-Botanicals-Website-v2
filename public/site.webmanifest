@@ -8,9 +8,16 @@
   "theme_color": "#041e18",
   "icons": [
     {
-      "src": "/assets/images/aib-official-symbol.webp",
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
       "sizes": "512x512",
-      "type": "image/webp"
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
