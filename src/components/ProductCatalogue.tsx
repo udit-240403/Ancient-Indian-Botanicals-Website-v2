@@ -4,6 +4,7 @@ import { BOTANICAL_PRODUCTS } from '../data/products';
 import { getProductPresentation } from '../data/productPresentation';
 import { Search, ArrowRight, FileText } from 'lucide-react';
 import { FEATURED_TO_CATALOGUE_ID, getProductPath } from '../data/catalogue';
+import { ProductVisual } from './ProductVisual';
 
 interface ProductCatalogueProps {
   initialCategory?: ProductCategory | 'all';
@@ -137,28 +138,22 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
               >
                 <div>
                   {/* Card Image Header (4:3 aspect ratio) */}
-                  <div className="image-shell relative aspect-[4/3] overflow-hidden bg-[#041e18]">
-                    <img
+                  <ProductVisual
                       src={presentation.image}
                       alt={product.name}
-                      width="1200"
-                      height="900"
+                      width={1200}
+                      height={900}
                       loading={index < 4 ? 'eager' : 'lazy'}
-                      decoding="async"
-                      onError={(event) => {
-                        if (event.currentTarget.dataset.fallback === 'true') return;
-                        event.currentTarget.dataset.fallback = 'true';
-                        event.currentTarget.src = '/assets/images/product-families-flatlay.webp';
-                      }}
-                      className="relative z-[1] w-full h-full object-cover transform group-hover:scale-[1.04] transition-transform duration-700"
-                    />
-                    <div className="absolute top-3 left-3 bg-[#041e18]/95 border border-[#b88a2c]/60 text-[#b88a2c] text-[10px] uppercase tracking-eyebrow px-2.5 py-1 font-bold">
+                      fetchPriority={index < 2 ? 'high' : 'auto'}
+                      className="aspect-[4/3]"
+                    >
+                    <div className="absolute left-3 top-3 z-[4] border border-[#d4a43d]/60 bg-[#041e18]/94 px-2.5 py-1 text-[10px] font-bold uppercase tracking-eyebrow text-[#e1bd67] backdrop-blur-sm">
                       {product.badgeNumber}
                     </div>
-                    <div className="absolute bottom-3 right-3 bg-[#041e18]/95 text-[#a8c76b] text-[10px] uppercase tracking-eyebrow px-2 py-0.5 border border-[#b88a2c]/30 font-semibold">
+                    <div className="absolute bottom-3 right-3 z-[4] border border-[#b88a2c]/35 bg-[#041e18]/94 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-eyebrow text-[#dfe3d8] backdrop-blur-sm">
                       {product.subFamily}
                     </div>
-                  </div>
+                  </ProductVisual>
 
                   {/* Content Info */}
                   <div className="p-6 space-y-3">
