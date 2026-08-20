@@ -37,6 +37,7 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
   const [submissionStatus, setSubmissionStatus] = useState<
     'idle' | 'sending' | 'sent' | 'fallback'
   >('idle');
+  const [website, setWebsite] = useState('');
 
   const buildMailtoUrl = () => {
     const subject = `B2B botanical enquiry — ${formData.selectedProduct}`;
@@ -78,7 +79,11 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
       const response = await fetch('/api/enquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          website,
+          sourcePath: window.location.pathname,
+        }),
       });
 
       if (!response.ok) throw new Error('Enquiry service unavailable');
@@ -160,6 +165,10 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="px-5 py-6 sm:px-8 sm:py-8">
+            <div className="absolute -left-[9999px]" aria-hidden="true">
+              <label htmlFor="enquiry-website">Website</label>
+              <input id="enquiry-website" type="text" tabIndex={-1} autoComplete="off" value={website} onChange={(event) => setWebsite(event.target.value)} />
+            </div>
             <div className="mb-6 rounded-xl border border-[#d7c6a5] bg-white/70 px-4 py-3 text-sm leading-relaxed text-[#405b52]">
               <strong className="text-[#17362e]">Start with the basics.</strong> Grade, testing, private-label and export paperwork can be decided after we understand your requirement.
             </div>
