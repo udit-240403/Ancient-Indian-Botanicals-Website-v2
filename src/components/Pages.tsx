@@ -132,21 +132,17 @@ export const PackagingPage: React.FC<{ openQuoteModal: () => void }> = ({ openQu
 );
 
 export const QualityPage: React.FC<{ openCoaModal: () => void; openQuoteModal: () => void }> = ({ openCoaModal, openQuoteModal }) => (
-  <div className="w-full bg-[#062b23] text-[#fbf7ed] py-16 px-4 md:px-8">
+  <div className="w-full bg-[#f4efe5] px-4 py-16 text-[#1f2925] md:px-8 lg:py-20">
     <div className="max-w-[1440px] mx-auto space-y-12">
-      <div className="max-w-3xl space-y-4">
-        <span className="text-[11px] uppercase tracking-eyebrow text-[#b88a2c] font-semibold">
-          Quality Control & Compliance
-        </span>
-        <h1 className="font-serif text-3xl md:text-5xl font-semibold text-[#fbf7ed]">
-          Documentation built around the product, lot and destination.
-        </h1>
-        <p className="text-sm text-[#f2ead9]/85 font-light leading-relaxed">
-          Quality requirements are agreed before supply. Depending on the botanical and grade, documentation may include a certificate of analysis, botanical identity, organoleptic profile, relevant chromatography or marker testing, microbiological or contaminant testing, safety documentation and packing records.
-        </p>
+      <div className="grid gap-8 border-b border-[#b56e3a]/25 pb-10 lg:grid-cols-[1.2fr_.8fr] lg:items-end">
+        <div className="max-w-4xl space-y-4">
+          <span className="text-[11px] uppercase tracking-eyebrow text-[#9b6334] font-semibold">Quality Control & Compliance</span>
+          <h1 className="font-serif text-4xl font-semibold leading-[1.05] text-[#1f2925] md:text-6xl">Documentation built around the product, lot and destination.</h1>
+        </div>
+        <p className="text-sm font-light leading-relaxed text-[#52635d]">Quality requirements are agreed before supply. Depending on the botanical and grade, documentation may include a certificate of analysis, botanical identity, organoleptic profile, relevant chromatography or marker testing, microbiological or contaminant testing, safety documentation and packing records.</p>
       </div>
 
-      <div className="p-6 bg-[#083a30] border border-[#b88a2c]/40 space-y-3 max-w-3xl">
+      <div className="max-w-4xl space-y-3 border border-[#b56e3a]/35 bg-[#173f34] p-6 text-[#fbf8f1] shadow-[0_20px_55px_-35px_rgba(16,42,35,.8)]">
         <span className="text-xs uppercase tracking-eyebrow text-[#b88a2c] font-bold block">Integrity Commitment</span>
         <p className="text-xs text-[#f2ead9]/90 leading-relaxed font-light">
           We do not claim universally: organic certification, GC/MS on every product, therapeutic benefit, guaranteed harvest dates or regulatory approval without product-specific evidence. All claims are lot-verified.
@@ -162,23 +158,23 @@ export const QualityPage: React.FC<{ openCoaModal: () => void; openQuoteModal: (
           'Safety Data Sheet (MSDS) & Handling',
           'Traceable Batch Packing Records'
         ].map((doc, idx) => (
-          <div key={idx} className="p-5 bg-[#083a30] border border-[#b88a2c]/30 flex items-center gap-3">
-            <CheckCircle2 className="w-5 h-5 text-[#b88a2c] shrink-0" />
-            <span className="text-xs font-semibold text-[#fbf7ed]">{doc}</span>
+          <div key={idx} className="flex items-center gap-3 border border-[#b56e3a]/25 bg-[#fbf8f1] p-5 shadow-[0_14px_36px_-30px_rgba(16,42,35,.6)]">
+            <CheckCircle2 className="w-5 h-5 text-[#9b6334] shrink-0" />
+            <span className="text-xs font-semibold text-[#344740]">{doc}</span>
           </div>
         ))}
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
         <button
           onClick={openCoaModal}
-          className="bg-[#b88a2c] text-[#062b23] font-bold text-xs uppercase tracking-eyebrow px-8 py-3.5 cursor-pointer"
+          className="cursor-pointer bg-[#173f34] px-8 py-3.5 text-xs font-bold uppercase tracking-eyebrow text-[#fbf8f1] hover:bg-[#102a23]"
         >
           Request Lot Documents
         </button>
         <button
           onClick={openQuoteModal}
-          className="bg-[#083a30] border border-[#b88a2c]/50 text-[#fbf7ed] font-medium text-xs uppercase tracking-eyebrow px-8 py-3.5 cursor-pointer"
+          className="cursor-pointer border border-[#173f34] bg-transparent px-8 py-3.5 text-xs font-semibold uppercase tracking-eyebrow text-[#173f34] hover:bg-[#173f34] hover:text-[#fbf8f1]"
         >
           Request Lot Sample
         </button>
@@ -188,30 +184,30 @@ export const QualityPage: React.FC<{ openCoaModal: () => void; openQuoteModal: (
 );
 
 export const AboutPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuoteModal }) => (
-  <div className="w-full bg-[#062b23] text-[#fbf7ed] py-16 px-4 md:px-8">
+  <div className="w-full bg-[#eee8dd] px-4 py-16 text-[#1f2925] md:px-8 lg:py-20">
     <div className="max-w-[1440px] mx-auto space-y-12">
       <div className="grid items-center gap-8 lg:grid-cols-[1fr_19rem]">
         <div className="max-w-3xl space-y-4">
-          <span className="text-[11px] uppercase tracking-eyebrow text-[#b88a2c] font-semibold">
+          <span className="text-[11px] uppercase tracking-eyebrow text-[#9b6334] font-semibold">
             Sourcing House Provenance
           </span>
-          <h1 className="font-serif text-3xl md:text-5xl font-semibold text-[#fbf7ed]">
+          <h1 className="font-serif text-4xl font-semibold leading-[1.05] text-[#1f2925] md:text-6xl">
             A modern botanical sourcing house with an Indian origin advantage.
           </h1>
-          <p className="text-sm md:text-base text-[#f2ead9]/85 font-light leading-relaxed">
+          <p className="text-sm md:text-base text-[#52635d] font-light leading-relaxed">
             Ancient Indian Botanicals connects buyer specifications with suitable Indian botanical and aromatic supply routes. Our role is to make sourcing clearer: identify the requirement, match the material, coordinate available documentation, confirm packaging and support export execution.
           </p>
         </div>
-        <div className="mx-auto w-full max-w-[19rem] border border-[#b88a2c]/45 bg-[#f4efd3] p-5 shadow-[0_24px_70px_rgba(0,0,0,.3)]">
+        <div className="mx-auto w-full max-w-[19rem] border border-[#b56e3a]/35 bg-[#fbf8f1] p-5 shadow-[0_24px_70px_rgba(16,42,35,.13)]">
           <img src="/assets/images/aib-official-logo.webp" alt="Ancient Indian Botanicals official circular botanical logo" width="1024" height="1024" loading="eager" onError={(event) => { event.currentTarget.src = '/assets/images/aib-official-symbol.webp'; }} className="aspect-square w-full object-cover" />
           <p className="mt-4 text-center text-[9px] font-bold uppercase tracking-[0.18em] text-[#765411]">Official botanical seal</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="space-y-4 bg-[#083a30] border border-[#b88a2c]/30 p-8">
-          <h3 className="font-serif text-2xl font-semibold text-[#b88a2c]">Our Core Trade Values</h3>
-          <ul className="space-y-3 text-xs text-[#f2ead9]/90 font-light">
+        <div className="space-y-4 border border-[#b56e3a]/25 bg-[#fbf8f1] p-8 shadow-[0_18px_45px_-34px_rgba(16,42,35,.6)]">
+          <h3 className="font-serif text-2xl font-semibold text-[#173f34]">Our Core Trade Values</h3>
+          <ul className="space-y-3 text-xs text-[#52635d] font-light">
             <li className="flex items-start gap-2">
               <CheckCircle2 className="w-4 h-4 text-[#b88a2c] shrink-0 mt-0.5" />
               <span><strong>Specification before quotation:</strong> We never issue generic pricing without confirming physical form and destination standards.</span>
@@ -329,13 +325,13 @@ export const ContactPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuot
 );
 
 export const LegalPage: React.FC<{ policyType: 'terms' | 'shipping' | 'privacy' | 'refunds' }> = ({ policyType }) => (
-  <div className="w-full bg-[#062b23] text-[#fbf7ed] py-16 px-4 md:px-8">
+  <div className="w-full bg-[#f4efe5] px-4 py-16 text-[#1f2925] md:px-8 lg:py-20">
     <div className="max-w-3xl mx-auto space-y-6">
-      <span className="text-[11px] uppercase tracking-eyebrow text-[#b88a2c] font-semibold">Regulatory & Legal Policy</span>
-      <h1 className="font-serif text-3xl font-semibold text-[#fbf7ed] capitalize">
+      <span className="text-[11px] uppercase tracking-eyebrow text-[#9b6334] font-semibold">Regulatory & Legal Policy</span>
+      <h1 className="font-serif text-4xl font-semibold text-[#1f2925] capitalize md:text-5xl">
         {policyType} Policy
       </h1>
-      <div className="p-6 bg-[#083a30] border border-[#b88a2c]/30 text-xs text-[#f2ead9]/85 space-y-4 font-light leading-relaxed">
+      <div className="space-y-4 border border-[#b56e3a]/30 bg-[#fbf8f1] p-6 text-sm font-light leading-relaxed text-[#52635d] shadow-[0_18px_45px_-34px_rgba(16,42,35,.6)]">
         <p>
           Ancient Indian Botanicals is incorporated in India. Website information is intended for B2B commercial evaluation. Any order, specification, documentation obligation, shipping term, return term or payment condition becomes binding only through a written offer or contract and counterparty review.
         </p>
@@ -345,7 +341,7 @@ export const LegalPage: React.FC<{ policyType: 'terms' | 'shipping' | 'privacy' 
           </p>
         )}
         <p>
-          For questions regarding trade terms, shipping documents, privacy or batch-return protocols, contact <a href="mailto:office@ancientindianbotanicals.com" className="font-mono text-[#b88a2c] hover:text-[#fbf7ed]">office@ancientindianbotanicals.com</a>.
+          For questions regarding trade terms, shipping documents, privacy or batch-return protocols, contact <a href="mailto:office@ancientindianbotanicals.com" className="font-mono font-semibold text-[#9b6334] hover:text-[#173f34]">office@ancientindianbotanicals.com</a>.
         </p>
       </div>
     </div>
