@@ -67,6 +67,8 @@ const pageFallback = (page) => {
 
 const productFallback = (product) => `<main style="min-height:100vh;background:#f4efe5;color:#1f2925;padding:3rem 1.25rem;font-family:Georgia,serif"><article style="max-width:72rem;margin:0 auto"><p style="color:#9b6334;letter-spacing:.12em;text-transform:uppercase">${escapeHtml(groupLabels[getGroup(product)])}</p><h1>${escapeHtml(product.name)}</h1><p><em>${escapeHtml(product.botanicalName)}</em></p><img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" style="max-width:42rem;width:100%;height:auto"><p>${escapeHtml(product.fieldDescription)}</p><p>${escapeHtml(product.whyBuyersKnowIt)}</p><h2>Commercial forms</h2><ul>${product.commercialForms.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><h2>Typical applications</h2><ul>${product.typicalApplications.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><h2>Review framework</h2><ul>${product.specifications.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><p>Availability, grade, origin, composition, MOQ, packaging and documents are confirmed for the approved enquiry and offered lot.</p><p><a href="/catalogue">Return to the complete catalogue</a> · <a href="mailto:sales@ancientindianbotanicals.com?subject=${encodeURIComponent(`Enquiry — ${product.name}`)}">Enquire about this product</a></p></article></main>`;
 
+const adminFallback = `<main style="min-height:100vh;background:#062b23;color:#fbf7ed;padding:4rem 1.25rem;font-family:Georgia,serif"><div style="max-width:32rem;margin:0 auto;border:1px solid #b88a2c;padding:2rem;background:#f7f1e5;color:#17362e"><p style="color:#9b6334;letter-spacing:.12em;text-transform:uppercase">Secure staff access</p><h1>Private enquiry desk</h1><p>Owner and approved employee access only. The secure sign-in application is loading.</p><p><a href="/" style="color:#765411">Return to the public website</a></p></div></main>`;
+
 const replaceMeta = (html, selectorPattern, replacement) => html.replace(selectorPattern, replacement);
 
 const renderHtml = ({ routePath, title, description, image = DEFAULT_IMAGE, type = 'website', fallback, schema }) => {
@@ -110,6 +112,11 @@ for (const page of pages) {
   await writeRoute(page.path, renderHtml({ routePath: page.path, title: page.title, description: page.description, fallback: pageFallback(page), schema: pageSchema }));
 }
 
+const adminSchema = { '@context': 'https://schema.org', '@type': 'WebPage', name: 'Private Enquiry Desk', url: `${SITE_URL}/admin` };
+const adminHtml = renderHtml({ routePath: '/admin', title: 'Private Enquiry Desk | Ancient Indian Botanicals', description: 'Secure owner and approved staff access.', fallback: adminFallback, schema: adminSchema })
+  .replace(/<meta name="robots" content="[^"]*"\s*\/?>/, '<meta name="robots" content="noindex, nofollow, noarchive" />');
+await writeRoute('/admin', adminHtml);
+
 for (const product of products) {
   const routePath = `/products/${product.id}`;
   const title = `${product.name} | B2B Indian Botanical Supply`;
@@ -137,4 +144,4 @@ const today = new Date().toISOString().slice(0, 10);
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${allPaths.map((routePath) => `  <url>\n    <loc>${SITE_URL}${routePath === '/' ? '/' : routePath}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${routePath === '/' ? 'weekly' : 'monthly'}</changefreq>\n    <priority>${routePath === '/' ? '1.0' : routePath.startsWith('/products/') ? '0.7' : '0.8'}</priority>\n  </url>`).join('\n')}\n</urlset>\n`;
 await writeFile(path.join(DIST, 'sitemap.xml'), sitemap);
 
-console.log(`Pre-rendered ${pages.length} pages and ${products.length} product routes (${allPaths.length} sitemap URLs).`);
+console.log(`Pre-rendered ${pages.length} public pages, ${products.length} product routes and one private admin portal (${allPaths.length} sitemap URLs).`);
