@@ -1,7 +1,8 @@
 import React from 'react';
 import { CompleteCatalogue } from './CompleteCatalogue';
-import { Package, CheckCircle2, ArrowRight, FlaskConical, Droplets, Layers3, Tags, Mail, MapPin, Building2, Landmark, FileCheck2, ShieldAlert, Globe2, BarChart3 } from 'lucide-react';
+import { CheckCircle2, ArrowRight, Mail, MapPin, Building2, Landmark, FileCheck2, ShieldAlert, Globe2, BarChart3 } from 'lucide-react';
 import { BotanicalProcessingStory, OilExtractionStory, PackagingInnovationStory, QualityVisualStory } from './TraditionTechnologySections';
+import { PackagingFormatGuide } from './PackagingFormatGuide';
 
 interface SharedPageProps {
   searchQuery: string;
@@ -44,7 +45,7 @@ export const BotanicalsPage: React.FC<SharedPageProps> = (props) => (
   />
 );
 
-export const PackagingPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuoteModal }) => (
+export const PackagingPage: React.FC<{ openQuoteModal: (productName?: string) => void }> = ({ openQuoteModal }) => (
   <div className="w-full bg-[#f3eddf] text-[#062b23]">
     <section className="image-shell relative min-h-[570px] overflow-hidden border-b border-[#b88a2c]/40">
       <img
@@ -64,7 +65,7 @@ export const PackagingPage: React.FC<{ openQuoteModal: () => void }> = ({ openQu
           <p className="max-w-xl text-sm leading-relaxed text-[#f2ead9]/88 sm:text-base">
             A clear packaging route helps protect material integrity and prevents surprises at dispatch. We align the pack format with product compatibility, fill quantity, destination and shipping mode before confirmation.
           </p>
-          <button onClick={openQuoteModal} className="inline-flex items-center gap-2 bg-[#b88a2c] px-6 py-3.5 text-xs font-bold uppercase tracking-eyebrow text-[#041e18] transition-colors hover:bg-[#d4a43d]">
+          <button onClick={() => openQuoteModal('Packaging brief')} className="inline-flex items-center gap-2 bg-[#b88a2c] px-6 py-3.5 text-xs font-bold uppercase tracking-eyebrow text-[#041e18] transition-colors hover:bg-[#d4a43d]">
             Build a packaging brief <ArrowRight className="h-4 w-4" />
           </button>
         </div>
@@ -86,43 +87,7 @@ export const PackagingPage: React.FC<{ openQuoteModal: () => void }> = ({ openQu
 
         <PackagingInnovationStory />
 
-        <div className="grid gap-4 md:grid-cols-3">
-          {[
-            { title: 'Evaluation & oil formats', subtitle: 'Amber samples · aluminium containers', position: '20% 58%' },
-            { title: 'Dry botanical formats', subtitle: 'Pouches · lined fibre drums', position: '51% 55%' },
-            { title: 'Commercial bulk route', subtitle: 'HDPE drums · IBC consideration', position: '88% 52%' },
-          ].map((format) => (
-            <article key={format.title} className="group overflow-hidden border border-[#a97825]/35 bg-[#fbf7ed]">
-              <div className="image-shell relative h-56 overflow-hidden sm:h-64">
-                <img src="/assets/images/packaging-export-system.webp" alt={format.title} width="1672" height="941" loading="lazy" onError={(event) => { if (event.currentTarget.dataset.fallback === 'true') return; event.currentTarget.dataset.fallback = 'true'; event.currentTarget.src = '/assets/images/product-families-flatlay.webp'; }} className="h-full w-full scale-[1.35] object-cover transition-transform duration-700 group-hover:scale-[1.42]" style={{ objectPosition: format.position }} />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#041e18]/86 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-5 text-[#fbf7ed]">
-                  <h3 className="font-serif text-2xl font-semibold">{format.title}</h3>
-                  <p className="mt-1 text-[10px] font-semibold uppercase tracking-eyebrow text-[#e1bd67]">{format.subtitle}</p>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
-          {[
-            { icon: FlaskConical, badge: 'Evaluation', title: 'Samples', desc: 'Small compatible packs for laboratory and formulation review, with fill size confirmed per material.' },
-            { icon: Droplets, badge: 'Natural & aroma oils', title: 'Oil packs', desc: 'Amber glass, aluminium or compatible lined containers selected around composition and quantity.' },
-            { icon: Package, badge: 'Commercial lots', title: 'Bulk liquids', desc: 'HDPE drums, metal drums or IBC routes considered against the product and transport requirement.' },
-            { icon: Layers3, badge: 'Dry ingredients', title: 'Herbs & powders', desc: 'Lined kraft bags, fibre drums or woven sacks configured for physical form and destination.' },
-            { icon: Tags, badge: 'Selected projects', title: 'Private label', desc: 'Bottle, closure and label routes reviewed against MOQ, artwork, compliance and feasibility.' },
-          ].map(({ icon: Icon, badge, title, desc }) => (
-            <article key={title} className="group border border-[#a97825]/35 bg-[#fbf7ed]/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#a97825] hover:shadow-[0_18px_45px_-28px_rgba(4,30,24,.7)]">
-              <div className="mb-7 flex h-11 w-11 items-center justify-center rounded-full border border-[#b88a2c]/45 bg-[#efe3c8] text-[#062b23]">
-                <Icon className="h-5 w-5" />
-              </div>
-              <span className="text-[9px] font-bold uppercase tracking-eyebrow text-[#9b711e]">{badge}</span>
-              <h2 className="mt-2 font-serif text-2xl font-semibold">{title}</h2>
-              <p className="mt-3 text-xs leading-relaxed text-[#27463c]">{desc}</p>
-            </article>
-          ))}
-        </div>
+        <PackagingFormatGuide openQuoteModal={openQuoteModal} />
 
         <div className="grid overflow-hidden border border-[#b88a2c]/40 bg-[#062b23] text-[#fbf7ed] lg:grid-cols-[1fr_auto]">
           <div className="p-7 sm:p-9">
@@ -131,7 +96,7 @@ export const PackagingPage: React.FC<{ openQuoteModal: () => void }> = ({ openQu
             <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[#f2ead9]/78">Share the product, grade, trial or commercial quantity, destination and preferred format. Availability and any transport- or market-specific requirements are confirmed in writing before supply.</p>
           </div>
           <div className="flex items-center border-t border-[#b88a2c]/30 p-7 lg:border-l lg:border-t-0">
-            <button onClick={openQuoteModal} className="w-full border border-[#d4a43d] px-7 py-3.5 text-xs font-bold uppercase tracking-eyebrow text-[#fbf7ed] transition-colors hover:bg-[#d4a43d] hover:text-[#041e18]">Discuss your format</button>
+            <button onClick={() => openQuoteModal('Packaging specification')} className="w-full border border-[#d4a43d] px-7 py-3.5 text-xs font-bold uppercase tracking-eyebrow text-[#fbf7ed] transition-colors hover:bg-[#d4a43d] hover:text-[#041e18]">Discuss your format</button>
           </div>
         </div>
         <p className="text-center text-[11px] text-[#47685d]">Packaging image is an illustrative format guide. Final material, closure, fill and markings are product- and shipment-specific.</p>
