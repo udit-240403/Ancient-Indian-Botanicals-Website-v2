@@ -117,7 +117,17 @@ export function App() {
       : {
           '@context': 'https://schema.org',
           '@type': activeTab === 'home' ? 'WebSite' : 'WebPage',
-          name: pageMeta.title,
+          ...(activeTab === 'home'
+            ? {
+                '@id': `${SITE_URL}/#website`,
+                name: 'Ancient Indian Botanicals',
+                alternateName: ['Ancient Indian Botanical', 'AncientIndianBotanicals'],
+              }
+            : {
+                '@id': `${canonical}#page`,
+                name: pageMeta.title,
+                isPartOf: { '@id': `${SITE_URL}/#website` },
+              }),
           description: pageMeta.description,
           url: canonical,
           publisher: { '@type': 'Organization', name: 'Ancient Indian Botanicals', alternateName: ['Ancient Indian Botanical', 'AncientIndianBotanicals', 'AncientIndianBotanical'], url: `${SITE_URL}/`, logo: `${SITE_URL}/icon-512.png` },
