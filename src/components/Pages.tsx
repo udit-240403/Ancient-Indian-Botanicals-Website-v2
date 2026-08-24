@@ -89,7 +89,7 @@ export const FoodIngredientsPage: React.FC<SharedPageProps> = (props) => (
     description="Explore oilseeds, nuts, makhana, coconut products, jaggery, millets, dehydrated ingredients and clearly identified cold-pressed oil routes. Origin, grade, food-safety evidence, destination suitability and current availability remain offer-specific."
     heroImage="/assets/images/food-ingredients-export-hero.webp"
     heroImagePosition="center"
-    heroMediaLabel="Illustrative ingredient portfolio imagery"
+    heroMediaLabel="Representative ingredient portfolio"
     contextualIntro={<FoodIngredientsIntro />}
     searchQuery={props.searchQuery}
     setSearchQuery={props.setSearchQuery}

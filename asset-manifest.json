@@ -24,15 +24,22 @@
     },
     {
       "path": "public/assets/images/cold-pressed-oils-collection.webp",
-      "role": "cold-pressed oils collection and product-route imagery",
+      "role": "cold-pressed oils collection hero imagery",
       "alt": "Unlabelled cold-pressed oil bottles with coconut, sesame, mustard, peanut, almond and flax ingredients",
       "focalPoint": "50% 50%",
       "generated": true
     },
     {
       "path": "public/assets/images/value-added-food-ingredients.webp",
-      "role": "value-added food ingredient product-route imagery",
+      "role": "value-added food ingredient collection imagery",
       "alt": "Jaggery, dehydrated ingredients, powders, millets and unlabelled high-barrier pouches",
+      "focalPoint": "50% 50%",
+      "generated": true
+    },
+    {
+      "path": "public/assets/images/products-food/",
+      "role": "forty exact-name food-product route images covering seeds, nuts, millets, oils and dehydrated ingredients",
+      "alt": "Representative product-form photographs showing each named food ingredient and its recognizable commercial forms",
       "focalPoint": "50% 50%",
       "generated": true
     },

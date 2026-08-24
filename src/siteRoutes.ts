@@ -37,7 +37,7 @@ export const PAGE_META: Record<string, { title: string; description: string }> =
   },
   catalogue: {
     title: 'Complete Botanical Product Catalogue | Ancient Indian Botanicals',
-    description: 'Explore 122 Indian botanical, essential-oil, oilseed, nut, food-ingredient, cold-pressed-oil, floral-water and clay sourcing routes for commercial enquiries.',
+    description: 'Explore 132 Indian botanical, essential-oil, oilseed, nut, dehydrated-food, cold-pressed-oil, floral-water and clay sourcing routes for commercial enquiries.',
   },
   packaging: {
     title: 'Botanical Export Packaging Options | Ancient Indian Botanicals',
