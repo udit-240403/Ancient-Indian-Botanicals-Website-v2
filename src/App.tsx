@@ -100,14 +100,19 @@ export function App() {
     const schema = routeProduct
       ? {
           '@context': 'https://schema.org',
-          '@type': 'Product',
-          name: routeProduct.name,
-          alternateName: routeProduct.botanicalName,
+          '@type': 'WebPage',
+          name: pageMeta.title,
           url: canonical,
-          image,
-          description: routeProduct.fieldDescription,
-          category: getCatalogueGroup(routeProduct),
-          brand: { '@type': 'Organization', name: 'Ancient Indian Botanicals', alternateName: ['Ancient Indian Botanical', 'AncientIndianBotanicals', 'AncientIndianBotanical'], url: `${SITE_URL}/`, logo: `${SITE_URL}/icon-512.png` },
+          description: pageMeta.description,
+          primaryImageOfPage: { '@type': 'ImageObject', contentUrl: image },
+          about: {
+            '@type': 'Thing',
+            name: routeProduct.name,
+            alternateName: routeProduct.botanicalName,
+            description: routeProduct.fieldDescription,
+          },
+          keywords: [routeProduct.name, routeProduct.botanicalName, getCatalogueGroup(routeProduct)],
+          publisher: { '@type': 'Organization', name: 'Ancient Indian Botanicals', alternateName: ['Ancient Indian Botanical', 'AncientIndianBotanicals', 'AncientIndianBotanical'], url: `${SITE_URL}/`, logo: `${SITE_URL}/icon-512.png` },
         }
       : {
           '@context': 'https://schema.org',

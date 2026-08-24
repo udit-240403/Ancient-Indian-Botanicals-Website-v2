@@ -124,10 +124,23 @@ for (const product of products) {
         { '@type': 'ListItem', position: 2, name: 'Catalogue', item: `${SITE_URL}/catalogue` },
         { '@type': 'ListItem', position: 3, name: product.name, item: `${SITE_URL}${routePath}` },
       ] },
-      { '@type': 'Product', '@id': `${SITE_URL}${routePath}#product`, url: `${SITE_URL}${routePath}`, name: product.name, alternateName: product.botanicalName, image: [absolute(product.image)], description: product.fieldDescription, category: groupLabels[getGroup(product)], brand: { '@id': `${SITE_URL}/#organization` }, additionalProperty: [
-        { '@type': 'PropertyValue', name: 'Commercial forms', value: product.commercialForms.join('; ') },
-        { '@type': 'PropertyValue', name: 'Typical applications', value: product.typicalApplications.join('; ') },
-      ] },
+      {
+        '@type': 'WebPage',
+        '@id': `${SITE_URL}${routePath}#page`,
+        url: `${SITE_URL}${routePath}`,
+        name: title,
+        description,
+        primaryImageOfPage: { '@type': 'ImageObject', contentUrl: absolute(product.image) },
+        about: {
+          '@type': 'Thing',
+          '@id': `${SITE_URL}${routePath}#botanical`,
+          name: product.name,
+          alternateName: product.botanicalName,
+          description: product.fieldDescription,
+        },
+        keywords: [product.name, product.botanicalName, groupLabels[getGroup(product)]],
+        publisher: { '@id': `${SITE_URL}/#organization` },
+      },
     ],
   };
   await writeRoute(routePath, renderHtml({ routePath, title, description, image: product.image, type: 'product', fallback: productFallback(product), schema: productSchema }));
