@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Droplets, Leaf, Flower2, Package } from 'lucide-react';
+import { ArrowRight, Droplets, Leaf, Flower2, Package, Wheat } from 'lucide-react';
 
 interface ProductFamiliesProps {
   onSelectCategory: (category: string) => void;
@@ -22,6 +22,14 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
       description: 'Whole, cut and powdered herbs, roots, barks, seeds, resins and standardized extracts.',
       cta: 'Browse botanicals',
       icon: Leaf,
+      tag: '30 product routes'
+    },
+    {
+      id: 'food-ingredients',
+      title: 'Seeds, nuts & food ingredients',
+      description: 'Oilseeds, makhana, coconut, jaggery, millets, dehydrated ingredients and cold-pressed oils.',
+      cta: 'Explore food ingredients',
+      icon: Wheat,
       tag: '30 product routes'
     },
     {
@@ -70,7 +78,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
               onClick={onViewAll}
               className="mt-5 inline-flex items-center gap-2 bg-[#173f34] px-6 py-3 text-xs font-bold uppercase tracking-eyebrow text-[#fbf8f1] shadow-lg transition-colors hover:bg-[#102a23]"
             >
-              <span>Explore all 92 products</span>
+              <span>Explore all 122 products</span>
               <ArrowRight className="h-4 w-4" />
             </button>
           </div>
@@ -101,7 +109,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
         </div>
 
         {/* 4 Cards Grid with Deep Dark Green Contrast */}
-        <div className="grid grid-cols-1 gap-px border border-[#b56e3a]/25 bg-[#b56e3a]/25 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-px border border-[#b56e3a]/25 bg-[#b56e3a]/25 sm:grid-cols-2 lg:grid-cols-5">
           {families.map((family) => {
             const IconComp = family.icon;
             return (

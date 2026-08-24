@@ -1,12 +1,15 @@
 import rawCatalogue from './scraped_products.json';
 import roseAbsolute from './rose_absolute.json';
+import foodIngredients from './food_ingredients.json';
 
 export type CatalogueGroup =
   | 'essential-oils'
   | 'aroma-oils'
   | 'botanicals'
   | 'carrier-oils'
-  | 'waters-clays';
+  | 'waters-clays'
+  | 'seeds-food'
+  | 'cold-pressed-oils';
 
 export type CatalogueProduct = {
   id: string;
@@ -26,12 +29,15 @@ export type CatalogueProduct = {
 export const CATALOGUE_PRODUCTS: CatalogueProduct[] = [
   ...(rawCatalogue as CatalogueProduct[]),
   roseAbsolute as CatalogueProduct,
+  ...(foodIngredients as CatalogueProduct[]),
 ];
 
 const CARRIER_OILS = new Set(['castor-oil', 'kalonji-oil', 'neem-oil', 'olive-oil']);
 const WATER_AND_CLAY_PRODUCTS = new Set(['rose-water', 'kewra-water', 'multani-mitti']);
 
 export const getCatalogueGroup = (product: CatalogueProduct): CatalogueGroup => {
+  if (product.category === 'seeds-food') return 'seeds-food';
+  if (product.category === 'cold-pressed-oils') return 'cold-pressed-oils';
   if (WATER_AND_CLAY_PRODUCTS.has(product.id)) return 'waters-clays';
   if (CARRIER_OILS.has(product.id)) return 'carrier-oils';
 
@@ -56,6 +62,8 @@ export const CATALOGUE_GROUP_LABELS: Record<CatalogueGroup, string> = {
   botanicals: 'Botanical Ingredients',
   'carrier-oils': 'Carrier & Herbal Oils',
   'waters-clays': 'Floral Waters & Clays',
+  'seeds-food': 'Seeds, Nuts & Food Ingredients',
+  'cold-pressed-oils': 'Cold-Pressed & Culinary Oils',
 };
 
 export const FEATURED_TO_CATALOGUE_ID: Record<string, string> = {

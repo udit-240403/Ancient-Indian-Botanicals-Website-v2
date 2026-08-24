@@ -51,7 +51,7 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
 
             <p className="text-xs text-[#f2ead9]/80 font-light leading-relaxed max-w-sm">
-              Connecting buyer specifications with suitable Indian botanical and aromatic supply routes. Lot-level documentation coordination, transparent communication and export support.
+              Connecting buyer specifications with suitable Indian botanical, aromatic and food-ingredient supply routes. Lot-level documentation coordination, transparent communication and export support.
             </p>
 
             <div className="flex items-center gap-2 text-xs text-[#b88a2c] font-serif pt-1">
@@ -79,6 +79,11 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <a href={PAGE_ROUTES.botanicals} onClick={(event) => handleNav(event, 'botanicals')} className="hover:text-[#b88a2c] transition-colors">
                   Indian Botanicals, Herbs & Roots
+                </a>
+              </li>
+              <li>
+                <a href={PAGE_ROUTES['food-ingredients']} onClick={(event) => handleNav(event, 'food-ingredients')} className="hover:text-[#b88a2c] transition-colors">
+                  Seeds, Nuts & Food Ingredients
                 </a>
               </li>
               <li>

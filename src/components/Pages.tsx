@@ -45,6 +45,58 @@ export const BotanicalsPage: React.FC<SharedPageProps> = (props) => (
   />
 );
 
+const FoodIngredientsIntro = () => (
+  <section className="border-b border-[#b56e3a]/25 bg-[#062b23] px-4 py-12 text-[#fbf7ed] md:px-8 md:py-16">
+    <div className="mx-auto max-w-[1440px]">
+      <div className="grid gap-5 lg:grid-cols-3">
+        {[
+          {
+            icon: CheckCircle2,
+            title: 'Grade before price',
+            copy: 'Variety, crop, size, purity, moisture, cut, processing status and intended application are defined before supplier matching.',
+          },
+          {
+            icon: FileCheck2,
+            title: 'Food-safety evidence',
+            copy: 'Microbiology, residues, allergens, mycotoxins and other destination controls are scoped to the product and approved buyer brief.',
+          },
+          {
+            icon: Globe2,
+            title: 'Destination-led supply',
+            copy: 'Export policy, admissibility, labels, certificates and pack requirements are reconfirmed before every commercial offer.',
+          },
+        ].map(({ icon: Icon, title, copy }) => (
+          <article key={title} className="border border-[#b88a2c]/30 bg-[#041e18] p-6 md:p-7">
+            <Icon className="h-5 w-5 text-[#d4a43d]" />
+            <h2 className="mt-5 font-serif text-2xl font-semibold">{title}</h2>
+            <p className="mt-2 text-xs leading-relaxed text-[#f2ead9]/70">{copy}</p>
+          </article>
+        ))}
+      </div>
+      <p className="mt-6 text-[10px] leading-relaxed text-[#f2ead9]/52">
+        Catalogue inclusion represents an enquiry-led sourcing route, not guaranteed stock, certification or destination approval. Final suitability is confirmed in writing for the offered lot.
+      </p>
+    </div>
+  </section>
+);
+
+export const FoodIngredientsPage: React.FC<SharedPageProps> = (props) => (
+  <CompleteCatalogue
+    allowedGroups={['seeds-food', 'cold-pressed-oils']}
+    initialVisibleCount={100}
+    eyebrow="Seeds, Nuts & Value-Added Food Ingredients"
+    title="Indian food ingredients, selected around the buyer's specification."
+    description="Explore oilseeds, nuts, makhana, coconut products, jaggery, millets, dehydrated ingredients and clearly identified cold-pressed oil routes. Origin, grade, food-safety evidence, destination suitability and current availability remain offer-specific."
+    heroImage="/assets/images/food-ingredients-export-hero.webp"
+    heroImagePosition="center"
+    heroMediaLabel="Illustrative ingredient portfolio imagery"
+    contextualIntro={<FoodIngredientsIntro />}
+    searchQuery={props.searchQuery}
+    setSearchQuery={props.setSearchQuery}
+    openQuoteModal={props.openQuoteModal}
+  />
+);
+
 export const PackagingPage: React.FC<{ openQuoteModal: (productName?: string) => void }> = ({ openQuoteModal }) => (
   <div className="w-full bg-[#f3eddf] text-[#062b23]">
     <section className="image-shell relative min-h-[570px] overflow-hidden border-b border-[#b88a2c]/40">
