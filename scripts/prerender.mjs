@@ -32,9 +32,9 @@ const groupLabels = {
 };
 
 const pages = [
-  { path: '/', title: 'Indian Botanical Ingredients & Essential Oils | Ancient Indian Botanicals', description: 'Specification-led B2B sourcing of Indian botanical ingredients, essential oils, aroma oils, carrier oils, hydrosols and clays.', eyebrow: 'Indian botanical sourcing · Specification-led B2B supply', heading: 'Ancient Indian Botanicals', copy: 'We connect buyer specifications with suitable Indian botanical and aromatic supply routes. Our complete catalogue covers 92 products, with availability, origin, specification, packaging and supporting documents confirmed for each offered lot.' },
+  { path: '/', title: 'Indian Botanicals & Essential Oils | Ancient Indian Botanicals', description: 'Ancient Indian Botanicals connects B2B buyers with Indian botanicals, essential oils, carrier oils, floral waters and clays through specification-led sourcing and lot-specific review.', eyebrow: 'Indian botanical sourcing · Specification-led B2B supply', heading: 'Ancient Indian Botanicals', copy: 'Ancient Indian Botanicals connects buyer specifications with suitable Indian botanical and aromatic supply routes. Our complete catalogue covers 92 products, with availability, origin, specification, packaging and supporting documents confirmed for each offered lot.' },
   { path: '/essential-oils', title: 'Indian Essential, Aroma & Carrier Oils | Ancient Indian Botanicals', description: 'Explore natural essential oils, clearly identified aroma grades and carrier oils sourced through Indian supply corridors for B2B applications.', eyebrow: 'Complete oils portfolio', heading: 'Natural essential, aroma and carrier oils', copy: 'Browse natural essential oils, separately identified aroma and diffuser grades, and carrier oils for fragrance, personal-care, home-care and formulation applications.', groups: ['essential-oils', 'aroma-oils', 'carrier-oils'] },
-  { path: '/botanicals', title: 'Indian Herbs, Extracts, Powders & Clays | Ancient Indian Botanicals', description: 'Browse Indian herbs, roots, seeds, botanical powders, extracts, floral waters and clays with lot-specific documentation review.', eyebrow: 'Complete botanical portfolio', heading: 'Indian botanical ingredients, waters and clays', copy: 'Explore whole, cut and powdered herbs, roots, seeds, selected extracts, floral waters and clays with lot-specific commercial and documentation review.', groups: ['botanicals', 'waters-clays'] },
+  { path: '/botanicals', title: 'Indian Botanicals, Herbs & Extracts | Ancient Indian Botanicals', description: 'Explore Indian botanicals for B2B sourcing: herbs, roots, seeds, powders, extracts, floral waters and clays, with commercial forms and lot-specific review.', eyebrow: 'Complete botanical portfolio', heading: 'Indian botanicals for formulation, sourcing and export', copy: 'Explore Indian botanicals across whole, cut and powdered herbs, roots, seeds, selected extracts, floral waters and clays, with industry applications, commercial forms and lot-specific review.', groups: ['botanicals', 'waters-clays'] },
   { path: '/catalogue', title: 'Complete Botanical Product Catalogue | Ancient Indian Botanicals', description: 'Explore 92 Indian botanical, essential-oil, aroma-oil, carrier-oil, floral-water and clay sourcing routes for commercial enquiries.', eyebrow: 'Complete current catalogue', heading: '92 botanical and aromatic sourcing routes', copy: 'Search the complete product portfolio by botanical identity, form, application and commercial route.', groups: ['essential-oils', 'aroma-oils', 'botanicals', 'carrier-oils', 'waters-clays'] },
   { path: '/packaging', title: 'Botanical Export Packaging Options | Ancient Indian Botanicals', description: 'Compare sample vials, amber glass, aluminium, HDPE, drums, high-barrier pouches, lined bags and private-label packaging for botanical exports.', eyebrow: 'Packaging architecture', heading: 'From evaluation sample to commercial bulk', copy: 'Compare practical packaging routes, typical buyer benefits and the compatibility checks required before supply. Final material, lining, closure, fill, label and transport suitability are confirmed per product and order.' },
   { path: '/quality', title: 'Lot Documentation & Quality Process | Ancient Indian Botanicals', description: 'Understand the lot-specific COA, identity, analytical, safety and packing-document review process for botanical supply.', eyebrow: 'Quality control and compliance', heading: 'Documentation built around the product, lot and destination', copy: 'Available COA, identity, marker, chromatography, contaminant, safety and packing records are reviewed against the approved requirement where applicable.' },
@@ -104,9 +104,28 @@ const writeRoute = async (routePath, html) => {
 };
 
 for (const page of pages) {
+  const pageEntity = page.path === '/'
+    ? {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: 'Ancient Indian Botanicals',
+        alternateName: ['Ancient Indian Botanical', 'AncientIndianBotanicals'],
+        description: page.description,
+        publisher: { '@id': `${SITE_URL}/#organization` },
+      }
+    : {
+        '@type': 'WebPage',
+        '@id': `${SITE_URL}${page.path}#page`,
+        url: `${SITE_URL}${page.path}`,
+        name: page.title,
+        description: page.description,
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        publisher: { '@id': `${SITE_URL}/#organization` },
+      };
   const pageSchema = {
     '@context': 'https://schema.org',
-    '@graph': [organization, { '@type': page.path === '/' ? 'WebSite' : 'WebPage', '@id': `${SITE_URL}${page.path}#page`, url: `${SITE_URL}${page.path}`, name: page.title, description: page.description, publisher: { '@id': `${SITE_URL}/#organization` } }],
+    '@graph': [organization, pageEntity],
   };
   await writeRoute(page.path, renderHtml({ routePath: page.path, title: page.title, description: page.description, fallback: pageFallback(page), schema: pageSchema }));
 }

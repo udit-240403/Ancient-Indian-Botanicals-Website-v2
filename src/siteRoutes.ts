@@ -19,16 +19,16 @@ export const PAGE_ROUTES: Record<string, string> = {
 
 export const PAGE_META: Record<string, { title: string; description: string }> = {
   home: {
-    title: 'Indian Botanical Ingredients & Essential Oils | Ancient Indian Botanicals',
-    description: 'Specification-led B2B sourcing of Indian botanical ingredients, essential oils, aroma oils, carrier oils, hydrosols and clays.',
+    title: 'Indian Botanicals & Essential Oils | Ancient Indian Botanicals',
+    description: 'Ancient Indian Botanicals connects B2B buyers with Indian botanicals, essential oils, carrier oils, floral waters and clays through specification-led sourcing and lot-specific review.',
   },
   'essential-oils': {
     title: 'Indian Essential, Aroma & Carrier Oils | Ancient Indian Botanicals',
     description: 'Explore natural essential oils, clearly identified aroma grades and carrier oils sourced through Indian supply corridors for B2B applications.',
   },
   botanicals: {
-    title: 'Indian Herbs, Extracts, Powders & Clays | Ancient Indian Botanicals',
-    description: 'Browse Indian herbs, roots, seeds, botanical powders, extracts, floral waters and clays with lot-specific documentation review.',
+    title: 'Indian Botanicals, Herbs & Extracts | Ancient Indian Botanicals',
+    description: 'Explore Indian botanicals for B2B sourcing: herbs, roots, seeds, powders, extracts, floral waters and clays, with commercial forms and lot-specific review.',
   },
   catalogue: {
     title: 'Complete Botanical Product Catalogue | Ancient Indian Botanicals',

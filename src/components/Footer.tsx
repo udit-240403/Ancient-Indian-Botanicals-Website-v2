@@ -78,7 +78,7 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <a href={PAGE_ROUTES.botanicals} onClick={(event) => handleNav(event, 'botanicals')} className="hover:text-[#b88a2c] transition-colors">
-                  Botanical Ingredients & Roots
+                  Indian Botanicals, Herbs & Roots
                 </a>
               </li>
               <li>

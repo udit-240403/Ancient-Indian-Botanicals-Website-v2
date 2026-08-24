@@ -42,8 +42,8 @@ export const Hero: React.FC<HeroProps> = ({
             <h1 className="font-serif text-3xl sm:text-4xl lg:text-[2.85rem] xl:text-[3.15rem] font-bold leading-[1.05] text-[#fbf7ed] tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
               SOURCE FROM<br />
               THE <span className="text-[#b88a2c]">HEART</span> OF<br />
-              INDIAN BOTANICAL<br />
-              PROVENANCE.
+              INDIAN<br />
+              BOTANICALS.
             </h1>
 
             {/* Bold Sanskrit Motto with Tiro Devanagari Hindi Font */}
@@ -54,7 +54,7 @@ export const Hero: React.FC<HeroProps> = ({
 
             {/* Bold Body paragraph as requested */}
             <p className="text-[#fbf7ed] text-xs sm:text-sm leading-relaxed font-semibold max-w-md drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-              We align <span className="font-bold text-[#fbf7ed]">botanical identity</span>, <span className="font-bold text-[#b88a2c]">required analytical profile</span>, <span className="font-bold text-[#fbf7ed]">application, volume and destination</span> before matching suitable lots and packing routes.
+              Ancient Indian Botanicals aligns <span className="font-bold text-[#fbf7ed]">botanical identity</span>, <span className="font-bold text-[#b88a2c]">required analytical profile</span>, <span className="font-bold text-[#fbf7ed]">application, volume and destination</span> before matching suitable lots and packing routes.
             </p>
 
             {/* CTAs matching design reference */}
@@ -71,7 +71,7 @@ export const Hero: React.FC<HeroProps> = ({
                 onClick={onBrowseBotanicals}
                 className="bg-[#041e18]/90 hover:bg-[#083a30] text-[#fbf7ed] border border-[#b88a2c] hover:border-[#b88a2c] font-bold text-xs uppercase tracking-[0.14em] px-5 py-2.5 flex items-center gap-2 transition-all cursor-pointer backdrop-blur-sm"
               >
-                <span>BOTANICAL RANGE</span>
+                <span>EXPLORE INDIAN BOTANICALS</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#b88a2c]" />
               </button>
             </div>
