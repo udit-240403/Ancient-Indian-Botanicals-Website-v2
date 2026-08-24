@@ -16,6 +16,27 @@
       "generated": true
     },
     {
+      "path": "public/assets/images/food-ingredients-export-hero.webp",
+      "role": "seeds, nuts and food ingredients collection hero",
+      "alt": "Editorial arrangement of seeds, nuts, coconut, makhana, jaggery and unlabelled oil bottles",
+      "focalPoint": "70% 52%",
+      "generated": true
+    },
+    {
+      "path": "public/assets/images/cold-pressed-oils-collection.webp",
+      "role": "cold-pressed oils collection and product-route imagery",
+      "alt": "Unlabelled cold-pressed oil bottles with coconut, sesame, mustard, peanut, almond and flax ingredients",
+      "focalPoint": "50% 50%",
+      "generated": true
+    },
+    {
+      "path": "public/assets/images/value-added-food-ingredients.webp",
+      "role": "value-added food ingredient product-route imagery",
+      "alt": "Jaggery, dehydrated ingredients, powders, millets and unlabelled high-barrier pouches",
+      "focalPoint": "50% 50%",
+      "generated": true
+    },
+    {
       "path": "assets/images/design-reference-homepage.png",
       "role": "visual implementation reference only",
       "alt": "Selected premium Ancient Indian Botanicals homepage concept",
@@ -43,4 +64,3 @@
     "note": "Content was rewritten for clarity and claim safety; the package does not redistribute the source site's photographic files."
   }
 }
-

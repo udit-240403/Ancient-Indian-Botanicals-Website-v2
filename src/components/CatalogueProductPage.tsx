@@ -27,7 +27,11 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
   openQuoteModal,
 }) => {
   const group = getCatalogueGroup(product);
-  const collectionPath = group === 'botanicals' || group === 'waters-clays' ? '/botanicals' : '/essential-oils';
+  const collectionPath = group === 'botanicals' || group === 'waters-clays'
+    ? '/botanicals'
+    : group === 'seeds-food' || group === 'cold-pressed-oils'
+      ? '/food-ingredients'
+      : '/essential-oils';
 
   return (
     <div className="w-full bg-[#f4efe5] text-[#1f2925]">

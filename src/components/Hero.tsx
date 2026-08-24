@@ -78,8 +78,8 @@ export const Hero: React.FC<HeroProps> = ({
 
             <div className="grid max-w-lg grid-cols-3 border-y border-[#b88a2c]/30 bg-[#041e18]/55 backdrop-blur-sm">
               {[
-                ['92', 'Product routes'],
-                ['5', 'Ingredient families'],
+                ['122', 'Product routes'],
+                ['7', 'Ingredient families'],
                 ['Lot', 'Specific review'],
               ].map(([value, label]) => (
                 <div key={label} className="border-r border-[#b88a2c]/25 px-2 py-2.5 last:border-r-0 sm:px-3">

@@ -8,13 +8,16 @@ const DEFAULT_IMAGE = `${SITE_URL}/assets/images/hero-botanical-still-life.webp`
 
 const scraped = JSON.parse(await readFile(path.join(ROOT, 'src/data/scraped_products.json'), 'utf8'));
 const roseAbsolute = JSON.parse(await readFile(path.join(ROOT, 'src/data/rose_absolute.json'), 'utf8'));
-const products = [...scraped, roseAbsolute].sort((a, b) => a.name.localeCompare(b.name));
+const foodIngredients = JSON.parse(await readFile(path.join(ROOT, 'src/data/food_ingredients.json'), 'utf8'));
+const products = [...scraped, roseAbsolute, ...foodIngredients].sort((a, b) => a.name.localeCompare(b.name));
 const baseHtml = await readFile(path.join(DIST, 'index.html'), 'utf8');
 
 const carrierOils = new Set(['castor-oil', 'kalonji-oil', 'neem-oil', 'olive-oil']);
 const waterAndClay = new Set(['rose-water', 'kewra-water', 'multani-mitti']);
 
 const getGroup = (product) => {
+  if (product.category === 'seeds-food') return 'seeds-food';
+  if (product.category === 'cold-pressed-oils') return 'cold-pressed-oils';
   if (waterAndClay.has(product.id)) return 'waters-clays';
   if (carrierOils.has(product.id)) return 'carrier-oils';
   const aroma = product.botanicalName.toLowerCase().startsWith('aroma profile') || product.commercialForms.some((form) => form.toLowerCase().includes('aroma and diffuser'));
@@ -29,13 +32,16 @@ const groupLabels = {
   botanicals: 'Botanical Ingredients',
   'carrier-oils': 'Carrier & Herbal Oils',
   'waters-clays': 'Floral Waters & Clays',
+  'seeds-food': 'Seeds, Nuts & Food Ingredients',
+  'cold-pressed-oils': 'Cold-Pressed & Culinary Oils',
 };
 
 const pages = [
-  { path: '/', title: 'Indian Botanicals & Essential Oils | Ancient Indian Botanicals', description: 'Ancient Indian Botanicals connects B2B buyers with Indian botanicals, essential oils, carrier oils, floral waters and clays through specification-led sourcing and lot-specific review.', eyebrow: 'Indian botanical sourcing · Specification-led B2B supply', heading: 'Ancient Indian Botanicals', copy: 'Ancient Indian Botanicals connects buyer specifications with suitable Indian botanical and aromatic supply routes. Our complete catalogue covers 92 products, with availability, origin, specification, packaging and supporting documents confirmed for each offered lot.' },
+  { path: '/', title: 'Indian Botanicals & Essential Oils | Ancient Indian Botanicals', description: 'Ancient Indian Botanicals connects B2B buyers with Indian botanicals, essential oils, seeds, nuts and value-added food ingredients through specification-led sourcing and lot-specific review.', eyebrow: 'Indian botanical sourcing · Specification-led B2B supply', heading: 'Ancient Indian Botanicals', copy: 'Ancient Indian Botanicals connects buyer specifications with suitable Indian botanical, aromatic and food-ingredient supply routes. Our complete catalogue covers 122 products, with availability, origin, specification, packaging and supporting documents confirmed for each offered lot.' },
   { path: '/essential-oils', title: 'Indian Essential, Aroma & Carrier Oils | Ancient Indian Botanicals', description: 'Explore natural essential oils, clearly identified aroma grades and carrier oils sourced through Indian supply corridors for B2B applications.', eyebrow: 'Complete oils portfolio', heading: 'Natural essential, aroma and carrier oils', copy: 'Browse natural essential oils, separately identified aroma and diffuser grades, and carrier oils for fragrance, personal-care, home-care and formulation applications.', groups: ['essential-oils', 'aroma-oils', 'carrier-oils'] },
   { path: '/botanicals', title: 'Indian Botanicals, Herbs & Extracts | Ancient Indian Botanicals', description: 'Explore Indian botanicals for B2B sourcing: herbs, roots, seeds, powders, extracts, floral waters and clays, with commercial forms and lot-specific review.', eyebrow: 'Complete botanical portfolio', heading: 'Indian botanicals for formulation, sourcing and export', copy: 'Explore Indian botanicals across whole, cut and powdered herbs, roots, seeds, selected extracts, floral waters and clays, with industry applications, commercial forms and lot-specific review.', groups: ['botanicals', 'waters-clays'] },
-  { path: '/catalogue', title: 'Complete Botanical Product Catalogue | Ancient Indian Botanicals', description: 'Explore 92 Indian botanical, essential-oil, aroma-oil, carrier-oil, floral-water and clay sourcing routes for commercial enquiries.', eyebrow: 'Complete current catalogue', heading: '92 botanical and aromatic sourcing routes', copy: 'Search the complete product portfolio by botanical identity, form, application and commercial route.', groups: ['essential-oils', 'aroma-oils', 'botanicals', 'carrier-oils', 'waters-clays'] },
+  { path: '/food-ingredients', title: 'Indian Seeds, Nuts & Food Ingredients | Ancient Indian Botanicals', description: 'Explore enquiry-led B2B routes for oilseeds, nuts, makhana, coconut products, jaggery, millets, dehydrated ingredients and cold-pressed oils from India.', eyebrow: 'Seeds, nuts and value-added food ingredients', heading: 'Indian food ingredients selected around the buyer specification', copy: 'Explore oilseeds, nuts, makhana, coconut products, jaggery, millets, dehydrated ingredients and clearly identified cold-pressed oil routes. Origin, grade, food-safety evidence, destination suitability and current availability remain offer-specific.', groups: ['seeds-food', 'cold-pressed-oils'] },
+  { path: '/catalogue', title: 'Complete Botanical Product Catalogue | Ancient Indian Botanicals', description: 'Explore 122 Indian botanical, essential-oil, oilseed, nut, food-ingredient, cold-pressed-oil, floral-water and clay sourcing routes for commercial enquiries.', eyebrow: 'Complete current catalogue', heading: '122 botanical, aromatic and food-ingredient sourcing routes', copy: 'Search the complete product portfolio by botanical identity, form, application and commercial route.', groups: ['essential-oils', 'aroma-oils', 'botanicals', 'carrier-oils', 'waters-clays', 'seeds-food', 'cold-pressed-oils'] },
   { path: '/packaging', title: 'Botanical Export Packaging Options | Ancient Indian Botanicals', description: 'Compare sample vials, amber glass, aluminium, HDPE, drums, high-barrier pouches, lined bags and private-label packaging for botanical exports.', eyebrow: 'Packaging architecture', heading: 'From evaluation sample to commercial bulk', copy: 'Compare practical packaging routes, typical buyer benefits and the compatibility checks required before supply. Final material, lining, closure, fill, label and transport suitability are confirmed per product and order.' },
   { path: '/quality', title: 'Lot Documentation & Quality Process | Ancient Indian Botanicals', description: 'Understand the lot-specific COA, identity, analytical, safety and packing-document review process for botanical supply.', eyebrow: 'Quality control and compliance', heading: 'Documentation built around the product, lot and destination', copy: 'Available COA, identity, marker, chromatography, contaminant, safety and packing records are reviewed against the approved requirement where applicable.' },
   { path: '/about', title: 'About Ancient Indian Botanicals | Indian Sourcing House', description: 'Ancient Indian Botanicals makes Indian botanical sourcing easier through specification translation, supplier coordination, private-label packaging and lot-specific quality review.', eyebrow: 'You build the brand · We organise the work behind it', heading: 'Your trust is our greatest profit', copy: 'Guided by Vasudhaiva Kutumbakam—the world is one family—we coordinate suitable Indian sourcing routes, samples, available lot documents, brand-ready packaging and export preparation around the approved buyer brief.' },
@@ -132,7 +138,8 @@ for (const page of pages) {
 
 for (const product of products) {
   const routePath = `/products/${product.id}`;
-  const title = `${product.name} | B2B Indian Botanical Supply`;
+  const isFoodIngredient = ['seeds-food', 'cold-pressed-oils'].includes(getGroup(product));
+  const title = `${product.name} | B2B Indian ${isFoodIngredient ? 'Ingredient' : 'Botanical'} Supply`;
   const description = `${product.whyBuyersKnowIt} Forms, applications, documentation and current availability are confirmed per enquiry.`.slice(0, 260);
   const productSchema = {
     '@context': 'https://schema.org',

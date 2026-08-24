@@ -27,6 +27,7 @@ import {
 import {
   EssentialOilsPage,
   BotanicalsPage,
+  FoodIngredientsPage,
   PackagingPage,
   QualityPage,
   AboutPage,
@@ -72,7 +73,7 @@ export function App() {
   useEffect(() => {
     const pageMeta = routeProduct
       ? {
-          title: `${routeProduct.name} | B2B Indian Botanical Supply`,
+          title: `${routeProduct.name} | B2B Indian ${['seeds-food', 'cold-pressed-oils'].includes(getCatalogueGroup(routeProduct)) ? 'Ingredient' : 'Botanical'} Supply`,
           description: `${routeProduct.whyBuyersKnowIt} Forms, applications, documentation and current availability are confirmed per enquiry.`,
           image: routeProduct.image,
           type: 'product',
@@ -155,7 +156,7 @@ export function App() {
   };
 
   const handleSelectCategory = (category: string) => {
-    if (category === 'essential-oils' || category === 'botanicals' || category === 'packaging') {
+    if (category === 'essential-oils' || category === 'botanicals' || category === 'food-ingredients' || category === 'packaging') {
       navigateToTab(category);
     } else if (category === 'catalogue') {
       navigateToTab('catalogue');
@@ -223,6 +224,15 @@ export function App() {
 
         {activeTab === 'botanicals' && (
           <BotanicalsPage
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            openQuoteModal={handleOpenQuoteModal}
+            openCoaModal={() => setCoaModalOpen(true)}
+          />
+        )}
+
+        {activeTab === 'food-ingredients' && (
+          <FoodIngredientsPage
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
             openQuoteModal={handleOpenQuoteModal}

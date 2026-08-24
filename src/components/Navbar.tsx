@@ -26,6 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'home', label: 'HOME' },
     { id: 'essential-oils', label: 'OILS' },
     { id: 'botanicals', label: 'INDIAN BOTANICALS' },
+    { id: 'food-ingredients', label: 'FOOD INGREDIENTS' },
     { id: 'catalogue', label: 'FULL CATALOGUE' },
     { id: 'packaging', label: 'PACKAGING' },
     { id: 'quality', label: 'QUALITY' },
@@ -98,7 +99,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <div className="hidden items-center gap-3 lg:flex">
             <form onSubmit={handleSearchSubmit} className="relative hidden xl:block">
-              <input type="text" placeholder="SEARCH THE 92-PRODUCT CATALOGUE" value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} className="w-64 border border-[#b88a2c]/35 bg-[#062b23] py-2.5 pl-3 pr-9 text-[10px] uppercase tracking-wider text-[#fbf7ed] placeholder:text-[#82966f] focus:border-[#b88a2c] focus:outline-none" />
+              <input type="text" placeholder="SEARCH THE 122-PRODUCT CATALOGUE" value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} className="w-64 border border-[#b88a2c]/35 bg-[#062b23] py-2.5 pl-3 pr-9 text-[10px] uppercase tracking-wider text-[#fbf7ed] placeholder:text-[#82966f] focus:border-[#b88a2c] focus:outline-none" />
               <button type="submit" aria-label="Search catalogue" className="absolute right-3 top-1/2 -translate-y-1/2 text-[#d4a43d]"><Search className="h-4 w-4" /></button>
             </form>
             <button onClick={() => openQuoteModal()} className="flex items-center gap-2 bg-[#b88a2c] px-5 py-3 text-[10px] font-extrabold uppercase tracking-eyebrow text-[#041e18] transition-colors hover:bg-[#d4a43d]">Start an enquiry <ArrowRight className="h-4 w-4" /></button>
@@ -111,7 +112,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         <div className="hidden border-t border-[#b88a2c]/20 bg-[#062b23] lg:block">
-          <div className="mx-auto flex max-w-[1440px] items-center justify-center gap-7 px-8 py-3">
+          <div className="mx-auto flex max-w-[1440px] items-center justify-center gap-5 px-8 py-3 xl:gap-6">
             {navLinks.map((link) => (
               <a key={link.id} href={PAGE_ROUTES[link.id]} onClick={(event) => handleNavClick(event, link.id)} className={`relative py-1 text-[10px] font-bold uppercase tracking-[0.15em] transition-colors ${activeTab === link.id ? 'text-[#d4a43d]' : 'text-[#fbf7ed]/82 hover:text-[#d4a43d]'}`}>
                 {link.label}

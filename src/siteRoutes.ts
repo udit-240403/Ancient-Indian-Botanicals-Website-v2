@@ -4,6 +4,7 @@ export const PAGE_ROUTES: Record<string, string> = {
   home: '/',
   'essential-oils': '/essential-oils',
   botanicals: '/botanicals',
+  'food-ingredients': '/food-ingredients',
   catalogue: '/catalogue',
   search: '/catalogue',
   packaging: '/packaging',
@@ -20,7 +21,7 @@ export const PAGE_ROUTES: Record<string, string> = {
 export const PAGE_META: Record<string, { title: string; description: string }> = {
   home: {
     title: 'Indian Botanicals & Essential Oils | Ancient Indian Botanicals',
-    description: 'Ancient Indian Botanicals connects B2B buyers with Indian botanicals, essential oils, carrier oils, floral waters and clays through specification-led sourcing and lot-specific review.',
+    description: 'Ancient Indian Botanicals connects B2B buyers with Indian botanicals, essential oils, seeds, nuts and value-added food ingredients through specification-led sourcing and lot-specific review.',
   },
   'essential-oils': {
     title: 'Indian Essential, Aroma & Carrier Oils | Ancient Indian Botanicals',
@@ -30,9 +31,13 @@ export const PAGE_META: Record<string, { title: string; description: string }> =
     title: 'Indian Botanicals, Herbs & Extracts | Ancient Indian Botanicals',
     description: 'Explore Indian botanicals for B2B sourcing: herbs, roots, seeds, powders, extracts, floral waters and clays, with commercial forms and lot-specific review.',
   },
+  'food-ingredients': {
+    title: 'Indian Seeds, Nuts & Food Ingredients | Ancient Indian Botanicals',
+    description: 'Explore enquiry-led B2B routes for oilseeds, nuts, makhana, coconut products, jaggery, millets, dehydrated ingredients and cold-pressed oils from India.',
+  },
   catalogue: {
     title: 'Complete Botanical Product Catalogue | Ancient Indian Botanicals',
-    description: 'Explore 92 Indian botanical, essential-oil, aroma-oil, carrier-oil, floral-water and clay sourcing routes for commercial enquiries.',
+    description: 'Explore 122 Indian botanical, essential-oil, oilseed, nut, food-ingredient, cold-pressed-oil, floral-water and clay sourcing routes for commercial enquiries.',
   },
   packaging: {
     title: 'Botanical Export Packaging Options | Ancient Indian Botanicals',

@@ -17,6 +17,8 @@ const FILTERS: Array<{ id: 'all' | CatalogueGroup; label: string }> = [
   { id: 'botanicals', label: 'Botanicals' },
   { id: 'carrier-oils', label: 'Carrier Oils' },
   { id: 'waters-clays', label: 'Waters & Clays' },
+  { id: 'seeds-food', label: 'Seeds, Nuts & Food' },
+  { id: 'cold-pressed-oils', label: 'Cold-Pressed Oils' },
 ];
 
 interface CompleteCatalogueProps {
