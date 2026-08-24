@@ -25,7 +25,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navLinks = [
     { id: 'home', label: 'HOME' },
     { id: 'essential-oils', label: 'OILS' },
-    { id: 'botanicals', label: 'BOTANICALS' },
+    { id: 'botanicals', label: 'INDIAN BOTANICALS' },
     { id: 'catalogue', label: 'FULL CATALOGUE' },
     { id: 'packaging', label: 'PACKAGING' },
     { id: 'quality', label: 'QUALITY' },
