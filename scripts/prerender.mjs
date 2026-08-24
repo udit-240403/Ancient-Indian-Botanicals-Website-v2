@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, 'dist');
-const SITE_URL = 'https://ancientindianbotanicals.com';
+const SITE_URL = 'https://www.ancientindianbotanicals.com';
 const DEFAULT_IMAGE = `${SITE_URL}/assets/images/hero-botanical-still-life.webp`;
 
 const scraped = JSON.parse(await readFile(path.join(ROOT, 'src/data/scraped_products.json'), 'utf8'));
@@ -54,6 +54,7 @@ const organization = {
   '@type': 'Organization',
   '@id': `${SITE_URL}/#organization`,
   name: 'Ancient Indian Botanicals',
+  alternateName: ['Ancient Indian Botanical', 'AncientIndianBotanicals', 'AncientIndianBotanical'],
   url: `${SITE_URL}/`,
   logo: `${SITE_URL}/icon-512.png`,
   email: 'office@ancientindianbotanicals.com',

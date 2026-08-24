@@ -4,10 +4,10 @@ This repository contains the complete website source. All design, catalogue, sea
 
 ## 1. Production domain and ownership
 
-The production website uses `https://ancientindianbotanicals.com/`. GitHub is the editable source of truth and Vercel deploys the production build from the repository.
+The production website uses `https://www.ancientindianbotanicals.com/`. GitHub is the editable source of truth and Vercel deploys the production build from the repository.
 
-- Keep the apex domain as the canonical website address.
-- Redirect `www.ancientindianbotanicals.com` to the apex domain if both remain connected.
+- Keep the `www` domain as the canonical website address.
+- Redirect `ancientindianbotanicals.com` to `www.ancientindianbotanicals.com` if both remain connected.
 - Preserve all Google Workspace email records in Hostinger: MX, SPF, DKIM and DMARC must not be removed when website DNS records change.
 - After every GitHub merge, confirm that the Vercel production deployment succeeds.
 - Do not publish temporary Vercel deployment addresses as canonical URLs.
@@ -16,7 +16,7 @@ The production website uses `https://ancientindianbotanicals.com/`. GitHub is th
 
 1. Open Google Search Console and add a **Domain property** for `ancientindianbotanicals.com`.
 2. Copy the Google verification TXT record into Hostinger DNS. Keep that record after verification.
-3. Submit `https://ancientindianbotanicals.com/sitemap.xml` in **Sitemaps**. The production build generates 105 real URLs: 13 main pages and 92 product pages.
+3. Submit `https://www.ancientindianbotanicals.com/sitemap.xml` in **Sitemaps**. The production build generates 105 real URLs: 13 main pages and 92 product pages.
 4. Use **URL Inspection** for the home page and select **Request indexing**.
 5. Repeat URL Inspection for `/catalogue`, `/essential-oils`, `/botanicals`, `/packaging`, `/quality`, `/about`, `/contact` and priority product URLs such as `/products/ashwagandha`.
 

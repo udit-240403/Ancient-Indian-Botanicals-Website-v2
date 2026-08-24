@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://ancientindianbotanicals.com';
+export const SITE_URL = 'https://www.ancientindianbotanicals.com';
 
 export const PAGE_ROUTES: Record<string, string> = {
   home: '/',
