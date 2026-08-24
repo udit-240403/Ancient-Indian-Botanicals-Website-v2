@@ -33,8 +33,8 @@ export const BotanicalsPage: React.FC<SharedPageProps> = (props) => (
     allowedGroups={['botanicals', 'waters-clays']}
     initialVisibleCount={100}
     eyebrow="Complete Botanical Portfolio"
-    title="Herbs, roots, seeds, extracts, powders, waters and clays."
-    description="Explore the complete botanical collection rather than a short featured selection. Product cards identify typical industry applications, commercial forms and review points; exact origin, grade, marker range and documentation are confirmed against the offered lot."
+    title="Indian botanicals for formulation, sourcing and export."
+    description="Explore Indian botanicals across herbs, roots, seeds, extracts, powders, floral waters and clays. Product cards identify typical industry applications, commercial forms and review points; exact origin, grade, marker range and documentation are confirmed against the offered lot."
     heroImage="/assets/images/cultivation-ashwagandha.webp"
     heroImagePosition="center 58%"
     heroMediaLabel="Editorial cultivation imagery"
