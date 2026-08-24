@@ -30,7 +30,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
       description: 'Oilseeds, makhana, coconut, jaggery, millets, dehydrated ingredients and cold-pressed oils.',
       cta: 'Explore food ingredients',
       icon: Wheat,
-      tag: '30 product routes'
+      tag: '40 product routes'
     },
     {
       id: 'catalogue',
@@ -78,7 +78,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
               onClick={onViewAll}
               className="mt-5 inline-flex items-center gap-2 bg-[#173f34] px-6 py-3 text-xs font-bold uppercase tracking-eyebrow text-[#fbf8f1] shadow-lg transition-colors hover:bg-[#102a23]"
             >
-              <span>Explore all 122 products</span>
+              <span>Explore all 132 products</span>
               <ArrowRight className="h-4 w-4" />
             </button>
           </div>

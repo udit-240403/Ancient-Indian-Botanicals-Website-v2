@@ -78,7 +78,7 @@ export const Hero: React.FC<HeroProps> = ({
 
             <div className="grid max-w-lg grid-cols-3 border-y border-[#b88a2c]/30 bg-[#041e18]/55 backdrop-blur-sm">
               {[
-                ['122', 'Product routes'],
+                ['132', 'Product routes'],
                 ['7', 'Ingredient families'],
                 ['Lot', 'Specific review'],
               ].map(([value, label]) => (

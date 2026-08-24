@@ -49,7 +49,7 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
         <div className="mx-auto grid max-w-[1440px] gap-9 lg:grid-cols-[minmax(0,.92fr)_minmax(0,1.08fr)] lg:items-start">
           <ProductVisual
               src={product.image}
-              alt={`${product.name} botanical ingredient presentation`}
+              alt={`${product.name} representative product-form presentation`}
               width={1200}
               height={900}
               loading="eager"
@@ -58,6 +58,9 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
             >
             <span className="absolute left-4 top-4 z-[4] border border-[#d4a43d]/55 bg-[#102a23]/94 px-3 py-1.5 text-[9px] font-bold uppercase tracking-eyebrow text-[#e1bd67] backdrop-blur-sm">
               {CATALOGUE_GROUP_LABELS[group]}
+            </span>
+            <span className="absolute bottom-3 right-3 z-[4] bg-[#102a23]/88 px-2.5 py-1 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#f2ead9]/82 backdrop-blur-sm">
+              Representative product form
             </span>
           </ProductVisual>
 

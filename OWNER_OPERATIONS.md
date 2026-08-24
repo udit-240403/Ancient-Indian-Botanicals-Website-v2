@@ -16,7 +16,7 @@ The production website uses `https://www.ancientindianbotanicals.com/`. GitHub i
 
 1. Open Google Search Console and add a **Domain property** for `ancientindianbotanicals.com`.
 2. Copy the Google verification TXT record into Hostinger DNS. Keep that record after verification.
-3. Submit `https://www.ancientindianbotanicals.com/sitemap.xml` in **Sitemaps**. The production build generates 105 real URLs: 13 main pages and 92 product pages.
+3. Submit `https://www.ancientindianbotanicals.com/sitemap.xml` in **Sitemaps**. The production build generates 146 real URLs: 14 main pages and 132 product pages.
 4. Use **URL Inspection** for the home page and select **Request indexing**.
 5. Repeat URL Inspection for `/catalogue`, `/essential-oils`, `/botanicals`, `/packaging`, `/quality`, `/about`, `/contact` and priority product URLs such as `/products/ashwagandha`.
 
