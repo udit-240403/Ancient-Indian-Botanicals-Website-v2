@@ -171,6 +171,7 @@ export const Footer: React.FC<FooterProps> = ({
             <a href={PAGE_ROUTES.shipping} onClick={(event) => handleNav(event, 'shipping')} className="hover:text-[#fbf7ed]">Export Shipping Policy</a>
             <a href={PAGE_ROUTES.privacy} onClick={(event) => handleNav(event, 'privacy')} className="hover:text-[#fbf7ed]">Privacy Policy</a>
             <a href={PAGE_ROUTES.refunds} onClick={(event) => handleNav(event, 'refunds')} className="hover:text-[#fbf7ed]">Claims & Quality Resolution</a>
+            <a href="/admin" rel="nofollow" className="hover:text-[#fbf7ed]">Team Sign-in</a>
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
@@ -36,6 +36,8 @@ import {
   LegalPage
 } from './components/Pages';
 
+const AdminPortal = lazy(() => import('./components/AdminPortal').then((module) => ({ default: module.AdminPortal })));
+
 const updateMetaTag = (selector: string, attribute: string, value: string) => {
   const element = document.querySelector(selector);
   if (element) element.setAttribute(attribute, value);
@@ -43,6 +45,7 @@ const updateMetaTag = (selector: string, attribute: string, value: string) => {
 
 export function App() {
   const [currentPath, setCurrentPath] = useState(() => normalizePath(window.location.pathname));
+  const isAdminPortal = currentPath === '/admin';
   const [searchQuery, setSearchQuery] = useState<string>('');
   const activeTab = getPageIdFromPath(currentPath);
   const productId = getProductIdFromPath(currentPath);
@@ -71,6 +74,14 @@ export function App() {
   }, []);
 
   useEffect(() => {
+    if (isAdminPortal) {
+      document.title = 'Private Enquiry Desk | Ancient Indian Botanicals';
+      updateMetaTag('meta[name="robots"]', 'content', 'noindex, nofollow, noarchive');
+      updateMetaTag('link[rel="canonical"]', 'href', `${SITE_URL}/admin`);
+      return;
+    }
+
+    updateMetaTag('meta[name="robots"]', 'content', 'index, follow, max-image-preview:large');
     const pageMeta = routeProduct
       ? {
           title: `${routeProduct.name} | B2B Indian ${['seeds-food', 'cold-pressed-oils'].includes(getCatalogueGroup(routeProduct)) ? 'Ingredient' : 'Botanical'} Supply`,
@@ -141,7 +152,7 @@ export function App() {
       document.head.appendChild(schemaElement);
     }
     schemaElement.textContent = JSON.stringify(schema);
-  }, [activeTab, currentPath, routeProduct]);
+  }, [activeTab, currentPath, isAdminPortal, routeProduct]);
 
   const navigateToTab = (tab: string) => {
     const nextPath = getPathForPage(tab);
@@ -164,6 +175,12 @@ export function App() {
       navigateToTab('home');
     }
   };
+
+  if (isAdminPortal) return (
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-[#062b23] text-sm text-[#e4c16e]">Opening the secure enquiry desk…</div>}>
+      <AdminPortal />
+    </Suspense>
+  );
 
   return (
     <div className="min-h-screen bg-[#062b23] text-[#fbf7ed] flex flex-col font-body selection:bg-[#b88a2c] selection:text-[#062b23]">

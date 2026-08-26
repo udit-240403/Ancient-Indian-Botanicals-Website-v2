@@ -384,10 +384,10 @@ export const ContactPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuot
 
         <div className="mt-8 grid border border-[#b88a2c]/35 bg-[#062b23] text-[#fbf7ed] lg:grid-cols-[.78fr_1.22fr]">
           <div className="border-b border-[#b88a2c]/25 p-7 lg:border-b-0 lg:border-r sm:p-9"><MapPin className="h-6 w-6 text-[#d4a43d]" /><span className="mt-6 block text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Trade location</span><h2 className="mt-2 font-serif text-3xl font-semibold">Mandsaur, Madhya Pradesh</h2><p className="mt-3 text-xs leading-relaxed text-[#f2ead9]/70">Positioned within a central Indian agricultural and botanical trading corridor. Registered particulars are shared through official commercial documents.</p></div>
-          <div className="p-7 sm:p-9"><span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">What to include</span><div className="mt-5 grid gap-3 sm:grid-cols-2">{['Botanical or ingredient name', 'Required physical form or grade', 'Trial and commercial quantity', 'Application and destination', 'Packaging preference', 'Analytical or document requirements'].map((item) => <div key={item} className="flex items-start gap-2 border-t border-[#b88a2c]/20 pt-3 text-xs text-[#f2ead9]/80"><CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#d4a43d]" />{item}</div>)}</div></div>
+          <div className="p-7 sm:p-9"><span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">A short brief is enough</span><div className="mt-5 grid gap-3 sm:grid-cols-2">{['Product or ingredient required', 'Approximate quantity, if known', 'Destination country or port', 'Your company and contact details'].map((item) => <div key={item} className="flex items-start gap-2 border-t border-[#b88a2c]/20 pt-3 text-xs text-[#f2ead9]/80"><CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#d4a43d]" />{item}</div>)}</div><p className="mt-5 text-xs leading-relaxed text-[#f2ead9]/65">Grade, application, packaging and documents can be confirmed with our team after the initial enquiry.</p></div>
         </div>
 
-        <div className="mt-8 flex items-start gap-3 border border-[#b88a2c]/30 bg-[#efe3c8]/70 p-5 text-xs leading-relaxed text-[#315148]"><BarChart3 className="mt-0.5 h-4 w-4 shrink-0 text-[#765411]" /><p>The website enquiry form submits only after you press its final button. If direct submission is temporarily unavailable, it provides a clearly labelled email fallback rather than claiming that your enquiry was received.</p></div>
+        <div className="mt-8 flex items-start gap-3 border border-[#b88a2c]/30 bg-[#efe3c8]/70 p-5 text-xs leading-relaxed text-[#315148]"><BarChart3 className="mt-0.5 h-4 w-4 shrink-0 text-[#765411]" /><p>After submission, the enquiry is stored in our private trade desk for authorised follow-up. If secure storage is temporarily unavailable, the website provides a clearly labelled prepared-email fallback rather than claiming that the enquiry was received.</p></div>
       </div>
     </section>
   </div>
@@ -406,7 +406,7 @@ export const LegalPage: React.FC<{ policyType: 'terms' | 'shipping' | 'privacy' 
         </p>
         {policyType === 'privacy' && (
           <p>
-            The site uses privacy-conscious, cookieless Vercel Web Analytics and performance telemetry to understand aggregate page visits, device type, broad country-level origin and site performance. It does not intentionally publish visitor-level analytics. Information entered in an enquiry form is used only to review and respond to that commercial request and is not sold.
+            The site uses privacy-conscious, cookieless Vercel Web Analytics and performance telemetry to understand aggregate page visits, device type, broad country-level origin and site performance. It does not intentionally publish visitor-level analytics. Information entered in an enquiry form is stored in a private commercial-enquiry system, accessible only to the owner and authorised team members, and used to review, respond to and maintain a record of that request. It is not sold. Access can be revoked by the owner, and records are retained only for legitimate commercial, compliance and relationship-management purposes.
           </p>
         )}
         <p>
