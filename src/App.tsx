@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
@@ -8,12 +8,8 @@ import { CultivationStories } from './components/CultivationStories';
 import { OriginsSection } from './components/OriginsSection';
 import { WorkflowSection } from './components/WorkflowSection';
 import { ProductCatalogue } from './components/ProductCatalogue';
-import { CompleteCatalogue } from './components/CompleteCatalogue';
-import { QuoteFormModal } from './components/QuoteFormModal';
-import { VerifyCoaModal } from './components/VerifyCoaModal';
 import { ContactDock } from './components/ContactDock';
 import { HomePackagingShowcase } from './components/HomePackagingShowcase';
-import { CatalogueProductPage } from './components/CatalogueProductPage';
 import { CATALOGUE_PRODUCTS, getCatalogueGroup } from './data/catalogue';
 import {
   PAGE_META,
@@ -24,17 +20,29 @@ import {
   getProductIdFromPath,
   normalizePath,
 } from './siteRoutes';
-import {
-  EssentialOilsPage,
-  BotanicalsPage,
-  FoodIngredientsPage,
-  PackagingPage,
-  QualityPage,
-  AboutPage,
-  PaymentsPage,
-  ContactPage,
-  LegalPage
-} from './components/Pages';
+
+const CompleteCatalogue = lazy(() => import('./components/CompleteCatalogue').then((module) => ({ default: module.CompleteCatalogue })));
+const CatalogueProductPage = lazy(() => import('./components/CatalogueProductPage').then((module) => ({ default: module.CatalogueProductPage })));
+const QuoteFormModal = lazy(() => import('./components/QuoteFormModal').then((module) => ({ default: module.QuoteFormModal })));
+const VerifyCoaModal = lazy(() => import('./components/VerifyCoaModal').then((module) => ({ default: module.VerifyCoaModal })));
+const EssentialOilsPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.EssentialOilsPage })));
+const BotanicalsPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.BotanicalsPage })));
+const FoodIngredientsPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.FoodIngredientsPage })));
+const PackagingPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.PackagingPage })));
+const QualityPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.QualityPage })));
+const AboutPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.AboutPage })));
+const PaymentsPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.PaymentsPage })));
+const ContactPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.ContactPage })));
+const LegalPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.LegalPage })));
+
+const PageLoading = () => (
+  <div className="flex min-h-[55vh] items-center justify-center bg-[#f4efe5] px-4 text-center text-[#1f2925]" role="status" aria-live="polite">
+    <div>
+      <span className="block text-[10px] font-bold uppercase tracking-eyebrow text-[#9b6334]">Ancient Indian Botanicals</span>
+      <p className="mt-3 font-serif text-2xl font-semibold">Preparing this sourcing route…</p>
+    </div>
+  </div>
+);
 
 const updateMetaTag = (selector: string, attribute: string, value: string) => {
   const element = document.querySelector(selector);
@@ -180,6 +188,7 @@ export function App() {
 
       {/* Main Page View Switcher */}
       <main className="flex-grow">
+        <Suspense fallback={<PageLoading />}>
         {activeTab === 'home' && (
           <>
             <div className="flex flex-col bg-[#041e18]">
@@ -297,6 +306,7 @@ export function App() {
         {(activeTab === 'terms' || activeTab === 'shipping' || activeTab === 'privacy' || activeTab === 'refunds') && (
           <LegalPage policyType={activeTab as any} />
         )}
+        </Suspense>
       </main>
 
       {/* Shared Footer */}
@@ -313,17 +323,21 @@ export function App() {
 
       {/* Modals */}
       {quoteModalOpen && (
-        <QuoteFormModal
-          initialProductName={quoteProductName}
-          onClose={() => setQuoteModalOpen(false)}
-        />
+        <Suspense fallback={null}>
+          <QuoteFormModal
+            initialProductName={quoteProductName}
+            onClose={() => setQuoteModalOpen(false)}
+          />
+        </Suspense>
       )}
 
       {coaModalOpen && (
-        <VerifyCoaModal
-          onClose={() => setCoaModalOpen(false)}
-          onOpenQuote={(prodName) => handleOpenQuoteModal(prodName)}
-        />
+        <Suspense fallback={null}>
+          <VerifyCoaModal
+            onClose={() => setCoaModalOpen(false)}
+            onOpenQuote={(prodName) => handleOpenQuoteModal(prodName)}
+          />
+        </Suspense>
       )}
 
     </div>
