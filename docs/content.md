@@ -145,7 +145,7 @@ Suggested groups: Roots and rhizomes; Leaves and aerial parts; Fruits and seeds;
 **Trade hub:** Mandsaur, Madhya Pradesh 458001, India  
 **Email:** `[CONFIRM OFFICIAL TRADE EMAIL]`  
 **Phone/WhatsApp:** `[CONFIRM BUSINESS NUMBER]`  
-**Business status/GST/CIN:** `[INSERT ONLY AFTER VERIFICATION]`
+**Business status/GST/CIN:** Incorporated and GST-registered in India. Publish the exact GSTIN or CIN only after checking it against the corresponding registration certificate.
 
 Footer note: Product information is supplied for commercial evaluation and does not constitute medical advice. Availability, specifications and documentation are confirmed lot by lot.
 
@@ -167,4 +167,3 @@ Footer note: Product information is supplied for commercial evaluation and does 
 | Boswellia / Salai Guggul | Boswellia serrata | Resins & extracts | `boswellia-salai-guggul` |
 
 The source site stated a 91-product catalogue, but only the above visible seed items were exposed on the audited homepage. Codex should build the catalogue data model to accept the full list later rather than inventing missing products.
-
