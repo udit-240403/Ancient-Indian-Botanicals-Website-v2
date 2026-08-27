@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlaskConical, FileCheck2, Sprout } from 'lucide-react';
+import { BadgeCheck, FlaskConical, FileCheck2, Sprout } from 'lucide-react';
 
 export const AssuranceStrip: React.FC = () => {
   const features = [
@@ -17,6 +17,11 @@ export const AssuranceStrip: React.FC = () => {
       icon: Sprout,
       title: 'SOURCING TRANSPARENCY',
       description: 'Origin and packing details confirmed for approved lots.'
+    },
+    {
+      icon: BadgeCheck,
+      title: 'GST REGISTERED',
+      description: 'Registered under India’s Goods and Services Tax framework.'
     }
   ];
 
@@ -32,15 +37,13 @@ export const AssuranceStrip: React.FC = () => {
       />
 
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-6 divide-y md:divide-y-0 md:divide-x divide-[#041e18]/15">
-          {features.map((item, index) => {
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4 xl:gap-6">
+          {features.map((item) => {
             const IconComponent = item.icon;
             return (
               <div
-                key={index}
-                className={`flex items-center gap-3.5 ${
-                  index !== 0 ? 'pt-3 md:pt-0 md:pl-8' : ''
-                }`}
+                key={item.title}
+                className="flex items-center gap-3.5 border border-[#041e18]/15 bg-[#f8f1dc]/55 px-4 py-3"
               >
                 <div className="w-11 h-11 rounded-full bg-[#dfcfad]/80 border border-[#b88a2c]/60 flex items-center justify-center shrink-0 shadow-sm backdrop-blur-sm">
                   <IconComponent className="w-5 h-5 text-[#041e18]" />
