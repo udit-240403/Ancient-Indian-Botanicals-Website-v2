@@ -121,7 +121,7 @@ export function App() {
             description: routeProduct.fieldDescription,
           },
           keywords: [routeProduct.name, routeProduct.botanicalName, getCatalogueGroup(routeProduct)],
-          publisher: { '@type': 'Organization', name: 'Ancient Indian Botanicals', alternateName: ['Ancient Indian Botanical', 'AncientIndianBotanicals', 'AncientIndianBotanical'], url: `${SITE_URL}/`, logo: `${SITE_URL}/icon-512.png` },
+          publisher: { '@type': 'Organization', name: 'Ancient Indian Botanicals', alternateName: ['Ancient Indian Botanical', 'AncientIndianBotanicals', 'AncientIndianBotanical'], description: 'Incorporated and GST-registered Indian B2B botanical sourcing company.', url: `${SITE_URL}/`, logo: `${SITE_URL}/icon-512.png` },
         }
       : {
           '@context': 'https://schema.org',
@@ -139,7 +139,7 @@ export function App() {
               }),
           description: pageMeta.description,
           url: canonical,
-          publisher: { '@type': 'Organization', name: 'Ancient Indian Botanicals', alternateName: ['Ancient Indian Botanical', 'AncientIndianBotanicals', 'AncientIndianBotanical'], url: `${SITE_URL}/`, logo: `${SITE_URL}/icon-512.png` },
+          publisher: { '@type': 'Organization', name: 'Ancient Indian Botanicals', alternateName: ['Ancient Indian Botanical', 'AncientIndianBotanicals', 'AncientIndianBotanical'], description: 'Incorporated and GST-registered Indian B2B botanical sourcing company.', url: `${SITE_URL}/`, logo: `${SITE_URL}/icon-512.png` },
         };
     let schemaElement = document.getElementById('route-structured-data');
     if (!schemaElement) {
