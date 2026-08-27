@@ -43,4 +43,4 @@ Project-specific source, copy and design work are covered by the repository's pr
 - The production build pre-renders 14 main routes and all 132 product routes into route-specific HTML with canonical, social and structured metadata.
 - Keep `https://www.ancientindianbotanicals.com/` as the canonical domain, redirect the apex domain to it, verify the domain in Google Search Console and submit `/sitemap.xml`.
 - Use real paths such as `/catalogue`, `/contact` and `/products/ashwagandha`; hash URLs are supported only for backward compatibility.
-- Confirm GST, IEC, banking and product-specific documentation before publishing any related claims or registration numbers.
+- GST registration status is verified. Publish the GSTIN only after checking it against the GST registration certificate; continue to verify IEC, banking and product-specific documentation before publishing related claims or numbers.
