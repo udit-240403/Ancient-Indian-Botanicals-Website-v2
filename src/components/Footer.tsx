@@ -153,6 +153,10 @@ export const Footer: React.FC<FooterProps> = ({
                 <Phone className="w-4 h-4 text-[#b88a2c] shrink-0" />
                 <span className="text-[11px] text-[#82966f]">Phone contact will be shared with confirmed trade enquiries.</span>
               </div>
+              <div className="flex items-center gap-2 border-t border-[#b88a2c]/20 pt-2 font-semibold uppercase tracking-[0.12em] text-[#dfcfad]">
+                <ShieldCheck className="w-4 h-4 text-[#d4a43d] shrink-0" />
+                <span>GST Registered · India</span>
+              </div>
             </div>
           </div>
 
@@ -160,7 +164,7 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Regulatory Disclaimer */}
         <div className="p-5 bg-[#062b23] border border-[#b88a2c]/20 text-[11px] text-[#a9b2ac] font-light leading-relaxed mb-8">
-          <strong className="text-[#dfcfad]">Commercial notice:</strong> Ancient Indian Botanicals is incorporated in India. Product information is supplied for commercial evaluation and does not constitute therapeutic claims or medical advice. Specifications, origin, availability and supporting documents are confirmed in writing for each approved lot and enquiry.
+          <strong className="text-[#dfcfad]">Commercial notice:</strong> Ancient Indian Botanicals is incorporated and GST-registered in India. Product information is supplied for commercial evaluation and does not constitute therapeutic claims or medical advice. Specifications, origin, availability and supporting documents are confirmed in writing for each approved lot and enquiry.
         </div>
 
         {/* Bottom Bar */}
