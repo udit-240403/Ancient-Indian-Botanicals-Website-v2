@@ -218,9 +218,9 @@ export const AboutPage: React.FC<{ openQuoteModal: (productName?: string) => voi
         <div className="max-w-4xl space-y-5">
           <span className="text-[11px] font-semibold uppercase tracking-eyebrow text-[#9b6334]">About Ancient Indian Botanicals</span>
           <h1 className="font-serif text-4xl font-semibold leading-[1.03] text-[#1f2925] md:text-6xl lg:text-7xl">You build the brand. We organise the work behind it.</h1>
-          <p className="max-w-3xl text-sm font-light leading-relaxed text-[#52635d] md:text-base">Ancient Indian Botanicals is an Indian B2B sourcing and coordination house for botanical and aromatic ingredients. We translate the buyer brief into an organised India-side route—material matching, samples, available lot documents, packaging coordination and export preparation—so your team can stay focused on market, product and brand.</p>
+          <p className="max-w-3xl text-sm font-light leading-relaxed text-[#52635d] md:text-base">Ancient Indian Botanicals is an incorporated and GST-registered Indian B2B sourcing and coordination house for botanical, aromatic and food ingredients. We translate the buyer brief into an organised India-side route—material matching, samples, available lot documents, packaging coordination and export preparation—so your team can stay focused on market, product and brand.</p>
           <div className="flex flex-wrap gap-2 pt-2 text-[9px] font-bold uppercase tracking-eyebrow text-[#765411]">
-            {['Incorporated in India', 'Specification-led', 'Buyer-brand focused'].map((item) => <span key={item} className="border border-[#b88a2c]/40 bg-[#fbf8f1] px-3 py-2">{item}</span>)}
+            {['Incorporated in India', 'GST Registered', 'Specification-led', 'Buyer-brand focused'].map((item) => <span key={item} className="border border-[#b88a2c]/40 bg-[#fbf8f1] px-3 py-2">{item}</span>)}
           </div>
         </div>
         <div className="mx-auto w-full max-w-[21rem] border border-[#b56e3a]/35 bg-[#fbf8f1] p-5 shadow-[0_24px_70px_rgba(16,42,35,.13)]">
@@ -348,7 +348,7 @@ export const PaymentsPage: React.FC = () => (
           </div>
         </div>
 
-        <p className="text-center text-[11px] text-[#526d64]">Ancient Indian Botanicals is incorporated in India. Final payment terms become binding only through an accepted written commercial document.</p>
+        <p className="text-center text-[11px] text-[#526d64]">Ancient Indian Botanicals is incorporated and GST-registered in India. Final payment terms become binding only through an accepted written commercial document.</p>
       </div>
     </section>
   </div>
@@ -383,7 +383,7 @@ export const ContactPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuot
         </div>
 
         <div className="mt-8 grid border border-[#b88a2c]/35 bg-[#062b23] text-[#fbf7ed] lg:grid-cols-[.78fr_1.22fr]">
-          <div className="border-b border-[#b88a2c]/25 p-7 lg:border-b-0 lg:border-r sm:p-9"><MapPin className="h-6 w-6 text-[#d4a43d]" /><span className="mt-6 block text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Trade location</span><h2 className="mt-2 font-serif text-3xl font-semibold">Mandsaur, Madhya Pradesh</h2><p className="mt-3 text-xs leading-relaxed text-[#f2ead9]/70">Positioned within a central Indian agricultural and botanical trading corridor. Registered particulars are shared through official commercial documents.</p></div>
+          <div className="border-b border-[#b88a2c]/25 p-7 lg:border-b-0 lg:border-r sm:p-9"><MapPin className="h-6 w-6 text-[#d4a43d]" /><span className="mt-6 block text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Trade location</span><h2 className="mt-2 font-serif text-3xl font-semibold">Mandsaur, Madhya Pradesh</h2><p className="mt-3 text-xs leading-relaxed text-[#f2ead9]/70">Positioned within a central Indian agricultural and botanical trading corridor. Ancient Indian Botanicals is incorporated and GST-registered in India; verified registration particulars are shared through official quotations, tax invoices and commercial documents.</p></div>
           <div className="p-7 sm:p-9"><span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">What to include</span><div className="mt-5 grid gap-3 sm:grid-cols-2">{['Botanical or ingredient name', 'Required physical form or grade', 'Trial and commercial quantity', 'Application and destination', 'Packaging preference', 'Analytical or document requirements'].map((item) => <div key={item} className="flex items-start gap-2 border-t border-[#b88a2c]/20 pt-3 text-xs text-[#f2ead9]/80"><CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#d4a43d]" />{item}</div>)}</div></div>
         </div>
 
@@ -402,7 +402,7 @@ export const LegalPage: React.FC<{ policyType: 'terms' | 'shipping' | 'privacy' 
       </h1>
       <div className="space-y-4 border border-[#b56e3a]/30 bg-[#fbf8f1] p-6 text-sm font-light leading-relaxed text-[#52635d] shadow-[0_18px_45px_-34px_rgba(16,42,35,.6)]">
         <p>
-          Ancient Indian Botanicals is incorporated in India. Website information is intended for B2B commercial evaluation. Any order, specification, documentation obligation, shipping term, return term or payment condition becomes binding only through a written offer or contract and counterparty review.
+          Ancient Indian Botanicals is incorporated and GST-registered in India. Website information is intended for B2B commercial evaluation. Any order, specification, documentation obligation, shipping term, return term or payment condition becomes binding only through a written offer or contract and counterparty review.
         </p>
         {policyType === 'privacy' && (
           <p>

@@ -49,7 +49,7 @@ export const PAGE_META: Record<string, { title: string; description: string }> =
   },
   about: {
     title: 'About Ancient Indian Botanicals | Indian Sourcing House',
-    description: 'Ancient Indian Botanicals makes Indian botanical sourcing easier through specification translation, supplier coordination, private-label packaging and lot-specific quality review.',
+    description: 'Meet an incorporated and GST-registered Indian sourcing house supporting botanical, aromatic and food-ingredient buyers through specification-led coordination.',
   },
   payments: {
     title: 'B2B Payment & Commercial Process | Ancient Indian Botanicals',
