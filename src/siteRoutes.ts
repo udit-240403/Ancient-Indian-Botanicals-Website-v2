@@ -9,6 +9,7 @@ export const PAGE_ROUTES: Record<string, string> = {
   search: '/catalogue',
   packaging: '/packaging',
   quality: '/quality',
+  faq: '/faq',
   about: '/about',
   payments: '/payments',
   contact: '/contact',
@@ -47,9 +48,13 @@ export const PAGE_META: Record<string, { title: string; description: string }> =
     title: 'Lot Documentation & Quality Process | Ancient Indian Botanicals',
     description: 'Understand the lot-specific COA, identity, analytical, safety and packing-document review process for botanical supply.',
   },
+  faq: {
+    title: 'Botanical Sourcing FAQ | Ancient Indian Botanicals',
+    description: 'Answers about MOQ, COA and specification documents, payment terms, Incoterms, private-label packaging and verified company registrations.',
+  },
   about: {
     title: 'About Ancient Indian Botanicals | Indian Sourcing House',
-    description: 'Meet an incorporated and GST-registered Indian sourcing house supporting botanical, aromatic and food-ingredient buyers through specification-led coordination.',
+    description: 'Meet an Indian sourcing house established in 2026 and registered under GST and Udyam, supporting specification-led botanical and food-ingredient coordination.',
   },
   payments: {
     title: 'B2B Payment & Commercial Process | Ancient Indian Botanicals',
