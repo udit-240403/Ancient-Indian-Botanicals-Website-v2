@@ -1,8 +1,9 @@
 import React from 'react';
 import { CompleteCatalogue } from './CompleteCatalogue';
-import { CheckCircle2, ArrowRight, Mail, MapPin, Building2, Landmark, FileCheck2, ShieldAlert, Globe2, BarChart3 } from 'lucide-react';
+import { CheckCircle2, ArrowRight, Mail, MapPin, Building2, Landmark, FileCheck2, ShieldAlert, Globe2, BarChart3, BadgeCheck, CalendarDays, Linkedin, HelpCircle } from 'lucide-react';
 import { BotanicalProcessingStory, OilExtractionStory, PackagingInnovationStory, QualityVisualStory } from './TraditionTechnologySections';
 import { PackagingFormatGuide } from './PackagingFormatGuide';
+import FAQS from '../data/faq.json';
 
 interface SharedPageProps {
   searchQuery: string;
@@ -177,6 +178,24 @@ export const QualityPage: React.FC<{ openCoaModal: () => void; openQuoteModal: (
         </p>
       </div>
 
+      <section className="border border-[#b56e3a]/30 bg-[#fbf8f1] p-6 sm:p-8">
+        <div className="grid gap-6 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b6334]">Verified company layer</span>
+            <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight">Credentials shown only when evidence exists.</h2>
+            <p className="mt-4 text-xs leading-relaxed text-[#52635d]">Ancient Indian Botanicals was incorporated in 2026 and is registered under GST and Udyam. Exact identifiers are supplied through verified commercial documents.</p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {[
+              { title: 'Incorporated', copy: 'India · 2026' },
+              { title: 'GST registered', copy: 'Company tax registration verified' },
+              { title: 'Udyam registered', copy: 'MSME registration verified' },
+            ].map((item) => <article key={item.title} className="border border-[#b56e3a]/25 bg-white p-5"><BadgeCheck className="h-5 w-5 text-[#9b6334]" /><h3 className="mt-4 font-serif text-xl font-semibold">{item.title}</h3><p className="mt-2 text-[11px] leading-relaxed text-[#66706b]">{item.copy}</p></article>)}
+          </div>
+        </div>
+        <p className="mt-5 border-t border-[#b56e3a]/20 pt-4 text-[10px] leading-relaxed text-[#66706b]"><strong className="text-[#344740]">Not implied:</strong> IEC/APEDA, FSSAI, NPOP/organic, ISO, laboratory accreditation or destination approval is displayed only after the relevant certificate and commercial route have been verified.</p>
+      </section>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {[
           'Lot-linked COA or Specification Review',
@@ -218,9 +237,9 @@ export const AboutPage: React.FC<{ openQuoteModal: (productName?: string) => voi
         <div className="max-w-4xl space-y-5">
           <span className="text-[11px] font-semibold uppercase tracking-eyebrow text-[#9b6334]">About Ancient Indian Botanicals</span>
           <h1 className="font-serif text-4xl font-semibold leading-[1.03] text-[#1f2925] md:text-6xl lg:text-7xl">You build the brand. We organise the work behind it.</h1>
-          <p className="max-w-3xl text-sm font-light leading-relaxed text-[#52635d] md:text-base">Ancient Indian Botanicals is an incorporated and GST-registered Indian B2B sourcing and coordination house for botanical, aromatic and food ingredients. We translate the buyer brief into an organised India-side route—material matching, samples, available lot documents, packaging coordination and export preparation—so your team can stay focused on market, product and brand.</p>
+          <p className="max-w-3xl text-sm font-light leading-relaxed text-[#52635d] md:text-base">Ancient Indian Botanicals is an incorporated, GST-registered and Udyam-registered Indian B2B sourcing and coordination house established in 2026 for botanical, aromatic and food ingredients. We translate the buyer brief into an organised India-side route—material matching, samples, available lot documents, packaging coordination and export preparation—so your team can stay focused on market, product and brand.</p>
           <div className="flex flex-wrap gap-2 pt-2 text-[9px] font-bold uppercase tracking-eyebrow text-[#765411]">
-            {['Incorporated in India', 'GST Registered', 'Specification-led', 'Buyer-brand focused'].map((item) => <span key={item} className="border border-[#b88a2c]/40 bg-[#fbf8f1] px-3 py-2">{item}</span>)}
+            {['Established 2026', 'GST Registered', 'Udyam Registered', 'Specification-led', 'Buyer-brand focused'].map((item) => <span key={item} className="border border-[#b88a2c]/40 bg-[#fbf8f1] px-3 py-2">{item}</span>)}
           </div>
         </div>
         <div className="mx-auto w-full max-w-[21rem] border border-[#b56e3a]/35 bg-[#fbf8f1] p-5 shadow-[0_24px_70px_rgba(16,42,35,.13)]">
@@ -228,6 +247,21 @@ export const AboutPage: React.FC<{ openQuoteModal: (productName?: string) => voi
           <p className="mt-4 text-center text-[9px] font-bold uppercase tracking-[0.18em] text-[#765411]">Official botanical seal</p>
         </div>
       </div>
+    </section>
+
+    <section className="border-b border-[#b56e3a]/25 bg-[#fbf8f1] px-4 py-12 md:px-8 lg:py-14">
+      <div className="mx-auto grid max-w-[1440px] gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { icon: CalendarDays, label: 'Established', value: '2026' },
+          { icon: BadgeCheck, label: 'Company status', value: 'Incorporated in India' },
+          { icon: BadgeCheck, label: 'Registrations', value: 'GST · Udyam' },
+          { icon: Linkedin, label: 'External profile', value: 'LinkedIn trade profile', href: 'https://www.linkedin.com/in/ancient-indian-botanicals-undefined-b48450430' },
+        ].map(({ icon: Icon, label, value, href }) => {
+          const content = <><Icon className="h-5 w-5 text-[#9b6334]" /><span className="mt-4 block text-[9px] font-bold uppercase tracking-eyebrow text-[#9b6334]">{label}</span><strong className="mt-1 block font-serif text-xl text-[#173f34]">{value}</strong></>;
+          return href ? <a key={label} href={href} target="_blank" rel="noreferrer" className="border border-[#b56e3a]/25 bg-white p-5 transition-colors hover:border-[#9b6334]">{content}</a> : <article key={label} className="border border-[#b56e3a]/25 bg-white p-5">{content}</article>;
+        })}
+      </div>
+      <p className="mx-auto mt-5 max-w-[1440px] text-[10px] leading-relaxed text-[#66706b]">We are a new company and do not publish invented shipment counts, testimonials or certification claims. Product- and supplier-specific evidence is confirmed for the actual route under review.</p>
     </section>
 
     <section className="border-b border-[#b88a2c]/30 bg-[#062b23] px-4 py-14 text-[#fbf7ed] md:px-8 lg:py-16">
@@ -338,8 +372,9 @@ export const PaymentsPage: React.FC = () => (
           <div className="border border-[#b88a2c]/35 bg-[#fbf7ed] p-7 sm:p-9">
             <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b711e]">Routes considered case by case</span>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              {['Bank transfer against approved quotation and invoice', 'Letter of Credit for eligible larger orders', 'Currency and Incoterms confirmed in the final offer', 'Payment schedule linked to the accepted commercial route'].map((item) => <div key={item} className="flex gap-3 border-t border-[#b88a2c]/25 pt-4 text-sm leading-relaxed"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#9b711e]" /><span>{item}</span></div>)}
+              {['T/T bank transfer against the approved quotation and invoice', 'Letter of Credit considered for eligible larger or repeat orders', 'FOB Nhava Sheva used as a common starting quotation route', 'CFR, CIF or another Incoterm evaluated by product and destination'].map((item) => <div key={item} className="flex gap-3 border-t border-[#b88a2c]/25 pt-4 text-sm leading-relaxed"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#9b711e]" /><span>{item}</span></div>)}
             </div>
+            <p className="mt-6 border-t border-[#b88a2c]/25 pt-4 text-[11px] leading-relaxed text-[#52635d]">Selected essential-oil trial routes may begin at 25 kg. MOQ, freight, insurance, currency, payment milestones and the final Incoterm remain product- and order-specific.</p>
           </div>
           <div className="border border-[#b88a2c]/45 bg-[#062b23] p-7 text-[#fbf7ed] sm:p-9">
             <div className="flex items-center gap-3 text-[#d4a43d]"><ShieldAlert className="h-6 w-6" /><span className="text-[10px] font-bold uppercase tracking-eyebrow">Payment safety notice</span></div>
@@ -348,7 +383,7 @@ export const PaymentsPage: React.FC = () => (
           </div>
         </div>
 
-        <p className="text-center text-[11px] text-[#526d64]">Ancient Indian Botanicals is incorporated and GST-registered in India. Final payment terms become binding only through an accepted written commercial document.</p>
+        <p className="text-center text-[11px] text-[#526d64]">Ancient Indian Botanicals was incorporated in 2026 and is GST- and Udyam-registered in India. Final payment terms become binding only through an accepted written commercial document.</p>
       </div>
     </section>
   </div>
@@ -383,11 +418,34 @@ export const ContactPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuot
         </div>
 
         <div className="mt-8 grid border border-[#b88a2c]/35 bg-[#062b23] text-[#fbf7ed] lg:grid-cols-[.78fr_1.22fr]">
-          <div className="border-b border-[#b88a2c]/25 p-7 lg:border-b-0 lg:border-r sm:p-9"><MapPin className="h-6 w-6 text-[#d4a43d]" /><span className="mt-6 block text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Trade location</span><h2 className="mt-2 font-serif text-3xl font-semibold">Mandsaur, Madhya Pradesh</h2><p className="mt-3 text-xs leading-relaxed text-[#f2ead9]/70">Positioned within a central Indian agricultural and botanical trading corridor. Ancient Indian Botanicals is incorporated and GST-registered in India; verified registration particulars are shared through official quotations, tax invoices and commercial documents.</p></div>
+          <div className="border-b border-[#b88a2c]/25 p-7 lg:border-b-0 lg:border-r sm:p-9"><MapPin className="h-6 w-6 text-[#d4a43d]" /><span className="mt-6 block text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Trade location</span><h2 className="mt-2 font-serif text-3xl font-semibold">Mandsaur, Madhya Pradesh</h2><p className="mt-3 text-xs leading-relaxed text-[#f2ead9]/70">Positioned within a central Indian agricultural and botanical trading corridor. Ancient Indian Botanicals was incorporated in 2026 and is GST- and Udyam-registered in India; verified registration particulars are shared through official quotations, tax invoices and commercial documents.</p></div>
           <div className="p-7 sm:p-9"><span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">What to include</span><div className="mt-5 grid gap-3 sm:grid-cols-2">{['Botanical or ingredient name', 'Required physical form or grade', 'Trial and commercial quantity', 'Application and destination', 'Packaging preference', 'Analytical or document requirements'].map((item) => <div key={item} className="flex items-start gap-2 border-t border-[#b88a2c]/20 pt-3 text-xs text-[#f2ead9]/80"><CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#d4a43d]" />{item}</div>)}</div></div>
         </div>
 
         <div className="mt-8 flex items-start gap-3 border border-[#b88a2c]/30 bg-[#efe3c8]/70 p-5 text-xs leading-relaxed text-[#315148]"><BarChart3 className="mt-0.5 h-4 w-4 shrink-0 text-[#765411]" /><p>The website enquiry form submits only after you press its final button. If direct submission is temporarily unavailable, it provides a clearly labelled email fallback rather than claiming that your enquiry was received.</p></div>
+        <a href="https://www.linkedin.com/in/ancient-indian-botanicals-undefined-b48450430" target="_blank" rel="noreferrer" className="mt-5 flex items-center justify-between gap-4 border border-[#b88a2c]/35 bg-[#fbf7ed] p-5 text-[#173f34] transition-colors hover:border-[#9b6334]"><span className="flex items-center gap-3"><Linkedin className="h-5 w-5 text-[#9b6334]" /><span><strong className="block font-serif text-xl">Connect on LinkedIn</strong><span className="mt-1 block text-[11px] text-[#52635d]">View the Ancient Indian Botanicals trade profile and continue the conversation through a public professional channel.</span></span></span><ArrowRight className="h-4 w-4 shrink-0" /></a>
+        <p className="mt-4 text-[10px] leading-relaxed text-[#66706b]">The trade desk is email-first so the product, grade, quantity and destination remain documented. A direct call or WhatsApp route can be arranged after the initial requirement review.</p>
+      </div>
+    </section>
+  </div>
+);
+
+export const FAQPage: React.FC<{ openCoaModal: () => void; openQuoteModal: () => void }> = ({ openCoaModal, openQuoteModal }) => (
+  <div className="w-full bg-[#f4efe5] text-[#1f2925]">
+    <section className="border-b border-[#b88a2c]/35 bg-[#062b23] px-4 py-16 text-[#fbf7ed] md:px-8 lg:py-20">
+      <div className="mx-auto grid max-w-[1440px] gap-7 lg:grid-cols-[1.08fr_.92fr] lg:items-end">
+        <div><span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Buyer due-diligence FAQ</span><h1 className="mt-3 font-serif text-4xl font-semibold leading-[1.04] sm:text-5xl lg:text-6xl">Clear answers before you send a sourcing brief.</h1></div>
+        <p className="text-sm leading-relaxed text-[#f2ead9]/78">Review registration status, MOQ, lot documents, payment routes, Incoterms and private-label coordination. Final terms remain tied to the approved product and supplier route.</p>
+      </div>
+    </section>
+    <section className="px-4 py-14 md:px-8 lg:py-18">
+      <div className="mx-auto max-w-5xl space-y-4">
+        {FAQS.map((item, index) => (
+          <article key={item.question} className="border border-[#b56e3a]/28 bg-[#fbf8f1] p-6 sm:p-7">
+            <div className="flex items-start gap-4"><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#b88a2c]/40 bg-[#173f34] text-[#d4a43d]"><HelpCircle className="h-5 w-5" /></span><div><span className="text-[9px] font-bold uppercase tracking-eyebrow text-[#9b6334]">Buyer question {String(index + 1).padStart(2, '0')}</span><h2 className="mt-1 font-serif text-2xl font-semibold text-[#173f34]">{item.question}</h2><p className="mt-3 text-sm leading-relaxed text-[#52635d]">{item.answer}</p></div></div>
+          </article>
+        ))}
+        <div className="mt-8 grid gap-4 border border-[#b88a2c]/35 bg-[#062b23] p-7 text-[#fbf7ed] sm:grid-cols-[1fr_auto] sm:items-center"><div><h2 className="font-serif text-2xl font-semibold">Need an answer for a specific product or lot?</h2><p className="mt-2 text-xs leading-relaxed text-[#f2ead9]/70">Share the product, form, quantity, application, destination and required evidence so the response can be specific.</p></div><div className="flex flex-col gap-2 sm:min-w-56"><button onClick={openQuoteModal} className="bg-[#b88a2c] px-5 py-3 text-[10px] font-bold uppercase tracking-eyebrow text-[#041e18]">Start an enquiry</button><button onClick={openCoaModal} className="border border-[#d4a43d] px-5 py-3 text-[10px] font-bold uppercase tracking-eyebrow">Request documents</button></div></div>
       </div>
     </section>
   </div>
@@ -402,11 +460,16 @@ export const LegalPage: React.FC<{ policyType: 'terms' | 'shipping' | 'privacy' 
       </h1>
       <div className="space-y-4 border border-[#b56e3a]/30 bg-[#fbf8f1] p-6 text-sm font-light leading-relaxed text-[#52635d] shadow-[0_18px_45px_-34px_rgba(16,42,35,.6)]">
         <p>
-          Ancient Indian Botanicals is incorporated and GST-registered in India. Website information is intended for B2B commercial evaluation. Any order, specification, documentation obligation, shipping term, return term or payment condition becomes binding only through a written offer or contract and counterparty review.
+          Ancient Indian Botanicals was incorporated in 2026 and is GST- and Udyam-registered in India. Website information is intended for B2B commercial evaluation. Any order, specification, documentation obligation, shipping term, return term or payment condition becomes binding only through a written offer or contract and counterparty review.
         </p>
         {policyType === 'privacy' && (
           <p>
             The site uses privacy-conscious, cookieless Vercel Web Analytics and performance telemetry to understand aggregate page visits, device type, broad country-level origin and site performance. It does not intentionally publish visitor-level analytics. Information entered in an enquiry form is used only to review and respond to that commercial request and is not sold.
+          </p>
+        )}
+        {policyType === 'shipping' && (
+          <p>
+            FOB Nhava Sheva is a common starting quotation route for suitable enquiries. CFR, CIF or another Incoterm may be evaluated according to product, destination, volume, documentation and transport requirements. No route or dispatch date is binding until stated in the accepted commercial document.
           </p>
         )}
         <p>
