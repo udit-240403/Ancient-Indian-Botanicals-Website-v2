@@ -40,7 +40,7 @@ Project-specific source, copy and design work are covered by the repository's pr
 ## Production checklist
 
 - Connect `ancientindianbotanicals.com` to the production deployment without removing Google Workspace MX/TXT records.
-- The production build pre-renders 14 main routes and all 132 product routes into route-specific HTML with canonical, social and structured metadata.
+- The production build pre-renders 15 main routes and all 132 product routes into route-specific HTML with canonical, social and structured metadata, including a buyer FAQ page.
 - Keep `https://www.ancientindianbotanicals.com/` as the canonical domain, redirect the apex domain to it, verify the domain in Google Search Console and submit `/sitemap.xml`.
 - Use real paths such as `/catalogue`, `/contact` and `/products/ashwagandha`; hash URLs are supported only for backward compatibility.
-- GST registration status is verified. Publish the GSTIN only after checking it against the GST registration certificate; continue to verify IEC, banking and product-specific documentation before publishing related claims or numbers.
+- GST and Udyam registration status and the 2026 incorporation year are verified. Publish exact identifiers only after checking the relevant certificate; continue to verify IEC/APEDA, FSSAI, organic, ISO, banking and product-specific documentation before publishing related claims or numbers.
