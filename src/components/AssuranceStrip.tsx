@@ -20,8 +20,8 @@ export const AssuranceStrip: React.FC = () => {
     },
     {
       icon: BadgeCheck,
-      title: 'GST REGISTERED',
-      description: 'Registered under India’s Goods and Services Tax framework.'
+      title: 'REGISTERED IN INDIA',
+      description: 'Incorporated 2026 · GST and Udyam registered.'
     }
   ];
 
