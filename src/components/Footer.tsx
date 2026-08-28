@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Mail, Phone, ShieldCheck, ArrowRight } from 'lucide-react';
+import { MapPin, Mail, Phone, ShieldCheck, ArrowRight, Linkedin } from 'lucide-react';
 import { PAGE_ROUTES } from '../siteRoutes';
 
 interface FooterProps {
@@ -106,6 +106,11 @@ export const Footer: React.FC<FooterProps> = ({
                   Contact the Trade Desk
                 </a>
               </li>
+              <li>
+                <a href={PAGE_ROUTES.faq} onClick={(event) => handleNav(event, 'faq')} className="hover:text-[#b88a2c] transition-colors">
+                  Buyer Due-Diligence FAQ
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -151,11 +156,15 @@ export const Footer: React.FC<FooterProps> = ({
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#b88a2c] shrink-0" />
-                <span className="text-[11px] text-[#82966f]">Phone contact will be shared with confirmed trade enquiries.</span>
+                <span className="text-[11px] text-[#82966f]">Email-first trade desk · direct call or WhatsApp arranged after brief review.</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Linkedin className="w-4 h-4 text-[#b88a2c] shrink-0" />
+                <a href="https://www.linkedin.com/in/ancient-indian-botanicals-undefined-b48450430" target="_blank" rel="noreferrer" className="text-[11px] hover:text-[#b88a2c]">Ancient Indian Botanicals on LinkedIn</a>
               </div>
               <div className="flex items-center gap-2 border-t border-[#b88a2c]/20 pt-2 font-semibold uppercase tracking-[0.12em] text-[#dfcfad]">
                 <ShieldCheck className="w-4 h-4 text-[#d4a43d] shrink-0" />
-                <span>GST Registered · India</span>
+                <span>Established 2026 · GST & Udyam Registered</span>
               </div>
             </div>
           </div>
@@ -164,7 +173,7 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Regulatory Disclaimer */}
         <div className="p-5 bg-[#062b23] border border-[#b88a2c]/20 text-[11px] text-[#a9b2ac] font-light leading-relaxed mb-8">
-          <strong className="text-[#dfcfad]">Commercial notice:</strong> Ancient Indian Botanicals is incorporated and GST-registered in India. Product information is supplied for commercial evaluation and does not constitute therapeutic claims or medical advice. Specifications, origin, availability and supporting documents are confirmed in writing for each approved lot and enquiry.
+          <strong className="text-[#dfcfad]">Commercial notice:</strong> Ancient Indian Botanicals was incorporated in 2026 and is GST- and Udyam-registered in India. Product information is supplied for commercial evaluation and does not constitute therapeutic claims or medical advice. Specifications, origin, availability, certifications and supporting documents are confirmed in writing for each approved lot and enquiry.
         </div>
 
         {/* Bottom Bar */}
@@ -175,6 +184,7 @@ export const Footer: React.FC<FooterProps> = ({
             <a href={PAGE_ROUTES.shipping} onClick={(event) => handleNav(event, 'shipping')} className="hover:text-[#fbf7ed]">Export Shipping Policy</a>
             <a href={PAGE_ROUTES.privacy} onClick={(event) => handleNav(event, 'privacy')} className="hover:text-[#fbf7ed]">Privacy Policy</a>
             <a href={PAGE_ROUTES.refunds} onClick={(event) => handleNav(event, 'refunds')} className="hover:text-[#fbf7ed]">Claims & Quality Resolution</a>
+            <a href={PAGE_ROUTES.faq} onClick={(event) => handleNav(event, 'faq')} className="hover:text-[#fbf7ed]">Buyer FAQ</a>
           </div>
         </div>
 
