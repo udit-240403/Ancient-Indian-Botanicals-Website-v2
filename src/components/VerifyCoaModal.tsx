@@ -4,11 +4,12 @@ import { X, ShieldCheck, Mail, AlertCircle, ArrowRight } from 'lucide-react';
 interface VerifyCoaModalProps {
   onClose: () => void;
   onOpenQuote: (productName?: string) => void;
+  initialProductName?: string;
 }
 
-export const VerifyCoaModal: React.FC<VerifyCoaModalProps> = ({ onClose, onOpenQuote }) => {
+export const VerifyCoaModal: React.FC<VerifyCoaModalProps> = ({ onClose, onOpenQuote, initialProductName = '' }) => {
   const [lotReference, setLotReference] = useState('');
-  const [productName, setProductName] = useState('');
+  const [productName, setProductName] = useState(initialProductName);
   const [emailPrepared, setEmailPrepared] = useState(false);
 
   const prepareVerificationEmail = () => {
@@ -40,7 +41,7 @@ export const VerifyCoaModal: React.FC<VerifyCoaModalProps> = ({ onClose, onOpenQ
             <ShieldCheck className="w-5 h-5 text-[#b88a2c]" />
             <div>
               <span className="text-[10px] uppercase tracking-eyebrow text-[#82966f] font-semibold">Lot-level document desk</span>
-              <h2 className="font-serif text-2xl font-semibold text-[#fbf7ed]">Request COA or document verification</h2>
+              <h2 className="font-serif text-2xl font-semibold text-[#fbf7ed]">Request specification or lot documents</h2>
             </div>
           </div>
           <button onClick={onClose} aria-label="Close document verification form" className="p-2 text-[#82966f] hover:text-[#fbf7ed] transition-colors cursor-pointer">
@@ -51,7 +52,7 @@ export const VerifyCoaModal: React.FC<VerifyCoaModalProps> = ({ onClose, onOpenQ
         <div className="p-6 md:p-8 space-y-6">
           <div className="p-4 bg-[#083a30] border border-[#b88a2c]/30 text-xs text-[#f2ead9]/90 flex items-start gap-3">
             <AlertCircle className="w-5 h-5 text-[#b88a2c] shrink-0 mt-0.5" />
-            <p>This website does not publish demonstration COAs as verified commercial records. Documentation is checked against the actual supplier lot and shared privately with the relevant buyer where applicable.</p>
+            <p>Specifications and COAs are checked against the proposed product or actual supplier lot and shared privately where applicable. We do not present a demonstration COA as a current commercial record.</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

@@ -145,7 +145,7 @@ Suggested groups: Roots and rhizomes; Leaves and aerial parts; Fruits and seeds;
 **Trade hub:** Mandsaur, Madhya Pradesh 458001, India  
 **Email:** `[CONFIRM OFFICIAL TRADE EMAIL]`  
 **Phone/WhatsApp:** `[CONFIRM BUSINESS NUMBER]`  
-**Business status/GST/CIN:** Incorporated and GST-registered in India. Publish the exact GSTIN or CIN only after checking it against the corresponding registration certificate.
+**Business status/GST/CIN:** Established and incorporated in India in 2026; GST and Udyam registration verified. Publish exact identifiers only after checking the corresponding certificate. Do not imply IEC/APEDA, FSSAI, organic, ISO or laboratory accreditation without route-specific evidence.
 
 Footer note: Product information is supplied for commercial evaluation and does not constitute medical advice. Availability, specifications and documentation are confirmed lot by lot.
 

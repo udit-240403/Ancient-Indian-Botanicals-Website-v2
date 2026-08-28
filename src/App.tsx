@@ -11,6 +11,7 @@ import { ProductCatalogue } from './components/ProductCatalogue';
 import { ContactDock } from './components/ContactDock';
 import { HomePackagingShowcase } from './components/HomePackagingShowcase';
 import { CATALOGUE_PRODUCTS, getCatalogueGroup } from './data/catalogue';
+import FAQS from './data/faq.json';
 import {
   PAGE_META,
   PAGE_ROUTES,
@@ -30,6 +31,7 @@ const BotanicalsPage = lazy(() => import('./components/Pages').then((module) => 
 const FoodIngredientsPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.FoodIngredientsPage })));
 const PackagingPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.PackagingPage })));
 const QualityPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.QualityPage })));
+const FAQPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.FAQPage })));
 const AboutPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.AboutPage })));
 const PaymentsPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.PaymentsPage })));
 const ContactPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.ContactPage })));
@@ -60,6 +62,7 @@ export function App() {
   const [quoteModalOpen, setQuoteModalOpen] = useState<boolean>(false);
   const [quoteProductName, setQuoteProductName] = useState<string>('');
   const [coaModalOpen, setCoaModalOpen] = useState<boolean>(false);
+  const [coaProductName, setCoaProductName] = useState<string>('');
 
   useEffect(() => {
     const legacyPage = window.location.hash.slice(1);
@@ -106,6 +109,7 @@ export function App() {
     updateMetaTag('meta[name="twitter:description"]', 'content', pageMeta.description);
     updateMetaTag('meta[name="twitter:image"]', 'content', image);
 
+    const organization = { '@type': 'Organization', name: 'Ancient Indian Botanicals', alternateName: ['Ancient Indian Botanical', 'AncientIndianBotanicals', 'AncientIndianBotanical'], description: 'Incorporated in 2026 and GST- and Udyam-registered in India.', foundingDate: '2026', sameAs: ['https://www.linkedin.com/in/ancient-indian-botanicals-undefined-b48450430'], url: `${SITE_URL}/`, logo: `${SITE_URL}/icon-512.png` };
     const schema = routeProduct
       ? {
           '@context': 'https://schema.org',
@@ -121,8 +125,19 @@ export function App() {
             description: routeProduct.fieldDescription,
           },
           keywords: [routeProduct.name, routeProduct.botanicalName, getCatalogueGroup(routeProduct)],
-          publisher: { '@type': 'Organization', name: 'Ancient Indian Botanicals', alternateName: ['Ancient Indian Botanical', 'AncientIndianBotanicals', 'AncientIndianBotanical'], description: 'Incorporated and GST-registered Indian B2B botanical sourcing company.', url: `${SITE_URL}/`, logo: `${SITE_URL}/icon-512.png` },
+          publisher: organization,
         }
+      : activeTab === 'faq'
+        ? {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            '@id': `${canonical}#faq`,
+            name: pageMeta.title,
+            description: pageMeta.description,
+            url: canonical,
+            mainEntity: FAQS.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })),
+            publisher: organization,
+          }
       : {
           '@context': 'https://schema.org',
           '@type': activeTab === 'home' ? 'WebSite' : 'WebPage',
@@ -139,7 +154,7 @@ export function App() {
               }),
           description: pageMeta.description,
           url: canonical,
-          publisher: { '@type': 'Organization', name: 'Ancient Indian Botanicals', alternateName: ['Ancient Indian Botanical', 'AncientIndianBotanicals', 'AncientIndianBotanical'], description: 'Incorporated and GST-registered Indian B2B botanical sourcing company.', url: `${SITE_URL}/`, logo: `${SITE_URL}/icon-512.png` },
+          publisher: organization,
         };
     let schemaElement = document.getElementById('route-structured-data');
     if (!schemaElement) {
@@ -163,6 +178,11 @@ export function App() {
     setQuoteModalOpen(true);
   };
 
+  const handleOpenCoaModal = (productName?: string) => {
+    setCoaProductName(productName || '');
+    setCoaModalOpen(true);
+  };
+
   const handleSelectCategory = (category: string) => {
     if (category === 'essential-oils' || category === 'botanicals' || category === 'food-ingredients' || category === 'packaging') {
       navigateToTab(category);
@@ -180,7 +200,7 @@ export function App() {
       <Navbar
         activeTab={activeTab}
         setActiveTab={navigateToTab}
-        openCoaModal={() => setCoaModalOpen(true)}
+        openCoaModal={() => handleOpenCoaModal()}
         openQuoteModal={handleOpenQuoteModal}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
@@ -196,7 +216,7 @@ export function App() {
                 <Hero
                   onExploreOils={() => navigateToTab('essential-oils')}
                   onBrowseBotanicals={() => navigateToTab('botanicals')}
-                  openCoaModal={() => setCoaModalOpen(true)}
+                  openCoaModal={() => handleOpenCoaModal()}
                 />
               </div>
               <AssuranceStrip />
@@ -227,7 +247,7 @@ export function App() {
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
             openQuoteModal={handleOpenQuoteModal}
-            openCoaModal={() => setCoaModalOpen(true)}
+            openCoaModal={() => handleOpenCoaModal()}
           />
         )}
 
@@ -236,7 +256,7 @@ export function App() {
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
             openQuoteModal={handleOpenQuoteModal}
-            openCoaModal={() => setCoaModalOpen(true)}
+            openCoaModal={() => handleOpenCoaModal()}
           />
         )}
 
@@ -245,7 +265,7 @@ export function App() {
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
             openQuoteModal={handleOpenQuoteModal}
-            openCoaModal={() => setCoaModalOpen(true)}
+            openCoaModal={() => handleOpenCoaModal()}
           />
         )}
 
@@ -263,7 +283,14 @@ export function App() {
 
         {activeTab === 'quality' && (
           <QualityPage
-            openCoaModal={() => setCoaModalOpen(true)}
+            openCoaModal={() => handleOpenCoaModal()}
+            openQuoteModal={() => handleOpenQuoteModal()}
+          />
+        )}
+
+        {activeTab === 'faq' && (
+          <FAQPage
+            openCoaModal={() => handleOpenCoaModal()}
             openQuoteModal={() => handleOpenQuoteModal()}
           />
         )}
@@ -291,6 +318,7 @@ export function App() {
             product={routeProduct}
             relatedProducts={CATALOGUE_PRODUCTS.filter((product) => product.id !== routeProduct.id && getCatalogueGroup(product) === getCatalogueGroup(routeProduct)).slice(0, 3)}
             openQuoteModal={handleOpenQuoteModal}
+            openCoaModal={handleOpenCoaModal}
           />
         )}
 
@@ -313,7 +341,7 @@ export function App() {
       <Footer
         setActiveTab={navigateToTab}
         openQuoteModal={handleOpenQuoteModal}
-        openCoaModal={() => setCoaModalOpen(true)}
+        openCoaModal={() => handleOpenCoaModal()}
       />
 
       <ContactDock
@@ -336,6 +364,7 @@ export function App() {
           <VerifyCoaModal
             onClose={() => setCoaModalOpen(false)}
             onOpenQuote={(prodName) => handleOpenQuoteModal(prodName)}
+            initialProductName={coaProductName}
           />
         </Suspense>
       )}

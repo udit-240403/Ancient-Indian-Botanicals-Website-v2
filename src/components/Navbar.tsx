@@ -30,6 +30,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'catalogue', label: 'FULL CATALOGUE' },
     { id: 'packaging', label: 'PACKAGING' },
     { id: 'quality', label: 'QUALITY' },
+    { id: 'faq', label: 'FAQ' },
     { id: 'about', label: 'ABOUT' },
     { id: 'payments', label: 'PAYMENTS' },
     { id: 'contact', label: 'CONTACT' },
@@ -112,7 +113,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         <div className="hidden border-t border-[#b88a2c]/20 bg-[#062b23] lg:block">
-          <div className="mx-auto flex max-w-[1440px] items-center justify-center gap-5 px-8 py-3 xl:gap-6">
+          <div className="mx-auto flex max-w-[1440px] items-center justify-center gap-4 px-8 py-3 xl:gap-5">
             {navLinks.map((link) => (
               <a key={link.id} href={PAGE_ROUTES[link.id]} onClick={(event) => handleNavClick(event, link.id)} className={`relative py-1 text-[10px] font-bold uppercase tracking-[0.15em] transition-colors ${activeTab === link.id ? 'text-[#d4a43d]' : 'text-[#fbf7ed]/82 hover:text-[#d4a43d]'}`}>
                 {link.label}

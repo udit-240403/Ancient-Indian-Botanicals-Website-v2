@@ -19,12 +19,14 @@ interface CatalogueProductPageProps {
   product: CatalogueProduct;
   relatedProducts: CatalogueProduct[];
   openQuoteModal: (productName?: string) => void;
+  openCoaModal: (productName?: string) => void;
 }
 
 export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
   product,
   relatedProducts,
   openQuoteModal,
+  openCoaModal,
 }) => {
   const group = getCatalogueGroup(product);
   const collectionPath = group === 'botanicals' || group === 'waters-clays'
@@ -77,6 +79,9 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <button onClick={() => openQuoteModal(product.name)} className="inline-flex items-center justify-center gap-2 bg-[#173f34] px-7 py-3.5 text-xs font-bold uppercase tracking-eyebrow text-[#fbf8f1] hover:bg-[#102a23]">
                 Enquire about this product <ArrowRight className="h-4 w-4" />
+              </button>
+              <button onClick={() => openCoaModal(product.name)} className="inline-flex items-center justify-center gap-2 border border-[#b56e3a] bg-[#fbf8f1] px-7 py-3.5 text-xs font-bold uppercase tracking-eyebrow text-[#765411] hover:bg-[#efe3c8]">
+                <FileCheck2 className="h-4 w-4" /> Request spec / sample COA
               </button>
               <a href={collectionPath} className="inline-flex items-center justify-center gap-2 border border-[#173f34] px-7 py-3.5 text-xs font-bold uppercase tracking-eyebrow text-[#173f34] hover:bg-[#173f34] hover:text-[#fbf8f1]">
                 <ArrowLeft className="h-4 w-4" /> Back to collection
