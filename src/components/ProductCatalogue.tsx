@@ -3,8 +3,10 @@ import { ProductCategory } from '../types';
 import { BOTANICAL_PRODUCTS } from '../data/products';
 import { getProductPresentation } from '../data/productPresentation';
 import { Search, ArrowRight, FileText } from 'lucide-react';
-import { FEATURED_TO_CATALOGUE_ID, getProductPath } from '../data/catalogue';
+import { CATALOGUE_PRODUCTS, FEATURED_TO_CATALOGUE_ID, getCatalogueGroup, getProductPath } from '../data/catalogue';
 import { ProductVisual } from './ProductVisual';
+import { useBuyerLanguage } from '../context/BuyerLanguageContext';
+import { getHsFamilyReference, getLocalizedProductName, PRODUCT_LANGUAGE_LABELS } from '../data/productLanguage';
 
 interface ProductCatalogueProps {
   initialCategory?: ProductCategory | 'all';
@@ -20,6 +22,8 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
   openQuoteModal
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
+  const { language } = useBuyerLanguage();
+  const languageLabels = PRODUCT_LANGUAGE_LABELS[language];
 
   const popularSearches = ['Ashwagandha', 'Boswellia', 'Lemongrass', 'Sandalwood', 'Rose water', 'Amla', 'Basil Oil'];
 
@@ -31,10 +35,13 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
   ];
 
   const filteredProducts = BOTANICAL_PRODUCTS.filter((product) => {
+    const catalogueId = FEATURED_TO_CATALOGUE_ID[product.slug] ?? product.slug;
+    const localizedName = getLocalizedProductName(catalogueId, product.name, language);
     const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
     const matchesSearch =
       searchQuery.trim() === '' ||
       product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      localizedName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.botanicalName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.subFamily.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.availableForms.some(f => f.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -131,6 +138,16 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-7">
             {filteredProducts.map((product, index) => {
               const presentation = getProductPresentation(product);
+              const catalogueId = FEATURED_TO_CATALOGUE_ID[product.slug] ?? product.slug;
+              const localizedName = getLocalizedProductName(catalogueId, product.name, language);
+              const catalogueProduct = CATALOGUE_PRODUCTS.find((item) => item.id === catalogueId);
+              const catalogueGroup = catalogueProduct
+                ? getCatalogueGroup(catalogueProduct)
+                : product.category === 'essential-oils'
+                  ? 'essential-oils'
+                  : product.category === 'hydrosols-clays'
+                    ? 'waters-clays'
+                    : 'botanicals';
               return (
               <div
                 key={product.id}
@@ -153,6 +170,9 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
                     <div className="absolute bottom-3 right-3 z-[4] border border-[#b88a2c]/35 bg-[#041e18]/94 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-eyebrow text-[#dfe3d8] backdrop-blur-sm">
                       {product.subFamily}
                     </div>
+                    <div className="absolute bottom-3 left-3 z-[4] border border-[#d4a43d]/45 bg-[#fbf8f1]/95 px-2 py-0.5 text-[8px] font-bold uppercase tracking-[0.11em] text-[#173f34] backdrop-blur-sm" title={languageLabels.hsNotice}>
+                      {getHsFamilyReference(catalogueGroup)}
+                    </div>
                   </ProductVisual>
 
                   {/* Content Info */}
@@ -162,8 +182,11 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
                         {product.harvestOrigin}
                       </span>
                       <h3 className="font-serif text-2xl font-semibold text-[#1f2925] group-hover:text-[#9b6334] transition-colors leading-tight">
-                        {product.name}
+                        {localizedName}
                       </h3>
+                      {language !== 'en' && localizedName !== product.name && (
+                        <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.11em] text-[#6d756f]">{languageLabels.englishTradeName}: {product.name}</p>
+                      )}
                       <p className="font-serif italic text-sm text-[#b88a2c] font-light mt-0.5">
                         {product.botanicalName}
                       </p>
@@ -203,7 +226,7 @@ export const ProductCatalogue: React.FC<ProductCatalogueProps> = ({
                 {/* Card Action Footer */}
                 <div className="flex items-center justify-between gap-2 border-t border-[#b56e3a]/25 bg-[#f4efe5] p-4">
                   <a
-                    href={getProductPath(FEATURED_TO_CATALOGUE_ID[product.slug] ?? product.slug)}
+                    href={getProductPath(catalogueId)}
                     className="flex cursor-pointer items-center gap-1 text-xs font-semibold text-[#173f34] transition-colors hover:text-[#9b6334]"
                   >
                     <FileText className="w-3.5 h-3.5 text-[#b88a2c]" />

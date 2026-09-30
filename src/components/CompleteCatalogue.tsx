@@ -9,6 +9,8 @@ import {
   getProductPath,
 } from '../data/catalogue';
 import { ProductVisual } from './ProductVisual';
+import { useBuyerLanguage } from '../context/BuyerLanguageContext';
+import { getHsFamilyReference, getLocalizedProductName, PRODUCT_LANGUAGE_LABELS } from '../data/productLanguage';
 
 const FILTERS: Array<{ id: 'all' | CatalogueGroup; label: string }> = [
   { id: 'all', label: 'All Products' },
@@ -53,6 +55,8 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
   const [selectedGroup, setSelectedGroup] = useState<'all' | CatalogueGroup>('all');
   const [visibleCount, setVisibleCount] = useState(initialVisibleCount);
   const [selectedProduct, setSelectedProduct] = useState<CatalogueProduct | null>(null);
+  const { language } = useBuyerLanguage();
+  const languageLabels = PRODUCT_LANGUAGE_LABELS[language];
 
   const scopedProducts = useMemo(
     () => (allowedGroups?.length ? CATALOGUE_PRODUCTS.filter((product) => allowedGroups.includes(getCatalogueGroup(product))) : CATALOGUE_PRODUCTS),
@@ -81,6 +85,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
       const matchesGroup = selectedGroup === 'all' || group === selectedGroup;
       const searchableText = [
         product.name,
+        getLocalizedProductName(product.id, product.name, language),
         product.botanicalName,
         ...product.specifications,
         ...product.commercialForms,
@@ -90,7 +95,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
         .toLowerCase();
       return matchesGroup && (!term || searchableText.includes(term));
     }).sort((a, b) => a.name.localeCompare(b.name));
-  }, [scopedProducts, searchQuery, selectedGroup]);
+  }, [scopedProducts, searchQuery, selectedGroup, language]);
 
   const chooseGroup = (group: 'all' | CatalogueGroup) => {
     setSelectedGroup(group);
@@ -130,6 +135,9 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
           </h1>
           <p className="mt-5 max-w-3xl text-sm font-light leading-relaxed text-[#52635d] md:text-base">
             {description}
+          </p>
+          <p className="mt-4 max-w-3xl border-l-2 border-[#b56e3a] pl-4 text-xs leading-relaxed text-[#52635d]">
+            Product names can be viewed in English, German, French or Spanish. The English trade name and botanical identity remain visible for accurate commercial communication.
           </p>
           </div>
         </div>
@@ -198,6 +206,8 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {filteredProducts.slice(0, visibleCount).map((product, index) => {
                 const group = getCatalogueGroup(product);
+                const localizedName = getLocalizedProductName(product.id, product.name, language);
+                const hsReference = getHsFamilyReference(group);
                 return (
                   <article
                     key={product.id}
@@ -218,14 +228,20 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
                         <span className="absolute left-3 top-3 z-[4] border border-[#d4a43d]/55 bg-[#041e18]/94 px-2.5 py-1 text-[9px] font-bold uppercase tracking-eyebrow text-[#e1bd67] backdrop-blur-sm">
                           {CATALOGUE_GROUP_LABELS[group]}
                         </span>
+                        <span className="absolute bottom-3 right-3 z-[4] border border-[#d4a43d]/45 bg-[#fbf8f1]/95 px-2.5 py-1 text-[8px] font-bold uppercase tracking-[0.12em] text-[#173f34] backdrop-blur-sm" title={languageLabels.hsNotice}>
+                          {hsReference}
+                        </span>
                       </ProductVisual>
                     </button>
 
                     <div className="flex flex-1 flex-col p-5">
                       <p className="mb-1 font-serif text-sm italic text-[#b88a2c]">{product.botanicalName}</p>
                       <h2 className="font-serif text-2xl font-semibold leading-tight text-[#1f2925]">
-                        <a href={getProductPath(product.id)} className="transition-colors hover:text-[#9b6334]">{product.name}</a>
+                        <a href={getProductPath(product.id)} className="transition-colors hover:text-[#9b6334]">{localizedName}</a>
                       </h2>
+                      {language !== 'en' && localizedName !== product.name && (
+                        <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.11em] text-[#6d756f]">{languageLabels.englishTradeName}: {product.name}</p>
+                      )}
                       <p className="mt-3 line-clamp-3 text-xs font-light leading-relaxed text-[#5f6964]">
                         {product.whyBuyersKnowIt || product.fieldDescription}
                       </p>
@@ -314,8 +330,11 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
                   {CATALOGUE_GROUP_LABELS[getCatalogueGroup(selectedProduct)]}
                 </span>
                 <h2 className="font-serif text-2xl font-semibold text-[#fbf7ed] md:text-3xl">
-                  {selectedProduct.name}
+                  {getLocalizedProductName(selectedProduct.id, selectedProduct.name, language)}
                 </h2>
+                {language !== 'en' && getLocalizedProductName(selectedProduct.id, selectedProduct.name, language) !== selectedProduct.name && (
+                  <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.11em] text-[#f2ead9]/58">{languageLabels.englishTradeName}: {selectedProduct.name}</p>
+                )}
               </div>
               <button
                 onClick={() => setSelectedProduct(null)}
@@ -333,6 +352,13 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
               </div>
 
               <div className="space-y-6 md:col-span-7">
+                <div className="border border-[#b56e3a]/30 bg-[#f4efe5] p-4">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#60746a]">{languageLabels.hsReview}</span>
+                    <strong className="text-xs text-[#173f34]">{getHsFamilyReference(getCatalogueGroup(selectedProduct))}</strong>
+                  </div>
+                  <p className="mt-2 text-[11px] leading-relaxed text-[#66706b]">{languageLabels.hsNotice}</p>
+                </div>
                 <p className="text-sm font-light leading-relaxed text-[#52635d]">
                   {selectedProduct.fieldDescription}
                 </p>

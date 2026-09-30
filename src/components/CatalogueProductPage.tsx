@@ -7,6 +7,8 @@ import {
   getProductPath,
 } from '../data/catalogue';
 import { ProductVisual } from './ProductVisual';
+import { useBuyerLanguage } from '../context/BuyerLanguageContext';
+import { getHsFamilyReference, getLocalizedProductName, PRODUCT_LANGUAGE_LABELS } from '../data/productLanguage';
 
 const BUYER_REVIEW_STEPS = [
   { icon: Fingerprint, number: '01', title: 'Identity', copy: 'Botanical name, part, physical form and required grade.' },
@@ -29,6 +31,10 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
   openCoaModal,
 }) => {
   const group = getCatalogueGroup(product);
+  const { language } = useBuyerLanguage();
+  const languageLabels = PRODUCT_LANGUAGE_LABELS[language];
+  const localizedName = getLocalizedProductName(product.id, product.name, language);
+  const hsReference = getHsFamilyReference(group);
   const collectionPath = group === 'botanicals' || group === 'waters-clays'
     ? '/botanicals'
     : group === 'seeds-food' || group === 'cold-pressed-oils'
@@ -43,7 +49,7 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
           <span>/</span>
           <a href={collectionPath} className="hover:text-[#9b6334]">{CATALOGUE_GROUP_LABELS[group]}</a>
           <span>/</span>
-          <span className="text-[#173f34]">{product.name}</span>
+          <span className="text-[#173f34]">{localizedName}</span>
         </div>
       </section>
 
@@ -68,12 +74,23 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
 
           <div>
             <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b6334]">Specification-led product route</span>
-            <h1 className="mt-3 font-serif text-4xl font-semibold leading-[1.02] sm:text-5xl lg:text-6xl">{product.name}</h1>
+            <h1 className="mt-3 font-serif text-4xl font-semibold leading-[1.02] sm:text-5xl lg:text-6xl">{localizedName}</h1>
+            {language !== 'en' && localizedName !== product.name && (
+              <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.12em] text-[#66706b]">{languageLabels.englishTradeName}: {product.name}</p>
+            )}
             <p className="mt-3 font-serif text-xl italic text-[#9b6334]">{product.botanicalName}</p>
             <p className="mt-6 max-w-3xl text-sm leading-relaxed text-[#52635d] md:text-base">{product.fieldDescription}</p>
 
             <div className="mt-7 border-l-2 border-[#b56e3a] bg-[#fbf8f1] px-5 py-4 text-sm leading-relaxed text-[#344740]">
               {product.whyBuyersKnowIt}
+            </div>
+
+            <div className="mt-5 border border-[#b56e3a]/30 bg-[#eee8dd] px-5 py-4">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#60746a]">{languageLabels.hsReview}</span>
+                <strong className="text-sm text-[#173f34]">{hsReference}</strong>
+              </div>
+              <p className="mt-2 max-w-2xl text-[11px] leading-relaxed text-[#66706b]">{languageLabels.hsNotice}</p>
             </div>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -88,7 +105,7 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
               </a>
             </div>
 
-            <p className="mt-4 text-[11px] leading-relaxed text-[#66706b]">Availability, origin, composition, grade, MOQ, documentation and packaging are confirmed only against the approved enquiry and offered lot.</p>
+            <p className="mt-4 text-[11px] leading-relaxed text-[#66706b]">Availability, origin, composition, grade, MOQ, documentation, packaging and final customs classification are confirmed only against the approved enquiry and offered lot.</p>
           </div>
         </div>
       </section>
@@ -156,7 +173,7 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
           <div className="flex flex-col justify-center bg-[#062b23] p-7 text-[#fbf7ed] sm:p-10 lg:p-12">
             <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Packaging is part of the specification</span>
             <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight sm:text-4xl">A route from evaluation sample to commercial supply.</h2>
-            <p className="mt-4 text-sm leading-relaxed text-[#f2ead9]/75">For {product.name}, the final container, lining, closure, fill quantity and markings are reviewed against product compatibility, destination and shipment mode before confirmation.</p>
+            <p className="mt-4 text-sm leading-relaxed text-[#f2ead9]/75">For {localizedName}, the final container, lining, closure, fill quantity and markings are reviewed against product compatibility, destination and shipment mode before confirmation.</p>
             <a href="/packaging" className="mt-7 inline-flex w-fit items-center gap-2 border border-[#d4a43d] px-6 py-3 text-[10px] font-bold uppercase tracking-eyebrow text-[#fbf7ed] transition-colors hover:bg-[#d4a43d] hover:text-[#041e18]">Review packaging routes <ArrowRight className="h-4 w-4" /></a>
             <p className="mt-5 text-[10px] leading-relaxed text-[#f2ead9]/48">Illustrative packaging presentation; the approved pack remains product- and order-specific.</p>
           </div>
@@ -169,10 +186,15 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
             <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b6334]">Related sourcing routes</span><h2 className="mt-2 font-serif text-3xl font-semibold">Continue exploring</h2></div><a href="/catalogue" className="text-xs font-bold uppercase tracking-eyebrow text-[#173f34] hover:text-[#9b6334]">View complete catalogue →</a></div>
             <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {relatedProducts.map((related) => (
+                (() => {
+                  const relatedLocalizedName = getLocalizedProductName(related.id, related.name, language);
+                  return (
                 <a key={related.id} href={getProductPath(related.id)} className="group overflow-hidden border border-[#b56e3a]/25 bg-[#fbf8f1] transition-all hover:-translate-y-1 hover:border-[#b56e3a]/60">
                   <ProductVisual src={related.image} alt={related.name} loading="lazy" className="aspect-[16/9]" />
-                  <div className="p-5"><p className="font-serif text-sm italic text-[#9b6334]">{related.botanicalName}</p><h3 className="mt-1 font-serif text-2xl font-semibold text-[#1f2925] group-hover:text-[#9b6334]">{related.name}</h3></div>
+                  <div className="p-5"><p className="font-serif text-sm italic text-[#9b6334]">{related.botanicalName}</p><h3 className="mt-1 font-serif text-2xl font-semibold text-[#1f2925] group-hover:text-[#9b6334]">{relatedLocalizedName}</h3>{language !== 'en' && relatedLocalizedName !== related.name && <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.11em] text-[#66706b]">{related.name}</p>}</div>
                 </a>
+                  );
+                })()
               ))}
             </div>
           </div>
