@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Search, ShieldCheck, Menu, X, ChevronRight, Mail, ArrowRight } from 'lucide-react';
+import { Search, ShieldCheck, Menu, X, ChevronRight, Mail, ArrowRight, Languages } from 'lucide-react';
 import { PAGE_ROUTES } from '../siteRoutes';
+import { BUYER_LANGUAGES, useBuyerLanguage } from '../context/BuyerLanguageContext';
+import { PRODUCT_LANGUAGE_LABELS } from '../data/productLanguage';
 
 interface NavbarProps {
   activeTab: string;
@@ -21,6 +23,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const { language, setLanguage } = useBuyerLanguage();
+  const languageLabels = PRODUCT_LANGUAGE_LABELS[language];
 
   const navLinks = [
     { id: 'home', label: 'HOME' },
@@ -65,7 +69,21 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="hidden sm:inline">Indian botanical sourcing corridors · Mandsaur · Alleppey · Mysore</span>
             </span>
           </div>
-          <div className="hidden items-center gap-5 md:flex">
+          <div className="hidden items-center gap-4 md:flex">
+            <label className="flex items-center gap-1.5 font-semibold" title="Change buyer-facing product names">
+              <Languages className="h-3.5 w-3.5 text-[#967020]" aria-hidden="true" />
+              <span className="sr-only">{languageLabels.buyerLanguage}</span>
+              <select
+                value={language}
+                onChange={(event) => setLanguage(event.target.value as typeof language)}
+                aria-label={languageLabels.buyerLanguage}
+                className="cursor-pointer border-0 bg-transparent py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#17231e] outline-none"
+              >
+                {BUYER_LANGUAGES.map((option) => (
+                  <option key={option.code} value={option.code}>{option.shortLabel} · {option.label}</option>
+                ))}
+              </select>
+            </label>
             <a href="mailto:office@ancientindianbotanicals.com" className="flex items-center gap-1.5 font-semibold transition-colors hover:text-[#967020]"><Mail className="h-3.5 w-3.5" />office@ancientindianbotanicals.com</a>
             <button onClick={openCoaModal} className="flex items-center gap-1.5 border border-[#041e18]/25 px-3 py-1 font-bold uppercase tracking-eyebrow transition-colors hover:bg-[#eae3c2]"><ShieldCheck className="h-3.5 w-3.5 text-[#967020]" />Request lot documents</button>
           </div>
@@ -107,6 +125,20 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <div className="flex shrink-0 items-center gap-2 lg:hidden">
+            <label className="relative flex h-[42px] items-center border border-[#b88a2c]/40 px-2 text-[#fbf7ed]" title="Change buyer-facing product names">
+              <Languages className="mr-1 h-4 w-4 text-[#d4a43d]" aria-hidden="true" />
+              <span className="sr-only">{languageLabels.buyerLanguage}</span>
+              <select
+                value={language}
+                onChange={(event) => setLanguage(event.target.value as typeof language)}
+                aria-label={languageLabels.buyerLanguage}
+                className="cursor-pointer appearance-none border-0 bg-transparent pr-1 text-[10px] font-bold text-[#fbf7ed] outline-none"
+              >
+                {BUYER_LANGUAGES.map((option) => (
+                  <option key={option.code} value={option.code} className="bg-[#041e18]">{option.shortLabel}</option>
+                ))}
+              </select>
+            </label>
             <button onClick={() => setSearchOpen((value) => !value)} aria-label={searchOpen ? 'Close catalogue search' : 'Open catalogue search'} className="hidden border border-[#b88a2c]/35 p-2.5 text-[#fbf7ed] min-[410px]:block"><Search className="h-4 w-4" /></button>
             <button onClick={() => setMobileMenuOpen((value) => !value)} aria-label="Toggle navigation menu" className="border border-[#b88a2c]/45 p-2.5 text-[#fbf7ed]">{mobileMenuOpen ? <X className="h-6 w-6 text-[#d4a43d]" /> : <Menu className="h-6 w-6" />}</button>
           </div>
@@ -134,6 +166,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {mobileMenuOpen && (
           <div className="border-t border-[#b88a2c]/30 bg-[#041e18] px-5 py-5 shadow-2xl lg:hidden">
+            <div className="mb-4 flex items-center justify-between border border-[#b88a2c]/25 bg-[#062b23] px-3 py-2.5">
+              <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]"><Languages className="h-4 w-4" />{languageLabels.buyerLanguage}</span>
+              <select value={language} onChange={(event) => setLanguage(event.target.value as typeof language)} className="border border-[#b88a2c]/35 bg-[#041e18] px-2 py-1.5 text-[10px] font-bold text-[#fbf7ed] outline-none">
+                {BUYER_LANGUAGES.map((option) => <option key={option.code} value={option.code}>{option.label}</option>)}
+              </select>
+            </div>
             <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 sm:gap-x-6">
               {navLinks.map((link) => (
                 <a key={link.id} href={PAGE_ROUTES[link.id]} onClick={(event) => handleNavClick(event, link.id)} className={`flex items-center justify-between border-b border-[#b88a2c]/18 py-3 text-left text-[11px] font-bold uppercase tracking-eyebrow ${activeTab === link.id ? 'text-[#d4a43d]' : 'text-[#fbf7ed]/88'}`}><span>{link.label}</span><ChevronRight className="h-4 w-4 text-[#b88a2c]" /></a>
