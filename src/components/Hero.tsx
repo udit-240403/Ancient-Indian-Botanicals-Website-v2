@@ -13,11 +13,11 @@ export const Hero: React.FC<HeroProps> = ({
   openCoaModal,
 }) => {
   return (
-    <section className="relative flex w-full flex-col justify-center overflow-hidden border-b border-[#b88a2c]/30 bg-[#041e18] py-8 text-[#fbf7ed] sm:py-10 lg:flex-grow lg:py-3">
+    <section className="hero-cinematic relative flex w-full flex-col justify-center overflow-hidden border-b border-[#b88a2c]/30 bg-[#041e18] py-8 text-[#fbf7ed] sm:py-10 lg:flex-grow lg:py-8">
       
       {/* Background Texture Positioned so Mandsaur sits in the middle of the empty space */}
       <div
-        className="absolute inset-0 opacity-65 pointer-events-none bg-cover scale-115 transition-all duration-700 filter brightness-[0.9] contrast-[1.08]"
+        className="hero-cinematic__backdrop absolute inset-0 opacity-65 pointer-events-none bg-cover scale-115 filter brightness-[0.9] contrast-[1.08]"
         style={{
           backgroundImage: `url('/assets/images/hero-dark-green-bg.webp')`,
           backgroundPosition: 'calc(30% + 70px) center',
@@ -25,13 +25,15 @@ export const Hero: React.FC<HeroProps> = ({
       />
 
       {/* Dimmed Gradient Overlay for High Foreground Text Readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#041e18]/85 via-[#041e18]/30 to-transparent pointer-events-none" />
+      <div className="hero-cinematic__veil absolute inset-0 pointer-events-none" />
+      <div className="hero-cinematic__orb hero-cinematic__orb--one" aria-hidden="true" />
+      <div className="hero-cinematic__orb hero-cinematic__orb--two" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto w-full max-w-[1440px] px-4 md:px-8 lg:my-auto">
         <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-8">
           
           {/* Left Copy Panel (5 Columns) Vertically Centered */}
-          <div className="lg:col-span-5 flex flex-col justify-center space-y-3 lg:space-y-3.5 lg:pr-2 relative z-20">
+          <div className="hero-cinematic__copy lg:col-span-5 flex flex-col justify-center space-y-3 lg:space-y-3.5 lg:pr-2 relative z-20">
             
             {/* Single Line Eyebrow Pill */}
             <div className="inline-flex items-center gap-2 border border-[#b88a2c]/60 px-3 py-1 rounded-none text-[10px] font-semibold uppercase tracking-[0.14em] text-[#b88a2c] w-fit max-w-full bg-[#041e18]/95 backdrop-blur-md shadow-xl whitespace-nowrap overflow-hidden text-ellipsis">
@@ -92,13 +94,21 @@ export const Hero: React.FC<HeroProps> = ({
           </div>
 
           {/* Center-Right Column: Photo Cover Frame */}
-          <div className="lg:col-span-7 relative z-20 lg:pl-4">
+          <div className="hero-cinematic__stage lg:col-span-7 relative z-20 lg:pl-4">
+            <div className="hero-cinematic__index hero-cinematic__index--top" aria-hidden="true">
+              <span>01</span>
+              <strong>Origin-led</strong>
+            </div>
+            <div className="hero-cinematic__index hero-cinematic__index--side" aria-hidden="true">
+              <span>132 routes</span>
+              <strong>One sourcing desk</strong>
+            </div>
             
             {/* The Image Wrapper breaking out with shadow depth */}
-            <div className="relative w-full rounded-none overflow-visible shadow-[0_25px_60px_-10px_rgba(0,0,0,0.9)] group transition-transform duration-500 hover:-translate-x-1">
+            <div className="hero-cinematic__frame relative w-full overflow-visible group">
               
               {/* Main Photo Asset */}
-              <div className="image-shell relative w-full h-[300px] sm:h-[330px] lg:h-[390px] overflow-hidden rounded-none border-2 border-[#b88a2c]/70 shadow-2xl bg-[#041e18]">
+              <div className="hero-cinematic__image-shell image-shell relative w-full h-[300px] sm:h-[330px] lg:h-[420px] overflow-hidden rounded-none border border-[#b88a2c]/70 shadow-2xl bg-[#041e18]">
                 <img
                   src="/assets/images/hero-botanical-still-life.webp"
                   alt="Amber botanical bottles surrounded by Indian herbs, roots and flowers"
@@ -108,11 +118,12 @@ export const Hero: React.FC<HeroProps> = ({
                   fetchPriority="high"
                   decoding="async"
                   onError={(event) => { if (event.currentTarget.dataset.fallback === 'true') return; event.currentTarget.dataset.fallback = 'true'; event.currentTarget.src = '/assets/images/product-families-flatlay.webp'; }}
-                  className="relative z-[1] w-full h-full object-cover object-[56%_50%] transform transition-transform duration-700 hover:scale-[1.02]"
+                  className="hero-cinematic__image relative z-[1] w-full h-full object-cover object-[56%_50%]"
                 />
                 
                 {/* Subtle Lighting Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-[#041e18]/20 via-transparent to-transparent pointer-events-none" />
+                <div className="hero-cinematic__scan" aria-hidden="true" />
               </div>
 
               {/* Floating Provenance Card on Bottom Right */}
@@ -139,11 +150,21 @@ export const Hero: React.FC<HeroProps> = ({
                 </button>
               </div>
 
+              <div className="hero-cinematic__caption" aria-hidden="true">
+                <span>Indian origin</span>
+                <span>Buyer specification</span>
+                <span>Export-ready route</span>
+              </div>
+
             </div>
 
           </div>
 
         </div>
+      </div>
+      <div className="hero-cinematic__scroll" aria-hidden="true">
+        <span>Discover</span>
+        <i />
       </div>
     </section>
   );

@@ -210,7 +210,7 @@ export function App() {
       <main className="flex-grow">
         <Suspense fallback={<PageLoading />}>
         {activeTab === 'home' && (
-          <>
+          <div className="home-cinematic">
             <div className="flex flex-col bg-[#041e18]">
               <div className="flex flex-col justify-center">
                 <Hero
@@ -239,7 +239,7 @@ export function App() {
               setSearchQuery={setSearchQuery}
               openQuoteModal={handleOpenQuoteModal}
             />
-          </>
+          </div>
         )}
 
         {activeTab === 'essential-oils' && (
