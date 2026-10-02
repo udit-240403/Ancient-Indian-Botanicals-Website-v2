@@ -218,6 +218,252 @@ button, a, input {
   background: linear-gradient(90deg, var(--brass-500), transparent);
 }
 
+/* Cinematic homepage treatment. The effect is presentation-only: all buyer
+   copy, links and images remain ordinary crawlable HTML. */
+.hero-cinematic {
+  min-height: clamp(600px, 76vh, 820px);
+  isolation: isolate;
+}
+
+.hero-cinematic::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(251, 247, 237, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(251, 247, 237, 0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to right, black, transparent 74%);
+}
+
+.hero-cinematic__backdrop {
+  animation: hero-backdrop-drift 18s ease-in-out infinite alternate;
+  transform-origin: 60% 50%;
+  will-change: transform;
+}
+
+.hero-cinematic__veil {
+  z-index: 2;
+  background:
+    linear-gradient(90deg, rgba(4, 30, 24, 0.96) 0%, rgba(4, 30, 24, 0.7) 42%, rgba(4, 30, 24, 0.12) 74%, rgba(4, 30, 24, 0.52) 100%),
+    linear-gradient(180deg, rgba(4, 30, 24, 0.12), rgba(4, 30, 24, 0.52));
+}
+
+.hero-cinematic__orb {
+  position: absolute;
+  z-index: 3;
+  width: 32rem;
+  height: 32rem;
+  border-radius: 999px;
+  pointer-events: none;
+  filter: blur(90px);
+  opacity: 0.15;
+  background: #d4a43d;
+  animation: hero-orb-drift 14s ease-in-out infinite alternate;
+}
+
+.hero-cinematic__orb--one { top: -20rem; right: 8%; }
+.hero-cinematic__orb--two { bottom: -24rem; left: 28%; animation-delay: -7s; }
+
+.hero-cinematic__copy > * {
+  animation: hero-copy-in 800ms cubic-bezier(.18,.76,.25,1) both;
+}
+
+.hero-cinematic__copy > *:nth-child(2) { animation-delay: 90ms; }
+.hero-cinematic__copy > *:nth-child(3) { animation-delay: 160ms; }
+.hero-cinematic__copy > *:nth-child(4) { animation-delay: 230ms; }
+.hero-cinematic__copy > *:nth-child(5) { animation-delay: 300ms; }
+.hero-cinematic__copy > *:nth-child(6) { animation-delay: 370ms; }
+
+.hero-cinematic__stage {
+  perspective: 1200px;
+  animation: hero-stage-in 1s 180ms cubic-bezier(.18,.76,.25,1) both;
+}
+
+.hero-cinematic__frame {
+  transform: rotateY(-2.25deg) rotateX(0.6deg);
+  transform-style: preserve-3d;
+  box-shadow: 0 34px 84px -20px rgba(0, 0, 0, 0.92);
+  transition: transform 700ms cubic-bezier(.2,.72,.2,1), box-shadow 700ms ease;
+}
+
+.hero-cinematic__frame::before,
+.hero-cinematic__frame::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+}
+
+.hero-cinematic__frame::before {
+  inset: -12px 18px 16px -12px;
+  z-index: -1;
+  border: 1px solid rgba(184, 138, 44, 0.42);
+  transform: translateZ(-24px);
+}
+
+.hero-cinematic__frame::after {
+  top: -1px;
+  right: 12%;
+  z-index: 5;
+  width: 24%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4a43d, transparent);
+  animation: hero-line-breathe 3.8s ease-in-out infinite;
+}
+
+.hero-cinematic__frame:hover {
+  transform: rotateY(-0.6deg) rotateX(0deg) translateY(-5px);
+  box-shadow: 0 44px 96px -18px rgba(0, 0, 0, 0.96);
+}
+
+.hero-cinematic__image-shell { transform: translateZ(18px); }
+
+.hero-cinematic__image {
+  transform: scale(1.035);
+  filter: saturate(0.92) contrast(1.04);
+  animation: hero-image-breathe 15s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.hero-cinematic__scan {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0.36;
+  background: linear-gradient(108deg, transparent 0 42%, rgba(251, 247, 237, 0.14) 49%, transparent 56% 100%);
+  transform: translateX(-110%);
+  animation: hero-scan 9s 1.5s ease-in-out infinite;
+}
+
+.hero-cinematic__index {
+  position: absolute;
+  z-index: 35;
+  display: none;
+  gap: 0.55rem;
+  align-items: center;
+  color: rgba(251, 247, 237, 0.72);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.hero-cinematic__index span { color: #d4a43d; }
+.hero-cinematic__index strong { font-weight: 700; }
+.hero-cinematic__index--top { top: -1.8rem; right: 0; }
+.hero-cinematic__index--side { right: -4.7rem; top: 44%; transform: rotate(90deg); }
+
+.hero-cinematic__caption {
+  position: absolute;
+  left: 1.15rem;
+  bottom: -2rem;
+  z-index: 12;
+  display: none;
+  gap: 1.35rem;
+  color: rgba(242, 234, 217, 0.58);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero-cinematic__caption span { display: inline-flex; align-items: center; gap: 0.45rem; }
+.hero-cinematic__caption span::before { content: ''; width: 12px; height: 1px; background: rgba(184, 138, 44, 0.75); }
+
+.hero-cinematic__scroll {
+  position: absolute;
+  right: 1.15rem;
+  bottom: 1.4rem;
+  z-index: 15;
+  display: none;
+  align-items: center;
+  gap: 0.7rem;
+  color: rgba(251, 247, 237, 0.52);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transform: rotate(90deg) translateX(50%);
+  transform-origin: right bottom;
+}
+
+.hero-cinematic__scroll i { position: relative; display: block; width: 44px; height: 1px; overflow: hidden; background: rgba(251, 247, 237, 0.18); }
+.hero-cinematic__scroll i::after { content: ''; position: absolute; inset: 0; background: #d4a43d; transform: translateX(-100%); animation: hero-scroll-line 2.4s ease-in-out infinite; }
+
+@keyframes hero-backdrop-drift {
+  from { transform: scale(1.13) translate3d(-0.6%, 0, 0); }
+  to { transform: scale(1.18) translate3d(0.7%, -0.5%, 0); }
+}
+
+@keyframes hero-orb-drift {
+  from { transform: translate3d(-3%, -2%, 0) scale(0.94); }
+  to { transform: translate3d(5%, 4%, 0) scale(1.05); }
+}
+
+@keyframes hero-copy-in {
+  from { opacity: 0; transform: translate3d(0, 20px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes hero-stage-in {
+  from { opacity: 0; transform: translate3d(36px, 0, 0) scale(0.98); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes hero-image-breathe {
+  from { transform: scale(1.035) translate3d(-0.4%, 0, 0); }
+  to { transform: scale(1.085) translate3d(0.8%, -0.5%, 0); }
+}
+
+@keyframes hero-scan {
+  0%, 58% { transform: translateX(-115%); }
+  82%, 100% { transform: translateX(115%); }
+}
+
+@keyframes hero-line-breathe {
+  0%, 100% { opacity: 0.28; transform: scaleX(0.72); }
+  50% { opacity: 0.95; transform: scaleX(1); }
+}
+
+@keyframes hero-scroll-line {
+  0% { transform: translateX(-100%); }
+  50%, 100% { transform: translateX(100%); }
+}
+
+@media (min-width: 1024px) {
+  .hero-cinematic__index,
+  .hero-cinematic__caption,
+  .hero-cinematic__scroll { display: flex; }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .home-cinematic > section,
+    .home-cinematic > div:not(:first-child) {
+      animation: homepage-section-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 22%;
+    }
+  }
+}
+
+@keyframes homepage-section-reveal {
+  from { opacity: 0.72; transform: translate3d(0, 26px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@media (max-width: 767px) {
+  .hero-cinematic { min-height: auto; }
+  .hero-cinematic::before { background-size: 48px 48px; opacity: 0.55; }
+  .hero-cinematic__veil {
+    background: linear-gradient(180deg, rgba(4, 30, 24, 0.9) 0%, rgba(4, 30, 24, 0.66) 44%, rgba(4, 30, 24, 0.58) 100%);
+  }
+  .hero-cinematic__frame { transform: none; }
+  .hero-cinematic__frame::before { inset: -7px 8px 9px -7px; transform: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     scroll-behavior: auto !important;
@@ -225,6 +471,12 @@ button, a, input {
     animation-duration: 0.01ms !important;
   }
   .contact-dock-trigger::after { animation: none !important; }
+  .hero-cinematic__backdrop,
+  .hero-cinematic__image { transform: none !important; }
+  .hero-cinematic__copy > *,
+  .hero-cinematic__stage { opacity: 1 !important; }
+  .hero-cinematic__scan,
+  .hero-cinematic__scroll i::after { display: none !important; }
 }
 
 /* Brass fine rules */
