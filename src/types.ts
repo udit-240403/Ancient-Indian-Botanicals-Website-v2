@@ -68,6 +68,7 @@ export interface ProvenanceRegion {
 }
 
 export interface B2BQuoteRequest {
+  requestType: 'quote' | 'sample';
   fullName: string;
   companyName: string;
   country: string;
