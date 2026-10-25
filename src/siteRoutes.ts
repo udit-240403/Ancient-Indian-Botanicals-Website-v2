@@ -9,6 +9,7 @@ export const PAGE_ROUTES: Record<string, string> = {
   search: '/catalogue',
   packaging: '/packaging',
   quality: '/quality',
+  verification: '/verification',
   faq: '/faq',
   about: '/about',
   payments: '/payments',
@@ -38,7 +39,7 @@ export const PAGE_META: Record<string, { title: string; description: string }> =
   },
   catalogue: {
     title: 'Complete Botanical Product Catalogue | Ancient Indian Botanicals',
-    description: 'Explore 132 Indian botanical, essential-oil, oilseed, nut, dehydrated-food, cold-pressed-oil, floral-water and clay sourcing routes for commercial enquiries.',
+    description: 'Explore 129 consolidated Indian botanical, essential-oil, oilseed, nut, dehydrated-food, cold-pressed-oil, floral-water and clay sourcing routes for commercial enquiries.',
   },
   packaging: {
     title: 'Botanical Export Packaging Options | Ancient Indian Botanicals',
@@ -48,13 +49,17 @@ export const PAGE_META: Record<string, { title: string; description: string }> =
     title: 'Lot Documentation & Quality Process | Ancient Indian Botanicals',
     description: 'Understand the lot-specific COA, identity, analytical, safety and packing-document review process for botanical supply.',
   },
+  verification: {
+    title: 'Company Verification & Registrations | Ancient Indian Botanicals',
+    description: 'Review the incorporation, GST, Udyam, IEC, APEDA RCMC, ICEGATE and ISO 9001:2015 status of Ancient Indian Botanicals Private Limited.',
+  },
   faq: {
     title: 'Botanical Sourcing FAQ | Ancient Indian Botanicals',
     description: 'Answers about MOQ, COA and specification documents, payment terms, Incoterms, private-label packaging and verified company registrations.',
   },
   about: {
     title: 'About Ancient Indian Botanicals | Indian Sourcing House',
-    description: 'Meet an Indian sourcing house established in 2026 and registered under GST and Udyam, supporting specification-led botanical and food-ingredient coordination.',
+    description: 'Meet Ancient Indian Botanicals Private Limited, an Indian sourcing and export-coordination company led by Udit Agrawal and established in 2026.',
   },
   payments: {
     title: 'B2B Payment & Commercial Process | Ancient Indian Botanicals',

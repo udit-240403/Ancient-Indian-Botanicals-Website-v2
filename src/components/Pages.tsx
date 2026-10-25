@@ -183,17 +183,19 @@ export const QualityPage: React.FC<{ openCoaModal: () => void; openQuoteModal: (
           <div>
             <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b6334]">Verified company layer</span>
             <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight">Credentials shown only when evidence exists.</h2>
-            <p className="mt-4 text-xs leading-relaxed text-[#52635d]">Ancient Indian Botanicals was incorporated in 2026 and is registered under GST and Udyam. Exact identifiers are supplied through verified commercial documents.</p>
+            <p className="mt-4 text-xs leading-relaxed text-[#52635d]">Ancient Indian Botanicals Private Limited maintains company, tax, MSME and export registrations together with an ISO 9001:2015 quality-management certificate. Public pages mask exact identifiers; certificate copies are available for qualified counterparty review.</p>
           </div>
-          <div className="grid gap-3 sm:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {[
-              { title: 'Incorporated', copy: 'India · 2026' },
-              { title: 'GST registered', copy: 'Company tax registration verified' },
-              { title: 'Udyam registered', copy: 'MSME registration verified' },
+              { title: 'Incorporated', copy: 'Private limited company · India · 2026' },
+              { title: 'GST & Udyam', copy: 'Tax and MSME registrations' },
+              { title: 'IEC & ICEGATE', copy: 'Importer-exporter and customs registrations' },
+              { title: 'APEDA RCMC', copy: 'Registered merchant exporter route' },
+              { title: 'ISO 9001:2015', copy: 'Quality-management system certificate' },
             ].map((item) => <article key={item.title} className="border border-[#b56e3a]/25 bg-white p-5"><BadgeCheck className="h-5 w-5 text-[#9b6334]" /><h3 className="mt-4 font-serif text-xl font-semibold">{item.title}</h3><p className="mt-2 text-[11px] leading-relaxed text-[#66706b]">{item.copy}</p></article>)}
           </div>
         </div>
-        <p className="mt-5 border-t border-[#b56e3a]/20 pt-4 text-[10px] leading-relaxed text-[#66706b]"><strong className="text-[#344740]">Not implied:</strong> IEC/APEDA, FSSAI, NPOP/organic, ISO, laboratory accreditation or destination approval is displayed only after the relevant certificate and commercial route have been verified.</p>
+        <p className="mt-5 border-t border-[#b56e3a]/20 pt-4 text-[10px] leading-relaxed text-[#66706b]"><strong className="text-[#344740]">Not implied:</strong> FSSAI, NPOP/organic, HACCP, laboratory accreditation or destination approval is not claimed site-wide. Product-, supplier- and destination-specific evidence is confirmed for the proposed commercial route.</p>
       </section>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -230,6 +232,57 @@ export const QualityPage: React.FC<{ openCoaModal: () => void; openQuoteModal: (
   </div>
 );
 
+export const VerificationPage: React.FC = () => (
+  <div className="w-full bg-[#f4efe5] text-[#1f2925]">
+    <section className="border-b border-[#b88a2c]/35 bg-[#062b23] px-4 py-16 text-[#fbf7ed] md:px-8 lg:py-20">
+      <div className="mx-auto grid max-w-[1440px] gap-8 lg:grid-cols-[1.08fr_.92fr] lg:items-end">
+        <div><span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Company verification</span><h1 className="mt-3 max-w-4xl font-serif text-4xl font-semibold leading-[1.04] sm:text-5xl lg:text-6xl">Registered, identifiable and available for counterparty review.</h1></div>
+        <p className="text-sm leading-relaxed text-[#f2ead9]/78">Ancient Indian Botanicals Private Limited is the legal contracting entity. We publish the credential status buyers need for initial due diligence while keeping registration numbers out of search indexes and unsolicited reuse.</p>
+      </div>
+    </section>
+
+    <section className="px-4 py-16 md:px-8 lg:py-20">
+      <div className="mx-auto max-w-[1440px]">
+        <div className="grid gap-px overflow-hidden border border-[#b56e3a]/30 bg-[#b56e3a]/30 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { title: 'Company registration', authority: 'Ministry of Corporate Affairs', status: 'Private limited company · incorporated 2026', scope: 'Legal contracting entity in India' },
+            { title: 'GST registration', authority: 'Goods and Services Tax', status: 'Regular registration · Madhya Pradesh', scope: 'Tax invoices and domestic commercial compliance' },
+            { title: 'Udyam registration', authority: 'Ministry of MSME', status: 'Registered', scope: 'MSME enterprise registration' },
+            { title: 'Importer-Exporter Code', authority: 'Directorate General of Foreign Trade', status: 'IEC registered', scope: 'India export and import identity' },
+            { title: 'APEDA RCMC', authority: 'Agricultural and Processed Food Products Export Development Authority', status: 'Registered merchant exporter', scope: 'Certificate scope includes herbal and medicinal plants' },
+            { title: 'ICEGATE registration', authority: 'Indian Customs national trade portal', status: 'Registered importer / exporter', scope: 'Customs and export-system identity' },
+            { title: 'ISO 9001:2015', authority: 'Quality management system certification', status: 'Current certificate · valid through 2029', scope: 'AIB trading, sourcing and vendor-coordination activities' },
+          ].map((credential) => (
+            <article key={credential.title} className="bg-[#fbf8f1] p-6 sm:p-7">
+              <BadgeCheck className="h-6 w-6 text-[#9b6334]" />
+              <span className="mt-5 block text-[9px] font-bold uppercase tracking-eyebrow text-[#9b6334]">{credential.authority}</span>
+              <h2 className="mt-2 font-serif text-2xl font-semibold text-[#173f34]">{credential.title}</h2>
+              <p className="mt-3 text-xs font-semibold text-[#315148]">{credential.status}</p>
+              <p className="mt-2 text-[11px] leading-relaxed text-[#66706b]">{credential.scope}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-8 grid gap-6 lg:grid-cols-[1.08fr_.92fr]">
+          <div className="border border-[#b56e3a]/30 bg-[#fbf8f1] p-7 sm:p-9">
+            <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b6334]">How buyers can verify us</span>
+            <h2 className="mt-3 font-serif text-3xl font-semibold">Request the evidence relevant to the transaction.</h2>
+            <ol className="mt-6 space-y-4 text-sm leading-relaxed text-[#52635d]">
+              {['Send the company name, buyer organisation and intended product or route.', 'We share the relevant redacted or complete certificate through an official @ancientindianbotanicals.com email.', 'Verify the certificate with the stated issuing authority and match the legal entity before accepting payment instructions.'].map((item, index) => <li key={item} className="flex gap-3"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#173f34] text-[10px] font-bold text-[#d4a43d]">{index + 1}</span><span>{item}</span></li>)}
+            </ol>
+          </div>
+          <div className="border border-[#b88a2c]/45 bg-[#062b23] p-7 text-[#fbf7ed] sm:p-9">
+            <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Important distinction</span>
+            <h2 className="mt-4 font-serif text-3xl font-semibold">Company credentials are not product approvals.</h2>
+            <p className="mt-4 text-sm leading-relaxed text-[#f2ead9]/72">These credentials identify AIB and its commercial systems. They do not make every product organic, food-approved, laboratory-accredited or automatically admissible in every destination. Those requirements remain product-, supplier-, lot- and market-specific.</p>
+            <a href="mailto:office@ancientindianbotanicals.com?subject=Company%20credential%20verification%20request" className="mt-7 inline-flex items-center gap-2 bg-[#b88a2c] px-6 py-3.5 text-[10px] font-bold uppercase tracking-eyebrow text-[#041e18]">Request credential copies <ArrowRight className="h-4 w-4" /></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+);
+
 export const AboutPage: React.FC<{ openQuoteModal: (productName?: string) => void }> = ({ openQuoteModal }) => (
   <div className="w-full bg-[#eee8dd] text-[#1f2925]">
     <section className="border-b border-[#b56e3a]/25 px-4 py-16 md:px-8 lg:py-20">
@@ -237,9 +290,9 @@ export const AboutPage: React.FC<{ openQuoteModal: (productName?: string) => voi
         <div className="max-w-4xl space-y-5">
           <span className="text-[11px] font-semibold uppercase tracking-eyebrow text-[#9b6334]">About Ancient Indian Botanicals</span>
           <h1 className="font-serif text-4xl font-semibold leading-[1.03] text-[#1f2925] md:text-6xl lg:text-7xl">You build the brand. We organise the work behind it.</h1>
-          <p className="max-w-3xl text-sm font-light leading-relaxed text-[#52635d] md:text-base">Ancient Indian Botanicals is an incorporated, GST-registered and Udyam-registered Indian B2B sourcing and coordination house established in 2026 for botanical, aromatic and food ingredients. We translate the buyer brief into an organised India-side route—material matching, samples, available lot documents, packaging coordination and export preparation—so your team can stay focused on market, product and brand.</p>
+          <p className="max-w-3xl text-sm font-light leading-relaxed text-[#52635d] md:text-base">Ancient Indian Botanicals Private Limited is an Indian B2B sourcing and export-coordination company established in 2026 for botanical, aromatic and food ingredients. We translate the buyer brief into an organised India-side route—material matching, samples, available lot documents, packaging coordination and export preparation—so your team can stay focused on market, product and brand.</p>
           <div className="flex flex-wrap gap-2 pt-2 text-[9px] font-bold uppercase tracking-eyebrow text-[#765411]">
-            {['Established 2026', 'GST Registered', 'Udyam Registered', 'Specification-led', 'Buyer-brand focused'].map((item) => <span key={item} className="border border-[#b88a2c]/40 bg-[#fbf8f1] px-3 py-2">{item}</span>)}
+            {['Established 2026', 'GST & Udyam', 'IEC & APEDA RCMC', 'ISO 9001:2015', 'Buyer-brand focused'].map((item) => <span key={item} className="border border-[#b88a2c]/40 bg-[#fbf8f1] px-3 py-2">{item}</span>)}
           </div>
         </div>
         <div className="mx-auto w-full max-w-[21rem] border border-[#b56e3a]/35 bg-[#fbf8f1] p-5 shadow-[0_24px_70px_rgba(16,42,35,.13)]">
@@ -254,14 +307,30 @@ export const AboutPage: React.FC<{ openQuoteModal: (productName?: string) => voi
         {[
           { icon: CalendarDays, label: 'Established', value: '2026' },
           { icon: BadgeCheck, label: 'Company status', value: 'Incorporated in India' },
-          { icon: BadgeCheck, label: 'Registrations', value: 'GST · Udyam' },
-          { icon: Linkedin, label: 'External profile', value: 'LinkedIn trade profile', href: 'https://www.linkedin.com/in/ancient-indian-botanicals-undefined-b48450430' },
+          { icon: BadgeCheck, label: 'Trade credentials', value: 'GST · Udyam · IEC · RCMC' },
+          { icon: Linkedin, label: 'External profile', value: 'LinkedIn company page', href: 'https://www.linkedin.com/company/ancient-indian-botanicals/' },
         ].map(({ icon: Icon, label, value, href }) => {
           const content = <><Icon className="h-5 w-5 text-[#9b6334]" /><span className="mt-4 block text-[9px] font-bold uppercase tracking-eyebrow text-[#9b6334]">{label}</span><strong className="mt-1 block font-serif text-xl text-[#173f34]">{value}</strong></>;
           return href ? <a key={label} href={href} target="_blank" rel="noreferrer" className="border border-[#b56e3a]/25 bg-white p-5 transition-colors hover:border-[#9b6334]">{content}</a> : <article key={label} className="border border-[#b56e3a]/25 bg-white p-5">{content}</article>;
         })}
       </div>
       <p className="mx-auto mt-5 max-w-[1440px] text-[10px] leading-relaxed text-[#66706b]">We are a new company and do not publish invented shipment counts, testimonials or certification claims. Product- and supplier-specific evidence is confirmed for the actual route under review.</p>
+    </section>
+
+    <section className="border-b border-[#b56e3a]/25 bg-[#f5f0e6] px-4 py-16 md:px-8 lg:py-20">
+      <div className="mx-auto grid max-w-[1440px] gap-8 lg:grid-cols-[24rem_1fr] lg:items-center">
+        <figure className="overflow-hidden border border-[#b56e3a]/35 bg-[#fbf8f1] shadow-[0_24px_70px_-45px_rgba(16,42,35,.75)]">
+          <img src="/assets/images/udit-agrawal-managing-director.webp" alt="Udit Agrawal, Managing Director of Ancient Indian Botanicals Private Limited" width="720" height="900" loading="lazy" decoding="async" className="aspect-[4/5] w-full object-cover" />
+          <figcaption className="border-t border-[#b56e3a]/25 px-5 py-4"><strong className="block font-serif text-xl text-[#173f34]">Udit Agrawal</strong><span className="mt-1 block text-[9px] font-bold uppercase tracking-eyebrow text-[#9b6334]">Managing Director · Buyer and export coordination</span></figcaption>
+        </figure>
+        <div>
+          <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b6334]">Named responsibility</span>
+          <h2 className="mt-3 font-serif text-4xl font-semibold leading-tight sm:text-5xl">A visible point of accountability for every buyer conversation.</h2>
+          <p className="mt-5 max-w-3xl text-sm leading-relaxed text-[#52635d]">AIB was established on a simple premise: international buyers should not have to chase suppliers, specifications, documents and shipping across several disconnected parties. Udit leads the commercial dialogue and coordinates the relevant India-side sourcing, manufacturing-partner, testing, packaging and export steps around the approved brief.</p>
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-[#52635d]">Manisha Agrawal serves as Director. AIB remains the buyer-facing contracting and coordination company; production, processing and laboratory capabilities are described as partner capabilities unless they are directly owned by AIB.</p>
+          <div className="mt-7 flex flex-wrap gap-3"><a href="mailto:office@ancientindianbotanicals.com?subject=Buyer%20introduction%20for%20Udit%20Agrawal" className="inline-flex items-center gap-2 bg-[#173f34] px-6 py-3.5 text-[10px] font-bold uppercase tracking-eyebrow text-[#fbf8f1]">Contact the Managing Director <ArrowRight className="h-4 w-4" /></a><a href="https://www.linkedin.com/company/ancient-indian-botanicals/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-[#173f34] px-6 py-3.5 text-[10px] font-bold uppercase tracking-eyebrow text-[#173f34]">Company LinkedIn <Linkedin className="h-4 w-4" /></a></div>
+        </div>
+      </div>
     </section>
 
     <section className="border-b border-[#b88a2c]/30 bg-[#062b23] px-4 py-14 text-[#fbf7ed] md:px-8 lg:py-16">
@@ -383,7 +452,7 @@ export const PaymentsPage: React.FC = () => (
           </div>
         </div>
 
-        <p className="text-center text-[11px] text-[#526d64]">Ancient Indian Botanicals was incorporated in 2026 and is GST- and Udyam-registered in India. Final payment terms become binding only through an accepted written commercial document.</p>
+        <p className="text-center text-[11px] text-[#526d64]">Ancient Indian Botanicals Private Limited maintains verified company and export credentials. Final payment terms become binding only through an accepted written commercial document.</p>
       </div>
     </section>
   </div>
@@ -418,12 +487,12 @@ export const ContactPage: React.FC<{ openQuoteModal: () => void }> = ({ openQuot
         </div>
 
         <div className="mt-8 grid border border-[#b88a2c]/35 bg-[#062b23] text-[#fbf7ed] lg:grid-cols-[.78fr_1.22fr]">
-          <div className="border-b border-[#b88a2c]/25 p-7 lg:border-b-0 lg:border-r sm:p-9"><MapPin className="h-6 w-6 text-[#d4a43d]" /><span className="mt-6 block text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Trade location</span><h2 className="mt-2 font-serif text-3xl font-semibold">Mandsaur, Madhya Pradesh</h2><p className="mt-3 text-xs leading-relaxed text-[#f2ead9]/70">Positioned within a central Indian agricultural and botanical trading corridor. Ancient Indian Botanicals was incorporated in 2026 and is GST- and Udyam-registered in India; verified registration particulars are shared through official quotations, tax invoices and commercial documents.</p></div>
+          <div className="border-b border-[#b88a2c]/25 p-7 lg:border-b-0 lg:border-r sm:p-9"><MapPin className="h-6 w-6 text-[#d4a43d]" /><span className="mt-6 block text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Trade location</span><h2 className="mt-2 font-serif text-3xl font-semibold">Mandsaur, Madhya Pradesh</h2><p className="mt-3 text-xs leading-relaxed text-[#f2ead9]/70">Positioned within a central Indian agricultural and botanical trading corridor. Ancient Indian Botanicals Private Limited maintains GST, Udyam, IEC, APEDA RCMC, ICEGATE and ISO 9001:2015 credentials; exact particulars are shared through verified commercial documents.</p></div>
           <div className="p-7 sm:p-9"><span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">What to include</span><div className="mt-5 grid gap-3 sm:grid-cols-2">{['Botanical or ingredient name', 'Required physical form or grade', 'Trial and commercial quantity', 'Application and destination', 'Packaging preference', 'Analytical or document requirements'].map((item) => <div key={item} className="flex items-start gap-2 border-t border-[#b88a2c]/20 pt-3 text-xs text-[#f2ead9]/80"><CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#d4a43d]" />{item}</div>)}</div></div>
         </div>
 
         <div className="mt-8 flex items-start gap-3 border border-[#b88a2c]/30 bg-[#efe3c8]/70 p-5 text-xs leading-relaxed text-[#315148]"><BarChart3 className="mt-0.5 h-4 w-4 shrink-0 text-[#765411]" /><p>The website enquiry form submits only after you press its final button. If direct submission is temporarily unavailable, it provides a clearly labelled email fallback rather than claiming that your enquiry was received.</p></div>
-        <a href="https://www.linkedin.com/in/ancient-indian-botanicals-undefined-b48450430" target="_blank" rel="noreferrer" className="mt-5 flex items-center justify-between gap-4 border border-[#b88a2c]/35 bg-[#fbf7ed] p-5 text-[#173f34] transition-colors hover:border-[#9b6334]"><span className="flex items-center gap-3"><Linkedin className="h-5 w-5 text-[#9b6334]" /><span><strong className="block font-serif text-xl">Connect on LinkedIn</strong><span className="mt-1 block text-[11px] text-[#52635d]">View the Ancient Indian Botanicals trade profile and continue the conversation through a public professional channel.</span></span></span><ArrowRight className="h-4 w-4 shrink-0" /></a>
+        <a href="https://www.linkedin.com/company/ancient-indian-botanicals/" target="_blank" rel="noreferrer" className="mt-5 flex items-center justify-between gap-4 border border-[#b88a2c]/35 bg-[#fbf7ed] p-5 text-[#173f34] transition-colors hover:border-[#9b6334]"><span className="flex items-center gap-3"><Linkedin className="h-5 w-5 text-[#9b6334]" /><span><strong className="block font-serif text-xl">Connect on LinkedIn</strong><span className="mt-1 block text-[11px] text-[#52635d]">View the Ancient Indian Botanicals company page and continue the conversation through a public professional channel.</span></span></span><ArrowRight className="h-4 w-4 shrink-0" /></a>
         <p className="mt-4 text-[10px] leading-relaxed text-[#66706b]">The trade desk is email-first so the product, grade, quantity and destination remain documented. A direct call or WhatsApp route can be arranged after the initial requirement review.</p>
       </div>
     </section>
@@ -460,7 +529,7 @@ export const LegalPage: React.FC<{ policyType: 'terms' | 'shipping' | 'privacy' 
       </h1>
       <div className="space-y-4 border border-[#b56e3a]/30 bg-[#fbf8f1] p-6 text-sm font-light leading-relaxed text-[#52635d] shadow-[0_18px_45px_-34px_rgba(16,42,35,.6)]">
         <p>
-          Ancient Indian Botanicals was incorporated in 2026 and is GST- and Udyam-registered in India. Website information is intended for B2B commercial evaluation. Any order, specification, documentation obligation, shipping term, return term or payment condition becomes binding only through a written offer or contract and counterparty review.
+          Ancient Indian Botanicals Private Limited is incorporated in India and maintains GST, Udyam, IEC, APEDA RCMC, ICEGATE and ISO 9001:2015 credentials. Website information is intended for B2B commercial evaluation. Any order, specification, documentation obligation, shipping term, return term or payment condition becomes binding only through a written offer or contract and counterparty review.
         </p>
         {policyType === 'privacy' && (
           <p>

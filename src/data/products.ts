@@ -244,12 +244,23 @@ export const PROVENANCE_REGIONS: ProvenanceRegion[] = [
     id: 'mandsaur',
     name: 'Mandsaur & Central India Corridor',
     subtitle: 'Roots, herbs, seeds & regional agricultural supply',
-    description: 'Positioned at the agrarian crossroads of Madhya Pradesh and Rajasthan, Mandsaur is India’s premier trading and cultivation hub for root botanicals like Ashwagandha, Isabgol, and seed spices. Dry climatic conditions promote optimal secondary metabolite concentration.',
-    keyCrops: ['Ashwagandha (Withania somnifera)', 'Boswellia serrata Gum', 'Amla (Phyllanthus emblica)', 'Arjuna Bark'],
+    description: 'Mandsaur sits within an active agricultural and botanical trading corridor spanning western Madhya Pradesh and neighbouring Rajasthan. The region is relevant to our current focus on Ashwagandha and other central-Indian raw-material routes; exact farm, crop year and origin remain lot-specific.',
+    keyCrops: ['Ashwagandha (Withania somnifera)', 'Seed spices and oilseeds', 'Regional herbs and roots', 'Buyer-specified Central Indian crops'],
     exportCorridor: 'Direct rail & highway connections to Western Indian Container Ports (JNPT & Mundra)',
     latitude: 24.0725,
     longitude: 75.0683,
-    image: '/assets/images/hero-botanical-still-life.png'
+    image: '/assets/images/cultivation-ashwagandha.webp'
+  },
+  {
+    id: 'kannauj',
+    name: 'Kannauj Aromatic Heritage Corridor',
+    subtitle: 'Attar heritage, hydrodistillation & floral materials',
+    description: 'Kannauj is internationally recognised for its attar-making heritage and traditional deg-bhapka hydrodistillation. We present this as a regional sourcing and knowledge corridor—not as a company-owned facility. The distillation route, vessel material, botanical input and analytical evidence are confirmed for each enquiry.',
+    keyCrops: ['Rose and floral materials', 'Mitti and traditional attar profiles', 'Hydrosols and floral waters', 'Buyer-defined aromatic ingredients'],
+    exportCorridor: 'Road and rail connectivity to Delhi-NCR and western Indian export gateways',
+    latitude: 27.0514,
+    longitude: 79.9137,
+    image: '/assets/images/process-kannauj-deg-bhapka.webp'
   },
   {
     id: 'alleppey',
@@ -260,7 +271,7 @@ export const PROVENANCE_REGIONS: ProvenanceRegion[] = [
     exportCorridor: 'Direct sea feeder connections via Cochin Port (COK)',
     latitude: 9.4981,
     longitude: 76.3388,
-    image: '/assets/images/product-families-flatlay.png'
+    image: '/assets/images/cultivation-lemongrass.webp'
   },
   {
     id: 'mysore',

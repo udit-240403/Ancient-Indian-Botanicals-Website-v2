@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, Droplets, Leaf, Flower2, Package, Wheat } from 'lucide-react';
+import { CATALOGUE_PRODUCTS, CATALOGUE_PRODUCT_COUNT, getCatalogueGroup } from '../data/catalogue';
 
 interface ProductFamiliesProps {
   onSelectCategory: (category: string) => void;
@@ -7,6 +8,7 @@ interface ProductFamiliesProps {
 }
 
 export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCategory, onViewAll }) => {
+  const countGroups = (groups: ReturnType<typeof getCatalogueGroup>[]) => CATALOGUE_PRODUCTS.filter((product) => groups.includes(getCatalogueGroup(product))).length;
   const families = [
     {
       id: 'essential-oils',
@@ -14,7 +16,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
       description: 'Natural essential oils, carrier oils and clearly separated aroma or diffuser grades.',
       cta: 'Explore oils',
       icon: Droplets,
-      tag: '59 product routes'
+      tag: `${countGroups(['essential-oils', 'aroma-oils', 'carrier-oils'])} product routes`
     },
     {
       id: 'botanicals',
@@ -22,7 +24,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
       description: 'Whole, cut and powdered herbs, roots, barks, seeds, resins and standardized extracts.',
       cta: 'Browse botanicals',
       icon: Leaf,
-      tag: '30 product routes'
+      tag: `${countGroups(['botanicals'])} product routes`
     },
     {
       id: 'food-ingredients',
@@ -30,7 +32,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
       description: 'Oilseeds, makhana, coconut, jaggery, millets, dehydrated ingredients and cold-pressed oils.',
       cta: 'Explore food ingredients',
       icon: Wheat,
-      tag: '40 product routes'
+      tag: `${countGroups(['seeds-food', 'cold-pressed-oils'])} product routes`
     },
     {
       id: 'catalogue',
@@ -38,7 +40,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
       description: 'Distinct hydrosol, floral-water and natural-clay routes for formulation and personal care.',
       cta: 'View ingredients',
       icon: Flower2,
-      tag: '3 product routes'
+      tag: `${countGroups(['waters-clays'])} product routes`
     },
     {
       id: 'packaging',
@@ -78,7 +80,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
               onClick={onViewAll}
               className="mt-5 inline-flex items-center gap-2 bg-[#173f34] px-6 py-3 text-xs font-bold uppercase tracking-eyebrow text-[#fbf8f1] shadow-lg transition-colors hover:bg-[#102a23]"
             >
-              <span>Explore all 132 products</span>
+              <span>Explore all {CATALOGUE_PRODUCT_COUNT} product routes</span>
               <ArrowRight className="h-4 w-4" />
             </button>
           </div>

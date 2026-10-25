@@ -1,5 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/products/ashwagandha-root-powder", "destination": "/products/ashwagandha", "permanent": true },
+    { "source": "/products/amla-fruit-powder", "destination": "/products/amla", "permanent": true },
+    { "source": "/products/karela-powder", "destination": "/products/bitter-melon", "permanent": true }
+  ]
 }

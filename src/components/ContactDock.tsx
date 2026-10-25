@@ -10,7 +10,7 @@ export const ContactDock: React.FC<ContactDockProps> = ({ openQuoteModal, openCo
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 z-[46] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
+    <div className="contact-dock fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 z-[46] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
       {open && (
         <div className="w-[min(21rem,calc(100vw-2rem))] overflow-hidden border border-[#d4a43d]/55 bg-[#fbf7ed] text-[#062b23] shadow-[0_24px_70px_rgba(0,0,0,.34)]">
           <div className="flex items-start justify-between gap-4 bg-[#062b23] px-5 py-4 text-[#fbf7ed]">

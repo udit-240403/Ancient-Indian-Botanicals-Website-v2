@@ -42,7 +42,7 @@ export const Footer: React.FC<FooterProps> = ({
               </div>
               <div>
                 <span className="block font-serif text-xl font-semibold text-[#fbf7ed]">
-                  Ancient Indian Botanicals
+                  Ancient Indian Botanicals Private Limited
                 </span>
                 <span className="block text-[10px] tracking-eyebrow uppercase text-[#82966f]">
                   Pure Botanical Sourcing
@@ -94,6 +94,11 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <a href={PAGE_ROUTES.quality} onClick={(event) => handleNav(event, 'quality')} className="hover:text-[#b88a2c] transition-colors">
                   Quality Assurance & Testing
+                </a>
+              </li>
+              <li>
+                <a href={PAGE_ROUTES.verification} onClick={(event) => handleNav(event, 'verification')} className="hover:text-[#b88a2c] transition-colors">
+                  Company Verification
                 </a>
               </li>
               <li>
@@ -160,11 +165,11 @@ export const Footer: React.FC<FooterProps> = ({
               </div>
               <div className="flex items-center gap-2">
                 <Linkedin className="w-4 h-4 text-[#b88a2c] shrink-0" />
-                <a href="https://www.linkedin.com/in/ancient-indian-botanicals-undefined-b48450430" target="_blank" rel="noreferrer" className="text-[11px] hover:text-[#b88a2c]">Ancient Indian Botanicals on LinkedIn</a>
+                <a href="https://www.linkedin.com/company/ancient-indian-botanicals/" target="_blank" rel="noreferrer" className="text-[11px] hover:text-[#b88a2c]">Ancient Indian Botanicals on LinkedIn</a>
               </div>
               <div className="flex items-center gap-2 border-t border-[#b88a2c]/20 pt-2 font-semibold uppercase tracking-[0.12em] text-[#dfcfad]">
                 <ShieldCheck className="w-4 h-4 text-[#d4a43d] shrink-0" />
-                <span>Established 2026 · GST & Udyam Registered</span>
+                <span>GST · Udyam · IEC · APEDA RCMC · ISO 9001:2015</span>
               </div>
             </div>
           </div>
@@ -173,12 +178,12 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Regulatory Disclaimer */}
         <div className="p-5 bg-[#062b23] border border-[#b88a2c]/20 text-[11px] text-[#a9b2ac] font-light leading-relaxed mb-8">
-          <strong className="text-[#dfcfad]">Commercial notice:</strong> Ancient Indian Botanicals was incorporated in 2026 and is GST- and Udyam-registered in India. Product information is supplied for commercial evaluation and does not constitute therapeutic claims or medical advice. Specifications, origin, availability, certifications and supporting documents are confirmed in writing for each approved lot and enquiry.
+          <strong className="text-[#dfcfad]">Commercial notice:</strong> Ancient Indian Botanicals Private Limited is incorporated in India and maintains GST, Udyam, IEC, APEDA RCMC, ICEGATE and ISO 9001:2015 credentials. Product information is supplied for commercial evaluation and does not constitute therapeutic claims or medical advice. Specifications, origin, availability, certifications and supporting documents are confirmed in writing for each approved lot and enquiry.
         </div>
 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-[#b88a2c]/30 text-xs text-[#82966f]">
-          <p>© {new Date().getFullYear()} Ancient Indian Botanicals. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Ancient Indian Botanicals Private Limited. All rights reserved.</p>
           <div className="flex flex-wrap gap-4 text-[11px]">
             <a href={PAGE_ROUTES.terms} onClick={(event) => handleNav(event, 'terms')} className="hover:text-[#fbf7ed]">Terms of Trade</a>
             <a href={PAGE_ROUTES.shipping} onClick={(event) => handleNav(event, 'shipping')} className="hover:text-[#fbf7ed]">Export Shipping Policy</a>

@@ -436,6 +436,19 @@ button, a, input {
   .hero-cinematic__index,
   .hero-cinematic__caption,
   .hero-cinematic__scroll { display: flex; }
+
+  .contact-dock {
+    top: 50%;
+    right: 0;
+    bottom: auto;
+    transform: translateY(-50%);
+    padding-left: 0.75rem;
+  }
+
+  .contact-dock .contact-dock-trigger {
+    border-radius: 9999px 0 0 9999px;
+    padding-right: 1rem;
+  }
 }
 
 @supports (animation-timeline: view()) {
