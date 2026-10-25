@@ -10,6 +10,7 @@ import { WorkflowSection } from './components/WorkflowSection';
 import { ProductCatalogue } from './components/ProductCatalogue';
 import { ContactDock } from './components/ContactDock';
 import { HomePackagingShowcase } from './components/HomePackagingShowcase';
+import { CorePortfolio } from './components/CorePortfolio';
 import { CATALOGUE_PRODUCTS, getCatalogueGroup } from './data/catalogue';
 import FAQS from './data/faq.json';
 import {
@@ -35,13 +36,19 @@ const FAQPage = lazy(() => import('./components/Pages').then((module) => ({ defa
 const AboutPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.AboutPage })));
 const PaymentsPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.PaymentsPage })));
 const ContactPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.ContactPage })));
+const VerificationPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.VerificationPage })));
 const LegalPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.LegalPage })));
 
 const PageLoading = () => (
-  <div className="flex min-h-[55vh] items-center justify-center bg-[#f4efe5] px-4 text-center text-[#1f2925]" role="status" aria-live="polite">
-    <div>
+  <div className="min-h-[55vh] bg-[#f4efe5] px-4 py-16 text-[#1f2925] md:px-8" role="status" aria-live="polite">
+    <div className="mx-auto max-w-[1440px] animate-pulse">
       <span className="block text-[10px] font-bold uppercase tracking-eyebrow text-[#9b6334]">Ancient Indian Botanicals</span>
-      <p className="mt-3 font-serif text-2xl font-semibold">Preparing this sourcing route…</p>
+      <div className="mt-5 h-12 max-w-2xl bg-[#dfd6c6]" />
+      <div className="mt-5 h-4 max-w-3xl bg-[#e6ded0]" />
+      <div className="mt-2 h-4 max-w-xl bg-[#e6ded0]" />
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {[0, 1, 2].map((item) => <div key={item} className="aspect-[4/3] border border-[#b88a2c]/20 bg-[#e7dfd1]" />)}
+      </div>
     </div>
   </div>
 );
@@ -82,6 +89,21 @@ export function App() {
   }, []);
 
   useEffect(() => {
+    const prefetchSecondaryRoutes = () => {
+      void import('./components/Pages');
+      void import('./components/CompleteCatalogue');
+      void import('./components/CatalogueProductPage');
+    };
+    const idleWindow = window as Window & { requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number; cancelIdleCallback?: (id: number) => void };
+    if (idleWindow.requestIdleCallback) {
+      const id = idleWindow.requestIdleCallback(prefetchSecondaryRoutes, { timeout: 1800 });
+      return () => idleWindow.cancelIdleCallback?.(id);
+    }
+    const id = window.setTimeout(prefetchSecondaryRoutes, 900);
+    return () => window.clearTimeout(id);
+  }, []);
+
+  useEffect(() => {
     const pageMeta = routeProduct
       ? {
           title: `${routeProduct.name} | B2B Indian ${['seeds-food', 'cold-pressed-oils'].includes(getCatalogueGroup(routeProduct)) ? 'Ingredient' : 'Botanical'} Supply`,
@@ -109,7 +131,7 @@ export function App() {
     updateMetaTag('meta[name="twitter:description"]', 'content', pageMeta.description);
     updateMetaTag('meta[name="twitter:image"]', 'content', image);
 
-    const organization = { '@type': 'Organization', name: 'Ancient Indian Botanicals', alternateName: ['Ancient Indian Botanical', 'AncientIndianBotanicals', 'AncientIndianBotanical'], description: 'Incorporated in 2026 and GST- and Udyam-registered in India.', foundingDate: '2026', sameAs: ['https://www.linkedin.com/in/ancient-indian-botanicals-undefined-b48450430'], url: `${SITE_URL}/`, logo: `${SITE_URL}/icon-512.png` };
+    const organization = { '@type': 'Organization', name: 'Ancient Indian Botanicals Private Limited', alternateName: ['Ancient Indian Botanicals', 'Ancient Indian Botanical', 'AncientIndianBotanicals', 'AncientIndianBotanical'], description: 'Indian B2B sourcing company incorporated in 2026 with GST, Udyam, IEC, APEDA RCMC, ICEGATE and ISO 9001:2015 credentials.', foundingDate: '2026', sameAs: ['https://www.linkedin.com/company/ancient-indian-botanicals/'], url: `${SITE_URL}/`, logo: `${SITE_URL}/icon-512.png` };
     const schema = routeProduct
       ? {
           '@context': 'https://schema.org',
@@ -173,6 +195,13 @@ export function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const navigateToProduct = (productId: string) => {
+    const nextPath = `/products/${productId}`;
+    if (normalizePath(window.location.pathname) !== nextPath) window.history.pushState({}, '', nextPath);
+    setCurrentPath(nextPath);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleOpenQuoteModal = (productName?: string) => {
     setQuoteProductName(productName || '');
     setQuoteModalOpen(true);
@@ -221,6 +250,11 @@ export function App() {
               </div>
               <AssuranceStrip />
             </div>
+
+            <CorePortfolio
+              openProduct={navigateToProduct}
+              openQuoteModal={handleOpenQuoteModal}
+            />
 
             <ProductFamilies
               onSelectCategory={handleSelectCategory}
@@ -304,6 +338,8 @@ export function App() {
         {activeTab === 'contact' && (
           <ContactPage openQuoteModal={() => handleOpenQuoteModal()} />
         )}
+
+        {activeTab === 'verification' && <VerificationPage />}
 
         {activeTab === 'search' && (
           <CompleteCatalogue

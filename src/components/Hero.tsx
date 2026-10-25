@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, ShieldCheck, Flower2 } from 'lucide-react';
+import { CATALOGUE_PRODUCT_COUNT } from '../data/catalogue';
 
 interface HeroProps {
   onExploreOils: () => void;
@@ -80,7 +81,7 @@ export const Hero: React.FC<HeroProps> = ({
 
             <div className="grid max-w-lg grid-cols-3 border-y border-[#b88a2c]/30 bg-[#041e18]/55 backdrop-blur-sm">
               {[
-                ['132', 'Product routes'],
+                [String(CATALOGUE_PRODUCT_COUNT), 'Product routes'],
                 ['7', 'Ingredient families'],
                 ['Lot', 'Specific review'],
               ].map(([value, label]) => (
@@ -100,7 +101,7 @@ export const Hero: React.FC<HeroProps> = ({
               <strong>Origin-led</strong>
             </div>
             <div className="hero-cinematic__index hero-cinematic__index--side" aria-hidden="true">
-              <span>132 routes</span>
+              <span>{CATALOGUE_PRODUCT_COUNT} routes</span>
               <strong>One sourcing desk</strong>
             </div>
             

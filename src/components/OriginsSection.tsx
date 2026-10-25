@@ -120,17 +120,25 @@ export const OriginsSection: React.FC<OriginsSectionProps> = () => {
               </div>
             </div>
 
-            {/* Origin Map Graphic */}
-            <div className="relative border border-[#b88a2c]/40 bg-[#062b23] p-4 flex items-center justify-center min-h-[160px]">
-              <img
-                src="/assets/svg/origin-map.svg"
-                alt="Ancient Indian Botanicals Origin Map"
-                className="w-full max-h-[140px] object-contain opacity-90 filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="bg-[#041e18]/95 border border-[#b88a2c] text-[#b88a2c] text-xs uppercase tracking-eyebrow px-4 py-1.5 font-bold shadow-xl">
-                  Sourcing corridor · {selectedRegion.name}
-                </span>
+            {/* Regional visual and map context */}
+            <div className="grid gap-3 sm:grid-cols-[1.25fr_.75fr]">
+              <figure className="overflow-hidden border border-[#b88a2c]/40 bg-[#062b23]">
+                <div className="aspect-[16/9] overflow-hidden">
+                  <img
+                    src={selectedRegion.image}
+                    alt={`Representative view for ${selectedRegion.name}`}
+                    width="960"
+                    height="540"
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <figcaption className="border-t border-[#b88a2c]/25 px-3 py-2 text-[9px] leading-relaxed text-[#f2ead9]/60">Representative regional or process imagery. It does not depict a company-owned farm, temple or processing facility.</figcaption>
+              </figure>
+              <div className="relative flex min-h-[150px] items-center justify-center border border-[#b88a2c]/40 bg-[#062b23] p-3">
+                <img src="/assets/svg/origin-map.svg" alt="India sourcing corridor map" className="max-h-[132px] w-full object-contain opacity-90" />
+                <span className="absolute bottom-2 left-2 right-2 border border-[#b88a2c]/55 bg-[#041e18]/95 px-2 py-1 text-center text-[8px] font-bold uppercase tracking-eyebrow text-[#b88a2c]">{selectedRegion.name}</span>
               </div>
             </div>
 

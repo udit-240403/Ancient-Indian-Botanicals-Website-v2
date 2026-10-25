@@ -1,0 +1,81 @@
+{
+  "excludedIds": [
+    "ashwagandha-root-powder",
+    "amla-fruit-powder",
+    "karela-powder"
+  ],
+  "redirects": {
+    "ashwagandha-root-powder": "ashwagandha",
+    "amla-fruit-powder": "amla",
+    "karela-powder": "bitter-melon"
+  },
+  "overrides": {
+    "ashwagandha": {
+      "name": "Ashwagandha Root, Powder & Extract",
+      "specifications": [
+        "Plant part, form, mesh size and moisture aligned to the buyer brief",
+        "Withanolide marker and analytical method confirmed for extract enquiries",
+        "HPLC and gravimetric results are reported separately and are not treated as interchangeable",
+        "COA and additional testing scoped to the approved lot"
+      ],
+      "commercialForms": [
+        "Whole or cut root",
+        "Root powder in buyer-defined mesh size",
+        "Root or leaf extract",
+        "Water-soluble or ethanolic extract"
+      ],
+      "typicalApplications": [
+        "Herbal formulations",
+        "Nutraceutical and food applications",
+        "Ayurvedic products",
+        "Botanical blends"
+      ],
+      "whyBuyersKnowIt": "One of India’s best-known botanicals, available as whole root, powder and specification-led extract routes.",
+      "fieldDescription": "Ashwagandha enquiries are separated by plant part and physical form. Whole root and powder requirements are aligned to mesh, moisture and microbiology, while extract enquiries additionally define solvent system, extract ratio, marker profile and analytical method."
+    },
+    "amla": {
+      "name": "Amla Fruit, Powder & Extract",
+      "specifications": [
+        "Fruit form, cut or mesh size confirmed at quotation",
+        "Moisture, microbiology and contaminant requirements aligned to the brief",
+        "Tannin, extract-ratio or other marker requirements confirmed for extract enquiries",
+        "COA and additional testing scoped to the approved lot"
+      ],
+      "commercialForms": [
+        "Dried fruit pieces",
+        "Fruit powder in buyer-defined mesh size",
+        "Water extract",
+        "Ethanolic extract"
+      ],
+      "typicalApplications": [
+        "Food and nutraceutical formulations",
+        "Herbal products",
+        "Personal-care formulations"
+      ],
+      "whyBuyersKnowIt": "Indian gooseberry supplied as dried fruit, powder and specification-led extract routes.",
+      "fieldDescription": "Amla enquiries are aligned to the required fruit form, mesh, moisture and microbiology. Extract enquiries additionally define solvent system, extract ratio, marker profile and analytical method."
+    },
+    "bitter-melon": {
+      "name": "Bitter Melon / Karela Powder & Extract",
+      "specifications": [
+        "Fruit form, cut or mesh size confirmed at quotation",
+        "Moisture and microbiological requirements aligned to the brief",
+        "Marker strength and analytical method confirmed for extract enquiries",
+        "COA and additional testing scoped to the approved lot"
+      ],
+      "commercialForms": [
+        "Dried fruit pieces",
+        "Fruit powder in buyer-defined mesh size",
+        "Water-soluble extract",
+        "Ethanolic extract"
+      ],
+      "typicalApplications": [
+        "Herbal formulations",
+        "Nutraceutical and food applications",
+        "Functional botanical blends"
+      ],
+      "whyBuyersKnowIt": "A distinctive fruit botanical available as dried material, powder and specification-led extract routes.",
+      "fieldDescription": "Bitter melon enquiries are separated by physical form. Dried pieces and powder are aligned to mesh, moisture and microbiology, while extract enquiries additionally define solvent system, marker profile and analytical method."
+    }
+  }
+}

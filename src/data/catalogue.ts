@@ -1,6 +1,7 @@
 import rawCatalogue from './scraped_products.json';
 import roseAbsolute from './rose_absolute.json';
 import foodIngredients from './food_ingredients.json';
+import catalogueOverrides from './catalogue-overrides.json';
 
 export type CatalogueGroup =
   | 'essential-oils'
@@ -26,11 +27,22 @@ export type CatalogueProduct = {
   image: string;
 };
 
-export const CATALOGUE_PRODUCTS: CatalogueProduct[] = [
+const RAW_CATALOGUE_PRODUCTS: CatalogueProduct[] = [
   ...(rawCatalogue as CatalogueProduct[]),
   roseAbsolute as CatalogueProduct,
   ...(foodIngredients as CatalogueProduct[]),
 ];
+
+const excludedIds = new Set(catalogueOverrides.excludedIds);
+
+export const CATALOGUE_PRODUCTS: CatalogueProduct[] = RAW_CATALOGUE_PRODUCTS
+  .filter((product) => !excludedIds.has(product.id))
+  .map((product) => ({
+    ...product,
+    ...(catalogueOverrides.overrides[product.id as keyof typeof catalogueOverrides.overrides] ?? {}),
+  }));
+
+export const CATALOGUE_PRODUCT_COUNT = CATALOGUE_PRODUCTS.length;
 
 const CARRIER_OILS = new Set(['castor-oil', 'kalonji-oil', 'neem-oil', 'olive-oil']);
 const WATER_AND_CLAY_PRODUCTS = new Set(['rose-water', 'kewra-water', 'multani-mitti']);
@@ -72,7 +84,7 @@ export const FEATURED_TO_CATALOGUE_ID: Record<string, string> = {
   'sandalwood-oil': 'sandalwood-aroma',
   'basil-oil': 'basil-oil',
   'rose-water-hydrosol': 'rose-water',
-  'amla-fruit-powder': 'amla-fruit-powder',
+  'amla-fruit-powder': 'amla',
   'bacopa-brahmi': 'bacopa',
   'arjuna-bark-powder': 'arjuna-bark',
   'lemongrass-oil': 'lemongrass',

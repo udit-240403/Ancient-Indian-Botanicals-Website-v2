@@ -21,7 +21,7 @@ export const AssuranceStrip: React.FC = () => {
     {
       icon: BadgeCheck,
       title: 'REGISTERED IN INDIA',
-      description: 'Incorporated 2026 · GST and Udyam registered.'
+      description: 'GST · Udyam · IEC · APEDA RCMC · ICEGATE · ISO 9001:2015.'
     }
   ];
 

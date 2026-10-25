@@ -17,17 +17,9 @@ interface BuyerLanguageContextValue {
 const BuyerLanguageContext = createContext<BuyerLanguageContextValue | null>(null);
 
 const detectInitialLanguage = (): BuyerLanguage => {
-  if (typeof window === 'undefined') return 'en';
-
-  const stored = window.localStorage.getItem('aib-buyer-language');
-  if (stored && BUYER_LANGUAGES.some((language) => language.code === stored)) {
-    return stored as BuyerLanguage;
-  }
-
-  const browserLanguage = window.navigator.language.toLowerCase().split('-')[0];
-  return BUYER_LANGUAGES.some((language) => language.code === browserLanguage)
-    ? (browserLanguage as BuyerLanguage)
-    : 'en';
+  // Keep the public site consistently English until complete, professionally
+  // reviewed language routes (including navigation, forms and legal copy) exist.
+  return 'en';
 };
 
 export const BuyerLanguageProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
