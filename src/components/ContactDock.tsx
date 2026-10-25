@@ -53,10 +53,11 @@ export const ContactDock: React.FC<ContactDockProps> = ({ openQuoteModal, openCo
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
         aria-label={open ? 'Close contact options' : 'Open email and enquiry options'}
-        className="contact-dock-trigger flex h-14 items-center justify-center gap-2 rounded-full border border-[#e3bd67]/70 bg-[#b88a2c] px-4 text-[#041e18] shadow-[0_14px_38px_rgba(0,0,0,.38)] transition-all hover:-translate-y-1 hover:bg-[#d4a43d] sm:h-15 sm:px-5"
+        title="Email / Enquire"
+        className="contact-dock-trigger flex h-14 items-center justify-center gap-2 rounded-full border border-[#e3bd67]/70 bg-[#b88a2c] px-4 text-[#041e18] shadow-[0_14px_38px_rgba(0,0,0,.38)] transition-all hover:-translate-y-1 hover:bg-[#d4a43d] sm:h-15 sm:px-5 lg:w-15 lg:px-0"
       >
         {open ? <X className="h-5 w-5" /> : <Mail className="h-5 w-5" />}
-        <span className="text-[9px] font-extrabold uppercase tracking-[0.13em] sm:text-[10px] sm:tracking-[0.16em]">Email / Enquire</span>
+        <span className="text-[9px] font-extrabold uppercase tracking-[0.13em] sm:text-[10px] sm:tracking-[0.16em] lg:sr-only">Email / Enquire</span>
       </button>
     </div>
   );
