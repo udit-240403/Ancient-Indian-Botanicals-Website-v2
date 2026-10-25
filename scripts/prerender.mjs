@@ -4,19 +4,24 @@ import path from 'node:path';
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, 'dist');
 const SITE_URL = 'https://www.ancientindianbotanicals.com';
-const DEFAULT_IMAGE = `${SITE_URL}/assets/images/hero-botanical-still-life.webp`;
+const DEFAULT_IMAGE = `${SITE_URL}/assets/images/product-families-flatlay.webp`;
 
 const scraped = JSON.parse(await readFile(path.join(ROOT, 'src/data/scraped_products.json'), 'utf8'));
 const roseAbsolute = JSON.parse(await readFile(path.join(ROOT, 'src/data/rose_absolute.json'), 'utf8'));
 const foodIngredients = JSON.parse(await readFile(path.join(ROOT, 'src/data/food_ingredients.json'), 'utf8'));
 const partnerExtracts = JSON.parse(await readFile(path.join(ROOT, 'src/data/partner_extracts.json'), 'utf8'));
 const catalogueOverrides = JSON.parse(await readFile(path.join(ROOT, 'src/data/catalogue-overrides.json'), 'utf8'));
+const catalogueNames = JSON.parse(await readFile(path.join(ROOT, 'src/data/catalogue-names.json'), 'utf8'));
 const faqs = JSON.parse(await readFile(path.join(ROOT, 'src/data/faq.json'), 'utf8'));
 const excludedIds = new Set(catalogueOverrides.excludedIds);
 const prohibitedProductPattern = /shilajit/i;
 const products = [...scraped, roseAbsolute, ...foodIngredients, ...partnerExtracts]
   .filter((product) => !excludedIds.has(product.id) && !prohibitedProductPattern.test(`${product.id} ${product.name}`))
-  .map((product) => ({ ...product, ...(catalogueOverrides.overrides[product.id] ?? {}) }))
+  .map((product) => {
+    const overridden = { ...product, ...(catalogueOverrides.overrides[product.id] ?? {}) };
+    const naming = catalogueNames[product.id];
+    return naming ? { ...overridden, name: naming.primaryName, alternateNames: naming.alternateNames } : overridden;
+  })
   .sort((a, b) => a.name.localeCompare(b.name));
 const productCount = products.length;
 const baseHtml = await readFile(path.join(DIST, 'index.html'), 'utf8');
@@ -190,10 +195,10 @@ for (const product of products) {
           '@type': 'Thing',
           '@id': `${SITE_URL}${routePath}#botanical`,
           name: product.name,
-          alternateName: product.botanicalName,
+          alternateName: [...(product.alternateNames ?? []), product.botanicalName],
           description: product.fieldDescription,
         },
-        keywords: [product.name, product.botanicalName, groupLabels[getGroup(product)]],
+        keywords: [product.name, ...(product.alternateNames ?? []), product.botanicalName, groupLabels[getGroup(product)]],
         publisher: { '@id': `${SITE_URL}/#organization` },
       },
     ],

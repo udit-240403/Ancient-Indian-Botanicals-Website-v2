@@ -7,10 +7,10 @@ import { ProductFamilies } from './components/ProductFamilies';
 import { CultivationStories } from './components/CultivationStories';
 import { OriginsSection } from './components/OriginsSection';
 import { WorkflowSection } from './components/WorkflowSection';
-import { ProductCatalogue } from './components/ProductCatalogue';
 import { ContactDock } from './components/ContactDock';
 import { HomePackagingShowcase } from './components/HomePackagingShowcase';
 import { CorePortfolio } from './components/CorePortfolio';
+import { BuyerTranslationNotice } from './components/BuyerTranslationNotice';
 import { CATALOGUE_PRODUCTS, getCatalogueGroup } from './data/catalogue';
 import FAQS from './data/faq.json';
 import {
@@ -114,7 +114,7 @@ export function App() {
         }
       : {
           ...(PAGE_META[activeTab] ?? PAGE_META.home),
-          image: '/assets/images/hero-botanical-still-life.webp',
+          image: '/assets/images/product-families-flatlay.webp',
           type: 'website',
         };
     const canonical = `${SITE_URL}${currentPath === '/' ? '/' : currentPath}`;
@@ -144,10 +144,10 @@ export function App() {
           about: {
             '@type': 'Thing',
             name: routeProduct.name,
-            alternateName: routeProduct.botanicalName,
+            alternateName: [...(routeProduct.alternateNames ?? []), routeProduct.botanicalName],
             description: routeProduct.fieldDescription,
           },
-          keywords: [routeProduct.name, routeProduct.botanicalName, getCatalogueGroup(routeProduct)],
+          keywords: [routeProduct.name, ...(routeProduct.alternateNames ?? []), routeProduct.botanicalName, getCatalogueGroup(routeProduct)],
           publisher: organization,
         }
       : activeTab === 'faq'
@@ -235,6 +235,7 @@ export function App() {
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
       />
+      <BuyerTranslationNotice />
 
       {/* Main Page View Switcher */}
       <main className="flex-grow">
@@ -268,12 +269,6 @@ export function App() {
             />
             <OriginsSection />
             <WorkflowSection onStartEnquiry={() => handleOpenQuoteModal()} />
-            <ProductCatalogue
-              initialCategory="all"
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              openQuoteModal={handleOpenQuoteModal}
-            />
           </div>
         )}
 

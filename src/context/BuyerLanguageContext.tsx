@@ -32,7 +32,7 @@ export const BuyerLanguageProvider: React.FC<React.PropsWithChildren> = ({ child
 
   useEffect(() => {
     window.localStorage.setItem('aib-buyer-language', language);
-    document.documentElement.lang = 'en';
+    document.documentElement.lang = language;
     document.documentElement.dataset.buyerLanguage = language;
   }, [language]);
 

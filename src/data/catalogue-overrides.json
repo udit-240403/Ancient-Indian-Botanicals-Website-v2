@@ -10,6 +10,18 @@
     "karela-powder": "bitter-melon"
   },
   "overrides": {
+    "holy-basil": {
+      "image": "/assets/images/cultivation-tulsi.webp"
+    },
+    "tulsi-oil": {
+      "image": "/assets/images/cultivation-tulsi.webp"
+    },
+    "gold-musk-aroma": {
+      "image": "/assets/images/product-families-flatlay.webp"
+    },
+    "white-musk-aroma": {
+      "image": "/assets/images/product-families-flatlay.webp"
+    },
     "ashwagandha": {
       "name": "Ashwagandha Root, Powder & Extract",
       "specifications": [
