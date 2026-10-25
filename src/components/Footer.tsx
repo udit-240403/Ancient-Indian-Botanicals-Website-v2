@@ -72,6 +72,11 @@ export const Footer: React.FC<FooterProps> = ({
                 </a>
               </li>
               <li>
+                <a href={PAGE_ROUTES['standardized-extracts']} onClick={(event) => handleNav(event, 'standardized-extracts')} className="hover:text-[#b88a2c] transition-colors">
+                  Standardized Botanical Extracts
+                </a>
+              </li>
+              <li>
                 <a href={PAGE_ROUTES['essential-oils']} onClick={(event) => handleNav(event, 'essential-oils')} className="hover:text-[#b88a2c] transition-colors">
                   Essential Oils & Accords
                 </a>
@@ -153,7 +158,7 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="space-y-2 text-xs text-[#f2ead9]/80 font-light">
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#b88a2c] shrink-0 mt-0.5" />
-                <span>Mandsaur Trade Corridor, Madhya Pradesh 458001, India</span>
+                <span>Mandsaur–Neemuch sourcing region, Madhya Pradesh, India</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#b88a2c] shrink-0" />

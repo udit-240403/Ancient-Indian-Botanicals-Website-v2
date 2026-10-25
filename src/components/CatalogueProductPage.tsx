@@ -1,14 +1,13 @@
 import React from 'react';
 import { ArrowLeft, ArrowRight, CheckCircle2, FileCheck2, FileText, Fingerprint, Microscope, PackageCheck, PackageSearch } from 'lucide-react';
 import {
-  CATALOGUE_GROUP_LABELS,
   CatalogueProduct,
   getCatalogueGroup,
   getProductPath,
 } from '../data/catalogue';
 import { ProductVisual } from './ProductVisual';
 import { useBuyerLanguage } from '../context/BuyerLanguageContext';
-import { getHsFamilyReference, getLocalizedProductName, PRODUCT_LANGUAGE_LABELS } from '../data/productLanguage';
+import { CATALOGUE_GROUP_LANGUAGE_LABELS, getHsFamilyReference, getLocalizedProductName, PRODUCT_LANGUAGE_LABELS } from '../data/productLanguage';
 
 const BUYER_REVIEW_STEPS = [
   { icon: Fingerprint, number: '01', title: 'Identity', copy: 'Botanical name, part, physical form and required grade.' },
@@ -35,7 +34,9 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
   const languageLabels = PRODUCT_LANGUAGE_LABELS[language];
   const localizedName = getLocalizedProductName(product.id, product.name, language);
   const hsReference = getHsFamilyReference(group);
-  const collectionPath = group === 'botanicals' || group === 'waters-clays'
+  const collectionPath = group === 'standardized-extracts'
+    ? '/standardized-extracts'
+    : group === 'botanicals' || group === 'waters-clays'
     ? '/botanicals'
     : group === 'seeds-food' || group === 'cold-pressed-oils'
       ? '/food-ingredients'
@@ -47,7 +48,7 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
         <div className="mx-auto flex max-w-[1440px] flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-eyebrow text-[#66706b]">
           <a href="/catalogue" className="hover:text-[#9b6334]">Catalogue</a>
           <span>/</span>
-          <a href={collectionPath} className="hover:text-[#9b6334]">{CATALOGUE_GROUP_LABELS[group]}</a>
+          <a href={collectionPath} className="hover:text-[#9b6334]">{CATALOGUE_GROUP_LANGUAGE_LABELS[language][group]}</a>
           <span>/</span>
           <span className="text-[#173f34]">{localizedName}</span>
         </div>
@@ -65,7 +66,7 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
               className="aspect-[4/3] border border-[#b56e3a]/35 shadow-[0_28px_70px_-40px_rgba(16,42,35,.8)] lg:sticky lg:top-8"
             >
             <span className="absolute left-4 top-4 z-[4] border border-[#d4a43d]/55 bg-[#102a23]/94 px-3 py-1.5 text-[9px] font-bold uppercase tracking-eyebrow text-[#e1bd67] backdrop-blur-sm">
-              {CATALOGUE_GROUP_LABELS[group]}
+              {CATALOGUE_GROUP_LANGUAGE_LABELS[language][group]}
             </span>
             <span className="absolute bottom-3 right-3 z-[4] bg-[#102a23]/88 px-2.5 py-1 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#f2ead9]/82 backdrop-blur-sm">
               Representative product form
@@ -80,6 +81,7 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
             )}
             <p className="mt-3 font-serif text-xl italic text-[#9b6334]">{product.botanicalName}</p>
             <p className="mt-6 max-w-3xl text-sm leading-relaxed text-[#52635d] md:text-base">{product.fieldDescription}</p>
+            {language !== 'en' && <p className="mt-3 border-l-2 border-[#b56e3a] pl-4 text-[11px] leading-relaxed text-[#66706b]">{languageLabels.technicalEnglishNotice}</p>}
 
             <div className="mt-7 border-l-2 border-[#b56e3a] bg-[#fbf8f1] px-5 py-4 text-sm leading-relaxed text-[#344740]">
               {product.whyBuyersKnowIt}
@@ -127,21 +129,21 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
         <div className="mx-auto grid max-w-[1440px] gap-6 lg:grid-cols-3">
           <article className="border border-[#b56e3a]/25 bg-white p-6">
             <FileText className="h-5 w-5 text-[#9b6334]" />
-            <h2 className="mt-5 font-serif text-2xl font-semibold">Commercial forms</h2>
+            <h2 className="mt-5 font-serif text-2xl font-semibold">{languageLabels.commercialForms}</h2>
             <div className="mt-4 space-y-3">
               {product.commercialForms.map((form) => <div key={form} className="flex items-start gap-2 text-xs leading-relaxed text-[#52635d]"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#9b6334]" />{form}</div>)}
             </div>
           </article>
           <article className="border border-[#b56e3a]/25 bg-white p-6">
             <PackageCheck className="h-5 w-5 text-[#9b6334]" />
-            <h2 className="mt-5 font-serif text-2xl font-semibold">Typical industries</h2>
+            <h2 className="mt-5 font-serif text-2xl font-semibold">{languageLabels.typicalApplications}</h2>
             <div className="mt-4 flex flex-wrap gap-2">
               {product.typicalApplications.map((application) => <span key={application} className="rounded-full border border-[#82966f]/30 bg-[#e8e7dc] px-3 py-1.5 text-[10px] text-[#344740]">{application}</span>)}
             </div>
           </article>
           <article className="border border-[#b56e3a]/25 bg-white p-6">
             <CheckCircle2 className="h-5 w-5 text-[#9b6334]" />
-            <h2 className="mt-5 font-serif text-2xl font-semibold">Review framework</h2>
+            <h2 className="mt-5 font-serif text-2xl font-semibold">{languageLabels.reviewFramework}</h2>
             <div className="mt-4 space-y-3">
               {product.specifications.map((item) => <div key={item} className="flex items-start gap-2 text-xs leading-relaxed text-[#52635d]"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#9b6334]" />{item}</div>)}
             </div>

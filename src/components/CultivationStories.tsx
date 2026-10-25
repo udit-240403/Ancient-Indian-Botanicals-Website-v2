@@ -9,38 +9,38 @@ const stories = [
   {
     name: 'Ashwagandha roots',
     botanical: 'Withania somnifera',
-    region: 'Mandsaur & Central India',
+    region: 'Mandsaur–Neemuch region',
     image: '/assets/images/cultivation-ashwagandha.webp',
     description: 'A dryland root crop traded as whole or cut root, powder and extract routes. Identity, root character, particle size and any requested marker range shape the commercial brief.',
     applications: ['Nutraceuticals', 'Botanical extracts', 'Herbal formulations'],
     value: 'Recognised botanical identity with selectable root and extract formats.',
   },
   {
-    name: 'Lemongrass',
-    botanical: 'Cymbopogon flexuosus',
-    region: 'South Indian growing belts',
-    image: '/assets/images/cultivation-lemongrass.webp',
-    description: 'A cultivated aromatic grass whose cut biomass moves quickly toward distillation. Buyers typically define the required olfactory direction, citral profile, application and pack size.',
-    applications: ['Fragrance', 'Personal care', 'Home care'],
-    value: 'A fresh, citral-led aromatic profile used across functional fragrance systems.',
-  },
-  {
-    name: 'Tulsi',
-    botanical: 'Ocimum tenuiflorum',
-    region: 'Central & North India',
+    name: 'Mentha arvensis',
+    botanical: 'Mentha arvensis',
+    region: 'Mandsaur–Neemuch enquiry focus',
     image: '/assets/images/cultivation-tulsi.webp',
-    description: 'Leaf and flowering tops support several commercial forms, including dried herb, powder, extract and essential oil. Species, plant part and intended application should be explicit.',
-    applications: ['Botanical products', 'Personal care', 'Aromatic formulations'],
-    value: 'Multiple ingredient routes from a well-known Indian aromatic botanical.',
+    description: 'Mint-oil enquiries are matched by botanical identity, sensory profile, menthol parameters, intended application and packaging requirement. The final grower and distillation route remain lot-specific.',
+    applications: ['Flavour and fragrance', 'Personal care', 'Home care'],
+    value: 'A recognised aromatic ingredient qualified through a specification-led buyer brief.',
   },
   {
-    name: 'Damask rose',
-    botanical: 'Rosa damascena',
-    region: 'Kannauj aromatic belt',
-    image: '/assets/images/cultivation-rose.webp',
-    description: 'Delicate flowers are gathered early and directed into distinct processing routes. Rose absolute, hydrosol and aroma grades are presented separately so buyers can specify correctly.',
-    applications: ['Fine fragrance', 'Personal care', 'Floral waters'],
-    value: 'A premium floral identity available through clearly differentiated formats.',
+    name: 'Regional seeds and herbs',
+    botanical: 'Buyer-defined botanical identity',
+    region: 'Mandsaur–Neemuch region',
+    image: '/assets/images/product-families-flatlay.webp',
+    description: 'The region supports an active agricultural and herb-trading ecosystem. AIB adds products only after confirming identity, form, supplier route, crop information and the documents required by the buyer.',
+    applications: ['Botanical ingredients', 'Food ingredients', 'Extract inputs'],
+    value: 'A focused regional network that can be expanded carefully as supplier relationships are verified.',
+  },
+  {
+    name: 'Standardized extracts',
+    botanical: 'Partner-processed botanical ingredients',
+    region: 'Mandsaur–Neemuch partner network',
+    image: '/assets/images/quality-analytical-laboratory.webp',
+    description: 'Extract enquiries begin with the plant part, target marker, analytical method, extract ratio, solvent system, carrier status and final application. Partner capability and lot evidence are confirmed before quotation.',
+    applications: ['Nutraceuticals', 'Botanical formulations', 'Buyer-specific applications'],
+    value: 'Marker-led extract sourcing without implying fixed specifications or universal certification.',
   },
 ];
 
@@ -54,7 +54,7 @@ export const CultivationStories: React.FC<CultivationStoriesProps> = ({ onBrowse
           <h2 className="mt-3 max-w-4xl font-serif text-4xl font-semibold leading-[1.06] sm:text-5xl">Know the crop. Specify the ingredient.</h2>
         </div>
         <div className="lg:pb-1">
-          <p className="text-sm leading-relaxed text-[#315148]">The field is the beginning, not the specification. These crop stories show how Indian origin, plant part, processing route and end use come together in a buyer-ready brief.</p>
+          <p className="text-sm leading-relaxed text-[#315148]">The field is the beginning, not the specification. These stories show how the Mandsaur–Neemuch sourcing base, plant part, partner-processing route and end use come together in a buyer-ready brief.</p>
           <button onClick={onBrowseBotanicals} className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-eyebrow text-[#765411] transition-colors hover:text-[#062b23]">Explore the complete range <ArrowRight className="h-4 w-4" /></button>
         </div>
       </div>
@@ -88,7 +88,7 @@ export const CultivationStories: React.FC<CultivationStoriesProps> = ({ onBrowse
         ))}
       </div>
 
-      <p className="mt-7 text-center text-[11px] leading-relaxed text-[#526d64]">Cultivation images are editorial representations of Indian growing and processing contexts. Actual origin, harvest, form and analytical profile are confirmed for the offered lot.</p>
+      <p className="mt-7 text-center text-[11px] leading-relaxed text-[#526d64]">Images are editorial representations, not photographs of AIB-owned farms, laboratories or facilities. Actual supplier, origin, harvest, processing route and analytical profile are confirmed for the offered lot.</p>
     </div>
   </section>
 );

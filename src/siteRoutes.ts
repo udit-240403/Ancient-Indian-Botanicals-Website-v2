@@ -1,8 +1,11 @@
+import { CATALOGUE_PRODUCT_COUNT } from './data/catalogue';
+
 export const SITE_URL = 'https://www.ancientindianbotanicals.com';
 
 export const PAGE_ROUTES: Record<string, string> = {
   home: '/',
   'essential-oils': '/essential-oils',
+  'standardized-extracts': '/standardized-extracts',
   botanicals: '/botanicals',
   'food-ingredients': '/food-ingredients',
   catalogue: '/catalogue',
@@ -29,9 +32,13 @@ export const PAGE_META: Record<string, { title: string; description: string }> =
     title: 'Indian Essential, Aroma & Carrier Oils | Ancient Indian Botanicals',
     description: 'Explore natural essential oils, clearly identified aroma grades and carrier oils sourced through Indian supply corridors for B2B applications.',
   },
+  'standardized-extracts': {
+    title: 'Standardized Botanical Extracts | Ancient Indian Botanicals',
+    description: 'Explore manufacturing-partner botanical extract routes aligned to plant part, marker, analytical method, extract ratio, solvent system and buyer application.',
+  },
   botanicals: {
-    title: 'Indian Botanicals, Herbs & Extracts | Ancient Indian Botanicals',
-    description: 'Explore Indian botanicals for B2B sourcing: herbs, roots, seeds, powders, extracts, floral waters and clays, with commercial forms and lot-specific review.',
+    title: 'Indian Botanicals, Herbs & Powders | Ancient Indian Botanicals',
+    description: 'Explore Indian botanicals for B2B sourcing: herbs, roots, seeds, powders, resins, floral waters and clays, with standardized extracts presented separately.',
   },
   'food-ingredients': {
     title: 'Indian Seeds, Nuts & Food Ingredients | Ancient Indian Botanicals',
@@ -39,7 +46,7 @@ export const PAGE_META: Record<string, { title: string; description: string }> =
   },
   catalogue: {
     title: 'Complete Botanical Product Catalogue | Ancient Indian Botanicals',
-    description: 'Explore 129 consolidated Indian botanical, essential-oil, oilseed, nut, dehydrated-food, cold-pressed-oil, floral-water and clay sourcing routes for commercial enquiries.',
+    description: `Explore ${CATALOGUE_PRODUCT_COUNT} consolidated Indian extract, botanical, essential-oil, oilseed, nut, dehydrated-food, cold-pressed-oil, floral-water and clay sourcing routes for commercial enquiries.`,
   },
   packaging: {
     title: 'Botanical Export Packaging Options | Ancient Indian Botanicals',
