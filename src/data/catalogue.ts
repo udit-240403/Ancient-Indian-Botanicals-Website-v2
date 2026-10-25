@@ -3,6 +3,7 @@ import roseAbsolute from './rose_absolute.json';
 import foodIngredients from './food_ingredients.json';
 import partnerExtracts from './partner_extracts.json';
 import catalogueOverrides from './catalogue-overrides.json';
+import catalogueNames from './catalogue-names.json';
 
 export type CatalogueGroup =
   | 'essential-oils'
@@ -27,6 +28,7 @@ export type CatalogueProduct = {
   fieldDescription: string;
   realWorldApps: Array<{ title: string; description: string }>;
   image: string;
+  alternateNames?: string[];
 };
 
 const RAW_CATALOGUE_PRODUCTS: CatalogueProduct[] = [
@@ -41,10 +43,14 @@ const excludedIds = new Set(catalogueOverrides.excludedIds);
 
 export const CATALOGUE_PRODUCTS: CatalogueProduct[] = RAW_CATALOGUE_PRODUCTS
   .filter((product) => !excludedIds.has(product.id) && !prohibitedProductPattern.test(`${product.id} ${product.name}`))
-  .map((product) => ({
-    ...product,
-    ...(catalogueOverrides.overrides[product.id as keyof typeof catalogueOverrides.overrides] ?? {}),
-  }));
+  .map((product) => {
+    const overridden = {
+      ...product,
+      ...(catalogueOverrides.overrides[product.id as keyof typeof catalogueOverrides.overrides] ?? {}),
+    };
+    const naming = catalogueNames[product.id as keyof typeof catalogueNames];
+    return naming ? { ...overridden, name: naming.primaryName, alternateNames: naming.alternateNames } : overridden;
+  });
 
 export const CATALOGUE_PRODUCT_COUNT = CATALOGUE_PRODUCTS.length;
 

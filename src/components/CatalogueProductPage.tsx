@@ -8,6 +8,7 @@ import {
 import { ProductVisual } from './ProductVisual';
 import { useBuyerLanguage } from '../context/BuyerLanguageContext';
 import { CATALOGUE_GROUP_LANGUAGE_LABELS, getHsFamilyReference, getLocalizedProductName, PRODUCT_LANGUAGE_LABELS } from '../data/productLanguage';
+import { INTERFACE_COPY } from '../data/siteCopy';
 
 const BUYER_REVIEW_STEPS = [
   { icon: Fingerprint, number: '01', title: 'Identity', copy: 'Botanical name, part, physical form and required grade.' },
@@ -32,6 +33,7 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
   const group = getCatalogueGroup(product);
   const { language } = useBuyerLanguage();
   const languageLabels = PRODUCT_LANGUAGE_LABELS[language];
+  const interfaceCopy = INTERFACE_COPY[language].product;
   const localizedName = getLocalizedProductName(product.id, product.name, language);
   const hsReference = getHsFamilyReference(group);
   const collectionPath = group === 'standardized-extracts'
@@ -69,12 +71,12 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
               {CATALOGUE_GROUP_LANGUAGE_LABELS[language][group]}
             </span>
             <span className="absolute bottom-3 right-3 z-[4] bg-[#102a23]/88 px-2.5 py-1 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#f2ead9]/82 backdrop-blur-sm">
-              Representative product form
+              {interfaceCopy.representative}
             </span>
           </ProductVisual>
 
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b6334]">Specification-led product route</span>
+            <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b6334]">{interfaceCopy.route}</span>
             <h1 className="mt-3 font-serif text-4xl font-semibold leading-[1.02] sm:text-5xl lg:text-6xl">{localizedName}</h1>
             {language !== 'en' && localizedName !== product.name && (
               <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.12em] text-[#66706b]">{languageLabels.englishTradeName}: {product.name}</p>
@@ -97,13 +99,13 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <button onClick={() => openQuoteModal(product.name)} className="inline-flex items-center justify-center gap-2 bg-[#173f34] px-7 py-3.5 text-xs font-bold uppercase tracking-eyebrow text-[#fbf8f1] hover:bg-[#102a23]">
-                Enquire about this product <ArrowRight className="h-4 w-4" />
+                {interfaceCopy.enquire} <ArrowRight className="h-4 w-4" />
               </button>
               <button onClick={() => openCoaModal(product.name)} className="inline-flex items-center justify-center gap-2 border border-[#b56e3a] bg-[#fbf8f1] px-7 py-3.5 text-xs font-bold uppercase tracking-eyebrow text-[#765411] hover:bg-[#efe3c8]">
-                <FileCheck2 className="h-4 w-4" /> Request spec / sample COA
+                <FileCheck2 className="h-4 w-4" /> {interfaceCopy.requestCoa}
               </button>
               <a href={collectionPath} className="inline-flex items-center justify-center gap-2 border border-[#173f34] px-7 py-3.5 text-xs font-bold uppercase tracking-eyebrow text-[#173f34] hover:bg-[#173f34] hover:text-[#fbf8f1]">
-                <ArrowLeft className="h-4 w-4" /> Back to collection
+                <ArrowLeft className="h-4 w-4" /> {interfaceCopy.back}
               </a>
             </div>
 
@@ -153,8 +155,8 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
 
       <section className="px-4 py-14 md:px-8 lg:py-18">
         <div className="mx-auto max-w-[1440px]">
-          <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b6334]">Application context</span>
-          <h2 className="mt-2 font-serif text-3xl font-semibold sm:text-4xl">Where buyers typically evaluate this material</h2>
+          <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b6334]">{interfaceCopy.applicationContext}</span>
+          <h2 className="mt-2 font-serif text-3xl font-semibold sm:text-4xl">{interfaceCopy.applicationHeading}</h2>
           <div className="mt-7 grid gap-4 md:grid-cols-2">
             {product.realWorldApps.map((application) => (
               <article key={application.title} className="border border-[#b56e3a]/25 bg-[#fbf8f1] p-6">
@@ -185,7 +187,7 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
       {relatedProducts.length > 0 && (
         <section className="border-t border-[#b56e3a]/20 bg-[#eee8dd] px-4 py-14 md:px-8 lg:py-18">
           <div className="mx-auto max-w-[1440px]">
-            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b6334]">Related sourcing routes</span><h2 className="mt-2 font-serif text-3xl font-semibold">Continue exploring</h2></div><a href="/catalogue" className="text-xs font-bold uppercase tracking-eyebrow text-[#173f34] hover:text-[#9b6334]">View complete catalogue →</a></div>
+            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#9b6334]">{interfaceCopy.related}</span><h2 className="mt-2 font-serif text-3xl font-semibold">{interfaceCopy.continue}</h2></div><a href="/catalogue" className="text-xs font-bold uppercase tracking-eyebrow text-[#173f34] hover:text-[#9b6334]">{interfaceCopy.viewCatalogue} →</a></div>
             <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {relatedProducts.map((related) => (
                 (() => {

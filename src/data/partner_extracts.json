@@ -18,7 +18,7 @@
       { "title": "Formulation input", "description": "Selected around marker, dispersibility, colour and application requirements." },
       { "title": "Buyer qualification", "description": "Specification, COA, sample and supporting evidence reviewed before commercial commitment." }
     ],
-    "image": "/assets/images/cultivation-tulsi.webp"
+    "image": "/images/scraped/products_commodity_turmeric.webp"
   },
   {
     "id": "green-tea-extract",
@@ -39,7 +39,7 @@
       { "title": "Standardized formulation", "description": "Matched to the buyer's required catechin or polyphenol profile." },
       { "title": "Application review", "description": "Solubility, colour and caffeine status considered against final use." }
     ],
-    "image": "/assets/images/product-families-flatlay.webp"
+    "image": "/images/scraped/products_commodity_green-tea-aroma.webp"
   },
   {
     "id": "ginger-extract",
@@ -60,7 +60,7 @@
       { "title": "Botanical formulation", "description": "Marker and extraction parameters aligned before sampling." },
       { "title": "Food application", "description": "Food-grade evidence and destination requirements confirmed separately." }
     ],
-    "image": "/assets/images/food-ingredients-export-hero.webp"
+    "image": "/assets/images/products-food/dehydrated-ginger.webp"
   },
   {
     "id": "moringa-extract",
@@ -81,7 +81,7 @@
       { "title": "Extract programme", "description": "Specification and lot evidence reviewed with the manufacturing partner." },
       { "title": "Application matching", "description": "Colour, taste, solubility and grade considered for the intended formulation." }
     ],
-    "image": "/assets/images/cultivation-tulsi.webp"
+    "image": "/assets/images/products-food/moringa-leaf-powder.webp"
   },
   {
     "id": "kalmegh-extract",

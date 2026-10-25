@@ -1,0 +1,78 @@
+{
+  "amla": {
+    "primaryName": "Indian Gooseberry (Amla) Fruit, Powder & Extract",
+    "alternateNames": ["Amla", "Indian gooseberry", "Emblica"]
+  },
+  "ashwagandha": {
+    "primaryName": "Indian Ginseng / Winter Cherry (Ashwagandha)",
+    "alternateNames": ["Ashwagandha", "Indian ginseng", "Winter cherry", "Withania"]
+  },
+  "bacopa": {
+    "primaryName": "Water Hyssop / Bacopa (Brahmi)",
+    "alternateNames": ["Bacopa", "Brahmi", "Water hyssop"]
+  },
+  "boswellia": {
+    "primaryName": "Indian Frankincense / Boswellia (Salai Guggul)",
+    "alternateNames": ["Boswellia", "Indian frankincense", "Salai guggul"]
+  },
+  "gymnema": {
+    "primaryName": "Gymnema (Gudmar)",
+    "alternateNames": ["Gymnema", "Gudmar", "Gurmar"]
+  },
+  "holy-basil": {
+    "primaryName": "Holy Basil (Tulsi)",
+    "alternateNames": ["Holy basil", "Tulsi", "Sacred basil"]
+  },
+  "jamun-seed": {
+    "primaryName": "Java Plum Seed & Powder (Jamun)",
+    "alternateNames": ["Jamun", "Java plum", "Indian blackberry"]
+  },
+  "kalmegh-extract": {
+    "primaryName": "Andrographis Extract (Kalmegh)",
+    "alternateNames": ["Kalmegh extract", "Andrographis extract"]
+  },
+  "kaunch-seed": {
+    "primaryName": "Velvet Bean Seed & Powder (Mucuna / Kaunch)",
+    "alternateNames": ["Mucuna", "Kaunch", "Velvet bean"]
+  },
+  "mulethi-root": {
+    "primaryName": "Licorice Root (Mulethi)",
+    "alternateNames": ["Mulethi", "Liquorice root", "Licorice root"]
+  },
+  "multani-mitti": {
+    "primaryName": "Fuller’s Earth (Multani Mitti)",
+    "alternateNames": ["Multani mitti", "Fuller's earth", "Fullers earth"]
+  },
+  "rajnigandha-aroma": {
+    "primaryName": "Tuberose Aroma Oil (Rajnigandha)",
+    "alternateNames": ["Rajnigandha", "Tuberose aroma oil"]
+  },
+  "reetha-aritha": {
+    "primaryName": "Soapnut (Reetha / Aritha)",
+    "alternateNames": ["Reetha", "Aritha", "Soapnut", "Soapberry"]
+  },
+  "shatavari": {
+    "primaryName": "Wild Asparagus (Shatavari)",
+    "alternateNames": ["Shatavari", "Wild asparagus"]
+  },
+  "shatavari-root": {
+    "primaryName": "Wild Asparagus Root & Powder (Shatavari)",
+    "alternateNames": ["Shatavari root", "Wild asparagus root"]
+  },
+  "tribulus": {
+    "primaryName": "Puncture Vine / Tribulus (Gokhru)",
+    "alternateNames": ["Tribulus", "Gokhru", "Puncture vine"]
+  },
+  "triphala-churna": {
+    "primaryName": "Triphala Herbal Powder (Churna)",
+    "alternateNames": ["Triphala", "Triphala churna"]
+  },
+  "tulsi-oil": {
+    "primaryName": "Holy Basil Oil (Tulsi)",
+    "alternateNames": ["Tulsi oil", "Holy basil oil"]
+  },
+  "turmeric": {
+    "primaryName": "Turmeric (Haldi)",
+    "alternateNames": ["Turmeric", "Haldi"]
+  }
+}

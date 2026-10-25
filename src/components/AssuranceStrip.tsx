@@ -1,27 +1,55 @@
 import React from 'react';
 import { BadgeCheck, FlaskConical, FileCheck2, Sprout } from 'lucide-react';
+import { useBuyerLanguage } from '../context/BuyerLanguageContext';
 
 export const AssuranceStrip: React.FC = () => {
+  const { language } = useBuyerLanguage();
+  const text = {
+    en: [
+      ['Lot-specific testing', 'COA, markers or GC/MS reviewed where applicable.'],
+      ['Document support', 'Product and destination documents confirmed per enquiry.'],
+      ['Sourcing transparency', 'Origin and packing details confirmed for approved lots.'],
+      ['Registered in India', 'GST · Udyam · IEC · APEDA RCMC · ICEGATE · ISO 9001:2015.'],
+    ],
+    de: [
+      ['Chargenspezifische Prüfung', 'COA, Marker oder GC/MS werden – soweit zutreffend – geprüft.'],
+      ['Dokumentenunterstützung', 'Produkt- und Ziellandunterlagen werden je Anfrage bestätigt.'],
+      ['Transparente Beschaffung', 'Herkunft und Verpackung werden für freigegebene Chargen bestätigt.'],
+      ['In Indien registriert', 'GST · Udyam · IEC · APEDA RCMC · ICEGATE · ISO 9001:2015.'],
+    ],
+    fr: [
+      ['Contrôle propre au lot', 'COA, marqueurs ou GC/MS vérifiés lorsque pertinent.'],
+      ['Appui documentaire', 'Documents produit et destination confirmés par demande.'],
+      ['Sourcing transparent', 'Origine et conditionnement confirmés pour les lots approuvés.'],
+      ['Enregistrée en Inde', 'GST · Udyam · IEC · APEDA RCMC · ICEGATE · ISO 9001:2015.'],
+    ],
+    es: [
+      ['Control por lote', 'COA, marcadores o GC/MS revisados cuando corresponda.'],
+      ['Soporte documental', 'Documentos de producto y destino confirmados por consulta.'],
+      ['Abastecimiento transparente', 'Origen y embalaje confirmados para los lotes aprobados.'],
+      ['Registrada en India', 'GST · Udyam · IEC · APEDA RCMC · ICEGATE · ISO 9001:2015.'],
+    ],
+  }[language];
   const features = [
     {
       icon: FlaskConical,
-      title: 'LOT-SPECIFIC TESTING',
-      description: 'COA, markers or GC/MS reviewed where applicable.'
+      title: text[0][0],
+      description: text[0][1]
     },
     {
       icon: FileCheck2,
-      title: 'DOCUMENT SUPPORT',
-      description: 'Product and destination documents confirmed per enquiry.'
+      title: text[1][0],
+      description: text[1][1]
     },
     {
       icon: Sprout,
-      title: 'SOURCING TRANSPARENCY',
-      description: 'Origin and packing details confirmed for approved lots.'
+      title: text[2][0],
+      description: text[2][1]
     },
     {
       icon: BadgeCheck,
-      title: 'REGISTERED IN INDIA',
-      description: 'GST · Udyam · IEC · APEDA RCMC · ICEGATE · ISO 9001:2015.'
+      title: text[3][0],
+      description: text[3][1]
     }
   ];
 

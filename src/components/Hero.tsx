@@ -1,6 +1,8 @@
 import React from 'react';
 import { ArrowRight, ShieldCheck, Flower2 } from 'lucide-react';
 import { CATALOGUE_PRODUCT_COUNT } from '../data/catalogue';
+import { useBuyerLanguage } from '../context/BuyerLanguageContext';
+import { INTERFACE_COPY } from '../data/siteCopy';
 
 interface HeroProps {
   onExploreExtracts: () => void;
@@ -13,6 +15,8 @@ export const Hero: React.FC<HeroProps> = ({
   onBrowseBotanicals,
   openCoaModal,
 }) => {
+  const { language } = useBuyerLanguage();
+  const copy = INTERFACE_COPY[language].hero;
   return (
     <section className="hero-cinematic relative flex w-full flex-col justify-center overflow-hidden border-b border-[#b88a2c]/30 bg-[#041e18] py-8 text-[#fbf7ed] sm:py-10 lg:flex-grow lg:py-8">
       
@@ -38,15 +42,14 @@ export const Hero: React.FC<HeroProps> = ({
             
             {/* Single Line Eyebrow Pill */}
             <div className="inline-flex items-center gap-2 border border-[#b88a2c]/60 px-3 py-1 rounded-none text-[10px] font-semibold uppercase tracking-[0.14em] text-[#b88a2c] w-fit max-w-full bg-[#041e18]/95 backdrop-blur-md shadow-xl whitespace-nowrap overflow-hidden text-ellipsis">
-              <span>INDIAN BOTANICAL SOURCING · SPECIFICATION-LED B2B SUPPLY</span>
+              <span>{copy.eyebrow}</span>
             </div>
 
             {/* Headline matching reference image formatting */}
             <h1 className="font-serif text-3xl sm:text-4xl lg:text-[2.85rem] xl:text-[3.15rem] font-bold leading-[1.05] text-[#fbf7ed] tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-              SOURCE FROM<br />
-              THE <span className="text-[#b88a2c]">HEART</span> OF<br />
-              INDIAN<br />
-              BOTANICALS.
+              {copy.lead}<br />
+              <span className="text-[#b88a2c]">{copy.highlight}</span><br />
+              {copy.tail}
             </h1>
 
             {/* Bold Sanskrit Motto with Tiro Devanagari Hindi Font */}
@@ -57,7 +60,7 @@ export const Hero: React.FC<HeroProps> = ({
 
             {/* Bold Body paragraph as requested */}
             <p className="text-[#fbf7ed] text-xs sm:text-sm leading-relaxed font-semibold max-w-md drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-              From our current <span className="font-bold text-[#fbf7ed]">Mandsaur–Neemuch sourcing base</span>, Ancient Indian Botanicals aligns <span className="font-bold text-[#b88a2c]">botanical identity, extract marker and analytical method</span> with application, volume and destination before proposing a partner route.
+              {copy.body}
             </p>
 
             {/* CTAs matching design reference */}
@@ -66,7 +69,7 @@ export const Hero: React.FC<HeroProps> = ({
                 onClick={onExploreExtracts}
                 className="bg-[#b88a2c] hover:bg-[#967020] text-[#041e18] font-bold text-xs uppercase tracking-[0.14em] px-5 py-2.5 flex items-center gap-2 transition-all shadow-xl hover:-translate-y-0.5 cursor-pointer"
               >
-                <span>EXPLORE EXTRACTS</span>
+                <span>{copy.extracts}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
 
@@ -74,16 +77,16 @@ export const Hero: React.FC<HeroProps> = ({
                 onClick={onBrowseBotanicals}
                 className="bg-[#041e18]/90 hover:bg-[#083a30] text-[#fbf7ed] border border-[#b88a2c] hover:border-[#b88a2c] font-bold text-xs uppercase tracking-[0.14em] px-5 py-2.5 flex items-center gap-2 transition-all cursor-pointer backdrop-blur-sm"
               >
-                <span>EXPLORE INDIAN BOTANICALS</span>
+                <span>{copy.botanicals}</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#b88a2c]" />
               </button>
             </div>
 
             <div className="grid max-w-lg grid-cols-3 border-y border-[#b88a2c]/30 bg-[#041e18]/55 backdrop-blur-sm">
               {[
-                [String(CATALOGUE_PRODUCT_COUNT), 'Product routes'],
-                ['8', 'Ingredient families'],
-                ['Lot', 'Specific review'],
+                [String(CATALOGUE_PRODUCT_COUNT), copy.productRoutes],
+                ['8', copy.families],
+                ['Lot', copy.lotReview],
               ].map(([value, label]) => (
                 <div key={label} className="border-r border-[#b88a2c]/25 px-2 py-2.5 last:border-r-0 sm:px-3">
                   <span className="block font-serif text-lg font-semibold leading-none text-[#d4a43d]">{value}</span>
@@ -111,8 +114,8 @@ export const Hero: React.FC<HeroProps> = ({
               {/* Main Photo Asset */}
               <div className="hero-cinematic__image-shell image-shell relative w-full h-[300px] sm:h-[330px] lg:h-[420px] overflow-hidden rounded-none border border-[#b88a2c]/70 shadow-2xl bg-[#041e18]">
                 <img
-                  src="/assets/images/hero-botanical-still-life.webp"
-                  alt="Amber botanical bottles surrounded by Indian herbs, roots and flowers"
+                  src="/assets/images/cultivation-ashwagandha.webp"
+                  alt="Editorial view of ashwagandha roots at harvest in a Central Indian field"
                   width="1448"
                   height="1086"
                   loading="eager"
@@ -134,25 +137,25 @@ export const Hero: React.FC<HeroProps> = ({
                     <ShieldCheck className="w-3.5 h-3.5 text-[#a8c76b]" />
                   </div>
                   <h4 className="font-serif text-xs sm:text-sm font-semibold text-[#b88a2c]">
-                    Provenance You Can Trust
+                    {copy.provenanceTitle}
                   </h4>
                 </div>
 
                 <p className="text-[10.5px] text-[#f2ead9]/85 leading-snug font-light">
-                  Buyer specifications matched with available lot documentation and transparent sourcing routes.
+                  {copy.provenanceBody}
                 </p>
 
                 <button
                   onClick={openCoaModal}
                   className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-eyebrow text-[#b88a2c] hover:text-[#fbf7ed] pt-0.5 transition-colors cursor-pointer"
                 >
-                  <span>REQUEST LOT DOCUMENTS</span>
+                  <span>{copy.requestDocuments}</span>
                   <ArrowRight className="w-3 h-3" />
                 </button>
               </div>
 
               <div className="hero-cinematic__caption" aria-hidden="true">
-                <span>Indian origin</span>
+                <span>Editorial regional view</span>
                 <span>Buyer specification</span>
                 <span>Export-ready route</span>
               </div>

@@ -5,6 +5,11 @@
   "redirects": [
     { "source": "/products/ashwagandha-root-powder", "destination": "/products/ashwagandha", "permanent": true },
     { "source": "/products/amla-fruit-powder", "destination": "/products/amla", "permanent": true },
-    { "source": "/products/karela-powder", "destination": "/products/bitter-melon", "permanent": true }
+    { "source": "/products/karela-powder", "destination": "/products/bitter-melon", "permanent": true },
+    { "source": "/products/indian-ginseng", "destination": "/products/ashwagandha", "permanent": true },
+    { "source": "/products/winter-cherry", "destination": "/products/ashwagandha", "permanent": true },
+    { "source": "/products/indian-gooseberry", "destination": "/products/amla", "permanent": true },
+    { "source": "/products/velvet-bean", "destination": "/products/kaunch-seed", "permanent": true },
+    { "source": "/products/andrographis-extract", "destination": "/products/kalmegh-extract", "permanent": true }
   ]
 }

@@ -131,6 +131,7 @@ export const OriginsSection: React.FC<OriginsSectionProps> = () => {
                     height="540"
                     loading="lazy"
                     decoding="async"
+                    onError={(event) => { if (event.currentTarget.dataset.fallback === 'true') return; event.currentTarget.dataset.fallback = 'true'; event.currentTarget.src = '/assets/images/cultivation-ashwagandha.webp'; }}
                     className="h-full w-full object-cover"
                   />
                 </div>

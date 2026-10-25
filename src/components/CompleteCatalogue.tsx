@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ArrowRight, CheckCircle2, Search, SlidersHorizontal, X } from 'lucide-react';
 import {
-  CATALOGUE_GROUP_LABELS,
   CATALOGUE_PRODUCTS,
   CatalogueGroup,
   CatalogueProduct,
@@ -11,6 +10,7 @@ import {
 import { ProductVisual } from './ProductVisual';
 import { useBuyerLanguage } from '../context/BuyerLanguageContext';
 import { CATALOGUE_GROUP_LANGUAGE_LABELS, getHsFamilyReference, getLocalizedProductName, PRODUCT_LANGUAGE_LABELS } from '../data/productLanguage';
+import { INTERFACE_COPY, localizeMarketingText } from '../data/siteCopy';
 
 const FILTER_IDS: Array<'all' | CatalogueGroup> = ['all', 'standardized-extracts', 'essential-oils', 'aroma-oils', 'botanicals', 'carrier-oils', 'waters-clays', 'seeds-food', 'cold-pressed-oils'];
 
@@ -48,6 +48,10 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
   const [selectedProduct, setSelectedProduct] = useState<CatalogueProduct | null>(null);
   const { language } = useBuyerLanguage();
   const languageLabels = PRODUCT_LANGUAGE_LABELS[language];
+  const interfaceCopy = INTERFACE_COPY[language].catalogue;
+  const localizedEyebrow = localizeMarketingText(eyebrow, language);
+  const localizedTitle = localizeMarketingText(title, language);
+  const localizedDescription = localizeMarketingText(description, language);
   const filters = FILTER_IDS.map((id) => ({ id, label: id === 'all' ? languageLabels.allProducts : CATALOGUE_GROUP_LANGUAGE_LABELS[language][id] }));
 
   const scopedProducts = useMemo(
@@ -79,6 +83,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
         product.name,
         getLocalizedProductName(product.id, product.name, language),
         product.botanicalName,
+        ...(product.alternateNames ?? []),
         ...product.specifications,
         ...product.commercialForms,
         ...product.typicalApplications,
@@ -120,13 +125,13 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
         <div className="relative mx-auto w-full max-w-[1440px]">
           <div className="max-w-4xl lg:max-w-[64%]">
           <span className="mb-3 block text-[11px] font-semibold uppercase tracking-eyebrow text-[#9b6334]">
-            {eyebrow} · {scopedProducts.length} {languageLabels.productRoutes}
+            {localizedEyebrow} · {scopedProducts.length} {languageLabels.productRoutes}
           </span>
           <h1 className="font-serif text-4xl font-semibold leading-[1.05] text-[#1f2925] md:text-6xl">
-            {title}
+            {localizedTitle}
           </h1>
           <p className="mt-5 max-w-3xl text-sm font-light leading-relaxed text-[#52635d] md:text-base">
-            {description}
+            {localizedDescription}
           </p>
           <p className="mt-4 max-w-3xl border-l-2 border-[#b56e3a] pl-4 text-xs leading-relaxed text-[#52635d]">
             {languageLabels.technicalEnglishNotice}
@@ -168,8 +173,8 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
                   setSearchQuery(event.target.value);
                   setVisibleCount(initialVisibleCount);
                 }}
-                placeholder="Search product, botanical name, form or use..."
-                aria-label="Search complete product catalogue"
+                placeholder={interfaceCopy.searchPlaceholder}
+                aria-label={interfaceCopy.searchLabel}
                 className="w-full border border-[#b56e3a]/40 bg-white py-3 pl-10 pr-10 text-xs text-[#1f2925] placeholder:text-[#7a837f] focus:border-[#173f34] focus:outline-none"
               />
               {searchQuery && (
@@ -187,9 +192,9 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
           <div className="mt-4 flex items-center justify-between gap-4 border-t border-[#b56e3a]/20 pt-4 text-xs text-[#66706b]">
             <span className="flex items-center gap-2">
               <SlidersHorizontal className="h-4 w-4 text-[#b88a2c]" />
-              {filteredProducts.length} matching product{filteredProducts.length === 1 ? '' : 's'}
+              {filteredProducts.length} {interfaceCopy.matching}
             </span>
-            <span className="hidden text-right md:block">Current availability is confirmed only after enquiry.</span>
+            <span className="hidden text-right md:block">{interfaceCopy.availability}</span>
           </div>
         </div>
 
@@ -218,7 +223,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
                         className="aspect-[4/3] w-full"
                       >
                         <span className="absolute left-3 top-3 z-[4] border border-[#d4a43d]/55 bg-[#041e18]/94 px-2.5 py-1 text-[9px] font-bold uppercase tracking-eyebrow text-[#e1bd67] backdrop-blur-sm">
-                          {CATALOGUE_GROUP_LABELS[group]}
+                          {CATALOGUE_GROUP_LANGUAGE_LABELS[language][group]}
                         </span>
                         <span className="absolute bottom-3 right-3 z-[4] border border-[#d4a43d]/45 bg-[#fbf8f1]/95 px-2.5 py-1 text-[8px] font-bold uppercase tracking-[0.12em] text-[#173f34] backdrop-blur-sm" title={languageLabels.hsNotice}>
                           {hsReference}
@@ -240,7 +245,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
 
                       <div className="mt-4">
                         <span className="mb-2 block text-[9px] font-semibold uppercase tracking-eyebrow text-[#60746a]">
-                          Used across
+                          {interfaceCopy.usedAcross}
                         </span>
                         <div className="flex flex-wrap gap-1.5">
                           {product.typicalApplications.slice(0, 3).map((application) => (
@@ -270,14 +275,14 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
                           href={getProductPath(product.id)}
                           className="text-[11px] font-semibold uppercase tracking-eyebrow text-[#173f34] hover:text-[#9b6334]"
                         >
-                          Full product page
+                          {interfaceCopy.fullPage}
                         </a>
                         <button
                           onClick={() => openQuoteModal(product.name)}
                           aria-label={`Request ${product.name}`}
                           className="flex items-center gap-1.5 bg-[#b88a2c] px-3 py-2 text-[10px] font-bold uppercase tracking-eyebrow text-[#041e18] hover:bg-[#d3a84f]"
                         >
-                          Enquire <ArrowRight className="h-3.5 w-3.5" />
+                          {interfaceCopy.enquire} <ArrowRight className="h-3.5 w-3.5" />
                         </button>
                       </div>
                     </div>
@@ -292,22 +297,22 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
                   onClick={() => setVisibleCount((count) => count + 24)}
                   className="border border-[#173f34] bg-[#173f34] px-8 py-3 text-xs font-semibold uppercase tracking-eyebrow text-[#fbf8f1] hover:bg-[#102a23]"
                 >
-                  Load more products
+                  {interfaceCopy.loadMore}
                 </button>
               </div>
             )}
           </>
         ) : (
           <div className="border border-[#b56e3a]/30 bg-[#fbf8f1] px-6 py-16 text-center">
-            <h2 className="font-serif text-3xl text-[#1f2925]">No matching product found</h2>
+            <h2 className="font-serif text-3xl text-[#1f2925]">{interfaceCopy.noMatch}</h2>
             <p className="mx-auto mt-3 max-w-xl text-sm text-[#66706b]">
-              Send the required botanical, grade, form and application to our trade desk for a custom sourcing review.
+              {interfaceCopy.noMatchBody}
             </p>
             <button
               onClick={() => openQuoteModal(searchQuery)}
               className="mt-6 bg-[#b88a2c] px-7 py-3 text-xs font-bold uppercase tracking-eyebrow text-[#041e18]"
             >
-              Request custom sourcing
+              {interfaceCopy.custom}
             </button>
           </div>
         )}
@@ -319,7 +324,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
             <div className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-[#b88a2c]/35 bg-[#083a30] px-5 py-4 md:px-7">
               <div>
                 <span className="text-[10px] font-semibold uppercase tracking-eyebrow text-[#b88a2c]">
-                  {CATALOGUE_GROUP_LABELS[getCatalogueGroup(selectedProduct)]}
+                  {CATALOGUE_GROUP_LANGUAGE_LABELS[language][getCatalogueGroup(selectedProduct)]}
                 </span>
                 <h2 className="font-serif text-2xl font-semibold text-[#fbf7ed] md:text-3xl">
                   {getLocalizedProductName(selectedProduct.id, selectedProduct.name, language)}
@@ -357,7 +362,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
 
                 <div>
                   <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-eyebrow text-[#60746a]">
-                    Industry applications
+                    {interfaceCopy.industryApplications}
                   </h3>
                   <div className="grid gap-2 sm:grid-cols-2">
                     {selectedProduct.realWorldApps.map((application) => (
@@ -371,7 +376,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
 
                 <div>
                   <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-eyebrow text-[#60746a]">
-                    Commercial value
+                    {interfaceCopy.commercialValue}
                   </h3>
                   <p className="border-l-2 border-[#b88a2c] pl-4 text-sm font-light leading-relaxed text-[#52635d]">
                     {selectedProduct.whyBuyersKnowIt}
@@ -394,7 +399,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
 
                 <div>
                   <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-eyebrow text-[#60746a]">
-                    Review points
+                    {interfaceCopy.reviewPoints}
                   </h3>
                   <div className="space-y-2">
                     {selectedProduct.specifications.map((specification) => (
@@ -418,7 +423,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
                   }}
                   className="flex items-center gap-2 bg-[#b88a2c] px-6 py-3 text-xs font-bold uppercase tracking-eyebrow text-[#041e18] hover:bg-[#d3a84f]"
                 >
-                  Request this product <ArrowRight className="h-4 w-4" />
+                  {interfaceCopy.requestProduct} <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
             </div>
