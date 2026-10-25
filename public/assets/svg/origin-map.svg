@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" fill="none">
   <rect width="900" height="440" rx="24" fill="#083A30"/>
   <path d="M337 43c48 13 89 38 114 78 27 43 30 92 60 131 20 26 54 44 47 83-8 46-64 72-110 61-47-11-69-59-97-95-33-42-82-75-86-132-4-51 21-106 72-126Z" stroke="#B88A2C" stroke-width="2" opacity=".35"/>
-  <path d="M392 151C352 230 353 284 387 352M392 151C446 231 468 283 479 340" stroke="#B88A2C" stroke-width="2" stroke-dasharray="7 8" opacity=".75"/>
-  <circle cx="392" cy="151" r="9" fill="#A8C76B"/><circle cx="387" cy="352" r="9" fill="#A8C76B"/><circle cx="479" cy="340" r="9" fill="#A8C76B"/>
+  <path d="M390 151c-14 8-24 20-30 36" stroke="#B88A2C" stroke-width="2" stroke-dasharray="7 8" opacity=".75"/>
+  <circle cx="390" cy="151" r="10" fill="#A8C76B"/><circle cx="360" cy="187" r="8" fill="#D4A43D"/>
   <g fill="#FBF7ED" font-family="Manrope,Arial,sans-serif">
-    <text x="410" y="148" font-size="20" font-weight="600">Mandsaur</text>
-    <text x="276" y="384" font-size="20" font-weight="600">Alleppey</text>
-    <text x="496" y="370" font-size="20" font-weight="600">Mysore</text>
+    <text x="414" y="148" font-size="22" font-weight="700">Mandsaur</text>
+    <text x="250" y="220" font-size="22" font-weight="700">Neemuch</text>
   </g>
   <g fill="#DFCFAD" font-family="Manrope,Arial,sans-serif" font-size="14">
-    <text x="410" y="171">Central India</text><text x="276" y="407">Kerala coast</text><text x="496" y="393">South India</text>
+    <text x="414" y="173">Madhya Pradesh</text><text x="250" y="244">Current sourcing region</text>
   </g>
+  <text x="450" y="404" text-anchor="middle" fill="#B88A2C" font-family="Manrope,Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="2">MANDSAUR–NEEMUCH · CENTRAL INDIA</text>
 </svg>

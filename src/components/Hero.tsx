@@ -3,13 +3,13 @@ import { ArrowRight, ShieldCheck, Flower2 } from 'lucide-react';
 import { CATALOGUE_PRODUCT_COUNT } from '../data/catalogue';
 
 interface HeroProps {
-  onExploreOils: () => void;
+  onExploreExtracts: () => void;
   onBrowseBotanicals: () => void;
   openCoaModal: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({
-  onExploreOils,
+  onExploreExtracts,
   onBrowseBotanicals,
   openCoaModal,
 }) => {
@@ -57,16 +57,16 @@ export const Hero: React.FC<HeroProps> = ({
 
             {/* Bold Body paragraph as requested */}
             <p className="text-[#fbf7ed] text-xs sm:text-sm leading-relaxed font-semibold max-w-md drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-              Ancient Indian Botanicals aligns <span className="font-bold text-[#fbf7ed]">botanical identity</span>, <span className="font-bold text-[#b88a2c]">required analytical profile</span>, <span className="font-bold text-[#fbf7ed]">application, volume and destination</span> before matching suitable lots and packing routes.
+              From our current <span className="font-bold text-[#fbf7ed]">Mandsaur–Neemuch sourcing base</span>, Ancient Indian Botanicals aligns <span className="font-bold text-[#b88a2c]">botanical identity, extract marker and analytical method</span> with application, volume and destination before proposing a partner route.
             </p>
 
             {/* CTAs matching design reference */}
             <div className="flex flex-wrap items-center gap-2.5 pt-0.5">
               <button
-                onClick={onExploreOils}
+                onClick={onExploreExtracts}
                 className="bg-[#b88a2c] hover:bg-[#967020] text-[#041e18] font-bold text-xs uppercase tracking-[0.14em] px-5 py-2.5 flex items-center gap-2 transition-all shadow-xl hover:-translate-y-0.5 cursor-pointer"
               >
-                <span>EXPLORE OILS</span>
+                <span>EXPLORE EXTRACTS</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
 
@@ -82,7 +82,7 @@ export const Hero: React.FC<HeroProps> = ({
             <div className="grid max-w-lg grid-cols-3 border-y border-[#b88a2c]/30 bg-[#041e18]/55 backdrop-blur-sm">
               {[
                 [String(CATALOGUE_PRODUCT_COUNT), 'Product routes'],
-                ['7', 'Ingredient families'],
+                ['8', 'Ingredient families'],
                 ['Lot', 'Specific review'],
               ].map(([value, label]) => (
                 <div key={label} className="border-r border-[#b88a2c]/25 px-2 py-2.5 last:border-r-0 sm:px-3">

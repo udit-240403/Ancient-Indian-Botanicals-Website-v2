@@ -28,9 +28,9 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     category: 'botanicals',
     subFamily: 'Resins & extracts',
     badgeNumber: 'AIB-002',
-    description: 'Sustainably harvested oleo-gum-resin from the dry deciduous forests of Central India. Processed for pharmaceutical, fragrance, and botanical extract applications.',
+    description: 'Boswellia resin and extract enquiries are coordinated against species, physical form, marker profile, analytical method and buyer application. Supplier origin and processing route are confirmed for the offered lot.',
     availableForms: ['Raw Tear Resin (Selected Grade A)', 'Powdered Resin', 'Boswellic Acid Extract (65% Titration)'],
-    harvestOrigin: 'Central Indian Deciduous Forest Belt',
+    harvestOrigin: 'Supplier-lot origin confirmed at quotation',
     image: '/assets/images/product-families-flatlay.png',
     specifications: {
       appearance: 'Golden yellow to pale amber tears or light cream powder',
@@ -72,7 +72,7 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     description: 'Basil essential-oil routes selected around botanical identity, chemotype, aroma profile, application and analytical requirements. Tulsi grades remain separately identified in the complete catalogue.',
     extractionMethod: 'Steam Distillation',
     availableForms: ['Pure Essential Oil', 'Fractionated Profile'],
-    harvestOrigin: 'Plains of North & Central India',
+    harvestOrigin: 'Supplier-lot origin confirmed at quotation',
     image: '/assets/images/product-families-flatlay.png',
     specifications: {
       appearance: 'Pale yellow to golden clear liquid',
@@ -84,15 +84,15 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
   {
     id: 'aib-005',
     slug: 'rose-water-hydrosol',
-    name: 'Kannauj Steam-Distilled Rose Water Hydrosol',
+    name: 'Indian Rose Water Hydrosol',
     botanicalName: 'Rosa damascena',
     category: 'hydrosols-clays',
     subFamily: 'Hydrosols & floral waters',
     badgeNumber: 'AIB-005',
-    description: 'Traditional copper-still steam distillation of fresh morning-picked Damask Rose petals. Contains natural micro-encapsulated rose oil without artificial additives or alcohol.',
-    extractionMethod: 'Traditional Hydro-distillation (Deg-Bhapka / Copper Still)',
+    description: 'Rose-water sourcing route selected against botanical identity, distillation method, composition, microbiology and the intended application. The actual origin and processor are confirmed for the offered lot.',
+    extractionMethod: 'Hydro-distillation route confirmed for the offered lot',
     availableForms: ['Pure Floral Water (100% Single Distillate)', 'Concentrated Hydrosol Base'],
-    harvestOrigin: 'Kannauj Aromatic Belt, Uttar Pradesh',
+    harvestOrigin: 'Origin confirmed for the offered lot',
     image: '/assets/images/hero-botanical-still-life.png',
     specifications: {
       appearance: 'Clear, colorless liquid with natural micro-droplet suspension',
@@ -109,9 +109,9 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     category: 'botanicals',
     subFamily: 'Fruits & powders',
     badgeNumber: 'AIB-006',
-    description: 'Wild-harvested Indian Gooseberry processed at controlled low temperatures to retain natural vitamin C complexes and hydrolysable tannins (emblicanin A & B).',
+    description: 'Amla fruit, powder and extract enquiries are separated by form, mesh, moisture, microbiology, extract ratio and requested marker profile. Supplier origin and processing route are confirmed for the offered lot.',
     availableForms: ['Deseeded Dried Fruit Flakes', 'Fine Powder (100 mesh)', 'Standardized Tannin Extract (30% - 40%)'],
-    harvestOrigin: 'Pratapgarh & Central India',
+    harvestOrigin: 'Supplier-lot origin confirmed at quotation',
     image: '/assets/images/product-families-flatlay.png',
     specifications: {
       appearance: 'Greenish-brown to tan fine powder',
@@ -130,7 +130,7 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     badgeNumber: 'AIB-007',
     description: 'Sustainably cultivated wetland herb harvested before flowering to maximize bacoside yield. Widely specified for cognitive health and botanical tea blends.',
     availableForms: ['Whole Cut Dried Herb', 'Fine Powder (80 mesh)', 'Bacoside Extract 20% - 50%'],
-    harvestOrigin: 'Wetland agricultural corridors of South & East India',
+    harvestOrigin: 'Supplier-lot origin confirmed at quotation',
     image: '/assets/images/hero-botanical-still-life.png',
     specifications: {
       appearance: 'Dull green to brownish fine powder or cut herb',
@@ -149,7 +149,7 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     badgeNumber: 'AIB-008',
     description: 'Responsibly peeled mature tree bark rich in natural co-enzyme Q10 precursors, arjunolic acid, and flavonoids. Carefully air-dried and ground to uniform mesh.',
     availableForms: ['Coarse Cut Bark (1-2 cm)', 'Powdered Bark (80-100 mesh)', 'Standardized Extract'],
-    harvestOrigin: 'Riverine forest corridors of Central India',
+    harvestOrigin: 'Supplier-lot origin confirmed at quotation',
     image: '/assets/images/product-families-flatlay.png',
     specifications: {
       appearance: 'Reddish-brown powder or thick curved bark pieces',
@@ -166,10 +166,10 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     category: 'essential-oils',
     subFamily: 'Herbaceous oils',
     badgeNumber: 'AIB-009',
-    description: 'Crisp, high-citral steam distilled oil sourced from Kerala and Southern hillsides. Crucial raw material for fine aroma, cleansing formulations, and natural citral isolation.',
+    description: 'Lemongrass-oil enquiries are qualified by species, sensory direction, citral profile, intended application and packaging requirement. Supplier origin and distillation route are confirmed for the offered lot.',
     extractionMethod: 'Steam Distillation of Fresh Grass',
     availableForms: ['Pure Export Grade Oil', 'High-Citral Rectified Fraction'],
-    harvestOrigin: 'Alleppey & Malabar Coast, Kerala',
+    harvestOrigin: 'Supplier-lot origin confirmed at quotation',
     image: '/assets/images/hero-botanical-still-life.png',
     specifications: {
       appearance: 'Yellow to reddish-brown liquid',
@@ -190,7 +190,7 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     description: 'Expertly crafted botanical accords and selected steam distillates representing classic Indian Oudh heritage. Grade and composition confirmed against buyer application.',
     extractionMethod: 'Hydro-distillation & Botanical Accord Formulation',
     availableForms: ['Concentrated Perfumery Accord', 'Base Dilution'],
-    harvestOrigin: 'Assam & North-Eastern Botanical Belt',
+    harvestOrigin: 'Supplier-lot origin confirmed at quotation',
     image: '/assets/images/product-families-flatlay.png',
     specifications: {
       appearance: 'Dark amber to deep reddish-brown viscous liquid',
@@ -209,7 +209,7 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     badgeNumber: 'AIB-011',
     description: 'Exquisite aquatic-floral aroma oil capturing the delicate etheric essence of Indian Blue Lotus blossoms. Tailored for fine fragrances, luxury personal care, and anointment oils.',
     availableForms: ['Botanical Accord (100% Concentrate)', 'Oil Soluble Base'],
-    harvestOrigin: 'Southern & Central Indian Floral Lakes',
+    harvestOrigin: 'Supplier-lot origin confirmed at quotation',
     image: '/assets/images/hero-botanical-still-life.png',
     specifications: {
       appearance: 'Clear dark greenish-amber liquid',
@@ -228,7 +228,7 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
     badgeNumber: 'AIB-012',
     description: 'Thinly sliced shade-dried bitter melon slices and uniform mesh powders. Rich in charantin and bitter glycosides for dietary formulations.',
     availableForms: ['Dried Slices / Flakes', 'Powder (80 mesh)', 'Water Extract'],
-    harvestOrigin: 'Central & Western Agricultural Belts',
+    harvestOrigin: 'Supplier-lot origin confirmed at quotation',
     image: '/assets/images/product-families-flatlay.png',
     specifications: {
       appearance: 'Dull green to light yellow-green powder or dried slices',
@@ -242,47 +242,14 @@ export const BOTANICAL_PRODUCTS: BotanicalProduct[] = [
 export const PROVENANCE_REGIONS: ProvenanceRegion[] = [
   {
     id: 'mandsaur',
-    name: 'Mandsaur & Central India Corridor',
-    subtitle: 'Roots, herbs, seeds & regional agricultural supply',
-    description: 'Mandsaur sits within an active agricultural and botanical trading corridor spanning western Madhya Pradesh and neighbouring Rajasthan. The region is relevant to our current focus on Ashwagandha and other central-Indian raw-material routes; exact farm, crop year and origin remain lot-specific.',
-    keyCrops: ['Ashwagandha (Withania somnifera)', 'Seed spices and oilseeds', 'Regional herbs and roots', 'Buyer-specified Central Indian crops'],
+    name: 'Mandsaur–Neemuch Region',
+    subtitle: 'Our current sourcing and partner-coordination base',
+    description: 'Ancient Indian Botanicals is currently building its verified sourcing and manufacturing-partner network in the Mandsaur–Neemuch region. This Central Indian agricultural and medicinal-herb belt supports our present focus on Ashwagandha, regional herbs, seeds and specification-led botanical extracts. Exact grower, processor, crop year and lot origin are confirmed before every offer.',
+    keyCrops: ['Ashwagandha (Withania somnifera)', 'Regional herbs and roots', 'Seeds and agricultural ingredients', 'Specification-led botanical extracts'],
     exportCorridor: 'Direct rail & highway connections to Western Indian Container Ports (JNPT & Mundra)',
     latitude: 24.0725,
     longitude: 75.0683,
     image: '/assets/images/cultivation-ashwagandha.webp'
-  },
-  {
-    id: 'kannauj',
-    name: 'Kannauj Aromatic Heritage Corridor',
-    subtitle: 'Attar heritage, hydrodistillation & floral materials',
-    description: 'Kannauj is internationally recognised for its attar-making heritage and traditional deg-bhapka hydrodistillation. We present this as a regional sourcing and knowledge corridor—not as a company-owned facility. The distillation route, vessel material, botanical input and analytical evidence are confirmed for each enquiry.',
-    keyCrops: ['Rose and floral materials', 'Mitti and traditional attar profiles', 'Hydrosols and floral waters', 'Buyer-defined aromatic ingredients'],
-    exportCorridor: 'Road and rail connectivity to Delhi-NCR and western Indian export gateways',
-    latitude: 27.0514,
-    longitude: 79.9137,
-    image: '/assets/images/process-kannauj-deg-bhapka.webp'
-  },
-  {
-    id: 'alleppey',
-    name: 'Alleppey & Malabar Coast, Kerala',
-    subtitle: 'Spice, leaf & coastal aromatic supply corridors',
-    description: 'The historic spice coast of Kerala provides tropical rainfall, fertile laterite soil, and centuries of distillation expertise. Sourced botanicals include premium lemongrass, ginger, pepper, cardamoms, and coastal hydrosols.',
-    keyCrops: ['Lemongrass Oil (Cymbopogon flexuosus)', 'Black Pepper Extracts', 'Cardamom Oil', 'Fresh Hydrosols'],
-    exportCorridor: 'Direct sea feeder connections via Cochin Port (COK)',
-    latitude: 9.4981,
-    longitude: 76.3388,
-    image: '/assets/images/cultivation-lemongrass.webp'
-  },
-  {
-    id: 'mysore',
-    name: 'Mysore & South India Belt',
-    subtitle: 'Aromatic, floral & specialty botanical connections',
-    description: 'Renowned globally for fragrant timber, essential oils, and floral extracts. The Mysore plateau hosts sustainable Santalum album plantations alongside jasmine and davana cultivation.',
-    keyCrops: ['Mysore Sandalwood Oil (Santalum album)', 'Davana Oil', 'Jasmine Grandiflorum Absolutes', 'Vetiver Root'],
-    exportCorridor: 'Export processing via Chennai & Bengaluru Air/Sea Hubs',
-    latitude: 12.2958,
-    longitude: 76.6394,
-    image: '/assets/images/hero-botanical-still-life.png'
   }
 ];
 
@@ -301,7 +268,7 @@ export const SPECIFICATION_WORKFLOW: WorkflowStep[] = [
     step: '02',
     title: 'Match Lot & Origin Route',
     shortDesc: 'We evaluate current harvest & verified supplier lots',
-    fullDesc: 'We cross-reference buyer needs with current verified harvest lots across our Central & Southern Indian origin corridors to find an exact specification match.',
+    fullDesc: 'We cross-reference buyer needs with current verified sourcing and manufacturing-partner routes in the Mandsaur–Neemuch region to identify a suitable specification match.',
     iconName: 'GitBranch',
     deliverables: ['Lot Identification Report', 'Preliminary COA Draft']
   },

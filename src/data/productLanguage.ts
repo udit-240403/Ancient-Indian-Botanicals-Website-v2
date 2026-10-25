@@ -113,6 +113,11 @@ const SPECIAL_NAMES: Record<string, TranslationSet> = {
   'peanut-oil': { de: 'Erdnussöl', fr: 'Huile d’arachide', es: 'Aceite de cacahuete' },
   'sweet-almond-oil': { de: 'Süßmandelöl', fr: 'Huile d’amande douce', es: 'Aceite de almendra dulce' },
   'flaxseed-oil': { de: 'Leinöl', fr: 'Huile de lin', es: 'Aceite de lino' },
+  'curcumin-extract': { de: 'Curcumin- / Kurkumaextrakt', fr: 'Extrait de curcumine / curcuma', es: 'Extracto de curcumina / cúrcuma' },
+  'green-tea-extract': { de: 'Grüntee-Extrakt', fr: 'Extrait de thé vert', es: 'Extracto de té verde' },
+  'ginger-extract': { de: 'Ingwerextrakt', fr: 'Extrait de gingembre', es: 'Extracto de jengibre' },
+  'moringa-extract': { de: 'Moringa-Blattextrakt', fr: 'Extrait de feuille de moringa', es: 'Extracto de hoja de moringa' },
+  'kalmegh-extract': { de: 'Kalmegh-Extrakt', fr: 'Extrait de kalmegh', es: 'Extracto de kalmegh' },
 };
 
 const translateBase = (base: string, language: Exclude<BuyerLanguage, 'en'>) => {
@@ -201,34 +206,91 @@ export const getLocalizedProductName = (
 
 export const PRODUCT_LANGUAGE_LABELS: Record<BuyerLanguage, {
   buyerLanguage: string;
+  navigation: Record<'home' | 'extracts' | 'catalogue' | 'packaging' | 'quality' | 'verification' | 'about' | 'faq' | 'contact', string>;
+  requestDocuments: string;
+  startEnquiry: string;
+  search: string;
+  allProducts: string;
+  productRoutes: string;
+  commercialForms: string;
+  typicalApplications: string;
+  reviewFramework: string;
+  technicalEnglishNotice: string;
   englishTradeName: string;
   hsReview: string;
   hsNotice: string;
 }> = {
   en: {
     buyerLanguage: 'Buyer language',
+    navigation: { home: 'Home', extracts: 'Extracts', catalogue: 'Catalogue', packaging: 'Packaging', quality: 'Quality', verification: 'Verification', about: 'About', faq: 'Buyer FAQ', contact: 'Contact' },
+    requestDocuments: 'Request lot documents',
+    startEnquiry: 'Start an enquiry',
+    search: 'Search',
+    allProducts: 'All Products',
+    productRoutes: 'Product Routes',
+    commercialForms: 'Commercial forms',
+    typicalApplications: 'Typical applications',
+    reviewFramework: 'Review framework',
+    technicalEnglishNotice: 'Technical specifications and legal terms remain in the English master until professional terminology review is completed.',
     englishTradeName: 'English trade name',
     hsReview: 'HS/HSN review',
     hsNotice: 'Final 6/8-digit classification is confirmed against the exact product form and destination.',
   },
   de: {
     buyerLanguage: 'Käufersprache',
+    navigation: { home: 'Startseite', extracts: 'Extrakte', catalogue: 'Katalog', packaging: 'Verpackung', quality: 'Qualität', verification: 'Verifizierung', about: 'Über uns', faq: 'Käufer-FAQ', contact: 'Kontakt' },
+    requestDocuments: 'Chargendokumente anfordern',
+    startEnquiry: 'Anfrage starten',
+    search: 'Suchen',
+    allProducts: 'Alle Produkte',
+    productRoutes: 'Produktrouten',
+    commercialForms: 'Handelsformen',
+    typicalApplications: 'Typische Anwendungen',
+    reviewFramework: 'Prüfrahmen',
+    technicalEnglishNotice: 'Technische Spezifikationen und Rechtstexte bleiben bis zur professionellen Terminologieprüfung in der englischen Masterfassung.',
     englishTradeName: 'Englische Handelsbezeichnung',
     hsReview: 'HS/HSN-Prüfung',
     hsNotice: 'Die endgültige 6-/8-stellige Einreihung wird nach Produktform und Zielland bestätigt.',
   },
   fr: {
     buyerLanguage: 'Langue de l’acheteur',
+    navigation: { home: 'Accueil', extracts: 'Extraits', catalogue: 'Catalogue', packaging: 'Emballage', quality: 'Qualité', verification: 'Vérification', about: 'À propos', faq: 'FAQ acheteur', contact: 'Contact' },
+    requestDocuments: 'Demander les documents du lot',
+    startEnquiry: 'Démarrer une demande',
+    search: 'Rechercher',
+    allProducts: 'Tous les produits',
+    productRoutes: 'Routes produits',
+    commercialForms: 'Formes commerciales',
+    typicalApplications: 'Applications typiques',
+    reviewFramework: 'Cadre de vérification',
+    technicalEnglishNotice: 'Les spécifications techniques et les textes juridiques restent dans la version anglaise de référence jusqu’à la révision terminologique professionnelle.',
     englishTradeName: 'Nom commercial anglais',
     hsReview: 'Vérification HS/HSN',
     hsNotice: 'Le classement final à 6/8 chiffres est confirmé selon la forme exacte et la destination.',
   },
   es: {
     buyerLanguage: 'Idioma del comprador',
+    navigation: { home: 'Inicio', extracts: 'Extractos', catalogue: 'Catálogo', packaging: 'Embalaje', quality: 'Calidad', verification: 'Verificación', about: 'Nosotros', faq: 'FAQ del comprador', contact: 'Contacto' },
+    requestDocuments: 'Solicitar documentos del lote',
+    startEnquiry: 'Iniciar una consulta',
+    search: 'Buscar',
+    allProducts: 'Todos los productos',
+    productRoutes: 'Rutas de producto',
+    commercialForms: 'Formas comerciales',
+    typicalApplications: 'Aplicaciones típicas',
+    reviewFramework: 'Marco de revisión',
+    technicalEnglishNotice: 'Las especificaciones técnicas y los textos legales permanecen en la versión maestra en inglés hasta completar la revisión terminológica profesional.',
     englishTradeName: 'Nombre comercial en inglés',
     hsReview: 'Revisión HS/HSN',
     hsNotice: 'La clasificación final de 6/8 dígitos se confirma según la forma exacta y el destino.',
   },
+};
+
+export const CATALOGUE_GROUP_LANGUAGE_LABELS: Record<BuyerLanguage, Record<CatalogueGroup, string>> = {
+  en: { 'essential-oils': 'Essential Oils', 'aroma-oils': 'Aroma Oils', 'standardized-extracts': 'Standardized Extracts', botanicals: 'Botanicals', 'carrier-oils': 'Carrier Oils', 'waters-clays': 'Waters & Clays', 'seeds-food': 'Seeds, Nuts & Food', 'cold-pressed-oils': 'Cold-Pressed Oils' },
+  de: { 'essential-oils': 'Ätherische Öle', 'aroma-oils': 'Aromaöle', 'standardized-extracts': 'Standardisierte Extrakte', botanicals: 'Botanische Rohstoffe', 'carrier-oils': 'Trägeröle', 'waters-clays': 'Hydrolate & Tonerden', 'seeds-food': 'Saaten, Nüsse & Lebensmittel', 'cold-pressed-oils': 'Kaltgepresste Öle' },
+  fr: { 'essential-oils': 'Huiles essentielles', 'aroma-oils': 'Huiles aromatiques', 'standardized-extracts': 'Extraits standardisés', botanicals: 'Ingrédients botaniques', 'carrier-oils': 'Huiles végétales', 'waters-clays': 'Eaux florales et argiles', 'seeds-food': 'Graines, noix et aliments', 'cold-pressed-oils': 'Huiles pressées à froid' },
+  es: { 'essential-oils': 'Aceites esenciales', 'aroma-oils': 'Aceites aromáticos', 'standardized-extracts': 'Extractos estandarizados', botanicals: 'Ingredientes botánicos', 'carrier-oils': 'Aceites portadores', 'waters-clays': 'Aguas florales y arcillas', 'seeds-food': 'Semillas, frutos secos y alimentos', 'cold-pressed-oils': 'Aceites prensados en frío' },
 };
 
 export const getHsFamilyReference = (group: CatalogueGroup) => {
@@ -239,6 +301,8 @@ export const getHsFamilyReference = (group: CatalogueGroup) => {
       return 'HS family 3302';
     case 'botanicals':
       return 'HS family 1211 / 1302';
+    case 'standardized-extracts':
+      return 'HS family 1302 · final code by composition';
     case 'carrier-oils':
       return 'HS family 1515 / 3301';
     case 'cold-pressed-oils':

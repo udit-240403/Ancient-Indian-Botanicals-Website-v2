@@ -12,13 +12,18 @@ export const BUYER_LANGUAGES: Array<{ code: BuyerLanguage; shortLabel: string; l
 interface BuyerLanguageContextValue {
   language: BuyerLanguage;
   setLanguage: (language: BuyerLanguage) => void;
+  languageLabel: string;
 }
 
 const BuyerLanguageContext = createContext<BuyerLanguageContextValue | null>(null);
 
 const detectInitialLanguage = (): BuyerLanguage => {
-  // Keep the public site consistently English until complete, professionally
-  // reviewed language routes (including navigation, forms and legal copy) exist.
+  const stored = window.localStorage.getItem('aib-buyer-language');
+  if (stored && BUYER_LANGUAGES.some((item) => item.code === stored)) return stored as BuyerLanguage;
+  const browserLanguage = window.navigator.language.toLowerCase();
+  if (browserLanguage.startsWith('de')) return 'de';
+  if (browserLanguage.startsWith('fr')) return 'fr';
+  if (browserLanguage.startsWith('es')) return 'es';
   return 'en';
 };
 
@@ -27,10 +32,12 @@ export const BuyerLanguageProvider: React.FC<React.PropsWithChildren> = ({ child
 
   useEffect(() => {
     window.localStorage.setItem('aib-buyer-language', language);
-    document.documentElement.lang = language;
+    document.documentElement.lang = 'en';
+    document.documentElement.dataset.buyerLanguage = language;
   }, [language]);
 
-  const value = useMemo(() => ({ language, setLanguage }), [language]);
+  const languageLabel = BUYER_LANGUAGES.find((item) => item.code === language)?.label ?? 'English';
+  const value = useMemo(() => ({ language, setLanguage, languageLabel }), [language, languageLabel]);
 
   return <BuyerLanguageContext.Provider value={value}>{children}</BuyerLanguageContext.Provider>;
 };

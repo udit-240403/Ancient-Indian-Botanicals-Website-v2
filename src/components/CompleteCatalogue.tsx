@@ -10,18 +10,9 @@ import {
 } from '../data/catalogue';
 import { ProductVisual } from './ProductVisual';
 import { useBuyerLanguage } from '../context/BuyerLanguageContext';
-import { getHsFamilyReference, getLocalizedProductName, PRODUCT_LANGUAGE_LABELS } from '../data/productLanguage';
+import { CATALOGUE_GROUP_LANGUAGE_LABELS, getHsFamilyReference, getLocalizedProductName, PRODUCT_LANGUAGE_LABELS } from '../data/productLanguage';
 
-const FILTERS: Array<{ id: 'all' | CatalogueGroup; label: string }> = [
-  { id: 'all', label: 'All Products' },
-  { id: 'essential-oils', label: 'Essential Oils' },
-  { id: 'aroma-oils', label: 'Aroma Oils' },
-  { id: 'botanicals', label: 'Botanicals' },
-  { id: 'carrier-oils', label: 'Carrier Oils' },
-  { id: 'waters-clays', label: 'Waters & Clays' },
-  { id: 'seeds-food', label: 'Seeds, Nuts & Food' },
-  { id: 'cold-pressed-oils', label: 'Cold-Pressed Oils' },
-];
+const FILTER_IDS: Array<'all' | CatalogueGroup> = ['all', 'standardized-extracts', 'essential-oils', 'aroma-oils', 'botanicals', 'carrier-oils', 'waters-clays', 'seeds-food', 'cold-pressed-oils'];
 
 interface CompleteCatalogueProps {
   searchQuery: string;
@@ -57,6 +48,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
   const [selectedProduct, setSelectedProduct] = useState<CatalogueProduct | null>(null);
   const { language } = useBuyerLanguage();
   const languageLabels = PRODUCT_LANGUAGE_LABELS[language];
+  const filters = FILTER_IDS.map((id) => ({ id, label: id === 'all' ? languageLabels.allProducts : CATALOGUE_GROUP_LANGUAGE_LABELS[language][id] }));
 
   const scopedProducts = useMemo(
     () => (allowedGroups?.length ? CATALOGUE_PRODUCTS.filter((product) => allowedGroups.includes(getCatalogueGroup(product))) : CATALOGUE_PRODUCTS),
@@ -64,8 +56,8 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
   );
 
   const availableFilters = useMemo(
-    () => FILTERS.filter((filter) => filter.id === 'all' || !allowedGroups?.length || allowedGroups.includes(filter.id)),
-    [allowedGroups],
+    () => filters.filter((filter) => filter.id === 'all' || !allowedGroups?.length || allowedGroups.includes(filter.id)),
+    [allowedGroups, filters],
   );
 
   const groupCounts = useMemo(
@@ -128,7 +120,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
         <div className="relative mx-auto w-full max-w-[1440px]">
           <div className="max-w-4xl lg:max-w-[64%]">
           <span className="mb-3 block text-[11px] font-semibold uppercase tracking-eyebrow text-[#9b6334]">
-            {eyebrow} · {scopedProducts.length} Product Routes
+            {eyebrow} · {scopedProducts.length} {languageLabels.productRoutes}
           </span>
           <h1 className="font-serif text-4xl font-semibold leading-[1.05] text-[#1f2925] md:text-6xl">
             {title}
@@ -137,7 +129,7 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
             {description}
           </p>
           <p className="mt-4 max-w-3xl border-l-2 border-[#b56e3a] pl-4 text-xs leading-relaxed text-[#52635d]">
-            Product names can be viewed in English, German, French or Spanish. The English trade name and botanical identity remain visible for accurate commercial communication.
+            {languageLabels.technicalEnglishNotice}
           </p>
           </div>
         </div>

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Search, ShieldCheck, Menu, X, ChevronRight, Mail, ArrowRight } from 'lucide-react';
+import { Search, ShieldCheck, Menu, X, ChevronRight, Mail, ArrowRight, Languages } from 'lucide-react';
 import { PAGE_ROUTES } from '../siteRoutes';
 import { CATALOGUE_PRODUCT_COUNT } from '../data/catalogue';
+import { BUYER_LANGUAGES, useBuyerLanguage } from '../context/BuyerLanguageContext';
+import { PRODUCT_LANGUAGE_LABELS } from '../data/productLanguage';
 
 interface NavbarProps {
   activeTab: string;
@@ -22,16 +24,18 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const { language, setLanguage } = useBuyerLanguage();
+  const languageLabels = PRODUCT_LANGUAGE_LABELS[language];
   const navLinks = [
-    { id: 'home', label: 'HOME' },
-    { id: 'botanicals', label: 'PRODUCTS' },
-    { id: 'catalogue', label: 'CATALOGUE' },
-    { id: 'packaging', label: 'PACKAGING' },
-    { id: 'quality', label: 'QUALITY' },
-    { id: 'verification', label: 'VERIFICATION' },
-    { id: 'about', label: 'ABOUT' },
-    { id: 'faq', label: 'BUYER FAQ' },
-    { id: 'contact', label: 'CONTACT' },
+    { id: 'home', label: languageLabels.navigation.home },
+    { id: 'standardized-extracts', label: languageLabels.navigation.extracts },
+    { id: 'catalogue', label: languageLabels.navigation.catalogue },
+    { id: 'packaging', label: languageLabels.navigation.packaging },
+    { id: 'quality', label: languageLabels.navigation.quality },
+    { id: 'verification', label: languageLabels.navigation.verification },
+    { id: 'about', label: languageLabels.navigation.about },
+    { id: 'faq', label: languageLabels.navigation.faq },
+    { id: 'contact', label: languageLabels.navigation.contact },
   ];
 
   const handleNavClick = (event: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -59,13 +63,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex min-w-0 items-center gap-2 font-semibold tracking-wide">
             <span aria-hidden="true" className="text-[#8aa34d]">◆</span>
             <span className="truncate">
-              <span className="sm:hidden">Indian botanical sourcing · Mandsaur</span>
-              <span className="hidden sm:inline">Indian botanical sourcing corridors · Mandsaur · Kannauj · Alleppey · Mysore</span>
+              <span className="sm:hidden">Current sourcing base · Mandsaur–Neemuch</span>
+              <span className="hidden sm:inline">Current verified sourcing base · Mandsaur–Neemuch region · Central India</span>
             </span>
           </div>
           <div className="hidden items-center gap-4 md:flex">
             <a href="mailto:office@ancientindianbotanicals.com" className="flex items-center gap-1.5 font-semibold transition-colors hover:text-[#967020]"><Mail className="h-3.5 w-3.5" />office@ancientindianbotanicals.com</a>
-            <button onClick={openCoaModal} className="flex items-center gap-1.5 border border-[#041e18]/25 px-3 py-1 font-bold uppercase tracking-eyebrow transition-colors hover:bg-[#eae3c2]"><ShieldCheck className="h-3.5 w-3.5 text-[#967020]" />Request lot documents</button>
+            <button onClick={openCoaModal} className="flex items-center gap-1.5 border border-[#041e18]/25 px-3 py-1 font-bold uppercase tracking-eyebrow transition-colors hover:bg-[#eae3c2]"><ShieldCheck className="h-3.5 w-3.5 text-[#967020]" />{languageLabels.requestDocuments}</button>
           </div>
         </div>
       </div>
@@ -97,14 +101,27 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           <div className="hidden items-center gap-3 lg:flex">
+            <label className="flex items-center gap-2 border border-[#b88a2c]/35 bg-[#062b23] px-3 py-2 text-[9px] font-bold uppercase tracking-[0.12em] text-[#d4a43d]">
+              <Languages className="h-4 w-4" />
+              <span className="sr-only">{languageLabels.buyerLanguage}</span>
+              <select value={language} onChange={(event) => setLanguage(event.target.value as typeof language)} className="cursor-pointer bg-transparent text-[#fbf7ed] outline-none" aria-label={languageLabels.buyerLanguage}>
+                {BUYER_LANGUAGES.map((item) => <option key={item.code} value={item.code} className="bg-[#062b23] text-[#fbf7ed]">{item.shortLabel}</option>)}
+              </select>
+            </label>
             <form onSubmit={handleSearchSubmit} className="relative hidden xl:block">
               <input type="text" placeholder={`SEARCH ${CATALOGUE_PRODUCT_COUNT} PRODUCT ROUTES`} value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} className="w-64 border border-[#b88a2c]/35 bg-[#062b23] py-2.5 pl-3 pr-9 text-[10px] uppercase tracking-wider text-[#fbf7ed] placeholder:text-[#82966f] focus:border-[#b88a2c] focus:outline-none" />
               <button type="submit" aria-label="Search catalogue" className="absolute right-3 top-1/2 -translate-y-1/2 text-[#d4a43d]"><Search className="h-4 w-4" /></button>
             </form>
-            <button onClick={() => openQuoteModal()} className="flex items-center gap-2 bg-[#b88a2c] px-5 py-3 text-[10px] font-extrabold uppercase tracking-eyebrow text-[#041e18] transition-colors hover:bg-[#d4a43d]">Start an enquiry <ArrowRight className="h-4 w-4" /></button>
+            <button onClick={() => openQuoteModal()} className="flex items-center gap-2 bg-[#b88a2c] px-5 py-3 text-[10px] font-extrabold uppercase tracking-eyebrow text-[#041e18] transition-colors hover:bg-[#d4a43d]">{languageLabels.startEnquiry} <ArrowRight className="h-4 w-4" /></button>
           </div>
 
           <div className="flex shrink-0 items-center gap-2 lg:hidden">
+            <label className="flex items-center border border-[#b88a2c]/35 px-2 py-2 text-[10px] font-bold text-[#fbf7ed]">
+              <span className="sr-only">{languageLabels.buyerLanguage}</span>
+              <select value={language} onChange={(event) => setLanguage(event.target.value as typeof language)} className="bg-[#041e18] outline-none" aria-label={languageLabels.buyerLanguage}>
+                {BUYER_LANGUAGES.map((item) => <option key={item.code} value={item.code}>{item.shortLabel}</option>)}
+              </select>
+            </label>
             <button onClick={() => setSearchOpen((value) => !value)} aria-label={searchOpen ? 'Close catalogue search' : 'Open catalogue search'} className="hidden border border-[#b88a2c]/35 p-2.5 text-[#fbf7ed] min-[410px]:block"><Search className="h-4 w-4" /></button>
             <button onClick={() => setMobileMenuOpen((value) => !value)} aria-label="Toggle navigation menu" className="border border-[#b88a2c]/45 p-2.5 text-[#fbf7ed]">{mobileMenuOpen ? <X className="h-6 w-6 text-[#d4a43d]" /> : <Menu className="h-6 w-6" />}</button>
           </div>
@@ -125,7 +142,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="border-t border-[#b88a2c]/25 bg-[#062b23] p-4 lg:hidden">
             <form onSubmit={handleSearchSubmit} className="flex items-center gap-2">
               <input type="text" placeholder="Search products, forms or industries..." value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} className="min-w-0 flex-1 border border-[#b88a2c]/50 bg-[#041e18] p-3 text-xs text-[#fbf7ed] focus:border-[#b88a2c] focus:outline-none" />
-              <button type="submit" className="bg-[#b88a2c] px-4 py-3 text-[10px] font-bold uppercase text-[#041e18]">Search</button>
+              <button type="submit" className="bg-[#b88a2c] px-4 py-3 text-[10px] font-bold uppercase text-[#041e18]">{languageLabels.search}</button>
             </form>
           </div>
         )}
@@ -138,8 +155,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               ))}
             </div>
             <div className="mt-5 grid gap-2 border-t border-[#b88a2c]/25 pt-4 sm:grid-cols-2">
-              <button onClick={() => { setMobileMenuOpen(false); openQuoteModal(); }} className="flex items-center justify-center gap-2 bg-[#b88a2c] py-3 text-[10px] font-bold uppercase tracking-eyebrow text-[#041e18]"><Mail className="h-4 w-4" />Start enquiry</button>
-              <button onClick={() => { setMobileMenuOpen(false); openCoaModal(); }} className="flex items-center justify-center gap-2 border border-[#b88a2c]/45 py-3 text-[10px] font-bold uppercase tracking-eyebrow text-[#fbf7ed]"><ShieldCheck className="h-4 w-4 text-[#d4a43d]" />Lot documents</button>
+              <button onClick={() => { setMobileMenuOpen(false); openQuoteModal(); }} className="flex items-center justify-center gap-2 bg-[#b88a2c] py-3 text-[10px] font-bold uppercase tracking-eyebrow text-[#041e18]"><Mail className="h-4 w-4" />{languageLabels.startEnquiry}</button>
+              <button onClick={() => { setMobileMenuOpen(false); openCoaModal(); }} className="flex items-center justify-center gap-2 border border-[#b88a2c]/45 py-3 text-[10px] font-bold uppercase tracking-eyebrow text-[#fbf7ed]"><ShieldCheck className="h-4 w-4 text-[#d4a43d]" />{languageLabels.requestDocuments}</button>
             </div>
           </div>
         )}

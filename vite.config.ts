@@ -11,6 +11,17 @@ export default defineConfig(() => {
         '@': path.resolve(__dirname, '.'),
       },
     },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('lucide-react')) return 'icons';
+            if (id.includes('/src/data/scraped_products.json') || id.includes('/src/data/food_ingredients.json') || id.includes('/src/data/partner_extracts.json')) return 'catalogue-data';
+            return undefined;
+          },
+        },
+      },
+    },
     server: {
       allowedHosts: ['terminal.local'],
       // HMR is disabled in AI Studio via DISABLE_HMR env var.

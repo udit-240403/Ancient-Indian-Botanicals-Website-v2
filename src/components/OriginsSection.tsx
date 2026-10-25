@@ -23,14 +23,14 @@ export const OriginsSection: React.FC<OriginsSectionProps> = () => {
         {/* Header */}
         <div className="max-w-4xl mb-14 md:mb-16">
           <span className="text-[11px] uppercase tracking-eyebrow text-[#b88a2c] font-bold block mb-2">
-            Provenance & Supply Corridors
+            Current Sourcing Base
           </span>
           <div className="section-rule mb-5" />
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-[#041e18] mb-5 leading-[1.05]">
-            Rooted in India’s growing regions
+            Focused on the Mandsaur–Neemuch region
           </h2>
           <p className="text-sm text-[#384941] font-normal leading-relaxed">
-            Our sourcing network is organised around established agricultural and processing corridors. Origin availability depends on the botanical, harvest, grade and approved supplier lot.
+            We currently present only the region where AIB is actively building and verifying its sourcing and manufacturing-partner network. Additional locations will be added only after a documented commercial tie-up.
           </p>
         </div>
 
@@ -79,7 +79,7 @@ export const OriginsSection: React.FC<OriginsSectionProps> = () => {
             
             <div className="flex items-center justify-between border-b border-[#b88a2c]/30 pb-4">
               <div>
-                <span className="text-[10px] uppercase tracking-eyebrow text-[#b88a2c] font-semibold">Active Region</span>
+                <span className="text-[10px] uppercase tracking-eyebrow text-[#b88a2c] font-semibold">Current verified region</span>
                 <h3 className="font-serif text-2xl font-bold text-[#fbf7ed]">
                   {selectedRegion.name}
                 </h3>
@@ -97,7 +97,7 @@ export const OriginsSection: React.FC<OriginsSectionProps> = () => {
             {/* Key Crops Tag List */}
             <div className="space-y-2">
               <span className="text-xs uppercase tracking-eyebrow text-[#b88a2c] font-semibold block">
-                Primary Harvest & Cultivation Crops:
+                Current sourcing and enquiry focus:
               </span>
               <div className="flex flex-wrap gap-2">
                 {selectedRegion.keyCrops.map((crop, idx) => (
@@ -137,7 +137,7 @@ export const OriginsSection: React.FC<OriginsSectionProps> = () => {
                 <figcaption className="border-t border-[#b88a2c]/25 px-3 py-2 text-[9px] leading-relaxed text-[#f2ead9]/60">Representative regional or process imagery. It does not depict a company-owned farm, temple or processing facility.</figcaption>
               </figure>
               <div className="relative flex min-h-[150px] items-center justify-center border border-[#b88a2c]/40 bg-[#062b23] p-3">
-                <img src="/assets/svg/origin-map.svg" alt="India sourcing corridor map" className="max-h-[132px] w-full object-contain opacity-90" />
+                <img src="/assets/svg/origin-map.svg" alt="Mandsaur and Neemuch sourcing region map" className="max-h-[132px] w-full object-contain opacity-90" />
                 <span className="absolute bottom-2 left-2 right-2 border border-[#b88a2c]/55 bg-[#041e18]/95 px-2 py-1 text-center text-[8px] font-bold uppercase tracking-eyebrow text-[#b88a2c]">{selectedRegion.name}</span>
               </div>
             </div>

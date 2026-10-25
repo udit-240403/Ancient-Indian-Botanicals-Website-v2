@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Droplets, Leaf, Flower2, Package, Wheat } from 'lucide-react';
+import { ArrowRight, Droplets, Leaf, Flower2, Package, Wheat, FlaskConical } from 'lucide-react';
 import { CATALOGUE_PRODUCTS, CATALOGUE_PRODUCT_COUNT, getCatalogueGroup } from '../data/catalogue';
 
 interface ProductFamiliesProps {
@@ -11,6 +11,14 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
   const countGroups = (groups: ReturnType<typeof getCatalogueGroup>[]) => CATALOGUE_PRODUCTS.filter((product) => groups.includes(getCatalogueGroup(product))).length;
   const families = [
     {
+      id: 'standardized-extracts',
+      title: 'Standardized botanical extracts',
+      description: 'Partner-processed extracts aligned to plant part, marker, method, ratio, solvent and buyer application.',
+      cta: 'Explore extracts',
+      icon: FlaskConical,
+      tag: `${countGroups(['standardized-extracts'])} extract routes`
+    },
+    {
       id: 'essential-oils',
       title: 'Natural, aroma & carrier oils',
       description: 'Natural essential oils, carrier oils and clearly separated aroma or diffuser grades.',
@@ -21,7 +29,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
     {
       id: 'botanicals',
       title: 'Botanical ingredients',
-      description: 'Whole, cut and powdered herbs, roots, barks, seeds, resins and standardized extracts.',
+      description: 'Whole, cut and powdered herbs, roots, barks, seeds and resins.',
       cta: 'Browse botanicals',
       icon: Leaf,
       tag: `${countGroups(['botanicals'])} product routes`
@@ -111,7 +119,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
         </div>
 
         {/* 4 Cards Grid with Deep Dark Green Contrast */}
-        <div className="grid grid-cols-1 gap-px border border-[#b56e3a]/25 bg-[#b56e3a]/25 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid grid-cols-1 gap-px border border-[#b56e3a]/25 bg-[#b56e3a]/25 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {families.map((family) => {
             const IconComp = family.icon;
             return (

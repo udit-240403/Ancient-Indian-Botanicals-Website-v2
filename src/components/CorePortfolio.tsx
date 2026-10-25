@@ -9,20 +9,20 @@ interface CorePortfolioProps {
 
 const priorityIds = [
   'ashwagandha',
-  'amla',
+  'bacopa',
   'boswellia',
-  'mentha-arvensis',
-  'lemongrass',
-  'dehydrated-garlic',
+  'curcumin-extract',
+  'green-tea-extract',
+  'gymnema',
 ];
 
 const focusNotes: Record<string, string> = {
   ashwagandha: 'Central India focus · whole root, powder and extract routes',
-  amla: 'Fruit, powder and specification-led extract routes',
+  bacopa: 'Whole-herb and standardized bacoside extract enquiries',
   boswellia: 'Central Indian resin and extract enquiries',
-  'mentha-arvensis': 'India-origin mint oil evaluated against the required profile',
-  lemongrass: 'Essential-oil route aligned to citral and application requirements',
-  'dehydrated-garlic': 'Food-ingredient route by cut, grade and destination controls',
+  'curcumin-extract': 'Marker, method, carrier and application aligned before offer',
+  'green-tea-extract': 'Catechin, polyphenol and caffeine requirements defined by brief',
+  gymnema: 'Leaf and standardized-extract route with lot-specific evidence',
 };
 
 export const CorePortfolio: React.FC<CorePortfolioProps> = ({ openProduct, openQuoteModal }) => {
@@ -35,12 +35,12 @@ export const CorePortfolio: React.FC<CorePortfolioProps> = ({ openProduct, openQ
       <div className="mx-auto max-w-[1440px]">
         <div className="grid gap-6 lg:grid-cols-[.78fr_1.22fr] lg:items-end">
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Priority enquiry routes</span>
-            <h2 className="mt-3 font-serif text-4xl font-semibold leading-tight sm:text-5xl">Start with the products we are actively developing.</h2>
+            <span className="text-[10px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">Priority standardized-extract routes</span>
+            <h2 className="mt-3 font-serif text-4xl font-semibold leading-tight sm:text-5xl">Start with the extracts we are actively developing.</h2>
           </div>
           <div>
-            <p className="text-sm leading-relaxed text-[#f2ead9]/75">The complete catalogue remains available, but these routes receive priority attention for supplier matching, samples, specification review and buyer discussions. Inclusion does not imply ready stock or universal certification.</p>
-            <button onClick={() => openQuoteModal('Priority product sourcing brief')} className="mt-5 inline-flex items-center gap-2 border border-[#d4a43d] px-5 py-3 text-[10px] font-bold uppercase tracking-eyebrow hover:bg-[#d4a43d] hover:text-[#041e18]">Share a priority brief <ArrowRight className="h-4 w-4" /></button>
+            <p className="text-sm leading-relaxed text-[#f2ead9]/75">These manufacturing-partner routes receive priority attention for marker review, analytical method, extract ratio, solvent system, samples and buyer discussions. Inclusion does not imply ready stock, a fixed marker percentage or universal certification.</p>
+            <button onClick={() => openQuoteModal('Standardized extract sourcing brief')} className="mt-5 inline-flex items-center gap-2 border border-[#d4a43d] px-5 py-3 text-[10px] font-bold uppercase tracking-eyebrow hover:bg-[#d4a43d] hover:text-[#041e18]">Share an extract brief <ArrowRight className="h-4 w-4" /></button>
           </div>
         </div>
 
@@ -52,7 +52,7 @@ export const CorePortfolio: React.FC<CorePortfolioProps> = ({ openProduct, openQ
                   <img src={product.image} alt={product.name} width="720" height="405" loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.035]" />
                 </div>
                 <div className="p-5 sm:p-6">
-                  <div className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-eyebrow text-[#d4a43d]"><Leaf className="h-3.5 w-3.5" />Priority route</div>
+                  <div className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-eyebrow text-[#d4a43d]"><Leaf className="h-3.5 w-3.5" />Priority extract route</div>
                   <h3 className="mt-3 font-serif text-2xl font-semibold text-[#fbf7ed]">{product.name}</h3>
                   <p className="mt-1 font-serif text-sm italic text-[#a8c76b]">{product.botanicalName}</p>
                   <p className="mt-4 flex items-start gap-2 text-[11px] leading-relaxed text-[#f2ead9]/68"><MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#d4a43d]" />{focusNotes[product.id]}</p>
@@ -63,7 +63,7 @@ export const CorePortfolio: React.FC<CorePortfolioProps> = ({ openProduct, openQ
           ))}
         </div>
 
-        <div className="mt-6 flex items-start gap-3 border border-[#b88a2c]/25 bg-[#083a30] p-4 text-[11px] leading-relaxed text-[#f2ead9]/72"><FileCheck2 className="mt-0.5 h-4 w-4 shrink-0 text-[#d4a43d]" /><p>Before quotation, we still confirm the exact form, grade, active marker or analytical method, quantity, packaging, destination and required documentation.</p></div>
+        <div className="mt-6 flex items-start gap-3 border border-[#b88a2c]/25 bg-[#083a30] p-4 text-[11px] leading-relaxed text-[#f2ead9]/72"><FileCheck2 className="mt-0.5 h-4 w-4 shrink-0 text-[#d4a43d]" /><p>Before quotation, we confirm the plant part, extract ratio, solvent system, carrier status, active marker, analytical method, quantity, packaging, destination and required documentation.</p></div>
       </div>
     </section>
   );

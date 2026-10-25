@@ -1,0 +1,107 @@
+[
+  {
+    "id": "curcumin-extract",
+    "name": "Curcumin / Turmeric Extract",
+    "botanicalName": "Curcuma longa",
+    "category": "standardized-extracts",
+    "tagline": "Specification-led turmeric extract route with marker and test method agreed before quotation.",
+    "specifications": [
+      "Curcuminoid marker range and analytical method confirmed against the buyer brief",
+      "Extract ratio, carrier status, residual-solvent and physical requirements agreed before sampling",
+      "COA and applicable contaminant or microbiological testing scoped to the approved lot"
+    ],
+    "commercialForms": ["Turmeric extract", "Curcuminoid-standardized extract", "Buyer-specified powder grade"],
+    "typicalApplications": ["Nutraceutical formulations", "Botanical blends", "Food and personal-care applications subject to grade"],
+    "whyBuyersKnowIt": "A widely specified botanical extract whose commercial value depends on marker level, test method and formulation grade.",
+    "fieldDescription": "Curcumin enquiries are qualified by botanical source, curcuminoid marker, analytical method, extraction system, carrier status, residual-solvent limits and intended application. No fixed percentage or destination approval is implied by catalogue inclusion.",
+    "realWorldApps": [
+      { "title": "Formulation input", "description": "Selected around marker, dispersibility, colour and application requirements." },
+      { "title": "Buyer qualification", "description": "Specification, COA, sample and supporting evidence reviewed before commercial commitment." }
+    ],
+    "image": "/assets/images/cultivation-tulsi.webp"
+  },
+  {
+    "id": "green-tea-extract",
+    "name": "Green Tea Extract",
+    "botanicalName": "Camellia sinensis",
+    "category": "standardized-extracts",
+    "tagline": "Tea-leaf extract route aligned to buyer-defined catechin, polyphenol and caffeine requirements.",
+    "specifications": [
+      "Polyphenol, catechin, EGCG or caffeine requirement and method confirmed per enquiry",
+      "Extract ratio, solvent system, colour and solubility aligned to the intended application",
+      "COA and applicable residue, contaminant and microbiological testing scoped per lot"
+    ],
+    "commercialForms": ["Tea-leaf extract", "Marker-standardized extract", "Buyer-specified low-caffeine route where available"],
+    "typicalApplications": ["Nutraceutical formulations", "Functional beverage systems", "Botanical and personal-care formulations"],
+    "whyBuyersKnowIt": "A globally recognised extract selected by marker profile, caffeine status and application performance.",
+    "fieldDescription": "Green tea extract enquiries define the target marker profile, caffeine requirement, extraction route, carrier or excipient status and intended use. Availability and analytical evidence are confirmed for the proposed partner lot.",
+    "realWorldApps": [
+      { "title": "Standardized formulation", "description": "Matched to the buyer's required catechin or polyphenol profile." },
+      { "title": "Application review", "description": "Solubility, colour and caffeine status considered against final use." }
+    ],
+    "image": "/assets/images/product-families-flatlay.webp"
+  },
+  {
+    "id": "ginger-extract",
+    "name": "Ginger Extract",
+    "botanicalName": "Zingiber officinale",
+    "category": "standardized-extracts",
+    "tagline": "Ginger-rhizome extract route qualified by marker profile, sensory direction and intended grade.",
+    "specifications": [
+      "Gingerol or related marker requirement and analytical method confirmed before offer",
+      "Extract ratio, solvent route, pungency, colour and physical form aligned to the brief",
+      "COA and applicable contaminant or microbiological review scoped to the offered lot"
+    ],
+    "commercialForms": ["Rhizome extract", "Marker-standardized extract", "Buyer-specified powdered grade"],
+    "typicalApplications": ["Nutraceutical formulations", "Food and beverage systems", "Botanical blends"],
+    "whyBuyersKnowIt": "A familiar botanical extract whose specification can vary significantly by marker, extraction route and end use.",
+    "fieldDescription": "Ginger extract is not treated as interchangeable with dehydrated ginger powder or essential oil. The buyer brief defines marker, method, extraction route, organoleptic profile, grade and documentation.",
+    "realWorldApps": [
+      { "title": "Botanical formulation", "description": "Marker and extraction parameters aligned before sampling." },
+      { "title": "Food application", "description": "Food-grade evidence and destination requirements confirmed separately." }
+    ],
+    "image": "/assets/images/food-ingredients-export-hero.webp"
+  },
+  {
+    "id": "moringa-extract",
+    "name": "Moringa Leaf Extract",
+    "botanicalName": "Moringa oleifera",
+    "category": "standardized-extracts",
+    "tagline": "Leaf-extract route separated from leaf powder and aligned to the approved buyer specification.",
+    "specifications": [
+      "Plant part, extract ratio, marker expectation and analytical method confirmed per enquiry",
+      "Solvent system, carrier status, colour, solubility and physical form aligned to application",
+      "COA and applicable residue, heavy-metal and microbiological requirements reviewed per lot"
+    ],
+    "commercialForms": ["Leaf extract", "Water extract", "Buyer-specified standardized grade"],
+    "typicalApplications": ["Nutraceutical formulations", "Botanical blends", "Food and personal-care applications subject to grade"],
+    "whyBuyersKnowIt": "A versatile leaf ingredient offered as a distinct extract route rather than being confused with ordinary leaf powder.",
+    "fieldDescription": "Moringa extract enquiries distinguish plant part, extract ratio, solvent system, marker requirement and application grade. Powder and extract specifications are reviewed separately.",
+    "realWorldApps": [
+      { "title": "Extract programme", "description": "Specification and lot evidence reviewed with the manufacturing partner." },
+      { "title": "Application matching", "description": "Colour, taste, solubility and grade considered for the intended formulation." }
+    ],
+    "image": "/assets/images/cultivation-tulsi.webp"
+  },
+  {
+    "id": "kalmegh-extract",
+    "name": "Kalmegh Extract",
+    "botanicalName": "Andrographis paniculata",
+    "category": "standardized-extracts",
+    "tagline": "Andrographis extract route qualified by andrographolide marker, method and buyer application.",
+    "specifications": [
+      "Andrographolide marker range and analytical method confirmed before quotation",
+      "Plant part, extract ratio, solvent system and carrier status aligned to the buyer brief",
+      "COA and applicable contaminant or microbiological testing scoped to the approved lot"
+    ],
+    "commercialForms": ["Whole-herb extract", "Marker-standardized extract", "Buyer-specified powdered grade"],
+    "typicalApplications": ["Nutraceutical formulations", "Herbal formulations", "Botanical blends"],
+    "whyBuyersKnowIt": "An established standardized-extract enquiry where marker level and analytical method must be explicit.",
+    "fieldDescription": "Kalmegh extract enquiries are defined by plant part, andrographolide marker, test method, extract ratio, solvent route and destination requirements. Catalogue presence does not imply a fixed percentage or certification.",
+    "realWorldApps": [
+      { "title": "Marker-led qualification", "description": "Partner route reviewed against the requested analytical specification." },
+      { "title": "Commercial review", "description": "MOQ, sample, COA, packaging and lead time confirmed after specification alignment." }
+    ],
+    "image": "/assets/images/product-families-flatlay.webp"
+  }
+]

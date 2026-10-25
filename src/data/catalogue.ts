@@ -1,12 +1,14 @@
 import rawCatalogue from './scraped_products.json';
 import roseAbsolute from './rose_absolute.json';
 import foodIngredients from './food_ingredients.json';
+import partnerExtracts from './partner_extracts.json';
 import catalogueOverrides from './catalogue-overrides.json';
 
 export type CatalogueGroup =
   | 'essential-oils'
   | 'aroma-oils'
   | 'botanicals'
+  | 'standardized-extracts'
   | 'carrier-oils'
   | 'waters-clays'
   | 'seeds-food'
@@ -31,12 +33,14 @@ const RAW_CATALOGUE_PRODUCTS: CatalogueProduct[] = [
   ...(rawCatalogue as CatalogueProduct[]),
   roseAbsolute as CatalogueProduct,
   ...(foodIngredients as CatalogueProduct[]),
+  ...(partnerExtracts as CatalogueProduct[]),
 ];
 
+const prohibitedProductPattern = /shilajit/i;
 const excludedIds = new Set(catalogueOverrides.excludedIds);
 
 export const CATALOGUE_PRODUCTS: CatalogueProduct[] = RAW_CATALOGUE_PRODUCTS
-  .filter((product) => !excludedIds.has(product.id))
+  .filter((product) => !excludedIds.has(product.id) && !prohibitedProductPattern.test(`${product.id} ${product.name}`))
   .map((product) => ({
     ...product,
     ...(catalogueOverrides.overrides[product.id as keyof typeof catalogueOverrides.overrides] ?? {}),
@@ -44,10 +48,32 @@ export const CATALOGUE_PRODUCTS: CatalogueProduct[] = RAW_CATALOGUE_PRODUCTS
 
 export const CATALOGUE_PRODUCT_COUNT = CATALOGUE_PRODUCTS.length;
 
+const STANDARDIZED_EXTRACTS = new Set([
+  'amla',
+  'ashwagandha',
+  'bacopa',
+  'bitter-melon',
+  'boswellia',
+  'cissus',
+  'curcumin-extract',
+  'fenugreek',
+  'ginger-extract',
+  'green-tea-extract',
+  'gymnema',
+  'holy-basil',
+  'kalmegh-extract',
+  'moringa-extract',
+  'safed-musli',
+  'shatavari',
+  'tribulus',
+  'triphala',
+]);
+
 const CARRIER_OILS = new Set(['castor-oil', 'kalonji-oil', 'neem-oil', 'olive-oil']);
 const WATER_AND_CLAY_PRODUCTS = new Set(['rose-water', 'kewra-water', 'multani-mitti']);
 
 export const getCatalogueGroup = (product: CatalogueProduct): CatalogueGroup => {
+  if (product.category === 'standardized-extracts' || STANDARDIZED_EXTRACTS.has(product.id)) return 'standardized-extracts';
   if (product.category === 'seeds-food') return 'seeds-food';
   if (product.category === 'cold-pressed-oils') return 'cold-pressed-oils';
   if (WATER_AND_CLAY_PRODUCTS.has(product.id)) return 'waters-clays';
@@ -72,6 +98,7 @@ export const CATALOGUE_GROUP_LABELS: Record<CatalogueGroup, string> = {
   'essential-oils': 'Natural Essential Oils',
   'aroma-oils': 'Aroma & Diffuser Oils',
   botanicals: 'Botanical Ingredients',
+  'standardized-extracts': 'Standardized Botanical Extracts',
   'carrier-oils': 'Carrier & Herbal Oils',
   'waters-clays': 'Floral Waters & Clays',
   'seeds-food': 'Seeds, Nuts & Food Ingredients',

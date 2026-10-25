@@ -29,6 +29,7 @@ const QuoteFormModal = lazy(() => import('./components/QuoteFormModal').then((mo
 const VerifyCoaModal = lazy(() => import('./components/VerifyCoaModal').then((module) => ({ default: module.VerifyCoaModal })));
 const EssentialOilsPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.EssentialOilsPage })));
 const BotanicalsPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.BotanicalsPage })));
+const StandardizedExtractsPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.StandardizedExtractsPage })));
 const FoodIngredientsPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.FoodIngredientsPage })));
 const PackagingPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.PackagingPage })));
 const QualityPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.QualityPage })));
@@ -213,7 +214,7 @@ export function App() {
   };
 
   const handleSelectCategory = (category: string) => {
-    if (category === 'essential-oils' || category === 'botanicals' || category === 'food-ingredients' || category === 'packaging') {
+    if (category === 'essential-oils' || category === 'standardized-extracts' || category === 'botanicals' || category === 'food-ingredients' || category === 'packaging') {
       navigateToTab(category);
     } else if (category === 'catalogue') {
       navigateToTab('catalogue');
@@ -243,7 +244,7 @@ export function App() {
             <div className="flex flex-col bg-[#041e18]">
               <div className="flex flex-col justify-center">
                 <Hero
-                  onExploreOils={() => navigateToTab('essential-oils')}
+                  onExploreExtracts={() => navigateToTab('standardized-extracts')}
                   onBrowseBotanicals={() => navigateToTab('botanicals')}
                   openCoaModal={() => handleOpenCoaModal()}
                 />
@@ -287,6 +288,15 @@ export function App() {
 
         {activeTab === 'botanicals' && (
           <BotanicalsPage
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            openQuoteModal={handleOpenQuoteModal}
+            openCoaModal={() => handleOpenCoaModal()}
+          />
+        )}
+
+        {activeTab === 'standardized-extracts' && (
+          <StandardizedExtractsPage
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
             openQuoteModal={handleOpenQuoteModal}
