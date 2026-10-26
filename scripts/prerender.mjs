@@ -12,15 +12,23 @@ const foodIngredients = JSON.parse(await readFile(path.join(ROOT, 'src/data/food
 const partnerExtracts = JSON.parse(await readFile(path.join(ROOT, 'src/data/partner_extracts.json'), 'utf8'));
 const catalogueOverrides = JSON.parse(await readFile(path.join(ROOT, 'src/data/catalogue-overrides.json'), 'utf8'));
 const catalogueNames = JSON.parse(await readFile(path.join(ROOT, 'src/data/catalogue-names.json'), 'utf8'));
+const internationalNames = JSON.parse(await readFile(path.join(ROOT, 'src/data/international-product-names.json'), 'utf8'));
 const faqs = JSON.parse(await readFile(path.join(ROOT, 'src/data/faq.json'), 'utf8'));
 const excludedIds = new Set(catalogueOverrides.excludedIds);
 const prohibitedProductPattern = /shilajit/i;
+const internationalNameByProductId = new Map(internationalNames.map((entry) => [entry.productId, entry]));
 const products = [...scraped, roseAbsolute, ...foodIngredients, ...partnerExtracts]
   .filter((product) => !excludedIds.has(product.id) && !prohibitedProductPattern.test(`${product.id} ${product.name}`))
   .map((product) => {
     const overridden = { ...product, ...(catalogueOverrides.overrides[product.id] ?? {}) };
     const naming = catalogueNames[product.id];
-    return naming ? { ...overridden, name: naming.primaryName, alternateNames: naming.alternateNames } : overridden;
+    const internationalNaming = internationalNameByProductId.get(product.id);
+    const alternateNames = Array.from(new Set([
+      ...(overridden.alternateNames ?? []),
+      ...(naming?.alternateNames ?? []),
+      ...(internationalNaming ? [internationalNaming.internationalName, internationalNaming.indianTradeName, ...internationalNaming.aliases.map((alias) => alias.replaceAll('-', ' '))] : []),
+    ]));
+    return { ...overridden, ...(naming ? { name: naming.primaryName } : {}), ...(alternateNames.length ? { alternateNames } : {}) };
   })
   .sort((a, b) => a.name.localeCompare(b.name));
 const productCount = products.length;
@@ -60,6 +68,7 @@ const pages = [
   { path: '/botanicals', title: 'Indian Botanicals, Herbs & Powders | Ancient Indian Botanicals', description: 'Explore Indian botanicals for B2B sourcing: herbs, roots, seeds, powders, resins, floral waters and clays, with standardized extracts presented separately.', eyebrow: 'Complete botanical portfolio', heading: 'Indian botanicals for formulation, sourcing and export', copy: 'Explore Indian botanicals across whole, cut and powdered herbs, roots, seeds, resins, floral waters and clays. Standardized extracts are presented in a dedicated collection.', groups: ['botanicals', 'waters-clays'] },
   { path: '/food-ingredients', title: 'Indian Seeds, Nuts & Food Ingredients | Ancient Indian Botanicals', description: 'Explore enquiry-led B2B routes for oilseeds, nuts, makhana, coconut products, jaggery, millets, dehydrated ingredients and cold-pressed oils from India.', eyebrow: 'Seeds, nuts and value-added food ingredients', heading: 'Indian food ingredients selected around the buyer specification', copy: 'Explore oilseeds, nuts, makhana, coconut products, jaggery, millets, dehydrated ingredients and clearly identified cold-pressed oil routes. Origin, grade, food-safety evidence, destination suitability and current availability remain offer-specific.', groups: ['seeds-food', 'cold-pressed-oils'] },
   { path: '/catalogue', title: 'Complete Botanical Product Catalogue | Ancient Indian Botanicals', description: `Explore ${productCount} consolidated Indian extract, botanical, essential-oil, oilseed, nut, dehydrated-food, cold-pressed-oil, floral-water and clay sourcing routes for commercial enquiries.`, eyebrow: 'Complete current catalogue', heading: `${productCount} botanical, aromatic and food-ingredient sourcing routes`, copy: 'Search the complete product portfolio by botanical identity, form, application and commercial route.', groups: ['standardized-extracts', 'essential-oils', 'aroma-oils', 'botanicals', 'carrier-oils', 'waters-clays', 'seeds-food', 'cold-pressed-oils'] },
+  { path: '/international-product-names', title: 'International & Common Botanical Names | Ancient Indian Botanicals', description: 'Match international common names such as Indian Ginseng, Winter Cherry, Indian Gooseberry, Velvet Bean and Holy Basil with Indian trade names, botanical identity and canonical product pages.', eyebrow: 'International name directory', heading: 'One botanical identity, understood across markets', copy: 'Match international buyer terms with Indian trade names, botanical Latin and the single canonical product page used for commercial review.', internationalNames: true },
   { path: '/packaging', title: 'Botanical Export Packaging Options | Ancient Indian Botanicals', description: 'Compare sample vials, amber glass, aluminium, HDPE, drums, high-barrier pouches, lined bags and private-label packaging for botanical exports.', eyebrow: 'Packaging architecture', heading: 'From evaluation sample to commercial bulk', copy: 'Compare practical packaging routes, typical buyer benefits and the compatibility checks required before supply. Final material, lining, closure, fill, label and transport suitability are confirmed per product and order.' },
   { path: '/quality', title: 'Lot Documentation & Quality Process | Ancient Indian Botanicals', description: 'Understand the lot-specific COA, identity, analytical, safety and packing-document review process for botanical supply.', eyebrow: 'Quality control and compliance', heading: 'Documentation built around the product, lot and destination', copy: 'Available COA, identity, marker, chromatography, contaminant, safety and packing records are reviewed against the approved requirement where applicable.' },
   { path: '/verification', title: 'Company Verification & Registrations | Ancient Indian Botanicals', description: 'Review the incorporation, GST, Udyam, IEC, APEDA RCMC, ICEGATE and ISO 9001:2015 status of Ancient Indian Botanicals Private Limited.', eyebrow: 'Company verification', heading: 'Registered, identifiable and available for counterparty review', copy: 'Ancient Indian Botanicals Private Limited publishes credential status for initial due diligence while sharing exact identifiers through verified commercial correspondence.' },
@@ -93,7 +102,11 @@ const pageFallback = (page) => {
   const scoped = page.groups ? products.filter((product) => page.groups.includes(getGroup(product))) : [];
   const links = scoped.length ? `<section><h2>Products in this collection</h2><ul>${scoped.map((product) => `<li><a href="/products/${escapeHtml(product.id)}">${escapeHtml(product.name)} <em>${escapeHtml(product.botanicalName)}</em></a></li>`).join('')}</ul></section>` : '';
   const faqContent = page.path === '/faq' ? `<section>${faqs.map((item) => `<article><h2>${escapeHtml(item.question)}</h2><p>${escapeHtml(item.answer)}</p></article>`).join('')}</section>` : '';
-  return `<main style="min-height:100vh;background:#f4efe5;color:#1f2925;padding:3rem 1.25rem;font-family:Georgia,serif"><div style="max-width:72rem;margin:0 auto"><p style="color:#9b6334;letter-spacing:.12em;text-transform:uppercase">${escapeHtml(page.eyebrow)}</p><h1>${escapeHtml(page.heading)}</h1><p>${escapeHtml(page.copy)}</p>${links}${faqContent}<p>Commercial enquiries: <a href="mailto:sales@ancientindianbotanicals.com">sales@ancientindianbotanicals.com</a></p><p><small>Ancient Indian Botanicals Private Limited maintains GST, Udyam, IEC, APEDA RCMC, ICEGATE and ISO 9001:2015 credentials. Exact identifiers are supplied through verified commercial documents.</small></p></div></main>`;
+  const internationalNameContent = page.internationalNames ? `<section><h2>International and Indian trade names</h2><ul>${internationalNames.map((entry) => {
+    const product = products.find((item) => item.id === entry.productId);
+    return product ? `<li><a href="/products/${escapeHtml(product.id)}"><strong>${escapeHtml(entry.internationalName)}</strong></a> — ${escapeHtml(entry.indianTradeName)} — <em>${escapeHtml(product.botanicalName)}</em></li>` : '';
+  }).join('')}</ul><p>Buyer-friendly alternate URLs permanently redirect to the main canonical product page so search authority is not divided.</p></section>` : '';
+  return `<main style="min-height:100vh;background:#f4efe5;color:#1f2925;padding:3rem 1.25rem;font-family:Georgia,serif"><div style="max-width:72rem;margin:0 auto"><p style="color:#9b6334;letter-spacing:.12em;text-transform:uppercase">${escapeHtml(page.eyebrow)}</p><h1>${escapeHtml(page.heading)}</h1><p>${escapeHtml(page.copy)}</p>${links}${faqContent}${internationalNameContent}<p>Commercial enquiries: <a href="mailto:sales@ancientindianbotanicals.com">sales@ancientindianbotanicals.com</a></p><p><small>Ancient Indian Botanicals Private Limited maintains GST, Udyam, IEC, APEDA RCMC, ICEGATE and ISO 9001:2015 credentials. Exact identifiers are supplied through verified commercial documents.</small></p></div></main>`;
 };
 
 const productFallback = (product) => `<main style="min-height:100vh;background:#f4efe5;color:#1f2925;padding:3rem 1.25rem;font-family:Georgia,serif"><article style="max-width:72rem;margin:0 auto"><p style="color:#9b6334;letter-spacing:.12em;text-transform:uppercase">${escapeHtml(groupLabels[getGroup(product)])}</p><h1>${escapeHtml(product.name)}</h1><p><em>${escapeHtml(product.botanicalName)}</em></p><img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" style="max-width:42rem;width:100%;height:auto"><p>${escapeHtml(product.fieldDescription)}</p><p>${escapeHtml(product.whyBuyersKnowIt)}</p><h2>Commercial forms</h2><ul>${product.commercialForms.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><h2>Typical applications</h2><ul>${product.typicalApplications.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><h2>Review framework</h2><ul>${product.specifications.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><p>Availability, grade, origin, composition, MOQ, packaging and documents are confirmed for the approved enquiry and offered lot.</p><p><a href="/catalogue">Return to the complete catalogue</a> · <a href="mailto:sales@ancientindianbotanicals.com?subject=${encodeURIComponent(`Enquiry — ${product.name}`)}">Enquire about this product</a></p><p><small>Ancient Indian Botanicals Private Limited maintains verified company and export credentials. Exact identifiers are supplied through official commercial documents.</small></p></article></main>`;
@@ -152,6 +165,34 @@ for (const page of pages) {
           name: page.title,
           description: page.description,
           mainEntity: faqs.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })),
+          publisher: { '@id': `${SITE_URL}/#organization` },
+        }
+    : page.path === '/international-product-names'
+      ? {
+          '@type': 'CollectionPage',
+          '@id': `${SITE_URL}${page.path}#page`,
+          url: `${SITE_URL}${page.path}`,
+          name: page.title,
+          description: page.description,
+          isPartOf: { '@id': `${SITE_URL}/#website` },
+          mainEntity: {
+            '@type': 'ItemList',
+            numberOfItems: internationalNames.length,
+            itemListElement: internationalNames.map((entry, index) => {
+              const product = products.find((item) => item.id === entry.productId);
+              return {
+                '@type': 'ListItem',
+                position: index + 1,
+                name: entry.internationalName,
+                url: `${SITE_URL}/products/${entry.productId}`,
+                item: {
+                  '@type': 'Thing',
+                  name: product?.name ?? entry.internationalName,
+                  alternateName: [entry.internationalName, entry.indianTradeName, product?.botanicalName, ...(product?.alternateNames ?? [])].filter(Boolean),
+                },
+              };
+            }),
+          },
           publisher: { '@id': `${SITE_URL}/#organization` },
         }
     : {

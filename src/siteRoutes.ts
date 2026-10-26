@@ -9,6 +9,7 @@ export const PAGE_ROUTES: Record<string, string> = {
   botanicals: '/botanicals',
   'food-ingredients': '/food-ingredients',
   catalogue: '/catalogue',
+  'international-product-names': '/international-product-names',
   search: '/catalogue',
   packaging: '/packaging',
   quality: '/quality',
@@ -47,6 +48,10 @@ export const PAGE_META: Record<string, { title: string; description: string }> =
   catalogue: {
     title: 'Complete Botanical Product Catalogue | Ancient Indian Botanicals',
     description: `Explore ${CATALOGUE_PRODUCT_COUNT} consolidated Indian extract, botanical, essential-oil, oilseed, nut, dehydrated-food, cold-pressed-oil, floral-water and clay sourcing routes for commercial enquiries.`,
+  },
+  'international-product-names': {
+    title: 'International & Common Botanical Names | Ancient Indian Botanicals',
+    description: 'Match international common names such as Indian Ginseng, Winter Cherry, Indian Gooseberry, Velvet Bean and Holy Basil with Indian trade names, botanical identity and canonical product pages.',
   },
   packaging: {
     title: 'Botanical Export Packaging Options | Ancient Indian Botanicals',

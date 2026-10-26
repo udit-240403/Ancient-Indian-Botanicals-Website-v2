@@ -1,0 +1,110 @@
+[
+  {
+    "productId": "ashwagandha",
+    "internationalName": "Indian Ginseng / Winter Cherry",
+    "indianTradeName": "Ashwagandha",
+    "aliases": ["indian-ginseng", "winter-cherry"]
+  },
+  {
+    "productId": "amla",
+    "internationalName": "Indian Gooseberry / Emblic",
+    "indianTradeName": "Amla",
+    "aliases": ["indian-gooseberry", "emblic"]
+  },
+  {
+    "productId": "bacopa",
+    "internationalName": "Bacopa / Water Hyssop",
+    "indianTradeName": "Brahmi",
+    "aliases": ["water-hyssop", "brahmi"]
+  },
+  {
+    "productId": "boswellia",
+    "internationalName": "Indian Frankincense / Boswellia",
+    "indianTradeName": "Salai Guggul",
+    "aliases": ["indian-frankincense", "salai-guggul"]
+  },
+  {
+    "productId": "holy-basil",
+    "internationalName": "Holy Basil / Sacred Basil",
+    "indianTradeName": "Tulsi",
+    "aliases": ["tulsi", "sacred-basil"]
+  },
+  {
+    "productId": "jamun-seed",
+    "internationalName": "Java Plum / Indian Blackberry",
+    "indianTradeName": "Jamun",
+    "aliases": ["java-plum", "indian-blackberry"]
+  },
+  {
+    "productId": "kaunch-seed",
+    "internationalName": "Velvet Bean / Mucuna",
+    "indianTradeName": "Kaunch",
+    "aliases": ["velvet-bean", "mucuna"]
+  },
+  {
+    "productId": "mulethi-root",
+    "internationalName": "Licorice / Liquorice Root",
+    "indianTradeName": "Mulethi",
+    "aliases": ["licorice-root", "liquorice-root"]
+  },
+  {
+    "productId": "multani-mitti",
+    "internationalName": "Fuller's Earth",
+    "indianTradeName": "Multani Mitti",
+    "aliases": ["fullers-earth"]
+  },
+  {
+    "productId": "rajnigandha-aroma",
+    "internationalName": "Tuberose Aroma Oil",
+    "indianTradeName": "Rajnigandha aroma oil",
+    "aliases": ["tuberose-aroma-oil"]
+  },
+  {
+    "productId": "reetha-aritha",
+    "internationalName": "Soapnut / Soapberry",
+    "indianTradeName": "Reetha / Aritha",
+    "aliases": ["soapnut", "soapberry"]
+  },
+  {
+    "productId": "shatavari",
+    "internationalName": "Wild Asparagus Extract",
+    "indianTradeName": "Shatavari extract",
+    "aliases": ["wild-asparagus", "wild-asparagus-extract"]
+  },
+  {
+    "productId": "shatavari-root",
+    "internationalName": "Wild Asparagus Root",
+    "indianTradeName": "Shatavari root",
+    "aliases": ["wild-asparagus-root"]
+  },
+  {
+    "productId": "tribulus",
+    "internationalName": "Puncture Vine / Tribulus",
+    "indianTradeName": "Gokhru",
+    "aliases": ["puncture-vine", "gokhru"]
+  },
+  {
+    "productId": "kalmegh-extract",
+    "internationalName": "Andrographis Extract",
+    "indianTradeName": "Kalmegh extract",
+    "aliases": ["andrographis", "andrographis-extract"]
+  },
+  {
+    "productId": "tulsi-oil",
+    "internationalName": "Holy Basil Oil",
+    "indianTradeName": "Tulsi oil",
+    "aliases": ["holy-basil-oil"]
+  },
+  {
+    "productId": "kalonji-oil",
+    "internationalName": "Black Seed Oil",
+    "indianTradeName": "Kalonji oil",
+    "aliases": ["black-seed-oil"]
+  },
+  {
+    "productId": "bitter-melon",
+    "internationalName": "Bitter Melon / Bitter Gourd",
+    "indianTradeName": "Karela",
+    "aliases": ["bitter-gourd", "karela"]
+  }
+]

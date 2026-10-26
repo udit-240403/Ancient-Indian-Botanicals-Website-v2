@@ -72,6 +72,11 @@ export const Footer: React.FC<FooterProps> = ({
                 </a>
               </li>
               <li>
+                <a href={PAGE_ROUTES['international-product-names']} onClick={(event) => handleNav(event, 'international-product-names')} className="hover:text-[#b88a2c] transition-colors">
+                  International & Common Names
+                </a>
+              </li>
+              <li>
                 <a href={PAGE_ROUTES['standardized-extracts']} onClick={(event) => handleNav(event, 'standardized-extracts')} className="hover:text-[#b88a2c] transition-colors">
                   Standardized Botanical Extracts
                 </a>

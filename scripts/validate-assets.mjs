@@ -16,6 +16,8 @@ for (const file of productFiles) {
 }
 
 const overrides = JSON.parse(await readFile(path.join(root, 'src/data/catalogue-overrides.json'), 'utf8'));
+const internationalNames = JSON.parse(await readFile(path.join(root, 'src/data/international-product-names.json'), 'utf8'));
+const vercelConfig = JSON.parse(await readFile(path.join(root, 'vercel.json'), 'utf8'));
 const missing = [];
 for (const product of products) {
   const image = overrides.overrides?.[product.id]?.image ?? product.image;
@@ -33,4 +35,28 @@ if (missing.length) {
   process.exit(1);
 }
 
+const productIds = new Set(products.map((product) => product.id));
+const canonicalProductIds = new Set(products.map((product) => product.id).filter((id) => !overrides.excludedIds.includes(id) && !/shilajit/i.test(id)));
+const redirectMap = new Map((vercelConfig.redirects ?? []).map((redirect) => [redirect.source, redirect.destination]));
+const seenAliases = new Set();
+const nameDirectoryErrors = [];
+
+for (const entry of internationalNames) {
+  if (!productIds.has(entry.productId) || !canonicalProductIds.has(entry.productId)) nameDirectoryErrors.push(`Unknown or excluded product: ${entry.productId}`);
+  for (const alias of entry.aliases) {
+    if (seenAliases.has(alias)) nameDirectoryErrors.push(`Duplicate alias: ${alias}`);
+    seenAliases.add(alias);
+    if (canonicalProductIds.has(alias)) nameDirectoryErrors.push(`Alias collides with a canonical product ID: ${alias}`);
+    const source = `/products/${alias}`;
+    const expected = `/products/${entry.productId}`;
+    if (redirectMap.get(source) !== expected) nameDirectoryErrors.push(`Missing redirect: ${source} -> ${expected}`);
+  }
+}
+
+if (nameDirectoryErrors.length) {
+  console.error(`Invalid international-name directory:\n${nameDirectoryErrors.map((item) => `- ${item}`).join('\n')}`);
+  process.exit(1);
+}
+
 console.log(`Validated ${products.length} catalogue image references.`);
+console.log(`Validated ${seenAliases.size} international-name URL aliases.`);

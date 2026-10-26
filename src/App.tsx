@@ -13,6 +13,7 @@ import { CorePortfolio } from './components/CorePortfolio';
 import { BuyerTranslationNotice } from './components/BuyerTranslationNotice';
 import { CATALOGUE_PRODUCTS, getCatalogueGroup } from './data/catalogue';
 import FAQS from './data/faq.json';
+import internationalNames from './data/international-product-names.json';
 import {
   PAGE_META,
   PAGE_ROUTES,
@@ -24,6 +25,7 @@ import {
 } from './siteRoutes';
 
 const CompleteCatalogue = lazy(() => import('./components/CompleteCatalogue').then((module) => ({ default: module.CompleteCatalogue })));
+const InternationalProductNamesPage = lazy(() => import('./components/InternationalProductNamesPage').then((module) => ({ default: module.InternationalProductNamesPage })));
 const CatalogueProductPage = lazy(() => import('./components/CatalogueProductPage').then((module) => ({ default: module.CatalogueProductPage })));
 const QuoteFormModal = lazy(() => import('./components/QuoteFormModal').then((module) => ({ default: module.QuoteFormModal })));
 const VerifyCoaModal = lazy(() => import('./components/VerifyCoaModal').then((module) => ({ default: module.VerifyCoaModal })));
@@ -94,6 +96,7 @@ export function App() {
       void import('./components/Pages');
       void import('./components/CompleteCatalogue');
       void import('./components/CatalogueProductPage');
+      void import('./components/InternationalProductNamesPage');
     };
     const idleWindow = window as Window & { requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number; cancelIdleCallback?: (id: number) => void };
     if (idleWindow.requestIdleCallback) {
@@ -159,6 +162,34 @@ export function App() {
             description: pageMeta.description,
             url: canonical,
             mainEntity: FAQS.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })),
+            publisher: organization,
+          }
+      : activeTab === 'international-product-names'
+        ? {
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            '@id': `${canonical}#page`,
+            name: pageMeta.title,
+            description: pageMeta.description,
+            url: canonical,
+            mainEntity: {
+              '@type': 'ItemList',
+              numberOfItems: internationalNames.length,
+              itemListElement: internationalNames.map((entry, index) => {
+                const product = CATALOGUE_PRODUCTS.find((item) => item.id === entry.productId);
+                return {
+                  '@type': 'ListItem',
+                  position: index + 1,
+                  name: entry.internationalName,
+                  url: `${SITE_URL}/products/${entry.productId}`,
+                  item: {
+                    '@type': 'Thing',
+                    name: product?.name ?? entry.internationalName,
+                    alternateName: [entry.internationalName, entry.indianTradeName, product?.botanicalName, ...(product?.alternateNames ?? [])].filter(Boolean),
+                  },
+                };
+              }),
+            },
             publisher: organization,
           }
       : {
@@ -315,6 +346,8 @@ export function App() {
             openQuoteModal={handleOpenQuoteModal}
           />
         )}
+
+        {activeTab === 'international-product-names' && <InternationalProductNamesPage />}
 
         {activeTab === 'packaging' && (
           <PackagingPage openQuoteModal={handleOpenQuoteModal} />

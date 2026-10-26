@@ -136,6 +136,11 @@ export const CompleteCatalogue: React.FC<CompleteCatalogueProps> = ({
           <p className="mt-4 max-w-3xl border-l-2 border-[#b56e3a] pl-4 text-xs leading-relaxed text-[#52635d]">
             {languageLabels.technicalEnglishNotice}
           </p>
+          {!allowedGroups?.length && (
+            <a href="/international-product-names" className="mt-5 inline-flex items-center gap-2 border border-[#173f34]/35 bg-[#fbf8f1]/80 px-4 py-2.5 text-[10px] font-bold uppercase tracking-eyebrow text-[#173f34] backdrop-blur-sm transition-colors hover:bg-[#173f34] hover:text-[#fbf8f1]">
+              International & common-name directory <ArrowRight className="h-3.5 w-3.5" />
+            </a>
+          )}
           </div>
         </div>
         <span className="absolute bottom-4 right-5 hidden border border-[#173f34]/18 bg-[#fbf8f1]/78 px-3 py-1.5 text-[8px] font-bold uppercase tracking-eyebrow text-[#344740]/72 backdrop-blur-sm md:block">{heroMediaLabel}</span>
