@@ -9,6 +9,7 @@ import { ProductVisual } from './ProductVisual';
 import { useBuyerLanguage } from '../context/BuyerLanguageContext';
 import { CATALOGUE_GROUP_LANGUAGE_LABELS, getHsFamilyReference, getLocalizedProductName, PRODUCT_LANGUAGE_LABELS } from '../data/productLanguage';
 import { INTERFACE_COPY } from '../data/siteCopy';
+import { AshwagandhaNameGuide } from './AshwagandhaNameGuide';
 
 const BUYER_REVIEW_STEPS = [
   { icon: Fingerprint, number: '01', title: 'Identity', copy: 'Botanical name, part, physical form and required grade.' },
@@ -113,6 +114,8 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
           </div>
         </div>
       </section>
+
+      {product.id === 'ashwagandha' && <AshwagandhaNameGuide />}
 
       <section className="border-y border-[#b88a2c]/30 bg-[#062b23] px-4 text-[#fbf7ed] md:px-8">
         <div className="mx-auto grid max-w-[1440px] sm:grid-cols-2 lg:grid-cols-4">

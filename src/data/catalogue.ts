@@ -5,6 +5,7 @@ import partnerExtracts from './partner_extracts.json';
 import catalogueOverrides from './catalogue-overrides.json';
 import catalogueNames from './catalogue-names.json';
 import internationalProductNames from './international-product-names.json';
+import ashwagandhaGuide from './ashwagandha-search-guide.json';
 
 export type CatalogueGroup =
   | 'essential-oils'
@@ -56,6 +57,7 @@ export const CATALOGUE_PRODUCTS: CatalogueProduct[] = RAW_CATALOGUE_PRODUCTS
       ...(overridden.alternateNames ?? []),
       ...(naming?.alternateNames ?? []),
       ...(internationalNaming ? [internationalNaming.internationalName, internationalNaming.indianTradeName, ...internationalNaming.aliases.map((alias) => alias.replaceAll('-', ' '))] : []),
+      ...(product.id === ashwagandhaGuide.productId ? ashwagandhaGuide.names : []),
     ]));
     return {
       ...overridden,

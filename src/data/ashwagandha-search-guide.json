@@ -1,0 +1,75 @@
+{
+  "productId": "ashwagandha",
+  "names": ["Ashwagandha", "Indian Ginseng", "Winter Cherry", "Indian Winter Cherry", "Withania", "Withania somnifera"],
+  "urlAliases": ["indian-genseng", "indian-ginseng-root", "indian-winter-cherry"],
+  "copy": {
+    "en": {
+      "eyebrow": "Name and identity guide",
+      "title": "Indian Ginseng and Winter Cherry are common names for Ashwagandha.",
+      "intro": "Ashwagandha is the Indian trade name most widely used for Withania somnifera. International buyers may also search for Indian Ginseng, Winter Cherry, Indian Winter Cherry or Withania.",
+      "distinction": "“Indian Ginseng” is a common name; the botanical is not Panax ginseng. A commercial brief should identify Withania somnifera and the required plant part and physical form.",
+      "cards": [
+        { "title": "Botanical identity", "copy": "Withania somnifera — confirmed together with plant part and physical form." },
+        { "title": "Separate commercial routes", "copy": "Whole or cut root, root powder and extract are quoted as distinct specifications." },
+        { "title": "Extract specification", "copy": "For extracts, confirm plant part, withanolide basis and method, extract ratio, solvent system and carrier status." }
+      ],
+      "faqHeading": "Common buyer questions about the name",
+      "faq": [
+        { "question": "Is Indian Ginseng the same botanical as Ashwagandha?", "answer": "Yes. In international botanical trade, Indian Ginseng is a common name for Ashwagandha, whose accepted botanical identity is Withania somnifera. It should not be confused with Panax ginseng." },
+        { "question": "Is Winter Cherry another name for Ashwagandha?", "answer": "Yes. Winter Cherry and Indian Winter Cherry are established common names used for Withania somnifera." },
+        { "question": "Which name should a buyer use in a sourcing brief?", "answer": "Use Ashwagandha (Withania somnifera), then specify the plant part, whole or powdered form, or the required extract specification. This prevents confusion between root, powder and extract routes." }
+      ]
+    },
+    "de": {
+      "eyebrow": "Leitfaden zu Name und Identität",
+      "title": "Indischer Ginseng und Winterkirsche sind gebräuchliche Namen für Ashwagandha.",
+      "intro": "Ashwagandha ist der in Indien am häufigsten verwendete Handelsname für Withania somnifera. Internationale Käufer suchen auch nach Indischem Ginseng, Winterkirsche, Indischer Winterkirsche oder Withania.",
+      "distinction": "„Indischer Ginseng“ ist ein gebräuchlicher Name; botanisch handelt es sich nicht um Panax ginseng. In einer Anfrage sollten Withania somnifera, Pflanzenteil und physische Form genannt werden.",
+      "cards": [
+        { "title": "Botanische Identität", "copy": "Withania somnifera — zusammen mit Pflanzenteil und physischer Form zu bestätigen." },
+        { "title": "Getrennte Handelsformen", "copy": "Ganze oder geschnittene Wurzel, Wurzelpulver und Extrakt werden als unterschiedliche Spezifikationen angeboten." },
+        { "title": "Extrakt-Spezifikation", "copy": "Bei Extrakten sind Pflanzenteil, Withanolid-Basis und -Methode, Extraktverhältnis, Lösungsmittel und Trägerstatus zu bestätigen." }
+      ],
+      "faqHeading": "Häufige Käuferfragen zum Namen",
+      "faq": [
+        { "question": "Ist Indischer Ginseng botanisch dasselbe wie Ashwagandha?", "answer": "Ja. Im internationalen Pflanzenhandel ist Indischer Ginseng ein gebräuchlicher Name für Ashwagandha mit der botanischen Identität Withania somnifera. Er ist nicht mit Panax ginseng zu verwechseln." },
+        { "question": "Ist Winterkirsche ein anderer Name für Ashwagandha?", "answer": "Ja. Winterkirsche und Indische Winterkirsche sind gebräuchliche Namen für Withania somnifera." },
+        { "question": "Welchen Namen sollte ein Käufer in einer Anfrage verwenden?", "answer": "Verwenden Sie Ashwagandha (Withania somnifera) und nennen Sie danach Pflanzenteil, ganze oder pulverisierte Form oder die gewünschte Extraktspezifikation." }
+      ]
+    },
+    "fr": {
+      "eyebrow": "Guide du nom et de l’identité",
+      "title": "Le ginseng indien et la cerise d’hiver sont des noms communs de l’ashwagandha.",
+      "intro": "Ashwagandha est le nom commercial indien le plus courant de Withania somnifera. Les acheteurs internationaux recherchent également Ginseng indien, Cerise d’hiver, Cerise d’hiver indienne ou Withania.",
+      "distinction": "« Ginseng indien » est un nom commun ; la plante n’est pas Panax ginseng. Un cahier des charges doit indiquer Withania somnifera, la partie végétale et la forme physique requises.",
+      "cards": [
+        { "title": "Identité botanique", "copy": "Withania somnifera — à confirmer avec la partie végétale et la forme physique." },
+        { "title": "Voies commerciales distinctes", "copy": "Racine entière ou coupée, poudre de racine et extrait font l’objet de spécifications distinctes." },
+        { "title": "Spécification de l’extrait", "copy": "Pour les extraits, confirmer la partie végétale, la base et la méthode des withanolides, le ratio d’extraction, le solvant et le support." }
+      ],
+      "faqHeading": "Questions fréquentes des acheteurs sur le nom",
+      "faq": [
+        { "question": "Le ginseng indien est-il la même plante que l’ashwagandha ?", "answer": "Oui. Dans le commerce botanique international, Ginseng indien est un nom commun de l’ashwagandha, dont l’identité botanique est Withania somnifera. Il ne faut pas le confondre avec Panax ginseng." },
+        { "question": "Cerise d’hiver est-il un autre nom de l’ashwagandha ?", "answer": "Oui. Cerise d’hiver et Cerise d’hiver indienne sont des noms communs établis de Withania somnifera." },
+        { "question": "Quel nom utiliser dans un cahier des charges ?", "answer": "Utilisez Ashwagandha (Withania somnifera), puis précisez la partie végétale, la forme entière ou en poudre, ou la spécification d’extrait requise." }
+      ]
+    },
+    "es": {
+      "eyebrow": "Guía de nombre e identidad",
+      "title": "Ginseng indio y Cereza de invierno son nombres comunes de la ashwagandha.",
+      "intro": "Ashwagandha es el nombre comercial indio más utilizado para Withania somnifera. Los compradores internacionales también buscan Ginseng indio, Cereza de invierno, Cereza de invierno india o Withania.",
+      "distinction": "«Ginseng indio» es un nombre común; la planta no es Panax ginseng. Una solicitud comercial debe identificar Withania somnifera, la parte vegetal y la forma física requeridas.",
+      "cards": [
+        { "title": "Identidad botánica", "copy": "Withania somnifera — confirmada junto con la parte vegetal y la forma física." },
+        { "title": "Rutas comerciales separadas", "copy": "La raíz entera o cortada, el polvo de raíz y el extracto se cotizan como especificaciones distintas." },
+        { "title": "Especificación del extracto", "copy": "Para extractos, confirme parte vegetal, base y método de withanólidos, relación de extracción, solvente y portador." }
+      ],
+      "faqHeading": "Preguntas frecuentes de compradores sobre el nombre",
+      "faq": [
+        { "question": "¿El Ginseng indio es la misma planta que la ashwagandha?", "answer": "Sí. En el comercio botánico internacional, Ginseng indio es un nombre común de la ashwagandha, cuya identidad botánica es Withania somnifera. No debe confundirse con Panax ginseng." },
+        { "question": "¿Cereza de invierno es otro nombre de la ashwagandha?", "answer": "Sí. Cereza de invierno y Cereza de invierno india son nombres comunes establecidos de Withania somnifera." },
+        { "question": "¿Qué nombre debe usar un comprador en su solicitud?", "answer": "Use Ashwagandha (Withania somnifera) y después indique la parte vegetal, la forma entera o en polvo, o la especificación de extracto requerida." }
+      ]
+    }
+  }
+}
