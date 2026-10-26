@@ -17,6 +17,8 @@ The website catalogue contains 134 consolidated product routes, including a dedi
 
 International buyer-facing names lead where they are well established, while Indian trade names and botanical Latin are retained for clarity and search. Examples include Indian Ginseng / Winter Cherry (Ashwagandha), Indian Gooseberry (Amla), Velvet Bean (Mucuna / Kaunch), Indian Frankincense (Boswellia / Salai Guggul), Holy Basil (Tulsi) and Andrographis (Kalmegh). Existing canonical product URLs remain stable; alternate-name URLs redirect to the canonical page.
 
+International name directory: https://www.ancientindianbotanicals.com/international-product-names
+
 ## Commercial process
 
 Buyer requirement review, suitable supply-route identification, lot-document review, packaging confirmation, written quotation and export coordination.

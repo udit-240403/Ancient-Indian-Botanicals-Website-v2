@@ -4,6 +4,7 @@ import foodIngredients from './food_ingredients.json';
 import partnerExtracts from './partner_extracts.json';
 import catalogueOverrides from './catalogue-overrides.json';
 import catalogueNames from './catalogue-names.json';
+import internationalProductNames from './international-product-names.json';
 
 export type CatalogueGroup =
   | 'essential-oils'
@@ -40,6 +41,7 @@ const RAW_CATALOGUE_PRODUCTS: CatalogueProduct[] = [
 
 const prohibitedProductPattern = /shilajit/i;
 const excludedIds = new Set(catalogueOverrides.excludedIds);
+const internationalNameByProductId = new Map(internationalProductNames.map((entry) => [entry.productId, entry]));
 
 export const CATALOGUE_PRODUCTS: CatalogueProduct[] = RAW_CATALOGUE_PRODUCTS
   .filter((product) => !excludedIds.has(product.id) && !prohibitedProductPattern.test(`${product.id} ${product.name}`))
@@ -49,7 +51,17 @@ export const CATALOGUE_PRODUCTS: CatalogueProduct[] = RAW_CATALOGUE_PRODUCTS
       ...(catalogueOverrides.overrides[product.id as keyof typeof catalogueOverrides.overrides] ?? {}),
     };
     const naming = catalogueNames[product.id as keyof typeof catalogueNames];
-    return naming ? { ...overridden, name: naming.primaryName, alternateNames: naming.alternateNames } : overridden;
+    const internationalNaming = internationalNameByProductId.get(product.id);
+    const alternateNames = Array.from(new Set([
+      ...(overridden.alternateNames ?? []),
+      ...(naming?.alternateNames ?? []),
+      ...(internationalNaming ? [internationalNaming.internationalName, internationalNaming.indianTradeName, ...internationalNaming.aliases.map((alias) => alias.replaceAll('-', ' '))] : []),
+    ]));
+    return {
+      ...overridden,
+      ...(naming ? { name: naming.primaryName } : {}),
+      ...(alternateNames.length ? { alternateNames } : {}),
+    };
   });
 
 export const CATALOGUE_PRODUCT_COUNT = CATALOGUE_PRODUCTS.length;
