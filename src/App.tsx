@@ -14,6 +14,7 @@ import { BuyerTranslationNotice } from './components/BuyerTranslationNotice';
 import { CATALOGUE_PRODUCTS, getCatalogueGroup } from './data/catalogue';
 import FAQS from './data/faq.json';
 import internationalNames from './data/international-product-names.json';
+import ashwagandhaGuide from './data/ashwagandha-search-guide.json';
 import {
   PAGE_META,
   PAGE_ROUTES,
@@ -110,8 +111,12 @@ export function App() {
   useEffect(() => {
     const pageMeta = routeProduct
       ? {
-          title: `${routeProduct.name} | B2B Indian ${['seeds-food', 'cold-pressed-oils'].includes(getCatalogueGroup(routeProduct)) ? 'Ingredient' : 'Botanical'} Supply`,
-          description: `${routeProduct.whyBuyersKnowIt} Forms, applications, documentation and current availability are confirmed per enquiry.`,
+          title: routeProduct.id === 'ashwagandha'
+            ? 'Indian Ginseng & Winter Cherry | Ashwagandha Supplier India'
+            : `${routeProduct.name} | B2B Indian ${['seeds-food', 'cold-pressed-oils'].includes(getCatalogueGroup(routeProduct)) ? 'Ingredient' : 'Botanical'} Supply`,
+          description: routeProduct.id === 'ashwagandha'
+            ? 'Indian Ginseng / Winter Cherry (Ashwagandha, Withania somnifera) for B2B supply as root, powder or specification-led extract. Lot details confirmed per enquiry.'
+            : `${routeProduct.whyBuyersKnowIt} Forms, applications, documentation and current availability are confirmed per enquiry.`,
           image: routeProduct.image,
           type: 'product',
         }
@@ -147,10 +152,13 @@ export function App() {
           about: {
             '@type': 'Thing',
             name: routeProduct.name,
-            alternateName: [...(routeProduct.alternateNames ?? []), routeProduct.botanicalName],
+            alternateName: Array.from(new Set([...(routeProduct.alternateNames ?? []), routeProduct.botanicalName])),
             description: routeProduct.fieldDescription,
           },
-          keywords: [routeProduct.name, ...(routeProduct.alternateNames ?? []), routeProduct.botanicalName, getCatalogueGroup(routeProduct)],
+          ...(routeProduct.id === 'ashwagandha'
+            ? { mainEntity: ashwagandhaGuide.copy.en.faq.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })) }
+            : {}),
+          keywords: Array.from(new Set([routeProduct.name, ...(routeProduct.alternateNames ?? []), ...(routeProduct.id === 'ashwagandha' ? ashwagandhaGuide.names : []), routeProduct.botanicalName, getCatalogueGroup(routeProduct)])),
           publisher: organization,
         }
       : activeTab === 'faq'

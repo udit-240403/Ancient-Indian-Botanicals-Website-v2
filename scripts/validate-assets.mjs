@@ -17,6 +17,7 @@ for (const file of productFiles) {
 
 const overrides = JSON.parse(await readFile(path.join(root, 'src/data/catalogue-overrides.json'), 'utf8'));
 const internationalNames = JSON.parse(await readFile(path.join(root, 'src/data/international-product-names.json'), 'utf8'));
+const ashwagandhaGuide = JSON.parse(await readFile(path.join(root, 'src/data/ashwagandha-search-guide.json'), 'utf8'));
 const vercelConfig = JSON.parse(await readFile(path.join(root, 'vercel.json'), 'utf8'));
 const missing = [];
 for (const product of products) {
@@ -51,6 +52,14 @@ for (const entry of internationalNames) {
     const expected = `/products/${entry.productId}`;
     if (redirectMap.get(source) !== expected) nameDirectoryErrors.push(`Missing redirect: ${source} -> ${expected}`);
   }
+}
+
+for (const alias of ashwagandhaGuide.urlAliases) {
+  if (seenAliases.has(alias)) nameDirectoryErrors.push(`Duplicate alias: ${alias}`);
+  seenAliases.add(alias);
+  const source = `/products/${alias}`;
+  const expected = `/products/${ashwagandhaGuide.productId}`;
+  if (redirectMap.get(source) !== expected) nameDirectoryErrors.push(`Missing redirect: ${source} -> ${expected}`);
 }
 
 if (nameDirectoryErrors.length) {
