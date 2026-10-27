@@ -44,8 +44,11 @@ export default async function handler(request: ApiRequest, response: ApiResponse
   const resendKey = process.env.RESEND_API_KEY;
   const fromEmail = process.env.ENQUIRY_FROM_EMAIL;
   const recipient = process.env.ENQUIRY_RECIPIENT || 'sales@ancientindianbotanicals.com';
-  const supabaseUrl = process.env.SUPABASE_URL?.replace(/\/$/, '');
-  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  // Supabase's Vercel integration may expose either the established service-role
+  // variables or the newer server-only secret-key naming. Both stay inside this
+  // function and are never bundled into the public Vite application.
+  const supabaseUrl = (process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL)?.replace(/\/$/, '');
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY;
 
   const rows = [
     ['Name', fullName],
@@ -97,8 +100,11 @@ export default async function handler(request: ApiRequest, response: ApiResponse
         const rows = await storage.json() as Array<{ id?: string }>;
         reference = rows[0]?.id?.slice(0, 8).toUpperCase() ?? '';
         stored = true;
+      } else {
+        console.error('[enquiry] Supabase insert rejected', storage.status);
       }
-    } catch {
+    } catch (error) {
+      console.error('[enquiry] Supabase insert failed', error instanceof Error ? error.name : 'unknown');
       stored = false;
     }
   }

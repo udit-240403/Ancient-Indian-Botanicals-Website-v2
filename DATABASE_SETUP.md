@@ -20,6 +20,10 @@ SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=your private service-role key
 ```
 
+The server also accepts Supabase's newer integration names
+`NEXT_PUBLIC_SUPABASE_URL` together with `SUPABASE_SECRET_KEY`. Only a secret
+server key may write the protected table; never substitute a public or anon key.
+
 Do not place the service-role key in GitHub, frontend code, screenshots or chat. After saving the variables, redeploy the latest production deployment.
 
 ## 3. Optional email notification
