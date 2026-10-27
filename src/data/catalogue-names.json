@@ -11,6 +11,10 @@
     "primaryName": "Water Hyssop / Bacopa (Brahmi)",
     "alternateNames": ["Bacopa", "Brahmi", "Water hyssop"]
   },
+  "bitter-melon": {
+    "primaryName": "Bitter Melon / Bitter Gourd (Karela) Extract",
+    "alternateNames": ["Bitter melon", "Bitter gourd", "Karela", "Momordica charantia"]
+  },
   "boswellia": {
     "primaryName": "Indian Frankincense / Boswellia (Salai Guggul)",
     "alternateNames": ["Boswellia", "Indian frankincense", "Salai guggul"]
@@ -29,7 +33,11 @@
   },
   "kalmegh-extract": {
     "primaryName": "Andrographis Extract (Kalmegh)",
-    "alternateNames": ["Kalmegh extract", "Andrographis extract"]
+    "alternateNames": ["Kalmegh extract", "Andrographis extract", "Green chiretta", "King of bitters"]
+  },
+  "kalonji-oil": {
+    "primaryName": "Black Seed / Nigella Seed Oil (Kalonji)",
+    "alternateNames": ["Black seed oil", "Kalonji oil", "Nigella seed oil", "Black cumin seed oil"]
   },
   "kaunch-seed": {
     "primaryName": "Velvet Bean Seed & Powder (Mucuna / Kaunch)",
@@ -43,6 +51,10 @@
     "primaryName": "Fuller’s Earth (Multani Mitti)",
     "alternateNames": ["Multani mitti", "Fuller's earth", "Fullers earth"]
   },
+  "mentha-arvensis": {
+    "primaryName": "Cornmint / Field Mint Oil (Mentha arvensis)",
+    "alternateNames": ["Mentha arvensis oil", "Cornmint oil", "Field mint oil", "Japanese mint oil"]
+  },
   "rajnigandha-aroma": {
     "primaryName": "Tuberose Aroma Oil (Rajnigandha)",
     "alternateNames": ["Rajnigandha", "Tuberose aroma oil"]
@@ -53,7 +65,7 @@
   },
   "shatavari": {
     "primaryName": "Wild Asparagus (Shatavari)",
-    "alternateNames": ["Shatavari", "Wild asparagus"]
+    "alternateNames": ["Shatavari", "Wild asparagus", "Indian asparagus"]
   },
   "shatavari-root": {
     "primaryName": "Wild Asparagus Root & Powder (Shatavari)",

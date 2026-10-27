@@ -9,7 +9,11 @@ import { ProductVisual } from './ProductVisual';
 import { useBuyerLanguage } from '../context/BuyerLanguageContext';
 import { CATALOGUE_GROUP_LANGUAGE_LABELS, getHsFamilyReference, getLocalizedProductName, PRODUCT_LANGUAGE_LABELS } from '../data/productLanguage';
 import { INTERFACE_COPY } from '../data/siteCopy';
-import { AshwagandhaNameGuide } from './AshwagandhaNameGuide';
+import { ProductNameGuide, ProductSearchGuide } from './ProductNameGuide';
+import ashwagandhaGuide from '../data/ashwagandha-search-guide.json';
+import commonNameGuides from '../data/common-name-search-guides.json';
+
+const PRODUCT_SEARCH_GUIDES = [ashwagandhaGuide, ...commonNameGuides] as ProductSearchGuide[];
 
 const BUYER_REVIEW_STEPS = [
   { icon: Fingerprint, number: '01', title: 'Identity', copy: 'Botanical name, part, physical form and required grade.' },
@@ -36,6 +40,7 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
   const languageLabels = PRODUCT_LANGUAGE_LABELS[language];
   const interfaceCopy = INTERFACE_COPY[language].product;
   const localizedName = getLocalizedProductName(product.id, product.name, language);
+  const searchGuide = PRODUCT_SEARCH_GUIDES.find((guide) => guide.productId === product.id);
   const hsReference = getHsFamilyReference(group);
   const collectionPath = group === 'standardized-extracts'
     ? '/standardized-extracts'
@@ -115,7 +120,7 @@ export const CatalogueProductPage: React.FC<CatalogueProductPageProps> = ({
         </div>
       </section>
 
-      {product.id === 'ashwagandha' && <AshwagandhaNameGuide />}
+      {searchGuide && <ProductNameGuide guide={searchGuide} botanicalName={product.botanicalName} />}
 
       <section className="border-y border-[#b88a2c]/30 bg-[#062b23] px-4 text-[#fbf7ed] md:px-8">
         <div className="mx-auto grid max-w-[1440px] sm:grid-cols-2 lg:grid-cols-4">

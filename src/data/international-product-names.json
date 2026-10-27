@@ -67,7 +67,7 @@
   },
   {
     "productId": "shatavari",
-    "internationalName": "Wild Asparagus Extract",
+    "internationalName": "Wild / Indian Asparagus Extract",
     "indianTradeName": "Shatavari extract",
     "aliases": ["wild-asparagus", "wild-asparagus-extract"]
   },
@@ -85,7 +85,7 @@
   },
   {
     "productId": "kalmegh-extract",
-    "internationalName": "Andrographis Extract",
+    "internationalName": "Andrographis / Green Chiretta Extract",
     "indianTradeName": "Kalmegh extract",
     "aliases": ["andrographis", "andrographis-extract"]
   },
@@ -97,7 +97,7 @@
   },
   {
     "productId": "kalonji-oil",
-    "internationalName": "Black Seed Oil",
+    "internationalName": "Black Seed / Nigella Seed Oil",
     "indianTradeName": "Kalonji oil",
     "aliases": ["black-seed-oil"]
   },
@@ -106,5 +106,11 @@
     "internationalName": "Bitter Melon / Bitter Gourd",
     "indianTradeName": "Karela",
     "aliases": ["bitter-gourd", "karela"]
+  },
+  {
+    "productId": "mentha-arvensis",
+    "internationalName": "Cornmint / Field Mint Oil",
+    "indianTradeName": "Mentha arvensis oil",
+    "aliases": []
   }
 ]

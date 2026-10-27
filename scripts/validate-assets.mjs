@@ -18,6 +18,7 @@ for (const file of productFiles) {
 const overrides = JSON.parse(await readFile(path.join(root, 'src/data/catalogue-overrides.json'), 'utf8'));
 const internationalNames = JSON.parse(await readFile(path.join(root, 'src/data/international-product-names.json'), 'utf8'));
 const ashwagandhaGuide = JSON.parse(await readFile(path.join(root, 'src/data/ashwagandha-search-guide.json'), 'utf8'));
+const commonNameGuides = JSON.parse(await readFile(path.join(root, 'src/data/common-name-search-guides.json'), 'utf8'));
 const vercelConfig = JSON.parse(await readFile(path.join(root, 'vercel.json'), 'utf8'));
 const missing = [];
 for (const product of products) {
@@ -54,12 +55,16 @@ for (const entry of internationalNames) {
   }
 }
 
-for (const alias of ashwagandhaGuide.urlAliases) {
-  if (seenAliases.has(alias)) nameDirectoryErrors.push(`Duplicate alias: ${alias}`);
-  seenAliases.add(alias);
-  const source = `/products/${alias}`;
-  const expected = `/products/${ashwagandhaGuide.productId}`;
-  if (redirectMap.get(source) !== expected) nameDirectoryErrors.push(`Missing redirect: ${source} -> ${expected}`);
+for (const guide of [ashwagandhaGuide, ...commonNameGuides]) {
+  if (!canonicalProductIds.has(guide.productId)) nameDirectoryErrors.push(`Unknown search-guide product: ${guide.productId}`);
+  for (const alias of guide.urlAliases) {
+    if (seenAliases.has(alias)) nameDirectoryErrors.push(`Duplicate alias: ${alias}`);
+    seenAliases.add(alias);
+    if (canonicalProductIds.has(alias)) nameDirectoryErrors.push(`Search-guide alias collides with a canonical product ID: ${alias}`);
+    const source = `/products/${alias}`;
+    const expected = `/products/${guide.productId}`;
+    if (redirectMap.get(source) !== expected) nameDirectoryErrors.push(`Missing redirect: ${source} -> ${expected}`);
+  }
 }
 
 if (nameDirectoryErrors.length) {
