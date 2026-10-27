@@ -1,8 +1,9 @@
 import React from 'react';
-import { ArrowRight, ShieldCheck, Flower2 } from 'lucide-react';
+import { ArrowRight, Flower2 } from 'lucide-react';
 import { CATALOGUE_PRODUCT_COUNT } from '../data/catalogue';
 import { useBuyerLanguage } from '../context/BuyerLanguageContext';
 import { INTERFACE_COPY } from '../data/siteCopy';
+import { PartnerExportMap } from './PartnerExportMap';
 
 interface HeroProps {
   onExploreExtracts: () => void;
@@ -97,7 +98,7 @@ export const Hero: React.FC<HeroProps> = ({
 
           </div>
 
-          {/* Center-Right Column: Photo Cover Frame */}
+          {/* Center-Right Column: partner-market route map */}
           <div className="hero-cinematic__stage lg:col-span-7 relative z-20 lg:pl-4">
             <div className="hero-cinematic__index hero-cinematic__index--top" aria-hidden="true">
               <span>01</span>
@@ -108,56 +109,16 @@ export const Hero: React.FC<HeroProps> = ({
               <strong>One sourcing desk</strong>
             </div>
             
-            {/* The Image Wrapper breaking out with shadow depth */}
+            {/* Brochure-inspired export map replacing the cultivation photograph. */}
             <div className="hero-cinematic__frame relative w-full overflow-visible group">
-              
-              {/* Main Photo Asset */}
               <div className="hero-cinematic__image-shell image-shell relative w-full h-[300px] sm:h-[330px] lg:h-[420px] overflow-hidden rounded-none border border-[#b88a2c]/70 shadow-2xl bg-[#041e18]">
-                <img
-                  src="/assets/images/cultivation-ashwagandha.webp"
-                  alt="Editorial view of ashwagandha roots at harvest in a Central Indian field"
-                  width="1448"
-                  height="1086"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                  onError={(event) => { if (event.currentTarget.dataset.fallback === 'true') return; event.currentTarget.dataset.fallback = 'true'; event.currentTarget.src = '/assets/images/product-families-flatlay.webp'; }}
-                  className="hero-cinematic__image relative z-[1] w-full h-full object-cover object-[56%_50%]"
-                />
-                
-                {/* Subtle Lighting Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#041e18]/20 via-transparent to-transparent pointer-events-none" />
-                <div className="hero-cinematic__scan" aria-hidden="true" />
-              </div>
-
-              {/* Floating Provenance Card on Bottom Right */}
-              <div className="absolute bottom-3 left-3 right-3 z-30 max-w-none space-y-1 rounded-[14px] border border-[#b88a2c]/80 bg-[#041e18]/95 p-3.5 shadow-2xl backdrop-blur-md sm:left-auto sm:max-w-[270px]">
-                <div className="flex items-center gap-2">
-                  <div className="p-1 bg-[#062b23] border border-[#b88a2c]/50 rounded-full text-[#a8c76b]">
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#a8c76b]" />
-                  </div>
-                  <h4 className="font-serif text-xs sm:text-sm font-semibold text-[#b88a2c]">
-                    {copy.provenanceTitle}
-                  </h4>
-                </div>
-
-                <p className="text-[10.5px] text-[#f2ead9]/85 leading-snug font-light">
-                  {copy.provenanceBody}
-                </p>
-
-                <button
-                  onClick={openCoaModal}
-                  className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-eyebrow text-[#b88a2c] hover:text-[#fbf7ed] pt-0.5 transition-colors cursor-pointer"
-                >
-                  <span>{copy.requestDocuments}</span>
-                  <ArrowRight className="w-3 h-3" />
-                </button>
+                <PartnerExportMap onRequestDocuments={openCoaModal} />
               </div>
 
               <div className="hero-cinematic__caption" aria-hidden="true">
-                <span>Editorial regional view</span>
-                <span>Buyer specification</span>
-                <span>Export-ready route</span>
+                <span>India coordination</span>
+                <span>Partner experience</span>
+                <span>Destination review</span>
               </div>
 
             </div>
