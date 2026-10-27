@@ -1,14 +1,10 @@
-import React, { Suspense, lazy, useEffect, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
 import { AssuranceStrip } from './components/AssuranceStrip';
 import { ProductFamilies } from './components/ProductFamilies';
-import { CultivationStories } from './components/CultivationStories';
-import { OriginsSection } from './components/OriginsSection';
-import { WorkflowSection } from './components/WorkflowSection';
 import { ContactDock } from './components/ContactDock';
-import { HomePackagingShowcase } from './components/HomePackagingShowcase';
 import { CorePortfolio } from './components/CorePortfolio';
 import { BuyerTranslationNotice } from './components/BuyerTranslationNotice';
 import { CATALOGUE_PRODUCTS, getCatalogueGroup } from './data/catalogue';
@@ -42,6 +38,10 @@ const PaymentsPage = lazy(() => import('./components/Pages').then((module) => ({
 const ContactPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.ContactPage })));
 const VerificationPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.VerificationPage })));
 const LegalPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.LegalPage })));
+const CultivationStories = lazy(() => import('./components/CultivationStories').then((module) => ({ default: module.CultivationStories })));
+const OriginsSection = lazy(() => import('./components/OriginsSection').then((module) => ({ default: module.OriginsSection })));
+const WorkflowSection = lazy(() => import('./components/WorkflowSection').then((module) => ({ default: module.WorkflowSection })));
+const HomePackagingShowcase = lazy(() => import('./components/HomePackagingShowcase').then((module) => ({ default: module.HomePackagingShowcase })));
 
 const PRODUCT_SEARCH_GUIDE_BY_ID = new Map(
   productSearchSeo.map((guide) => [guide.productId, guide]),
@@ -60,6 +60,32 @@ const PageLoading = () => (
     </div>
   </div>
 );
+
+const DeferredHomeSection: React.FC<React.PropsWithChildren<{ minHeight?: string }>> = ({ children, minHeight = 'min-h-[420px]' }) => {
+  const [visible, setVisible] = useState(false);
+  const marker = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const element = marker.current;
+    if (!element || !('IntersectionObserver' in window)) {
+      setVisible(true);
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      setVisible(true);
+      observer.disconnect();
+    }, { rootMargin: '650px 0px' });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={marker} className={visible ? '' : minHeight}>
+      {visible ? <Suspense fallback={<div className={`${minHeight} animate-pulse bg-[#eee8dd]`} aria-hidden="true" />}>{children}</Suspense> : null}
+    </div>
+  );
+};
 
 const updateMetaTag = (selector: string, attribute: string, value: string) => {
   const element = document.querySelector(selector);
@@ -95,22 +121,6 @@ export function App() {
 
     window.addEventListener('popstate', syncPathFromUrl);
     return () => window.removeEventListener('popstate', syncPathFromUrl);
-  }, []);
-
-  useEffect(() => {
-    const prefetchSecondaryRoutes = () => {
-      void import('./components/Pages');
-      void import('./components/CompleteCatalogue');
-      void import('./components/CatalogueProductPage');
-      void import('./components/InternationalProductNamesPage');
-    };
-    const idleWindow = window as Window & { requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number; cancelIdleCallback?: (id: number) => void };
-    if (idleWindow.requestIdleCallback) {
-      const id = idleWindow.requestIdleCallback(prefetchSecondaryRoutes, { timeout: 1800 });
-      return () => idleWindow.cancelIdleCallback?.(id);
-    }
-    const id = window.setTimeout(prefetchSecondaryRoutes, 900);
-    return () => window.clearTimeout(id);
   }, []);
 
   useEffect(() => {
@@ -304,13 +314,21 @@ export function App() {
               onSelectCategory={handleSelectCategory}
               onViewAll={() => navigateToTab('catalogue')}
             />
-            <CultivationStories onBrowseBotanicals={() => navigateToTab('botanicals')} />
-            <HomePackagingShowcase
-              openPackagingPage={() => navigateToTab('packaging')}
-              openQuoteModal={() => handleOpenQuoteModal()}
-            />
-            <OriginsSection />
-            <WorkflowSection onStartEnquiry={() => handleOpenQuoteModal()} />
+            <DeferredHomeSection minHeight="min-h-[520px]">
+              <CultivationStories onBrowseBotanicals={() => navigateToTab('botanicals')} />
+            </DeferredHomeSection>
+            <DeferredHomeSection minHeight="min-h-[500px]">
+              <HomePackagingShowcase
+                openPackagingPage={() => navigateToTab('packaging')}
+                openQuoteModal={() => handleOpenQuoteModal()}
+              />
+            </DeferredHomeSection>
+            <DeferredHomeSection minHeight="min-h-[680px]">
+              <OriginsSection />
+            </DeferredHomeSection>
+            <DeferredHomeSection minHeight="min-h-[520px]">
+              <WorkflowSection onStartEnquiry={() => handleOpenQuoteModal()} />
+            </DeferredHomeSection>
           </div>
         )}
 

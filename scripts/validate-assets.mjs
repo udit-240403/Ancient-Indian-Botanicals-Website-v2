@@ -1,4 +1,4 @@
-import { access, readFile, stat } from 'node:fs/promises';
+import { access, readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 
 const root = process.cwd();
@@ -30,6 +30,31 @@ for (const product of products) {
   } catch {
     missing.push(`${product.id}: ${image}`);
   }
+}
+
+const imageRoots = [path.join(root, 'public', 'images'), path.join(root, 'public', 'assets', 'images')];
+const invalidImages = [];
+const scanImages = async (directory) => {
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const file = path.join(directory, entry.name);
+    if (entry.isDirectory()) {
+      await scanImages(file);
+      continue;
+    }
+    if (!/\.(?:webp|png|jpe?g)$/i.test(entry.name)) continue;
+    const data = await readFile(file);
+    const webp = data.length >= 12 && data.subarray(0, 4).toString('ascii') === 'RIFF' && data.subarray(8, 12).toString('ascii') === 'WEBP';
+    const png = data.length >= 8 && data.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
+    const jpeg = data.length >= 3 && data[0] === 0xff && data[1] === 0xd8 && data[2] === 0xff;
+    if (!webp && !png && !jpeg) invalidImages.push(path.relative(root, file));
+  }
+};
+
+for (const imageRoot of imageRoots) await scanImages(imageRoot);
+
+if (invalidImages.length) {
+  console.error(`Invalid or incorrectly encoded image files:\n${invalidImages.map((item) => `- ${item}`).join('\n')}`);
+  process.exit(1);
 }
 
 if (missing.length) {
@@ -73,4 +98,5 @@ if (nameDirectoryErrors.length) {
 }
 
 console.log(`Validated ${products.length} catalogue image references.`);
+console.log('Validated image file signatures across public image directories.');
 console.log(`Validated ${seenAliases.size} international-name URL aliases.`);
