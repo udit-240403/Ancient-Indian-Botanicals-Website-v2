@@ -9,6 +9,8 @@ type ApiResponse = {
   setHeader: (name: string, value: string) => void;
 };
 
+type EnquiryRecord = Record<string, string | boolean | string[]>;
+
 const text = (value: unknown, max = 600) => String(value ?? '').trim().slice(0, max);
 const html = (value: unknown) => text(value, 2000).replace(/[&<>'"]/g, (character) => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;',
@@ -29,6 +31,11 @@ export default async function handler(request: ApiRequest, response: ApiResponse
   const product = text(body.selectedProduct, 220);
   const consent = body.consent === true;
 
+  if (text(body.companyWebsite, 200)) {
+    response.status(200).json({ ok: true });
+    return;
+  }
+
   if (!fullName || !companyName || !product || !consent || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     response.status(400).json({ ok: false, error: 'Please provide the required enquiry details.' });
     return;
@@ -37,11 +44,8 @@ export default async function handler(request: ApiRequest, response: ApiResponse
   const resendKey = process.env.RESEND_API_KEY;
   const fromEmail = process.env.ENQUIRY_FROM_EMAIL;
   const recipient = process.env.ENQUIRY_RECIPIENT || 'sales@ancientindianbotanicals.com';
-
-  if (!resendKey || !fromEmail) {
-    response.status(503).json({ ok: false, error: 'Direct enquiry delivery is not configured.' });
-    return;
-  }
+  const supabaseUrl = process.env.SUPABASE_URL?.replace(/\/$/, '');
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   const rows = [
     ['Name', fullName],
@@ -54,8 +58,54 @@ export default async function handler(request: ApiRequest, response: ApiResponse
     ['Buyer notes', text(body.additionalNotes, 1800) || 'None provided'],
   ];
 
-  try {
-    const delivery = await fetch('https://api.resend.com/emails', {
+  const record: EnquiryRecord = {
+    full_name: fullName,
+    company_name: companyName,
+    country: text(body.country, 120),
+    email,
+    phone_whatsapp: text(body.phoneWhatsapp, 180),
+    product_requirement: product,
+    preferred_form: text(body.preferredForm, 160),
+    estimated_quantity: text(body.estimatedQuantity, 160),
+    application_use: text(body.applicationUse, 300),
+    destination: text(body.destinationPort, 220),
+    packaging_preference: text(body.packagingPreference, 220),
+    documentation_needs: Array.isArray(body.documentationNeeds) ? body.documentationNeeds.map((item) => text(item, 120)).filter(Boolean).slice(0, 12) : [],
+    additional_notes: text(body.additionalNotes, 1800),
+    source_path: text(body.sourcePath, 240) || '/',
+    consent: true,
+    status: 'new',
+  };
+
+  let reference = '';
+  let stored = false;
+  let emailed = false;
+
+  if (supabaseUrl && supabaseKey) {
+    try {
+      const storage = await fetch(`${supabaseUrl}/rest/v1/aib_enquiries`, {
+        method: 'POST',
+        headers: {
+          apikey: supabaseKey,
+          Authorization: `Bearer ${supabaseKey}`,
+          'Content-Type': 'application/json',
+          Prefer: 'return=representation',
+        },
+        body: JSON.stringify(record),
+      });
+      if (storage.ok) {
+        const rows = await storage.json() as Array<{ id?: string }>;
+        reference = rows[0]?.id?.slice(0, 8).toUpperCase() ?? '';
+        stored = true;
+      }
+    } catch {
+      stored = false;
+    }
+  }
+
+  if (resendKey && fromEmail) {
+    try {
+      const delivery = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${resendKey}`,
@@ -70,9 +120,16 @@ export default async function handler(request: ApiRequest, response: ApiResponse
       }),
     });
 
-    if (!delivery.ok) throw new Error('Delivery provider rejected the enquiry');
-    response.status(200).json({ ok: true });
-  } catch {
-    response.status(502).json({ ok: false, error: 'Enquiry delivery failed.' });
+      emailed = delivery.ok;
+    } catch {
+      emailed = false;
+    }
   }
+
+  if (!stored && !emailed) {
+    response.status(503).json({ ok: false, error: 'Secure submission is temporarily unavailable.' });
+    return;
+  }
+
+  response.status(200).json({ ok: true, reference, channels: [stored ? 'database' : '', emailed ? 'email' : ''].filter(Boolean) });
 }

@@ -549,9 +549,14 @@ export const LegalPage: React.FC<{ policyType: 'terms' | 'shipping' | 'privacy' 
           Ancient Indian Botanicals Private Limited is incorporated in India and maintains GST, Udyam, IEC, APEDA RCMC, ICEGATE and ISO 9001:2015 credentials. Website information is intended for B2B commercial evaluation. Any order, specification, documentation obligation, shipping term, return term or payment condition becomes binding only through a written offer or contract and counterparty review.
         </p>
         {policyType === 'privacy' && (
-          <p>
-            The site uses privacy-conscious, cookieless Vercel Web Analytics and performance telemetry to understand aggregate page visits, device type, broad country-level origin and site performance. It does not intentionally publish visitor-level analytics. Information entered in an enquiry form is used only to review and respond to that commercial request and is not sold.
-          </p>
+          <>
+            <p>
+              The site uses privacy-conscious, cookieless Vercel Web Analytics and performance telemetry to understand aggregate page visits, device type, broad country-level origin and site performance. It does not intentionally publish visitor-level analytics. Information entered in an enquiry form is used only to review and respond to that commercial request and is not sold.
+            </p>
+            <p>
+              Enquiry details may be stored in a restricted-access business database and processed by our website hosting, database and transactional-email providers solely to operate the enquiry desk. Access is limited to authorised personnel. Records are retained only while reasonably required for the commercial discussion, legal obligations, security and business records. A person may request access, correction or deletion by emailing office@ancientindianbotanicals.com, subject to applicable record-keeping duties.
+            </p>
+          </>
         )}
         {policyType === 'shipping' && (
           <p>

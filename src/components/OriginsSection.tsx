@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PROVENANCE_REGIONS } from '../data/products';
-import { MapPin, Navigation, Anchor } from 'lucide-react';
+import { MapPin, Navigation, Anchor, Globe2, ArrowUpRight } from 'lucide-react';
+import { useBuyerLanguage } from '../context/BuyerLanguageContext';
 
 interface OriginsSectionProps {
   onExploreOrigins?: () => void;
@@ -8,6 +9,14 @@ interface OriginsSectionProps {
 
 export const OriginsSection: React.FC<OriginsSectionProps> = () => {
   const [activeRegionId, setActiveRegionId] = useState<string>('mandsaur');
+  const { language } = useBuyerLanguage();
+
+  const exportCopy = {
+    en: { eyebrow: 'Manufacturing-partner export experience', title: 'Documented market reach behind our supply routes', origin: 'India · coordination base', note: 'This footprint reflects verified manufacturing-partner supply experience. It does not claim that AIB has shipped every route directly. Product suitability and destination documents are confirmed for each enquiry.', cta: 'Destination review per enquiry' },
+    de: { eyebrow: 'Exporterfahrung unserer Fertigungspartner', title: 'Dokumentierte Markterfahrung unserer Lieferrouten', origin: 'Indien · Koordinationsbasis', note: 'Diese Übersicht zeigt verifizierte Liefererfahrung von Fertigungspartnern. Sie behauptet nicht, dass AIB jede Route selbst beliefert hat. Eignung und Ziellanddokumente werden je Anfrage bestätigt.', cta: 'Ziellandprüfung je Anfrage' },
+    fr: { eyebrow: 'Expérience export des partenaires fabricants', title: 'Portée commerciale documentée de nos filières', origin: 'Inde · base de coordination', note: 'Cette carte reflète l’expérience vérifiée de partenaires fabricants. Elle ne signifie pas qu’AIB a expédié directement sur chaque route. L’adéquation et les documents sont confirmés pour chaque demande.', cta: 'Revue destination par demande' },
+    es: { eyebrow: 'Experiencia exportadora de socios fabricantes', title: 'Alcance comercial documentado de nuestras rutas', origin: 'India · base de coordinación', note: 'Este mapa refleja experiencia de suministro verificada de socios fabricantes. No afirma que AIB haya enviado directamente por cada ruta. La idoneidad y los documentos se confirman para cada consulta.', cta: 'Revisión de destino por consulta' },
+  }[language];
 
   const selectedRegion = PROVENANCE_REGIONS.find(r => r.id === activeRegionId) || PROVENANCE_REGIONS[0];
 
@@ -120,27 +129,38 @@ export const OriginsSection: React.FC<OriginsSectionProps> = () => {
               </div>
             </div>
 
-            {/* Regional visual and map context */}
-            <div className="grid gap-3 sm:grid-cols-[1.25fr_.75fr]">
-              <figure className="overflow-hidden border border-[#b88a2c]/40 bg-[#062b23]">
-                <div className="aspect-[16/9] overflow-hidden">
-                  <img
-                    src={selectedRegion.image}
-                    alt={`Representative view for ${selectedRegion.name}`}
-                    width="960"
-                    height="540"
-                    loading="lazy"
-                    decoding="async"
-                    onError={(event) => { if (event.currentTarget.dataset.fallback === 'true') return; event.currentTarget.dataset.fallback = 'true'; event.currentTarget.src = '/assets/images/cultivation-ashwagandha.webp'; }}
-                    className="h-full w-full object-cover"
-                  />
+            {/* Verified partner-market footprint replaces the former decorative crop photo. */}
+            <div className="overflow-hidden border border-[#b88a2c]/40 bg-[#062b23]">
+              <div className="grid gap-6 p-5 sm:grid-cols-[1.15fr_.85fr] sm:p-6">
+                <div>
+                  <div className="flex items-center gap-2 text-[#d4a43d]"><Globe2 className="h-4 w-4" /><span className="text-[9px] font-bold uppercase tracking-eyebrow">{exportCopy.eyebrow}</span></div>
+                  <h4 className="mt-3 max-w-lg font-serif text-2xl font-semibold leading-tight text-[#fbf7ed]">{exportCopy.title}</h4>
+                  <div className="relative mt-6 min-h-40 overflow-hidden border border-[#b88a2c]/20 bg-[#041e18] p-4" aria-label="Partner market experience from India to the United States, Canada and Germany">
+                    <svg viewBox="0 0 620 210" className="absolute inset-0 h-full w-full" aria-hidden="true">
+                      <defs><linearGradient id="routeGlow" x1="0" x2="1"><stop offset="0" stopColor="#a8c76b" stopOpacity=".75"/><stop offset="1" stopColor="#d4a43d" stopOpacity=".95"/></linearGradient></defs>
+                      <path d="M420 147 C350 110 220 104 98 72" fill="none" stroke="url(#routeGlow)" strokeWidth="2" strokeDasharray="6 7" />
+                      <path d="M420 147 C332 155 200 151 88 140" fill="none" stroke="url(#routeGlow)" strokeWidth="2" strokeDasharray="6 7" />
+                      <path d="M420 147 C400 92 426 55 486 43" fill="none" stroke="url(#routeGlow)" strokeWidth="2" strokeDasharray="6 7" />
+                      <circle cx="420" cy="147" r="7" fill="#a8c76b"/><circle cx="98" cy="72" r="6" fill="#d4a43d"/><circle cx="88" cy="140" r="6" fill="#d4a43d"/><circle cx="486" cy="43" r="6" fill="#d4a43d"/>
+                    </svg>
+                    <span className="absolute bottom-4 right-[22%] border border-[#a8c76b]/50 bg-[#062b23] px-2 py-1 text-[8px] font-bold uppercase tracking-eyebrow text-[#a8c76b]">{exportCopy.origin}</span>
+                  </div>
                 </div>
-                <figcaption className="border-t border-[#b88a2c]/25 px-3 py-2 text-[9px] leading-relaxed text-[#f2ead9]/60">Representative regional or process imagery. It does not depict a company-owned farm, temple or processing facility.</figcaption>
-              </figure>
-              <div className="relative flex min-h-[150px] items-center justify-center border border-[#b88a2c]/40 bg-[#062b23] p-3">
-                <img src="/assets/svg/origin-map.svg" alt="Mandsaur and Neemuch sourcing region map" className="max-h-[132px] w-full object-contain opacity-90" />
-                <span className="absolute bottom-2 left-2 right-2 border border-[#b88a2c]/55 bg-[#041e18]/95 px-2 py-1 text-center text-[8px] font-bold uppercase tracking-eyebrow text-[#b88a2c]">{selectedRegion.name}</span>
+                <div className="flex flex-col justify-center gap-2">
+                  {[
+                    ['United States', 'North America'],
+                    ['Canada', 'North America'],
+                    ['Germany', 'European Union'],
+                  ].map(([country, region]) => (
+                    <div key={country} className="flex items-center justify-between gap-3 border border-[#b88a2c]/25 bg-[#083a30] px-4 py-3">
+                      <div><strong className="block text-sm text-[#fbf7ed]">{country}</strong><span className="text-[9px] uppercase tracking-eyebrow text-[#a8c76b]">{region}</span></div>
+                      <ArrowUpRight className="h-4 w-4 text-[#d4a43d]" />
+                    </div>
+                  ))}
+                  <span className="mt-2 text-[9px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">{exportCopy.cta}</span>
+                </div>
               </div>
+              <p className="border-t border-[#b88a2c]/25 px-5 py-3 text-[9px] leading-relaxed text-[#f2ead9]/65 sm:px-6">{exportCopy.note}</p>
             </div>
 
           </div>

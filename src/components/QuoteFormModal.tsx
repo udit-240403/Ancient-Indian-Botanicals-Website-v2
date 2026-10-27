@@ -37,6 +37,9 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
   const [submissionStatus, setSubmissionStatus] = useState<
     'idle' | 'sending' | 'sent' | 'fallback'
   >('idle');
+  const [submissionMessage, setSubmissionMessage] = useState('');
+  const [referenceId, setReferenceId] = useState('');
+  const [companyWebsite, setCompanyWebsite] = useState('');
 
   const buildMailtoUrl = () => {
     const subject = `B2B botanical enquiry — ${formData.selectedProduct}`;
@@ -73,18 +76,26 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
     }
 
     setSubmissionStatus('sending');
+    setSubmissionMessage('');
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 15000);
 
     try {
       const response = await fetch('/api/enquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, companyWebsite, sourcePath: window.location.pathname }),
+        signal: controller.signal,
       });
-
-      if (!response.ok) throw new Error('Enquiry service unavailable');
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || result.ok !== true) throw new Error(result.error || 'Enquiry service unavailable');
+      setReferenceId(typeof result.reference === 'string' ? result.reference : '');
       setSubmissionStatus('sent');
-    } catch {
+    } catch (error) {
+      setSubmissionMessage(error instanceof Error && error.name !== 'AbortError' ? error.message : 'The secure enquiry service did not respond in time.');
       setSubmissionStatus('fallback');
+    } finally {
+      window.clearTimeout(timeout);
     }
   };
 
@@ -136,8 +147,8 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
             </h3>
             <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-[#50685f]">
               {submissionStatus === 'sent'
-                ? `Our trade desk will reply to ${formData.email} to confirm the right product, specification and next steps.`
-                : 'Direct submission is temporarily unavailable. Your details are ready in an email addressed to our sales desk.'}
+                ? `Our trade desk will reply to ${formData.email} to confirm the right product, specification and next steps.${referenceId ? ` Reference: ${referenceId}.` : ''}`
+                : `${submissionMessage || 'Direct submission is temporarily unavailable.'} Your details are ready in an email addressed to our sales desk.`}
             </p>
 
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
@@ -160,6 +171,10 @@ export const QuoteFormModal: React.FC<QuoteFormModalProps> = ({
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="px-5 py-6 sm:px-8 sm:py-8">
+            <div className="sr-only" aria-hidden="true">
+              <label htmlFor="enquiry-website">Company website</label>
+              <input id="enquiry-website" type="text" tabIndex={-1} autoComplete="off" value={companyWebsite} onChange={(event) => setCompanyWebsite(event.target.value)} />
+            </div>
             <div className="mb-6 rounded-xl border border-[#d7c6a5] bg-white/70 px-4 py-3 text-sm leading-relaxed text-[#405b52]">
               <strong className="text-[#17362e]">Start with the basics.</strong> Grade, testing, private-label and export paperwork can be decided after we understand your requirement.
             </div>
