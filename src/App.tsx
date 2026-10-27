@@ -14,7 +14,7 @@ import { BuyerTranslationNotice } from './components/BuyerTranslationNotice';
 import { CATALOGUE_PRODUCTS, getCatalogueGroup } from './data/catalogue';
 import FAQS from './data/faq.json';
 import internationalNames from './data/international-product-names.json';
-import ashwagandhaGuide from './data/ashwagandha-search-guide.json';
+import productSearchSeo from './data/product-search-seo.json';
 import {
   PAGE_META,
   PAGE_ROUTES,
@@ -43,6 +43,10 @@ const ContactPage = lazy(() => import('./components/Pages').then((module) => ({ 
 const VerificationPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.VerificationPage })));
 const LegalPage = lazy(() => import('./components/Pages').then((module) => ({ default: module.LegalPage })));
 
+const PRODUCT_SEARCH_GUIDE_BY_ID = new Map(
+  productSearchSeo.map((guide) => [guide.productId, guide]),
+);
+
 const PageLoading = () => (
   <div className="min-h-[55vh] bg-[#f4efe5] px-4 py-16 text-[#1f2925] md:px-8" role="status" aria-live="polite">
     <div className="mx-auto max-w-[1440px] animate-pulse">
@@ -68,6 +72,7 @@ export function App() {
   const activeTab = getPageIdFromPath(currentPath);
   const productId = getProductIdFromPath(currentPath);
   const routeProduct = productId ? CATALOGUE_PRODUCTS.find((product) => product.id === productId) ?? null : null;
+  const productSearchGuide = routeProduct ? PRODUCT_SEARCH_GUIDE_BY_ID.get(routeProduct.id) : undefined;
   
   // Modals
   const [quoteModalOpen, setQuoteModalOpen] = useState<boolean>(false);
@@ -111,12 +116,10 @@ export function App() {
   useEffect(() => {
     const pageMeta = routeProduct
       ? {
-          title: routeProduct.id === 'ashwagandha'
-            ? 'Indian Ginseng & Winter Cherry | Ashwagandha Supplier India'
-            : `${routeProduct.name} | B2B Indian ${['seeds-food', 'cold-pressed-oils'].includes(getCatalogueGroup(routeProduct)) ? 'Ingredient' : 'Botanical'} Supply`,
-          description: routeProduct.id === 'ashwagandha'
-            ? 'Indian Ginseng / Winter Cherry (Ashwagandha, Withania somnifera) for B2B supply as root, powder or specification-led extract. Lot details confirmed per enquiry.'
-            : `${routeProduct.whyBuyersKnowIt} Forms, applications, documentation and current availability are confirmed per enquiry.`,
+          title: productSearchGuide?.seoTitle
+            ?? `${routeProduct.name} | B2B Indian ${['seeds-food', 'cold-pressed-oils'].includes(getCatalogueGroup(routeProduct)) ? 'Ingredient' : 'Botanical'} Supply`,
+          description: productSearchGuide?.metaDescription
+            ?? `${routeProduct.whyBuyersKnowIt} Forms, applications, documentation and current availability are confirmed per enquiry.`,
           image: routeProduct.image,
           type: 'product',
         }
@@ -155,10 +158,10 @@ export function App() {
             alternateName: Array.from(new Set([...(routeProduct.alternateNames ?? []), routeProduct.botanicalName])),
             description: routeProduct.fieldDescription,
           },
-          ...(routeProduct.id === 'ashwagandha'
-            ? { mainEntity: ashwagandhaGuide.copy.en.faq.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })) }
+          ...(productSearchGuide
+            ? { mainEntity: productSearchGuide.faq.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })) }
             : {}),
-          keywords: Array.from(new Set([routeProduct.name, ...(routeProduct.alternateNames ?? []), ...(routeProduct.id === 'ashwagandha' ? ashwagandhaGuide.names : []), routeProduct.botanicalName, getCatalogueGroup(routeProduct)])),
+          keywords: Array.from(new Set([routeProduct.name, ...(routeProduct.alternateNames ?? []), ...(productSearchGuide?.names ?? []), routeProduct.botanicalName, getCatalogueGroup(routeProduct)])),
           publisher: organization,
         }
       : activeTab === 'faq'
@@ -226,7 +229,7 @@ export function App() {
       document.head.appendChild(schemaElement);
     }
     schemaElement.textContent = JSON.stringify(schema);
-  }, [activeTab, currentPath, routeProduct]);
+  }, [activeTab, currentPath, routeProduct, productSearchGuide]);
 
   const navigateToTab = (tab: string) => {
     const nextPath = getPathForPage(tab);

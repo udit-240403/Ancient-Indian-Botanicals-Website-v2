@@ -1,0 +1,93 @@
+[
+  {
+    "productId": "ashwagandha",
+    "names": ["Ashwagandha", "Indian Ginseng", "Winter Cherry", "Indian Winter Cherry", "Withania", "Withania somnifera"],
+    "seoTitle": "Indian Ginseng & Winter Cherry | Ashwagandha Supplier India",
+    "metaDescription": "Indian Ginseng / Winter Cherry (Ashwagandha, Withania somnifera) for B2B supply as root, powder or specification-led extract. Lot details confirmed per enquiry.",
+    "faq": [
+      { "question": "Is Indian Ginseng the same botanical as Ashwagandha?", "answer": "Yes. In international botanical trade, Indian Ginseng is a common name for Ashwagandha, whose accepted botanical identity is Withania somnifera. It should not be confused with Panax ginseng." },
+      { "question": "Is Winter Cherry another name for Ashwagandha?", "answer": "Yes. Winter Cherry and Indian Winter Cherry are established common names used for Withania somnifera." },
+      { "question": "Which name should a buyer use in a sourcing brief?", "answer": "Use Ashwagandha (Withania somnifera), then specify the plant part, whole or powdered form, or the required extract specification. This prevents confusion between root, powder and extract routes." }
+    ]
+  },
+  {
+    "productId": "amla",
+    "names": ["Amla", "Indian Gooseberry", "Emblic", "Emblica", "Phyllanthus emblica"],
+    "seoTitle": "Indian Gooseberry (Amla) Extract & Powder Supplier India",
+    "metaDescription": "Indian Gooseberry / Amla (Phyllanthus emblica) for B2B supply as fruit powder and specification-led extract. Lot details are confirmed per enquiry.",
+    "faq": [
+      { "question": "Is Indian Gooseberry the same botanical as Amla?", "answer": "Yes. Indian Gooseberry and Amla refer to Phyllanthus emblica in this catalogue." },
+      { "question": "What should an Amla enquiry specify?", "answer": "State Phyllanthus emblica, fruit or fruit-derived material, powder or extract, quantity, testing and destination requirements." }
+    ]
+  },
+  {
+    "productId": "bacopa",
+    "names": ["Bacopa", "Brahmi", "Water Hyssop", "Coastal Water Hyssop", "Bacopa monnieri"],
+    "seoTitle": "Bacopa / Water Hyssop (Brahmi) Extract Supplier India",
+    "metaDescription": "Bacopa / Water Hyssop (Brahmi, Bacopa monnieri) for B2B whole-herb and specification-led extract supply. Bacoside method confirmed per enquiry.",
+    "faq": [
+      { "question": "Which Brahmi does this product page cover?", "answer": "It covers Bacopa monnieri. It does not identify Centella asiatica, which may also be called Brahmi in some markets." },
+      { "question": "What should a Bacopa extract brief include?", "answer": "State Bacopa monnieri, plant part, bacoside target and test method, extract ratio, solvent, carrier status and required documents." }
+    ]
+  },
+  {
+    "productId": "holy-basil",
+    "names": ["Holy Basil", "Sacred Basil", "Tulsi", "Tulasi", "Ocimum tenuiflorum", "Ocimum sanctum"],
+    "seoTitle": "Holy Basil / Tulsi Extract Supplier India",
+    "metaDescription": "Holy Basil / Sacred Basil (Tulsi, Ocimum tenuiflorum) for B2B leaf and specification-led extract supply. Marker and method confirmed per enquiry.",
+    "faq": [
+      { "question": "Is Holy Basil the same botanical as Tulsi?", "answer": "Yes. On this page both names identify Ocimum tenuiflorum, also widely referenced by the synonym Ocimum sanctum." },
+      { "question": "Is Holy Basil the same as ordinary culinary basil?", "answer": "No. Culinary Sweet Basil is generally Ocimum basilicum; the offered Tulsi route is Ocimum tenuiflorum." }
+    ]
+  },
+  {
+    "productId": "shatavari",
+    "names": ["Shatavari", "Wild Asparagus", "Indian Asparagus", "Asparagus racemosus"],
+    "seoTitle": "Wild Asparagus / Shatavari Extract Supplier India",
+    "metaDescription": "Wild Asparagus / Shatavari (Asparagus racemosus) for B2B root and specification-led extract supply. Saponin basis and method confirmed per enquiry.",
+    "faq": [
+      { "question": "Is Wild Asparagus the same botanical as Shatavari?", "answer": "In this catalogue, Wild Asparagus and Shatavari identify Asparagus racemosus." },
+      { "question": "Is Shatavari ordinary edible asparagus?", "answer": "No. Ordinary Garden Asparagus is Asparagus officinalis; Shatavari is Asparagus racemosus." }
+    ]
+  },
+  {
+    "productId": "bitter-melon",
+    "names": ["Bitter Melon", "Bitter Gourd", "Karela", "Momordica charantia"],
+    "seoTitle": "Bitter Melon / Karela Extract Supplier India",
+    "metaDescription": "Bitter Melon / Bitter Gourd (Karela, Momordica charantia) for B2B powder and specification-led extract supply. Plant part and method confirmed.",
+    "faq": [
+      { "question": "Are Bitter Melon, Bitter Gourd and Karela the same botanical?", "answer": "Yes. On this page all three names identify Momordica charantia." },
+      { "question": "Why must the plant part be stated?", "answer": "Fruit, seed and other plant materials are commercially different and may require different tests and specifications." }
+    ]
+  },
+  {
+    "productId": "kalmegh-extract",
+    "names": ["Kalmegh", "Andrographis", "Green Chiretta", "King of Bitters", "Andrographis paniculata"],
+    "seoTitle": "Andrographis / Kalmegh Extract Supplier India",
+    "metaDescription": "Andrographis / Kalmegh (Andrographis paniculata) extract for B2B supply. Andrographolide basis, method, solvent and ratio confirmed per enquiry.",
+    "faq": [
+      { "question": "Is Green Chiretta the same botanical as Kalmegh?", "answer": "On this page, Green Chiretta and Kalmegh identify Andrographis paniculata." },
+      { "question": "Why should the botanical name be included?", "answer": "Chiretta-type common names can refer to other species, so Andrographis paniculata prevents ambiguity." }
+    ]
+  },
+  {
+    "productId": "mentha-arvensis",
+    "names": ["Mentha arvensis", "Cornmint", "Field Mint", "Japanese Mint", "Japanese Peppermint"],
+    "seoTitle": "Cornmint / Mentha arvensis Oil Supplier India",
+    "metaDescription": "Cornmint / Field Mint (Mentha arvensis) essential oil and dementholised mint oil for B2B supply. GC/MS and menthol profile confirmed per lot.",
+    "faq": [
+      { "question": "Is Cornmint Oil the same as Mentha arvensis Oil?", "answer": "Yes. Cornmint Oil is a widely used trade name for oil from Mentha arvensis." },
+      { "question": "Is Cornmint the same as Peppermint?", "answer": "No. Cornmint is Mentha arvensis; Peppermint is generally Mentha × piperita and should be sourced separately." }
+    ]
+  },
+  {
+    "productId": "kalonji-oil",
+    "names": ["Black Seed Oil", "Kalonji Oil", "Nigella Seed Oil", "Black Cumin Seed Oil", "Nigella sativa"],
+    "seoTitle": "Black Seed / Kalonji Oil Supplier India",
+    "metaDescription": "Black Seed / Kalonji Oil (Nigella sativa) for B2B cold-pressed and commercial oil supply. Production, fatty-acid and thymoquinone requirements confirmed.",
+    "faq": [
+      { "question": "Is Black Seed Oil the same as Kalonji Oil?", "answer": "Yes. On this page both names identify oil from Nigella sativa seeds." },
+      { "question": "Is Black Seed the same as ordinary cumin?", "answer": "No. Black Seed here is Nigella sativa; ordinary cumin is Cuminum cyminum and is a different botanical." }
+    ]
+  }
+]

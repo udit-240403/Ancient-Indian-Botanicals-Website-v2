@@ -14,21 +14,24 @@ const catalogueOverrides = JSON.parse(await readFile(path.join(ROOT, 'src/data/c
 const catalogueNames = JSON.parse(await readFile(path.join(ROOT, 'src/data/catalogue-names.json'), 'utf8'));
 const internationalNames = JSON.parse(await readFile(path.join(ROOT, 'src/data/international-product-names.json'), 'utf8'));
 const ashwagandhaGuide = JSON.parse(await readFile(path.join(ROOT, 'src/data/ashwagandha-search-guide.json'), 'utf8'));
+const commonNameGuides = JSON.parse(await readFile(path.join(ROOT, 'src/data/common-name-search-guides.json'), 'utf8'));
 const faqs = JSON.parse(await readFile(path.join(ROOT, 'src/data/faq.json'), 'utf8'));
 const excludedIds = new Set(catalogueOverrides.excludedIds);
 const prohibitedProductPattern = /shilajit/i;
 const internationalNameByProductId = new Map(internationalNames.map((entry) => [entry.productId, entry]));
+const productSearchGuideById = new Map([ashwagandhaGuide, ...commonNameGuides].map((guide) => [guide.productId, guide]));
 const products = [...scraped, roseAbsolute, ...foodIngredients, ...partnerExtracts]
   .filter((product) => !excludedIds.has(product.id) && !prohibitedProductPattern.test(`${product.id} ${product.name}`))
   .map((product) => {
     const overridden = { ...product, ...(catalogueOverrides.overrides[product.id] ?? {}) };
     const naming = catalogueNames[product.id];
     const internationalNaming = internationalNameByProductId.get(product.id);
+    const searchGuide = productSearchGuideById.get(product.id);
     const alternateNames = Array.from(new Set([
       ...(overridden.alternateNames ?? []),
       ...(naming?.alternateNames ?? []),
       ...(internationalNaming ? [internationalNaming.internationalName, internationalNaming.indianTradeName, ...internationalNaming.aliases.map((alias) => alias.replaceAll('-', ' '))] : []),
-      ...(product.id === ashwagandhaGuide.productId ? ashwagandhaGuide.names : []),
+      ...(searchGuide?.names ?? []),
     ]));
     return { ...overridden, ...(naming ? { name: naming.primaryName } : {}), ...(alternateNames.length ? { alternateNames } : {}) };
   })
@@ -112,7 +115,8 @@ const pageFallback = (page) => {
 };
 
 const productFallback = (product) => {
-  const nameGuide = product.id === 'ashwagandha' ? `<section><h2>${escapeHtml(ashwagandhaGuide.copy.en.title)}</h2><p>${escapeHtml(ashwagandhaGuide.copy.en.intro)}</p><p>${escapeHtml(ashwagandhaGuide.copy.en.distinction)}</p><h3>${escapeHtml(ashwagandhaGuide.copy.en.faqHeading)}</h3>${ashwagandhaGuide.copy.en.faq.map((item) => `<article><h4>${escapeHtml(item.question)}</h4><p>${escapeHtml(item.answer)}</p></article>`).join('')}</section>` : '';
+  const guide = productSearchGuideById.get(product.id);
+  const nameGuide = guide ? `<section><h2>${escapeHtml(guide.copy.en.title)}</h2><p>${escapeHtml(guide.copy.en.intro)}</p><p>${escapeHtml(guide.copy.en.distinction)}</p><h3>${escapeHtml(guide.copy.en.faqHeading ?? 'Common buyer questions about the name')}</h3>${guide.copy.en.faq.map((item) => `<article><h4>${escapeHtml(item.question)}</h4><p>${escapeHtml(item.answer)}</p></article>`).join('')}</section>` : '';
   return `<main style="min-height:100vh;background:#f4efe5;color:#1f2925;padding:3rem 1.25rem;font-family:Georgia,serif"><article style="max-width:72rem;margin:0 auto"><p style="color:#9b6334;letter-spacing:.12em;text-transform:uppercase">${escapeHtml(groupLabels[getGroup(product)])}</p><h1>${escapeHtml(product.name)}</h1><p><em>${escapeHtml(product.botanicalName)}</em></p><img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" style="max-width:42rem;width:100%;height:auto"><p>${escapeHtml(product.fieldDescription)}</p><p>${escapeHtml(product.whyBuyersKnowIt)}</p>${nameGuide}<h2>Commercial forms</h2><ul>${product.commercialForms.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><h2>Typical applications</h2><ul>${product.typicalApplications.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><h2>Review framework</h2><ul>${product.specifications.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul><p>Availability, grade, origin, composition, MOQ, packaging and documents are confirmed for the approved enquiry and offered lot.</p><p><a href="/catalogue">Return to the complete catalogue</a> · <a href="mailto:sales@ancientindianbotanicals.com?subject=${encodeURIComponent(`Enquiry — ${product.name}`)}">Enquire about this product</a></p><p><small>Ancient Indian Botanicals Private Limited maintains verified company and export credentials. Exact identifiers are supplied through official commercial documents.</small></p></article></main>`;
 };
 
@@ -219,12 +223,9 @@ for (const page of pages) {
 for (const product of products) {
   const routePath = `/products/${product.id}`;
   const isFoodIngredient = ['seeds-food', 'cold-pressed-oils'].includes(getGroup(product));
-  const title = product.id === 'ashwagandha'
-    ? 'Indian Ginseng & Winter Cherry | Ashwagandha Supplier India'
-    : `${product.name} | B2B Indian ${isFoodIngredient ? 'Ingredient' : 'Botanical'} Supply`;
-  const description = (product.id === 'ashwagandha'
-    ? 'Indian Ginseng / Winter Cherry (Ashwagandha, Withania somnifera) for B2B supply as root, powder or specification-led extract. Lot details confirmed per enquiry.'
-    : `${product.whyBuyersKnowIt} Forms, applications, documentation and current availability are confirmed per enquiry.`).slice(0, 260);
+  const searchGuide = productSearchGuideById.get(product.id);
+  const title = searchGuide?.seoTitle ?? `${product.name} | B2B Indian ${isFoodIngredient ? 'Ingredient' : 'Botanical'} Supply`;
+  const description = (searchGuide?.metaDescription ?? `${product.whyBuyersKnowIt} Forms, applications, documentation and current availability are confirmed per enquiry.`).slice(0, 260);
   const productSchema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -248,10 +249,10 @@ for (const product of products) {
           alternateName: Array.from(new Set([...(product.alternateNames ?? []), product.botanicalName])),
           description: product.fieldDescription,
         },
-        ...(product.id === 'ashwagandha'
-          ? { mainEntity: ashwagandhaGuide.copy.en.faq.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })) }
+        ...(searchGuide
+          ? { mainEntity: searchGuide.copy.en.faq.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })) }
           : {}),
-        keywords: Array.from(new Set([product.name, ...(product.alternateNames ?? []), ...(product.id === 'ashwagandha' ? ashwagandhaGuide.names : []), product.botanicalName, groupLabels[getGroup(product)]])),
+        keywords: Array.from(new Set([product.name, ...(product.alternateNames ?? []), ...(searchGuide?.names ?? []), product.botanicalName, groupLabels[getGroup(product)]])),
         publisher: { '@id': `${SITE_URL}/#organization` },
       },
     ],
