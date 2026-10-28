@@ -42,6 +42,7 @@ const CultivationStories = lazy(() => import('./components/CultivationStories').
 const OriginsSection = lazy(() => import('./components/OriginsSection').then((module) => ({ default: module.OriginsSection })));
 const WorkflowSection = lazy(() => import('./components/WorkflowSection').then((module) => ({ default: module.WorkflowSection })));
 const HomePackagingShowcase = lazy(() => import('./components/HomePackagingShowcase').then((module) => ({ default: module.HomePackagingShowcase })));
+const PartnerCapabilityGallery = lazy(() => import('./components/PartnerCapabilityGallery').then((module) => ({ default: module.PartnerCapabilityGallery })));
 
 const PRODUCT_SEARCH_GUIDE_BY_ID = new Map(
   productSearchSeo.map((guide) => [guide.productId, guide]),
@@ -314,6 +315,9 @@ export function App() {
               onSelectCategory={handleSelectCategory}
               onViewAll={() => navigateToTab('catalogue')}
             />
+            <DeferredHomeSection minHeight="min-h-[760px]">
+              <PartnerCapabilityGallery onStartEnquiry={() => handleOpenQuoteModal('Partner capability and specification review')} />
+            </DeferredHomeSection>
             <DeferredHomeSection minHeight="min-h-[520px]">
               <CultivationStories onBrowseBotanicals={() => navigateToTab('botanicals')} />
             </DeferredHomeSection>
