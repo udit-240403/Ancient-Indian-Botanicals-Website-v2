@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
 import { AssuranceStrip } from './components/AssuranceStrip';
+import { BuyerRouteChooser } from './components/BuyerRouteChooser';
 import { ProductFamilies } from './components/ProductFamilies';
 import { ContactDock } from './components/ContactDock';
 import { CorePortfolio } from './components/CorePortfolio';
@@ -305,6 +306,8 @@ export function App() {
               </div>
               <AssuranceStrip />
             </div>
+
+            <BuyerRouteChooser onNavigate={navigateToTab} />
 
             <CorePortfolio
               openProduct={navigateToProduct}
