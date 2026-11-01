@@ -19,17 +19,44 @@ const priorityIds = [
   'gymnema',
 ];
 
-const focusNotes: Record<string, string> = {
-  ashwagandha: 'Central India focus · whole root, powder and extract routes',
-  bacopa: 'Whole-herb and standardized bacoside extract enquiries',
-  boswellia: 'Central Indian resin and extract enquiries',
-  'curcumin-extract': 'Marker, method, carrier and application aligned before offer',
-  'green-tea-extract': 'Catechin, polyphenol and caffeine requirements defined by brief',
-  gymnema: 'Leaf and standardized-extract route with lot-specific evidence',
+const focusNotes = {
+  en: {
+    ashwagandha: 'Central India focus · whole root, powder and extract routes',
+    bacopa: 'Whole-herb and standardized bacoside extract enquiries',
+    boswellia: 'Central Indian resin and extract enquiries',
+    'curcumin-extract': 'Marker, method, carrier and application aligned before offer',
+    'green-tea-extract': 'Catechin, polyphenol and caffeine requirements defined by brief',
+    gymnema: 'Leaf and standardized-extract route with lot-specific evidence',
+  },
+  de: {
+    ashwagandha: 'Fokus Zentralindien · ganze Wurzel, Pulver und Extraktrouten',
+    bacopa: 'Anfragen zu Ganzkraut und standardisiertem Bacosid-Extrakt',
+    boswellia: 'Anfragen zu zentralindischem Harz und Extrakt',
+    'curcumin-extract': 'Marker, Methode, Träger und Anwendung vor Angebot abgestimmt',
+    'green-tea-extract': 'Catechin-, Polyphenol- und Koffeinanforderungen nach Brief',
+    gymnema: 'Blatt- und standardisierte Extraktroute mit chargenspezifischen Nachweisen',
+  },
+  fr: {
+    ashwagandha: 'Focus Inde centrale · racine entière, poudre et extraits',
+    bacopa: 'Demandes en plante entière et extrait standardisé en bacosides',
+    boswellia: 'Demandes en résine et extrait d’Inde centrale',
+    'curcumin-extract': 'Marqueur, méthode, support et application définis avant offre',
+    'green-tea-extract': 'Exigences en catéchines, polyphénols et caféine selon le brief',
+    gymnema: 'Feuille et extrait standardisé avec preuves propres au lot',
+  },
+  es: {
+    ashwagandha: 'Enfoque India central · raíz entera, polvo y extractos',
+    bacopa: 'Consultas de planta entera y extracto estandarizado en bacósidos',
+    boswellia: 'Consultas de resina y extracto de India central',
+    'curcumin-extract': 'Marcador, método, portador y aplicación definidos antes de ofertar',
+    'green-tea-extract': 'Requisitos de catequinas, polifenoles y cafeína según la solicitud',
+    gymnema: 'Hoja y extracto estandarizado con evidencia específica del lote',
+  },
 };
 
 export const CorePortfolio: React.FC<CorePortfolioProps> = ({ openProduct, openQuoteModal }) => {
   const { language } = useBuyerLanguage();
+  const localizedFocusNotes = focusNotes[language];
   const copy = {
     en: { eyebrow: 'Priority extract collection', title: 'Extracts worth discussing first.', body: 'These partner-processed extracts receive priority attention for botanical identity, marker, analytical method, solvent system, samples and buyer application. Availability and final specification are confirmed for each enquiry.', brief: 'Share an extract brief', badge: 'Priority extract', review: 'Review forms and requirements', note: 'Before quotation, we confirm plant part, extract ratio, solvent system, carrier status, active marker, analytical method, quantity, packaging, destination and required documents.' },
     de: { eyebrow: 'Priorisierte Extraktkollektion', title: 'Extrakte für das erste Fachgespräch.', body: 'Bei diesen partnerverarbeiteten Extrakten prüfen wir bevorzugt botanische Identität, Marker, Analysemethode, Lösungsmittel, Muster und Anwendung. Verfügbarkeit und Spezifikation werden je Anfrage bestätigt.', brief: 'Extraktbrief senden', badge: 'Prioritätsextrakt', review: 'Formen und Anforderungen prüfen', note: 'Vor dem Angebot bestätigen wir Pflanzenteil, Extraktverhältnis, Lösungsmittel, Träger, Marker, Methode, Menge, Verpackung, Zielland und Dokumente.' },
@@ -63,7 +90,7 @@ export const CorePortfolio: React.FC<CorePortfolioProps> = ({ openProduct, openQ
                   <div className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-eyebrow text-[#d4a43d]"><Leaf className="h-3.5 w-3.5" />{copy.badge}</div>
                   <h3 className="mt-3 font-serif text-2xl font-semibold text-[#fbf7ed]">{getLocalizedProductName(product.id, product.name, language)}</h3>
                   <p className="mt-1 font-serif text-sm italic text-[#a8c76b]">{product.botanicalName}</p>
-                  <p className="mt-4 flex items-start gap-2 text-[11px] leading-relaxed text-[#f2ead9]/68"><MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#d4a43d]" />{focusNotes[product.id]}</p>
+                  <p className="mt-4 flex items-start gap-2 text-[11px] leading-relaxed text-[#f2ead9]/68"><MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#d4a43d]" />{localizedFocusNotes[product.id as keyof typeof localizedFocusNotes]}</p>
                   <span className="mt-5 inline-flex items-center gap-2 border-t border-[#b88a2c]/25 pt-4 text-[9px] font-bold uppercase tracking-eyebrow text-[#d4a43d]">{copy.review} <ArrowRight className="h-3.5 w-3.5" /></span>
                 </div>
               </button>
