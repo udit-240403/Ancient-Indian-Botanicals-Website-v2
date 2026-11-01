@@ -44,11 +44,15 @@ export default async function handler(request: ApiRequest, response: ApiResponse
   const resendKey = process.env.RESEND_API_KEY;
   const fromEmail = process.env.ENQUIRY_FROM_EMAIL;
   const recipient = process.env.ENQUIRY_RECIPIENT || 'sales@ancientindianbotanicals.com';
-  // Supabase's Vercel integration may expose either the established service-role
-  // variables or the newer server-only secret-key naming. Both stay inside this
-  // function and are never bundled into the public Vite application.
+  // Prefer a narrowly scoped publishable key plus a separate server-only write
+  // key. A Supabase secret/service-role key remains supported for installations
+  // that already use the official integration, but it is not required here.
   const supabaseUrl = (process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL)?.replace(/\/$/, '');
-  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY;
+  const privilegedSupabaseKey = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const publishableSupabaseKey = process.env.SUPABASE_PUBLISHABLE_KEY;
+  const supabaseKey = privilegedSupabaseKey || publishableSupabaseKey;
+  const enquiryWriteKey = process.env.AIB_ENQUIRY_WRITE_KEY;
+  const usesRestrictedWriteKey = !privilegedSupabaseKey && Boolean(publishableSupabaseKey);
 
   const rows = [
     ['Name', fullName],
@@ -84,7 +88,7 @@ export default async function handler(request: ApiRequest, response: ApiResponse
   let stored = false;
   let emailed = false;
 
-  if (supabaseUrl && supabaseKey) {
+  if (supabaseUrl && supabaseKey && (!usesRestrictedWriteKey || enquiryWriteKey)) {
     try {
       const storage = await fetch(`${supabaseUrl}/rest/v1/aib_enquiries`, {
         method: 'POST',
@@ -92,13 +96,16 @@ export default async function handler(request: ApiRequest, response: ApiResponse
           apikey: supabaseKey,
           Authorization: `Bearer ${supabaseKey}`,
           'Content-Type': 'application/json',
-          Prefer: 'return=representation',
+          Prefer: usesRestrictedWriteKey ? 'return=minimal' : 'return=representation',
+          ...(enquiryWriteKey ? { 'x-aib-write-key': enquiryWriteKey } : {}),
         },
         body: JSON.stringify(record),
       });
       if (storage.ok) {
-        const rows = await storage.json() as Array<{ id?: string }>;
-        reference = rows[0]?.id?.slice(0, 8).toUpperCase() ?? '';
+        if (!usesRestrictedWriteKey) {
+          const rows = await storage.json() as Array<{ id?: string }>;
+          reference = rows[0]?.id?.slice(0, 8).toUpperCase() ?? '';
+        }
         stored = true;
       } else {
         console.error('[enquiry] Supabase insert rejected', storage.status);
