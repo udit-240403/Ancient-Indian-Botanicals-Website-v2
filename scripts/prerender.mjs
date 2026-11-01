@@ -265,4 +265,22 @@ const today = new Date().toISOString().slice(0, 10);
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${allPaths.map((routePath) => `  <url>\n    <loc>${SITE_URL}${routePath === '/' ? '/' : routePath}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${routePath === '/' ? 'weekly' : 'monthly'}</changefreq>\n    <priority>${routePath === '/' ? '1.0' : routePath.startsWith('/products/') ? '0.7' : '0.8'}</priority>\n  </url>`).join('\n')}\n</urlset>\n`;
 await writeFile(path.join(DIST, 'sitemap.xml'), sitemap);
 
-console.log(`Pre-rendered ${pages.length} pages and ${products.length} product routes (${allPaths.length} sitemap URLs).`);
+const prerenderErrors = [];
+for (const routePath of allPaths) {
+  const outputFile = routePath === '/'
+    ? path.join(DIST, 'index.html')
+    : path.join(DIST, `${routePath.replace(/^\//, '')}.html`);
+  const html = await readFile(outputFile, 'utf8');
+  const canonical = `${SITE_URL}${routePath === '/' ? '/' : routePath}`;
+  if (!html.includes(`<link rel="canonical" href="${canonical}" />`)) prerenderErrors.push(`${routePath}: canonical URL mismatch`);
+  if (!html.includes(`<meta property="og:url" content="${canonical}" />`)) prerenderErrors.push(`${routePath}: Open Graph URL mismatch`);
+  if (!html.includes('id="route-structured-data"')) prerenderErrors.push(`${routePath}: missing structured data`);
+  if (!/<h1(?:\s|>)/i.test(html)) prerenderErrors.push(`${routePath}: missing pre-rendered H1`);
+}
+
+if (prerenderErrors.length) {
+  console.error(`Invalid pre-rendered routes:\n${prerenderErrors.map((item) => `- ${item}`).join('\n')}`);
+  process.exit(1);
+}
+
+console.log(`Pre-rendered and validated ${pages.length} pages and ${products.length} product routes (${allPaths.length} sitemap URLs).`);
