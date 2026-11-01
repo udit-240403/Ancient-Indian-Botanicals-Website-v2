@@ -9,7 +9,8 @@ The website can preserve a buyer enquiry in Supabase and send a Resend email not
 3. Run `supabase/schema.sql` once.
 4. Confirm that **Table Editor → aib_enquiries** exists.
 
-Row Level Security is enabled and no public browser policy is created. Website visitors cannot read the table.
+Row Level Security is enabled. Website visitors cannot read the table. Inserts
+are accepted only when the server supplies the separate high-entropy write key.
 
 ## 2. Connect Vercel
 
@@ -17,12 +18,17 @@ Add these encrypted environment variables under the Vercel project’s **Setting
 
 ```text
 SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=your private service-role key
+SUPABASE_PUBLISHABLE_KEY=your active sb_publishable_ key
+AIB_ENQUIRY_WRITE_KEY=your long random server-only value
 ```
 
-The server also accepts Supabase's newer integration names
-`NEXT_PUBLIC_SUPABASE_URL` together with `SUPABASE_SECRET_KEY`. Only a secret
-server key may write the protected table; never substitute a public or anon key.
+Store the SHA-256 hash of `AIB_ENQUIRY_WRITE_KEY` as
+`enquiry_write_key_sha256` in `private.aib_runtime_settings`. The deployment
+process performs this once without committing either value to GitHub.
+
+The server also accepts an existing official integration's
+`NEXT_PUBLIC_SUPABASE_URL` together with `SUPABASE_SECRET_KEY` or the legacy
+`SUPABASE_SERVICE_ROLE_KEY`. Never expose either privileged key to frontend code.
 
 Do not place the service-role key in GitHub, frontend code, screenshots or chat. After saving the variables, redeploy the latest production deployment.
 
@@ -54,7 +60,7 @@ Use Supabase’s authenticated dashboard rather than exposing buyer details in a
 
 Submit one clearly labelled internal test enquiry from the production website. Verify that:
 
-1. The website shows **Enquiry received** and a reference.
+1. The website shows **Enquiry received**.
 2. A new row appears in `aib_enquiries`.
 3. The sales notification email arrives if Resend is configured.
 4. The record’s `source_path` identifies the page from which the enquiry was submitted.
