@@ -1,6 +1,10 @@
--- Run once in the Supabase SQL Editor. Browser users receive no direct table
--- access; the Vercel server function writes with the private service-role key.
+-- Run once in the Supabase SQL Editor. Browser users cannot read enquiries.
+-- The Vercel server function writes through a publishable key plus a separate
+-- high-entropy server-only key whose SHA-256 hash is stored in the private schema.
 create extension if not exists pgcrypto;
+
+create schema if not exists private;
+revoke all on schema private from public, anon, authenticated;
 
 create table if not exists public.aib_enquiries (
   id uuid primary key default gen_random_uuid(),
@@ -28,4 +32,54 @@ create index if not exists aib_enquiries_status_idx on public.aib_enquiries (sta
 
 alter table public.aib_enquiries enable row level security;
 
-comment on table public.aib_enquiries is 'B2B enquiries submitted through ancientindianbotanicals.com';
+revoke all on table public.aib_enquiries from public, anon, authenticated;
+grant insert on table public.aib_enquiries to anon;
+grant select, insert on table public.aib_enquiries to service_role;
+
+create table if not exists private.aib_runtime_settings (
+  setting_name text primary key,
+  value_hash text not null check (length(value_hash) = 64)
+);
+
+revoke all on table private.aib_runtime_settings from public, anon, authenticated, service_role;
+
+create or replace function private.aib_enquiry_write_key_is_valid()
+returns boolean
+language sql
+stable
+security definer
+set search_path = pg_catalog, extensions
+as $$
+  select exists (
+    select 1
+    from private.aib_runtime_settings
+    where setting_name = 'enquiry_write_key_sha256'
+      and value_hash = encode(
+        extensions.digest(
+          coalesce(current_setting('request.headers', true)::jsonb ->> 'x-aib-write-key', ''),
+          'sha256'
+        ),
+        'hex'
+      )
+  );
+$$;
+
+revoke all on function private.aib_enquiry_write_key_is_valid() from public, anon, authenticated, service_role;
+grant usage on schema private to anon;
+grant execute on function private.aib_enquiry_write_key_is_valid() to anon;
+
+drop policy if exists "Vercel server may create enquiries" on public.aib_enquiries;
+create policy "Vercel server may create enquiries"
+  on public.aib_enquiries
+  for insert
+  to anon
+  with check (
+    private.aib_enquiry_write_key_is_valid()
+    and consent is true
+    and length(trim(full_name)) between 1 and 120
+    and length(trim(company_name)) between 1 and 160
+    and length(trim(email)) between 3 and 180
+    and length(trim(product_requirement)) between 1 and 220
+  );
+
+comment on table public.aib_enquiries is 'Private B2B enquiries submitted through ancientindianbotanicals.com';
