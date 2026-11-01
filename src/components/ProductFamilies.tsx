@@ -11,7 +11,7 @@ interface ProductFamiliesProps {
 export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCategory, onViewAll }) => {
   const { language } = useBuyerLanguage();
   const copy = {
-    en: { eyebrow: 'Product portfolio', heading: 'A portfolio shaped by origin', intro: 'Explore ingredients by application and form. Origin, specification, documentation and current availability are confirmed for each enquiry.', all: 'Explore all', routes: 'product routes', banner: 'Indian ingredients, prepared around your specification', cards: [
+    en: { eyebrow: 'Product portfolio', heading: 'A portfolio shaped by origin', intro: 'Explore ingredients by application and form. Origin, specification, documentation and current availability are confirmed for each enquiry.', all: 'Explore all', routes: 'product routes', formats: 'format routes', integrated: 'Integrated supply chain', banner: 'Indian ingredients, prepared around your specification', cards: [
       ['Standardized botanical extracts', 'Partner-processed extracts aligned to plant part, marker, method, ratio, solvent and buyer application.', 'Explore extracts'],
       ['Natural, aroma & carrier oils', 'Natural essential oils, carrier oils and clearly separated aroma or diffuser grades.', 'Explore oils'],
       ['Botanical ingredients', 'Whole, cut and powdered herbs, roots, barks, seeds and resins.', 'Browse botanicals'],
@@ -19,7 +19,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
       ['Floral waters & clays', 'Distinct hydrosol, floral-water and natural-clay routes for formulation and personal care.', 'View ingredients'],
       ['Bulk & private-label packaging', 'Samples, aluminium bottles, export drums and selected white-label formats.', 'See packaging'],
     ] },
-    de: { eyebrow: 'Produktportfolio', heading: 'Ein Portfolio mit klarer Herkunft', intro: 'Entdecken Sie Inhaltsstoffe nach Anwendung und Form. Herkunft, Spezifikation, Dokumente und Verfügbarkeit werden je Anfrage bestätigt.', all: 'Alle ansehen:', routes: 'Produktrouten', banner: 'Indische Inhaltsstoffe, abgestimmt auf Ihre Spezifikation', cards: [
+    de: { eyebrow: 'Produktportfolio', heading: 'Ein Portfolio mit klarer Herkunft', intro: 'Entdecken Sie Inhaltsstoffe nach Anwendung und Form. Herkunft, Spezifikation, Dokumente und Verfügbarkeit werden je Anfrage bestätigt.', all: 'Alle ansehen:', routes: 'Produktrouten', formats: 'Verpackungsrouten', integrated: 'Integrierte Lieferkette', banner: 'Indische Inhaltsstoffe, abgestimmt auf Ihre Spezifikation', cards: [
       ['Standardisierte Pflanzenextrakte', 'Partnerverarbeitete Extrakte nach Pflanzenteil, Marker, Methode, Verhältnis, Lösungsmittel und Anwendung.', 'Extrakte entdecken'],
       ['Natürliche, Aroma- & Trägeröle', 'Ätherische Öle, Trägeröle und klar getrennte Aroma- oder Diffusorqualitäten.', 'Öle entdecken'],
       ['Botanische Rohstoffe', 'Ganze, geschnittene und pulverisierte Kräuter, Wurzeln, Rinden, Samen und Harze.', 'Botanicals ansehen'],
@@ -27,7 +27,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
       ['Blütenwässer & Tonerden', 'Hydrolate, Blütenwässer und natürliche Tonerden für Formulierung und Körperpflege.', 'Inhaltsstoffe ansehen'],
       ['Bulk- & Private-Label-Verpackung', 'Muster, Aluminiumflaschen, Exportfässer und ausgewählte White-Label-Formate.', 'Verpackung ansehen'],
     ] },
-    fr: { eyebrow: 'Portefeuille produits', heading: 'Un portefeuille guidé par l’origine', intro: 'Explorez les ingrédients par application et forme. Origine, spécification, documents et disponibilité sont confirmés pour chaque demande.', all: 'Voir les', routes: 'filières produits', banner: 'Ingrédients indiens préparés selon votre spécification', cards: [
+    fr: { eyebrow: 'Portefeuille produits', heading: 'Un portefeuille guidé par l’origine', intro: 'Explorez les ingrédients par application et forme. Origine, spécification, documents et disponibilité sont confirmés pour chaque demande.', all: 'Voir les', routes: 'filières produits', formats: 'formats d’emballage', integrated: 'Chaîne d’approvisionnement intégrée', banner: 'Ingrédients indiens préparés selon votre spécification', cards: [
       ['Extraits botaniques standardisés', 'Extraits transformés par des partenaires selon la partie, le marqueur, la méthode, le ratio, le solvant et l’application.', 'Découvrir les extraits'],
       ['Huiles naturelles, aromatiques & végétales', 'Huiles essentielles, huiles végétales et qualités aromatiques ou diffuseur clairement séparées.', 'Découvrir les huiles'],
       ['Ingrédients botaniques', 'Herbes, racines, écorces, graines et résines entières, coupées ou en poudre.', 'Voir les botaniques'],
@@ -35,7 +35,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
       ['Eaux florales & argiles', 'Hydrolats, eaux florales et argiles naturelles pour formulation et soins.', 'Voir les ingrédients'],
       ['Conditionnement vrac & marque privée', 'Échantillons, flacons aluminium, fûts export et formats marque blanche sélectionnés.', 'Voir l’emballage'],
     ] },
-    es: { eyebrow: 'Portafolio de productos', heading: 'Un portafolio definido por el origen', intro: 'Explore ingredientes por aplicación y forma. Origen, especificación, documentos y disponibilidad se confirman para cada consulta.', all: 'Explorar las', routes: 'rutas de producto', banner: 'Ingredientes de India, preparados según su especificación', cards: [
+    es: { eyebrow: 'Portafolio de productos', heading: 'Un portafolio definido por el origen', intro: 'Explore ingredientes por aplicación y forma. Origen, especificación, documentos y disponibilidad se confirman para cada consulta.', all: 'Explorar las', routes: 'rutas de producto', formats: 'formatos de embalaje', integrated: 'Cadena de suministro integrada', banner: 'Ingredientes de India, preparados según su especificación', cards: [
       ['Extractos botánicos estandarizados', 'Extractos procesados por socios según parte, marcador, método, proporción, solvente y aplicación.', 'Explorar extractos'],
       ['Aceites naturales, aromáticos y portadores', 'Aceites esenciales, portadores y calidades aromáticas o para difusor claramente separadas.', 'Explorar aceites'],
       ['Ingredientes botánicos', 'Hierbas, raíces, cortezas, semillas y resinas enteras, cortadas o en polvo.', 'Ver botánicos'],
@@ -80,7 +80,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
       id: 'packaging',
       title: copy.cards[5][0], description: copy.cards[5][1], cta: copy.cards[5][2],
       icon: Package,
-      tag: '5 format routes'
+      tag: `5 ${copy.formats}`
     }
   ];
 
@@ -133,7 +133,7 @@ export const ProductFamilies: React.FC<ProductFamiliesProps> = ({ onSelectCatego
           <div className="absolute inset-0 bg-gradient-to-t from-[#041e18] via-[#041e18]/50 to-transparent flex items-end p-6 md:p-10">
             <div>
               <span className="text-xs uppercase tracking-eyebrow text-[#b88a2c] font-semibold block mb-1">
-                Integrated Supply Chain
+                {copy.integrated}
               </span>
               <h3 className="font-serif text-3xl md:text-5xl text-[#fbf7ed] font-semibold max-w-3xl leading-[1.05]">
                 {copy.banner}

@@ -32,6 +32,43 @@ for (const product of products) {
   }
 }
 
+const sourceFiles = [];
+const collectSourceFiles = async (directory) => {
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const file = path.join(directory, entry.name);
+    if (entry.isDirectory()) {
+      await collectSourceFiles(file);
+      continue;
+    }
+    if (/\.(?:tsx?|jsx?|json|css|html)$/i.test(entry.name)) sourceFiles.push(file);
+  }
+};
+
+await collectSourceFiles(path.join(root, 'src'));
+sourceFiles.push(path.join(root, 'index.html'));
+
+const referencedImages = new Map();
+const localImagePattern = /\/(?:assets|images)\/[^'"`)\s]+?\.(?:webp|png|jpe?g|svg)/gi;
+for (const sourceFile of sourceFiles) {
+  const contents = await readFile(sourceFile, 'utf8');
+  for (const match of contents.matchAll(localImagePattern)) {
+    const references = referencedImages.get(match[0]) ?? [];
+    references.push(path.relative(root, sourceFile));
+    referencedImages.set(match[0], references);
+  }
+}
+
+const missingReferencedImages = [];
+for (const [image, references] of referencedImages) {
+  const file = path.join(root, 'public', image.replace(/^\//, ''));
+  try {
+    await access(file);
+    if ((await stat(file)).size === 0) missingReferencedImages.push(`${image} (empty file; referenced by ${references.join(', ')})`);
+  } catch {
+    missingReferencedImages.push(`${image} (referenced by ${references.join(', ')})`);
+  }
+}
+
 const imageRoots = [path.join(root, 'public', 'images'), path.join(root, 'public', 'assets', 'images')];
 const invalidImages = [];
 const scanImages = async (directory) => {
@@ -59,6 +96,11 @@ if (invalidImages.length) {
 
 if (missing.length) {
   console.error(`Missing catalogue imagery:\n${missing.map((item) => `- ${item}`).join('\n')}`);
+  process.exit(1);
+}
+
+if (missingReferencedImages.length) {
+  console.error(`Missing component imagery:\n${missingReferencedImages.map((item) => `- ${item}`).join('\n')}`);
   process.exit(1);
 }
 
@@ -98,5 +140,6 @@ if (nameDirectoryErrors.length) {
 }
 
 console.log(`Validated ${products.length} catalogue image references.`);
+console.log(`Validated ${referencedImages.size} component image references.`);
 console.log('Validated image file signatures across public image directories.');
 console.log(`Validated ${seenAliases.size} international-name URL aliases.`);
