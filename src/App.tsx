@@ -44,6 +44,7 @@ const OriginsSection = lazy(() => import('./components/OriginsSection').then((mo
 const WorkflowSection = lazy(() => import('./components/WorkflowSection').then((module) => ({ default: module.WorkflowSection })));
 const HomePackagingShowcase = lazy(() => import('./components/HomePackagingShowcase').then((module) => ({ default: module.HomePackagingShowcase })));
 const PartnerCapabilityGallery = lazy(() => import('./components/PartnerCapabilityGallery').then((module) => ({ default: module.PartnerCapabilityGallery })));
+const PartnerExportMap = lazy(() => import('./components/PartnerExportMap').then((module) => ({ default: module.PartnerExportMap })));
 
 const PRODUCT_SEARCH_GUIDE_BY_ID = new Map(
   productSearchSeo.map((guide) => [guide.productId, guide]),
@@ -318,6 +319,13 @@ export function App() {
               onSelectCategory={handleSelectCategory}
               onViewAll={() => navigateToTab('catalogue')}
             />
+            <DeferredHomeSection minHeight="min-h-[650px]">
+              <section className="bg-[#f4efe5] px-4 py-14 md:px-8 lg:py-20">
+                <div className="mx-auto h-[610px] max-w-[1440px] overflow-hidden border border-[#b88a2c]/35 shadow-[0_24px_80px_rgba(4,30,24,.18)] sm:h-[630px]">
+                  <PartnerExportMap onRequestDocuments={() => handleOpenQuoteModal('Global supply route and destination documentation')} />
+                </div>
+              </section>
+            </DeferredHomeSection>
             <DeferredHomeSection minHeight="min-h-[760px]">
               <PartnerCapabilityGallery onStartEnquiry={() => handleOpenQuoteModal('Partner capability and specification review')} />
             </DeferredHomeSection>
