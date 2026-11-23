@@ -8,44 +8,44 @@ interface PartnerExportMapProps {
 
 const MARKET_COPY = {
   en: {
-    eyebrow: 'Verified manufacturing-partner reach',
-    title: 'Partner shipping lanes from India.',
-    mode: 'Sea · Air · Road coordination',
+    eyebrow: 'Active international business routes',
+    title: 'From India to growing buyer markets.',
+    mode: 'Specification · Sampling · Supply coordination',
     india: 'INDIA · ORIGIN DESK',
-    usa: 'UNITED STATES', canada: 'CANADA', germany: 'GERMANY',
-    verified: '3 documented markets', review: 'Destination review per enquiry',
-    note: 'Routes show verified manufacturing-partner supply experience—not a claim that AIB has directly shipped every lane.',
-    action: 'Review lot documents',
+    usa: 'UNITED STATES', mexico: 'MEXICO', brazil: 'BRAZIL', uae: 'UAE', australia: 'AUSTRALIA',
+    verified: '5 active market relationships', review: 'Destination review per enquiry',
+    note: 'Routes reflect active buyer enquiries, sampling or commercial discussions. Product availability, documentation and destination compliance are reconfirmed before every order.',
+    action: 'Review destination documents',
   },
   de: {
-    eyebrow: 'Verifizierte Reichweite unserer Fertigungspartner',
-    title: 'Partnerrouten für Lieferungen aus Indien.',
-    mode: 'See · Luft · Straßenkoordination',
+    eyebrow: 'Aktive internationale Geschäftswege',
+    title: 'Von Indien zu wachsenden Abnehmermärkten.',
+    mode: 'Spezifikation · Muster · Lieferkoordination',
     india: 'INDIEN · URSPRUNGSDESK',
-    usa: 'VEREINIGTE STAATEN', canada: 'KANADA', germany: 'DEUTSCHLAND',
-    verified: '3 dokumentierte Märkte', review: 'Ziellandprüfung je Anfrage',
-    note: 'Die Routen zeigen verifizierte Liefererfahrung von Fertigungspartnern—nicht AIB-Eigenexporte auf jeder Route.',
-    action: 'Chargendokumente prüfen',
+    usa: 'VEREINIGTE STAATEN', mexico: 'MEXIKO', brazil: 'BRASILIEN', uae: 'VAE', australia: 'AUSTRALIEN',
+    verified: '5 aktive Marktbeziehungen', review: 'Ziellandprüfung je Anfrage',
+    note: 'Die Routen zeigen aktive Käuferanfragen, Bemusterung oder Geschäftsgespräche. Verfügbarkeit, Unterlagen und Ziellandkonformität werden vor jeder Bestellung erneut bestätigt.',
+    action: 'Ziellandunterlagen prüfen',
   },
   fr: {
-    eyebrow: 'Portée vérifiée des partenaires fabricants',
-    title: 'Filières logistiques partenaires depuis l’Inde.',
-    mode: 'Coordination mer · air · route',
+    eyebrow: 'Filières commerciales internationales actives',
+    title: 'De l’Inde vers des marchés acheteurs en développement.',
+    mode: 'Spécification · Échantillons · Coordination',
     india: 'INDE · BUREAU D’ORIGINE',
-    usa: 'ÉTATS-UNIS', canada: 'CANADA', germany: 'ALLEMAGNE',
-    verified: '3 marchés documentés', review: 'Revue destination par demande',
-    note: 'Les routes reflètent l’expérience vérifiée de partenaires fabricants, sans prétendre qu’AIB a expédié directement sur chaque liaison.',
-    action: 'Examiner les documents du lot',
+    usa: 'ÉTATS-UNIS', mexico: 'MEXIQUE', brazil: 'BRÉSIL', uae: 'EAU', australia: 'AUSTRALIE',
+    verified: '5 relations de marché actives', review: 'Revue destination par demande',
+    note: 'Les routes représentent des demandes actives, des échantillons ou des échanges commerciaux. Disponibilité, documents et conformité sont reconfirmés avant chaque commande.',
+    action: 'Examiner les documents destination',
   },
   es: {
-    eyebrow: 'Alcance verificado de socios fabricantes',
-    title: 'Rutas logísticas asociadas desde India.',
-    mode: 'Coordinación marítima · aérea · terrestre',
+    eyebrow: 'Rutas comerciales internacionales activas',
+    title: 'Desde India hacia mercados compradores en crecimiento.',
+    mode: 'Especificación · Muestras · Coordinación',
     india: 'INDIA · MESA DE ORIGEN',
-    usa: 'ESTADOS UNIDOS', canada: 'CANADÁ', germany: 'ALEMANIA',
-    verified: '3 mercados documentados', review: 'Revisión de destino por consulta',
-    note: 'Las rutas reflejan experiencia verificada de socios fabricantes, no envíos directos de AIB en cada trayecto.',
-    action: 'Revisar documentos del lote',
+    usa: 'ESTADOS UNIDOS', mexico: 'MÉXICO', brazil: 'BRASIL', uae: 'EAU', australia: 'AUSTRALIA',
+    verified: '5 relaciones de mercado activas', review: 'Revisión de destino por consulta',
+    note: 'Las rutas representan consultas activas, muestras o conversaciones comerciales. La disponibilidad, documentación y conformidad se reconfirman antes de cada pedido.',
+    action: 'Revisar documentos de destino',
   },
 } as const;
 
@@ -74,7 +74,7 @@ export const PartnerExportMap: React.FC<PartnerExportMapProps> = ({ onRequestDoc
   const copy = MARKET_COPY[language];
 
   return (
-    <div className="relative h-full w-full overflow-hidden bg-[#041e18]" aria-label="Verified manufacturing-partner logistics routes from India to the United States, Canada and Germany">
+    <div className="relative h-full w-full overflow-hidden bg-[#041e18]" aria-label="Active AIB business routes from India to the United States, Mexico, Brazil, the United Arab Emirates and Australia">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_68%_54%,rgba(168,199,107,.13),transparent_24rem),linear-gradient(145deg,#041e18,#062b23_58%,#041e18)]" />
       <div className="absolute inset-0 opacity-[.055] [background-image:linear-gradient(rgba(242,234,217,.8)_1px,transparent_1px),linear-gradient(90deg,rgba(242,234,217,.8)_1px,transparent_1px)] [background-size:42px_42px]" aria-hidden="true" />
 
@@ -84,7 +84,7 @@ export const PartnerExportMap: React.FC<PartnerExportMapProps> = ({ onRequestDoc
       </div>
       <span className="absolute right-5 top-5 z-20 hidden border border-[#b88a2c]/45 bg-[#041e18]/80 px-2.5 py-1 text-[7px] font-bold uppercase tracking-[.14em] text-[#a8c76b] sm:block">{copy.mode}</span>
 
-      <svg viewBox="0 0 900 420" className="absolute inset-x-0 top-[64px] h-[65%] w-full sm:top-[58px] sm:h-[68%]" role="img" aria-label="Global shipping map with sea and air lanes from India to North America and Europe">
+      <svg viewBox="0 0 900 420" className="absolute inset-x-0 top-[64px] h-[65%] w-full sm:top-[58px] sm:h-[68%]" role="img" aria-label="Global business map with active routes from India to North America, South America, the Gulf and Australia">
         <defs>
           <linearGradient id="shipping-route" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#a8c76b"/><stop offset="1" stopColor="#d4a43d"/></linearGradient>
           <filter id="shipping-glow"><feGaussianBlur stdDeviation="2.8" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
@@ -103,31 +103,33 @@ export const PartnerExportMap: React.FC<PartnerExportMapProps> = ({ onRequestDoc
           <path d="M854 153 869 143 881 151 873 166 859 170Z" />
         </g>
 
-        {/* Marine routes follow an India–Suez–Atlantic corridor; air routes sit higher. */}
+        {/* Active commercial routes: enquiries, sampling and supply coordination. */}
         <g fill="none" stroke="url(#shipping-route)" strokeWidth="2.8" strokeDasharray="7 7" markerEnd="url(#shipping-arrow)" filter="url(#shipping-glow)">
-          <path d="M634 204 C596 166 554 139 518 117" />
-          <path d="M634 204 C560 246 498 249 429 228 C350 204 272 177 191 159" />
-          <path d="M634 204 C557 283 467 291 378 263 C291 236 220 205 166 193" />
+          <path d="M634 204 C606 194 584 191 560 193" />
+          <path d="M634 204 C692 228 728 258 770 290" />
+          <path d="M634 204 C545 286 380 313 220 260" />
         </g>
-        <g fill="none" stroke="#f2ead9" strokeOpacity=".48" strokeWidth="1.7" strokeDasharray="3 7">
-          <path d="M634 204 C552 76 350 55 170 101" />
-          <path d="M634 204 C535 110 352 102 187 151" />
+        <g fill="none" stroke="#f2ead9" strokeOpacity=".52" strokeWidth="1.8" strokeDasharray="3 7" markerEnd="url(#shipping-arrow)">
+          <path d="M634 204 C560 80 340 55 170 101" />
+          <path d="M634 204 C535 138 350 130 187 166" />
         </g>
 
-        <Ship x={546} y={241} /><Ship x={365} y={249} /><Ship x={246} y={210} />
-        <Plane x={474} y={97} rotate={-72} /><Plane x={299} y={99} rotate={-80} />
-        <Truck x={673} y={212} /><Truck x={503} y={116} />
+        <Ship x={555} y={250} /><Ship x={420} y={286} /><Ship x={700} y={252} />
+        <Plane x={470} y={95} rotate={-72} /><Plane x={310} y={126} rotate={-80} />
+        <Truck x={658} y={212} /><Truck x={582} y={186} />
 
         <g>
           <circle cx="634" cy="204" r="18" fill="#a8c76b" fillOpacity=".12" stroke="#a8c76b" strokeWidth="1.5"/><circle cx="634" cy="204" r="6" fill="#d4a43d"/>
-          <circle cx="170" cy="101" r="5" fill="#d4a43d"/><circle cx="187" cy="151" r="5" fill="#d4a43d"/><circle cx="518" cy="117" r="5" fill="#d4a43d"/>
-          <circle cx="429" cy="228" r="3" fill="#a8c76b"/><circle cx="378" cy="263" r="3" fill="#a8c76b"/>
+          <circle cx="170" cy="101" r="5" fill="#d4a43d"/><circle cx="187" cy="166" r="5" fill="#d4a43d"/>
+          <circle cx="220" cy="260" r="5" fill="#d4a43d"/><circle cx="560" cy="193" r="5" fill="#d4a43d"/><circle cx="770" cy="290" r="5" fill="#d4a43d"/>
         </g>
 
-        <g fontFamily="Manrope, sans-serif" fontWeight="700" fontSize="10" letterSpacing="1.2">
-          <g><rect x="119" y="79" width="104" height="24" fill="#041e18" stroke="#b88a2c" strokeOpacity=".65"/><text x="131" y="95" fill="#fbf7ed">{copy.canada}</text></g>
-          <g><rect x="124" y="159" width="130" height="24" fill="#041e18" stroke="#b88a2c" strokeOpacity=".65"/><text x="136" y="175" fill="#fbf7ed">{copy.usa}</text></g>
-          <g><rect x="473" y="86" width="104" height="24" fill="#041e18" stroke="#b88a2c" strokeOpacity=".65"/><text x="485" y="102" fill="#fbf7ed">{copy.germany}</text></g>
+        <g fontFamily="Manrope, sans-serif" fontWeight="700" fontSize="9" letterSpacing="1.1">
+          <g><rect x="112" y="79" width="128" height="24" fill="#041e18" stroke="#b88a2c" strokeOpacity=".7"/><text x="124" y="95" fill="#fbf7ed">{copy.usa}</text></g>
+          <g><rect x="126" y="173" width="96" height="24" fill="#041e18" stroke="#b88a2c" strokeOpacity=".7"/><text x="138" y="189" fill="#fbf7ed">{copy.mexico}</text></g>
+          <g><rect x="179" y="270" width="92" height="24" fill="#041e18" stroke="#b88a2c" strokeOpacity=".7"/><text x="191" y="286" fill="#fbf7ed">{copy.brazil}</text></g>
+          <g><rect x="525" y="157" width="72" height="24" fill="#041e18" stroke="#b88a2c" strokeOpacity=".7"/><text x="537" y="173" fill="#fbf7ed">{copy.uae}</text></g>
+          <g><rect x="722" y="304" width="116" height="24" fill="#041e18" stroke="#b88a2c" strokeOpacity=".7"/><text x="734" y="320" fill="#fbf7ed">{copy.australia}</text></g>
           <g><rect x="646" y="220" width="170" height="27" fill="#041e18" stroke="#a8c76b" strokeOpacity=".75"/><text x="658" y="238" fill="#a8c76b">{copy.india}</text></g>
         </g>
       </svg>
